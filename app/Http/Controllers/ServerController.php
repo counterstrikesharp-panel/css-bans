@@ -70,6 +70,7 @@ class ServerController extends Controller
         try {
             $rcon->connect($serverIp, $serverPort);
             $players = $rcon->getPlayers();
+            $rcon->disconnect();
         } catch(\Exception $e){
             Log::error('rcon.players.error'.$e->getMessage());
         }
