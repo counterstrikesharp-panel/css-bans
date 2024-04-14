@@ -3,7 +3,60 @@
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://pa
+## CSS-BANS
+
+PHP Web-based panel for managing bans, mutes, and more on Counter-Strike 2 servers using CounterStrikeSharp and CS2-SimpleAdmin
+
+# Requirements
+- PHP >= 8.1
+- CounterStrikeSharp (https://github.com/roflmuffin/CounterStrikeSharp)
+- Mysql >=5.7
+- ServerPlayerListFix (Release Tab)
+- SimpleAdmin (https://github.com/daffyyyy/CS2-SimpleAdmin)
+
+## Installation
+
+
+### Setup Game Server
+- Before Proceeding with installation ensure SimpleAdmin is setup from   **[CS2SimpleAdmin](https://github.com/daffyyyy/CS2-SimpleAdmin)** or you could use the SimpleAdmin CSS plugin attached in release tab (Recommended)
+- Copy  **addons** folder from **serverlistplayersfix_linux.zip/serverlistplayersfix_windows.zip** to your game server folder **csgo/addons**
+
+### Setup Web
+
+- Download the **panel.zip** from release tab and upload the contents to your web hosting.
+- Visit your site and setup will guide for the Installation
+
+
+
+## Features
+
+- Manage Bans
+- Mange Admins
+- Mange Mutes
+- List Servers
+- View Server Players
+
+
+
+## Upcoming Features
+
+- Groups
+- Live Bans/Mutes/Kick form panel
+- Rcon Management
+
+
+## Development
+
+- Requies Node.js version >=17
+- Requires Laravel Version >=10
+```
+## Install dependencies
+   composer install
+## Build Assets   
+   npm run build
+## setup .env 
+```ckagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
