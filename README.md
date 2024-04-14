@@ -33,6 +33,8 @@ PHP Web-based panel for managing bans, mutes, and more on Counter-Strike 2 serve
 - Download the panel **[css.bans.tar.gz](https://github.com/hobsRKM/css-bans/releases)** from release tab and upload the contents to your web hosting.
 - Visit your site and setup will guide for the Installation
 - The setup will check the requirements before proceeding, ensure all the requirements are met from the list.
+- Panel Management is allowed only for the user having "@css/root" permission. Please ensure that you do not give this permission to any other palyer other than the panel owner.
+- After successfull setup login with the same steam profile that you used while setting up the panel to manage Admins!
 
 ## Features
 
