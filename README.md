@@ -50,8 +50,10 @@ PHP Web-based panel for managing bans, mutes, and more on Counter-Strike 2 serve
 - Requires Laravel Version >=10
 
 ```bash
+cp .env.exampple .env
 ## Install dependencies
 composer install
+php artisan migrate
 ## Build Assets   
 npm run build
-## setup .env 
+
