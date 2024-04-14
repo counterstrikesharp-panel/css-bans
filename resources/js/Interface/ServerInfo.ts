@@ -5,5 +5,5 @@ export interface ServerInfo {
     ip: string;
     port: string;
     map: string;
-    connect: string;
+    connect_button: string;
 }

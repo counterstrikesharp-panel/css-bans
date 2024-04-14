@@ -34,7 +34,7 @@ class ServerController extends Controller
                     'port' => $serverPort,
                     'players' => $serverInfo['Players'] . "/" . $serverInfo['MaxPlayers'],
                     'map' => $serverInfo['Map'],
-                    'connect_button' => '<a class="btn btn-success" href="steam://connect/' . $server->ip . ':' . $server->port . '">Connect</a>',
+                    'connect_button' => '<a class="btn btn-success" href="steam://connect/' . $serverIp . ':' . $serverIp . '">Connect</a>',
                 ];
                 $rcon->disconnect();
             } catch(\Exception) {
