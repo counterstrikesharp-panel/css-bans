@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SaAdmin;
 use App\Models\SaServer;
 use App\Services\RconService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -103,10 +105,22 @@ class ServerController extends Controller
             DB::unprepared($sql);
             $envContent = File::get(base_path('.env'));
             foreach ($request->all() as $key => $value) {
+                if($key !== 'STEAM_ID_64')
                 $envContent .= "$key=$value\n";
             }
             $envContent .= "\nSETUP=true";
             File::put(base_path('.env'), $envContent);
+            foreach(SaServer::all() as $server) {
+                $admin = new SaAdmin();
+                $admin->player_steamid = $request->input('STEAM_ID_64');
+                $admin->player_name = 'Admin';
+                $admin->flags = '@css/root';
+                $admin->immunity = 1;
+                $admin->server_id = $server->id;
+                $admin->ends = Carbon::now()->addYears(5)->format(('Y-m-d'));
+                $admin->created = now();
+                $admin->save();
+            }
             return redirect('/')->with('success', 'Environment variables updated successfully. Database connection established. Tables imported.');
         } catch (\Exception $e) {
             return redirect()->back()->withInput()->withErrors(['error' => 'Setup failed: ' . $e->getMessage()]);

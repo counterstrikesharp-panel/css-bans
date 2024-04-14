@@ -31,7 +31,7 @@
                         </div>
                         <div class="form-group">
                             <label for="appName">Panel URL:</label>
-                            <input type="text" name="APP_URL" id="appURL" class="form-control" value="{{ old('APP_URL') }}">
+                            <input placeholder="EX: https://yoursite.com (dont add / at end)" type="text" name="APP_URL" id="appURL" class="form-control" value="{{ old('APP_URL') }}">
                         </div>
                         <div class="form-group">
                             <label for="dbHost">Database Host:</label>
@@ -62,7 +62,7 @@
                             <label for="steamId64">Steam ID 64 (Panel Admin):</label>
                             <input type="text" name="STEAM_ID_64" id="steamId64" class="form-control" value="{{ old('STEAM_ID_64') }}">
                         </div>
-
+                        <input type="hidden" name="STEAM_REDIRECT_URI" value="${APP_URL}/auth/steam/callback" />
                         <button type="submit" class="btn btn-primary">Setup</button>
                     </form>
                 </div>

@@ -1,4 +1,4 @@
-d@extends('layouts.app')
+@extends('layouts.app')
 @section('content')
     @if (session('success'))
         <x-alert type="success" :message="session('success')"/>
