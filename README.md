@@ -27,6 +27,7 @@ PHP Web-based panel for managing bans, mutes, and more on Counter-Strike 2 serve
 
 - Download the panel **[css.bans.tar.gz](https://github.com/hobsRKM/css-bans/releases)** from release tab and upload the contents to your web hosting.
 - Visit your site and setup will guide for the Installation
+- The setup will check the requirements before proceeding, ensure all the requirements are met from the list.
 
 ## Features
 
