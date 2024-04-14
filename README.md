@@ -6,9 +6,14 @@
 </div>
 
 PHP Web-based panel for managing bans, mutes, and more on Counter-Strike 2 servers using CounterStrikeSharp and CS2-SimpleAdmin
-![image](https://github.com/hobsRKM/css-bans/assets/11420858/8033e3b9-a917-4a10-a020-c149821aa598)
-![image](https://github.com/hobsRKM/css-bans/assets/11420858/d6599f88-96f7-4776-a07e-60d4c4ccdbaa)
+![image](https://github.com/hobsRKM/css-bans/assets/11420858/a8742df5-21ba-4d38-98d4-f7e71a0cf003)
+
+![image](https://github.com/hobsRKM/css-bans/assets/11420858/2ca220f8-ff50-40f4-8238-dbc44270574f)
+
 ![image](https://github.com/hobsRKM/css-bans/assets/11420858/7b7fb2e3-22d3-4398-b19c-9d169789f802)
+
+![image](https://github.com/hobsRKM/css-bans/assets/11420858/84796cb7-31d6-48ef-895e-4af1331ad71c)
+
 
 ## Requirements
 - PHP >= 8.1
