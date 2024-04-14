@@ -1,0 +1,79 @@
+
+/* Width */
+::-webkit-scrollbar {
+    height: 4px;              /* height of horizontal scrollbar ← You're missing this */
+    width: 4px;               /* width of vertical scrollbar */
+    border: 1px solid #d5d5d5;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color of the scrollbar track */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scrollbar handle */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color of the scrollbar handle on hover */
+}
+
+section {
+    margin-bottom: 10px;
+}
+
+.close {
+    background: transparent;
+    border: none;
+}
+
+.alert {
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 8px;
+    border: 1px solid;
+}
+/* CSS for the loader */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white background */
+    z-index: 9999; /* Ensure loader appears above other content */
+    display: none; /* Initially hidden */
+}
+
+/* Loader animation */
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -60px; /* Center vertically */
+    margin-left: -60px; /* Center horizontally */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.spinner-border {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.table th {
+    font-weight: 500;
+    font-size: 14px;
+}
