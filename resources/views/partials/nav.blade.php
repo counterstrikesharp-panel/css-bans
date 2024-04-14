@@ -63,7 +63,7 @@
                 </li>
                 <!-- Icon -->
                 <li class="nav-item me-3 mt-1 me-lg-0">
-                    <a class="nav-link" href="https://github.com/hobsRKM/css-bans">
+                    <a class="nav-link" href="https://github.com/counterstrikesharp-panel/css-bans">
                         <i class="fab fa-github"></i>
                     </a>
                 </li>
