@@ -30,11 +30,20 @@ PHP Web-based panel for managing bans, mutes, and more on Counter-Strike 2 serve
 
 ### Setup Web
 
-- Download the panel **[css.bans.tar.gz](https://github.com/hobsRKM/css-bans/releases)** from release tab and upload the contents to your web hosting **(NOTE: do not upload it in any subdirectory, upload the content to main site directory).Ex: mysite.com/ but not mysite.com/bans**
-- Visit your site and setup will guide for the Installation
-- The setup will check the requirements before proceeding, ensure all the requirements are met from the list.
-- Panel Management is allowed only for the user having "@css/root" permission. Please ensure that you do not give this permission to any other palyer other than the panel owner.
-- After successfull setup login with the same steam profile that you used while setting up the panel to manage Admins!
+- 1. Download the panel **[css.bans.tar.gz](https://github.com/hobsRKM/css-bans/releases)** from release tab and upload the contents to your web hosting 
+- 2. SKIP the below step if you are hosting it on site root space i.e mysite.com/
+  - If you are hosting under a folder for example **mysite.com/bans** then follow the below steps
+  - ```
+    # Go to your site subfolder i.e mysite.com/bans and open .env file
+    # Edit VITE_SITE_DIR=/bans (Your subfolder in this case)
+    # Edit ASSET_URL=https://mysite.com/bans 
+    # Save
+    # Now visit mysite.com/bans and continue with the installation
+    ```
+- 3. Ignore this step if you already followed step 2. Visit your site i.e mysite.com/ and setup will guide for the Installation
+- 4. The setup will check the requirements before proceeding, ensure all the requirements are met from the list.
+- 5. Panel Management is allowed only for the user having **"@css/root"** permission. Please ensure that you do not give this permission to any other palyer other than the panel owner.
+- 6. After successful setup, login with the same steam profile that you used while setting up the panel to manage Admins!
 
 ## Features
 
