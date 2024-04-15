@@ -1,9 +1,6 @@
 import axios from 'axios';
 import {appendTableData, formatDuration, calculateProgress} from '../utility/utility';
 import $ from "jquery";
-// Define the URL endpoint
-const mutesListUrl = '/mutes';
-const bansListUrl = '/bans';
 let tableRows = null;
 // Make a GET request to fetch mutes data
 axios.get(mutesListUrl)

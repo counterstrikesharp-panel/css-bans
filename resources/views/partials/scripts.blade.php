@@ -6,6 +6,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.0.0/mdb.min.js"></script>
 @vite(['resources/js/app.js'])
+{{--Used by typscript files--}}
+<script>
+    function getPlayerUnMuteUrl(playerSteamid) {
+       return "{!! env('VITE_SITE_DIR') !!}/players/"+playerSteamid+"/unmute";
+    }
+    function getPlayerUnBanUrl(playerSteamid) {
+        return "{!! env('VITE_SITE_DIR') !!}/players/"+playerSteamid+"/unban";
+    }
+    const serversListUrl = '{!! env('VITE_SITE_DIR') !!}/servers';
+    const mutesListUrl = '{!! env('VITE_SITE_DIR') !!}/list/mutes';
+    const bansListUrl = '{!! env('VITE_SITE_DIR') !!}/bans';
+    const adminListUrl = '{!! env('VITE_SITE_DIR') !!}/list/admins';
+    const banListUrl = '{!! env('VITE_SITE_DIR') !!}/list/bans';
+</script>
 
 
 

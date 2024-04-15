@@ -4,30 +4,30 @@
     <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse ">
         <div class="position-sticky">
             <div class="list-group list-group-flush mx-3 mt-4">
-                <a href="/" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init aria-current="true">
+                <a href="{{env('VITE_SITE_DIR')}}/" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init aria-current="true">
                     <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span>
                 </a>
-                <a href="/list/bans" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init>
+                <a href="{{env('VITE_SITE_DIR')}}/list/bans" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init>
                     <i class="fas fa-ban fa-fw me-3"></i><span>Bans</span>
                 </a>
-                <a href="/list/mutes" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init>
+                <a href="{{env('VITE_SITE_DIR')}}/list/mutes" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init>
                     <i class="fas fa-microphone-alt-slash fa-fw me-3"></i><span>Mutes</span>
                 </a>
-                <a href="/list/admins" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init>
+                <a href="{{env('VITE_SITE_DIR')}}/list/admins" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init>
                     <i class="fas fa-users-cog fa-fw me-3"></i><span>Admins</span>
                 </a>
-                <a href="/ban/add" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init>
+                <a href="{{env('VITE_SITE_DIR')}}/ban/add" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init>
                     <i class="fas fa-plus fa-fw me-3"></i><span>Add Ban</span>
                 </a>
-                <a href="/mute/add" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init>
+                <a href="{{env('VITE_SITE_DIR')}}/mute/add" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init>
                     <i class="fas fa-plus fa-fw me-3"></i><span>Add Mute</span>
                 </a>
                 @if(!empty(Auth::user()))
-                    <a href="{{url('auth/logout')}}" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init>
+                    <a href="{{env('VITE_SITE_DIR')}}/auth/logout" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init>
                         <i class="fas fa-sign-out-alt fa-fw me-3"></i><span>Logout</span>
                     </a>
                 @else
-                    <a href="{{url('auth/steam')}}" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init>
+                    <a href="{{env('VITE_SITE_DIR')}}/auth/steam" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init>
                         <i class="fab fa-steam fa-fw me-3"></i><span>Login with Steam</span>
                     </a>
                 @endif
@@ -78,9 +78,9 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                         <li>
                             @if(!empty(Auth::user()))
-                                <a class="dropdown-item" href="{{url('auth/logout')}}">Logout</a>
+                                <a class="dropdown-item" href="{{env('VITE_SITE_DIR')}}/auth/logout">Logout</a>
                             @else
-                                <a class="dropdown-item" href="{{url('auth/steam')}}">Login with steam</a>
+                                <a class="dropdown-item" href="{{env('VITE_SITE_DIR')}}/auth/steam">Login with steam</a>
                             @endif
                         </li>
                     </ul>

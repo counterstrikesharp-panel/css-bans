@@ -5,7 +5,7 @@ const dataTable = new DataTable("#adminsList", {
     "processing": true,
     "serverSide": true,
     "ajax": {
-        "url": "/list/admins",
+        "url": adminListUrl,
         "headers": {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr('content')
         },

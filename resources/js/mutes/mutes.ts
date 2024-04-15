@@ -9,7 +9,7 @@ function loadMutes() {
         "processing": true,
         "serverSide": true,
         "ajax": {
-            "url": "/list/mutes",
+            "url": mutesListUrl,
             "headers": {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr('content')
             },
@@ -58,9 +58,9 @@ function loadMutes() {
     });
 }
 $(document).on('click', '.unmute-btn', function() {
-    var playerSteamid = $(this).data('player-steamid');
+    let playerSteamid = $(this).data('player-steamid');
     $.ajax({
-        url: '/players/'+playerSteamid+'/unmute',
+        url: getPlayerUnMuteUrl(playerSteamid),
         type: 'PUT',
         dataType: 'json',
         data: {

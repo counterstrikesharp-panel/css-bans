@@ -29,21 +29,29 @@ class AdminController extends Controller
     {
         $validatedData = $request->validated();
         try {
+            $adminAddedToServerCount = 0;
             foreach ($validatedData['server_ids'] as $server_id) {
                 foreach ($validatedData['permissions'] as $permissionId) {
-                    $permission = Permission::find($permissionId);
-                    $admin = new SaAdmin();
-                    $admin->player_steamid = $validatedData['steam_id'];
-                    $admin->player_name = $validatedData['player_name'];
-                    $admin->flags = $permission->permission;
-                    $admin->immunity = 1;
-                    $admin->server_id = $server_id;
-                    $admin->ends = $validatedData['ends'];
-                    $admin->created = now();
-                    $admin->save();
+                    $existingAdmin = SaAdmin::where('player_steamid', $validatedData['steam_id'])
+                        ->where('flags', $permissionId)
+                        ->where('server_id', $server_id)
+                        ->exists();
+                    if (!$existingAdmin) {
+                        $permission = Permission::find($permissionId);
+                        $admin = new SaAdmin();
+                        $admin->player_steamid = $validatedData['steam_id'];
+                        $admin->player_name = $validatedData['player_name'];
+                        $admin->flags = $permission->permission;
+                        $admin->immunity = 1;
+                        $admin->server_id = $server_id;
+                        $admin->ends = $validatedData['ends'];
+                        $admin->created = now();
+                        $admin->save();
+                        $adminAddedToServerCount++;
+                    }
                 }
             }
-            return redirect()->route('admins.list')->with('success', 'Admin created successfully.');
+            return redirect()->route('admins.list')->with('success', 'Admin added successfully to '.$adminAddedToServerCount.' Servers');
         } catch (\Exception $e) {
             return Redirect::back()->withErrors(['msg' => 'There was an error saving the admin: ' . $e->getMessage()]);
         }
@@ -87,6 +95,7 @@ class AdminController extends Controller
             ->get();
         // Format each ban record
         $formattedData = [];
+        $siteDir = env('VITE_SITE_DIR');
         foreach ($admins as $admin) {
             $formattedData[] = [
                 "id" => $admin->id,
@@ -96,7 +105,7 @@ class AdminController extends Controller
                 "created" => $admin->created,
                 "flags" => $admin->flags,
                 "hostnames" => $admin->hostnames,
-                'actions' => PermissionsHelper::isSuperAdmin() ? "<a href='/admin/edit/{$admin->player_steamid}/{$admin->server_id}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></a><a href='/admin/delete/$admin->player_steamid' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>" : "",
+                'actions' => PermissionsHelper::isSuperAdmin() ? "<a href='$siteDir/admin/edit/{$admin->player_steamid}/{$admin->server_id}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></a><a href='$siteDir/admin/delete/$admin->player_steamid' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>" : "",
             ];
         }
         $response = [
@@ -115,6 +124,9 @@ class AdminController extends Controller
             ->where('player_steamid', $player_steam)
             ->where('server_id', $server_id)
             ->get();
+        if ($admin->isEmpty()) {
+            return redirect()->route('admins.list')->with('error', 'Admin does not exists for the server!. Add Admin!');
+        }
         $permissions = Permission::all();
         $servers = SaServer::all();
         $adminPermissions = $admin->pluck('permissions.permission')->toArray();

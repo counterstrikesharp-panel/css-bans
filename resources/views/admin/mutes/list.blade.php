@@ -6,7 +6,7 @@
         <div class="card">
             @if(PermissionsHelper::hasMutePermission())
                 <div class="mt-3 d-flex justify-content-end p-1">
-                    <a href="/mute/add" class="col-md- btn btn-success">Add Mute</a>
+                    <a href="{{env('VITE_SITE_DIR')}}/mute/add" class="col-md- btn btn-success">Add Mute</a>
                 </div>
             @endif
             <div class="card-header text-center py-3">

@@ -110,6 +110,7 @@ class ServerController extends Controller
                 $envContent .= "$key=$value\n";
             }
             $envContent .= "\nSETUP=true";
+            $envContent .= "\nASSET_URL=".$request->input('APP_URL');
             File::put(base_path('.env'), $envContent);
             foreach(SaServer::all() as $server) {
                 $admin = new SaAdmin();
@@ -122,7 +123,7 @@ class ServerController extends Controller
                 $admin->created = now();
                 $admin->save();
             }
-            return redirect('/')->with('success', 'Environment variables updated successfully. Database connection established. Tables imported.');
+            return redirect()->route('home')->with('success', 'Environment variables updated successfully. Database connection established. Tables imported.');
         } catch (\Exception $e) {
             return redirect()->back()->withInput()->withErrors(['error' => 'Setup failed: ' . $e->getMessage()]);
         }

@@ -100,7 +100,7 @@ foreach ($requirements as $requirement) {
     <?php endif; ?>
     <?php endforeach; ?>
     <?php if ($allRequirementsMet): ?>
-    <div style="text-align: center;"><a href="/setup" class="btn btn-success">NEXT</a></div>
+    <div style="text-align: center;"><a href="{{env('VITE_SITE_DIR')}}/setup" class="btn btn-success">NEXT</a></div>
     <?php endif; ?>
 </div>
 @include('partials.scripts')

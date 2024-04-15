@@ -3,8 +3,7 @@ import {appendTableData, formatDuration} from '../utility/utility';
 import {ServerInfo} from '../Interface/ServerInfo';
 import {showLoader} from "../utility/utility";
 import {hideLoader} from "../utility/utility";
-// Define the URL endpoint
-const serversListUrl = '/servers';
+
 // Make a GET request to fetch mutes data
 axios.get(serversListUrl)
     .then(response => {

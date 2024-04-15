@@ -22,7 +22,7 @@ class DashboardController extends Controller
         $totalBans = SaBan::count();
         $totalServers = SaServer::count();
         $totalMutes = SaMute::count();
-        $totalAdmins = SaAdmin::count();
+        $totalAdmins = SaAdmin::distinct('player_steamid')->count();
         if(PermissionsHelper::isSuperAdmin()) {
             $updates = $this->checkUpdates();
         }

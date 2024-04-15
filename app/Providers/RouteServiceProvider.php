@@ -34,6 +34,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/api.php'));
 
             Route::middleware('web')
+                ->prefix(env('VITE_SITE_DIR', ''))
                 ->group(base_path('routes/web.php'));
         });
     }

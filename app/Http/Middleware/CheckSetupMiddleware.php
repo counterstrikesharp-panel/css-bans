@@ -16,7 +16,7 @@ class CheckSetupMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (env('SETUP') !== true && $request->path() !== 'setup') {
-            return redirect('requirement');
+            return redirect()->route('requirement');
         }
         return $next($request);
     }

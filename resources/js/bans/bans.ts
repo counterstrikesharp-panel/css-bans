@@ -7,7 +7,7 @@ function loadBans() {
         "processing": true,
         "serverSide": true,
         "ajax": {
-            "url": "/list/bans",
+            "url": banListUrl,
             "headers": {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr('content')
             },
@@ -58,9 +58,9 @@ function loadBans() {
 loadBans();
 
 $(document).on('click', '.unban-btn', function() {
-    var playerSteamid = $(this).data('player-steamid');
+      let playerSteamid = $(this).data('player-steamid');
       $.ajax({
-        url: '/players/'+playerSteamid+'/unban',
+        url: getPlayerUnBanUrl(playerSteamid),
         type: 'PUT',
         dataType: 'json',
         data: {

@@ -21,7 +21,7 @@
         <div class="card">
             @if(PermissionsHelper::hasBanPermission())
                 <div class="mt-3 d-flex justify-content-end p-1">
-                    <a href="/ban/add" class="col-md- btn btn-success">Add Ban</a>
+                    <a href="{{env('VITE_SITE_DIR')}}/ban/add" class="col-md- btn btn-success">Add Ban</a>
                 </div>
             @endif
             <div class="card-header text-center py-3">

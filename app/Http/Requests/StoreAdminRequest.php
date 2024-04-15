@@ -17,7 +17,7 @@ class StoreAdminRequest extends FormRequest
     public function rules()
     {
         return [
-            'steam_id' => 'required|numeric|digits:17|unique:sa_admins,player_steamid',
+            'steam_id' => 'required|numeric|digits:17',
             'player_name' => 'required',
             'server_ids' => 'required|array',
             'server_ids.*' => 'exists:sa_servers,id',
@@ -30,7 +30,6 @@ class StoreAdminRequest extends FormRequest
     public function messages()
     {
         return [
-            'steam_id.unique' => 'Admin has already been registered. To add this admin to a new server you can use the edit feature.',
             'steamid.required' => 'The SteamID64 field is required.',
             'steamid.numeric' => 'The SteamID64 must be a number.',
             'steamid.digits:17' => 'The SteamID64 must be exactly 17 digits.',

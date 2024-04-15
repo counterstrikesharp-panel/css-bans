@@ -23,7 +23,7 @@
                     <div class="alert alert-warning  fade show" role="alert">
                         <strong>NOTE:</strong> Use the same database host and database name used by cs2Simpleadmin. Panel uses the same database to configure tables
                     </div>
-                    <form method="POST" action="/setup" onsubmit="showLoader()">
+                    <form method="POST" action="{{env('VITE_SITE_DIR')}}/setup" onsubmit="showLoader()">
                         @csrf
                         <div class="form-group">
                             <label for="appName">Panel Name:</label>

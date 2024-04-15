@@ -18,7 +18,7 @@
             <div class="card-body">
                 @if(PermissionsHelper::isSuperAdmin())
                     <div class="mt-3 d-flex justify-content-end p-1">
-                        <a href="/admin/create" class="col-md- btn btn-success">Add Admin</a>
+                        <a href="{{env('VITE_SITE_DIR')}}/admin/create" class="col-md- btn btn-success">Add Admin</a>
                     </div>
                 @endif
                 <div class="table-responsive">

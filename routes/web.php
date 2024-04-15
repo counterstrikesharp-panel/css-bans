@@ -70,7 +70,7 @@ Route::get('/requirement', function () {
         return redirect('/');
     }
     return view('requirement');
-});
+})->name('requirement');
 Route::get('/setup', function () {
     if (env('SETUP') === 'true') {
         return redirect('/');
