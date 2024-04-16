@@ -53,6 +53,7 @@ Route::middleware(['checkSetup'])->group(function () {
         Route::post('mute', [MutesController::class, 'store'])->name('mute.store')->middleware('permission.ban');
         Route::put('{player_steam_id}/unban', [BansController::class, 'unban'])->middleware('permission.unban');
         Route::put('{player_steam_id}/unmute', [MutesController::class, 'unmute'])->middleware('permission.unmute');
+        Route::post('action', [ServerController::class, 'serverPlayerAction'])->name('player.action');
     });
 
     Route::get('/ban/add', [BansController::class, 'create'])->middleware('permission.ban');

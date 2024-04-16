@@ -57,6 +57,10 @@
                             <label for="steamApiKey">Steam Web API Key:</label>
                             <input type="text" name="STEAM_CLIENT_SECRET" id="steamApiKey" class="form-control" value="{{ old('STEAM_API_KEY') }}">
                         </div>
+                        <div class="form-group">
+                            <label for="rconPassword">RCON PASSWORD:</label>
+                            <input type="password" name="RCON_PASSWORD" id="rconPassword" class="form-control" value="{{ old('RCON_PASSWORD') }}">
+                        </div>
 
                         <div class="form-group">
                             <label for="steamId64">Steam ID 64 (Panel Admin):</label>

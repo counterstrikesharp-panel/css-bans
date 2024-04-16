@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\PermissionsHelper;
 use App\Models\SaAdmin;
 use App\Models\SaServer;
 use App\Services\RconService;
@@ -74,7 +75,7 @@ class ServerController extends Controller
         } catch(\Exception $e){
             Log::error('rcon.players.error'.$e->getMessage());
         }
-        return view('admin.servers.players', compact('players'));
+        return view('admin.servers.players', compact('players', 'server'));
     }
 
 
@@ -89,6 +90,7 @@ class ServerController extends Controller
             'DB_PASSWORD' => 'required|string',
             'STEAM_CLIENT_SECRET' => 'required|string',
             'STEAM_ID_64' => 'required|string|digits:17',
+            'RCON_PASSWORD'=> 'required|string'
         ]);
 
         try {
@@ -126,6 +128,59 @@ class ServerController extends Controller
             return redirect()->route('home')->with('success', 'Environment variables updated successfully. Database connection established. Tables imported.');
         } catch (\Exception $e) {
             return redirect()->back()->withInput()->withErrors(['error' => 'Setup failed: ' . $e->getMessage()]);
+        }
+    }
+
+    public function serverPlayerAction(Request $request) {
+        $requestType = $request->input('action');
+        $playerName = $request->input('name');
+        $serverId = $request->input('serverId');
+        switch ($requestType){
+            case "ban":
+                if(PermissionsHelper::hasUnBanPermission())
+                    return $this-> executeCommand('css_ban '.$playerName, $serverId);
+                break;
+            case "kick":
+                if(PermissionsHelper::hasKickPermission())
+                    return $this->executeCommand('css_kick '.$playerName, $serverId);
+                break;
+            case "mute":
+                if(PermissionsHelper::hasMutePermission())
+                    return $this->executeCommand('css_mute ' . $playerName, $serverId);
+                break;
+            default: abort(403);
+        }
+    }
+
+    private function executeCommand(string $command, string $serverId)
+    {
+        $server = SaServer::where('id', $serverId)->first();
+        list($serverIp, $serverPort) = explode(":", $server->address);
+
+        try {
+            $rcon = app(RconService::class);
+            $rcon->connect($serverIp, $serverPort);
+            $rcon->setRconPassword(env('RCON_PASSWORD'));
+            $output = $rcon->rcon($command);
+            $rcon->disconnect();
+            $pattern = "/Target [a-zA-Z]+ not found\./";
+            if (preg_match($pattern, $output)) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Player not found.'
+                ],500);
+            } else {
+                return response()->json([
+                    'status' => 'success',
+                    'message' => "Command Executed Successfully."
+                ]);
+            }
+        } catch(\Exception $e){
+            Log::error('rcon.players.error ' . $e->getMessage());
+            return response()->json([
+                'status' => 'error',
+                'message' => 'An error occurred while executing the command.'
+            ], 500);
         }
     }
 }

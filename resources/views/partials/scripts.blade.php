@@ -14,12 +14,16 @@
     function getPlayerUnBanUrl(playerSteamid) {
         return "{!! env('VITE_SITE_DIR') !!}/players/"+playerSteamid+"/unban";
     }
+    function getPlayerInfoUrl(serverId) {
+        return "{!! env('VITE_SITE_DIR') !!}/servers/"+serverId+"/players";
+    }
     const serversListUrl = '{!! env('VITE_SITE_DIR') !!}/servers';
     const mutesListUrl = '{!! env('VITE_SITE_DIR') !!}/list/mutes';
     const recentBansUrl = '{!! env('VITE_SITE_DIR') !!}/bans';
     const recentMutesUrl = '{!! env('VITE_SITE_DIR') !!}/mutes';
     const adminListUrl = '{!! env('VITE_SITE_DIR') !!}/list/admins';
     const bansListUrl = '{!! env('VITE_SITE_DIR') !!}/list/bans';
+    const playerActionUrl = '{!! env('VITE_SITE_DIR') !!}/players/action';
 </script>
 
 

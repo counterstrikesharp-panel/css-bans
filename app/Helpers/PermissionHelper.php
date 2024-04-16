@@ -83,4 +83,17 @@ class PermissionsHelper
 
         return false;
     }
+
+    public static function hasKickPermission()
+    {
+        // Get the authenticated user
+        $user = Auth::user();
+
+        // Check if the user has the specified permission
+        if ($user && $user->permissions()->where('player_steamid', $user->steam_id)->whereIn('flags', ['@css/root', '@css/kick'])->exists()) {
+            return true;
+        }
+
+        return false;
+    }
 }

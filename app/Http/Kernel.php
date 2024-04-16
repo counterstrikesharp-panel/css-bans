@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\Ban;
 use App\Http\Middleware\CheckSetupMiddleware;
+use App\Http\Middleware\Kick;
 use App\Http\Middleware\Mute;
 use App\Http\Middleware\Unban;
 use App\Http\Middleware\SuperAdminMiddleware;
@@ -75,6 +76,7 @@ class Kernel extends HttpKernel
         'permission.unmute' => Unmute::class,
         'permission.ban' => Ban::class,
         'permission.mute' => Mute::class,
+        'permission.kick' => Kick::class,
         'checkSetup' => CheckSetupMiddleware::class,
     ];
 }

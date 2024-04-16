@@ -74,7 +74,7 @@ $(document).on('click', '.unban-btn', function() {
             dataTable.ajax.reload();
         },
         error: function(xhr, status, error) {
-            toaster.error('Failed to unban player!');
+            toastr.error('Failed to unban player!');
         }
     });
 });

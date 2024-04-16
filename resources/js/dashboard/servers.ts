@@ -51,12 +51,19 @@ document.addEventListener('click', function(event) {
             console.error('Server ID not found.');
         }
     }
+    if (event.target.parentNode.classList.contains('player')) {
+        event.preventDefault();
+        const playerName = event.target.parentNode.dataset.playerName;
+        const action = event.target.parentNode.dataset.action;
+        const server = event.target.parentNode.dataset.serverId;
+        playerAction(playerName, action, server);
+    }
 });
 
 // Function to fetch players for a specific server
 function fetchPlayers(serverId: string) {
     showLoader();
-    const playersUrl = `/servers/${serverId}/players`;
+    const playersUrl = getPlayerInfoUrl(serverId);
     axios.get(playersUrl)
         .then(response => {
             $("#modalBody").html(response.data);
@@ -66,6 +73,32 @@ function fetchPlayers(serverId: string) {
         .catch(error => {
             console.error('Error fetching players:', error);
         });
+}
+
+function playerAction(playerName: string, action: string, serverId: string) {
+    showLoader();
+    $.ajax({
+        url: playerActionUrl,
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            name: playerName,
+            action: action,
+            serverId: serverId
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(response) {
+            hideLoader();
+            toastr.success('Player '+action+' successful.');
+            fetchPlayers(serverId);
+        },
+        error: function(xhr, status, error) {
+            hideLoader();
+            toastr.error('Failed to perform action!. Either RCON PORT NOT OPEN OR RCON PASSWORD IS INCORRECT');
+        }
+    });
 }
 
 
