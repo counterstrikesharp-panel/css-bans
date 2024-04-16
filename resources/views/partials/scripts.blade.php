@@ -16,9 +16,10 @@
     }
     const serversListUrl = '{!! env('VITE_SITE_DIR') !!}/servers';
     const mutesListUrl = '{!! env('VITE_SITE_DIR') !!}/list/mutes';
-    const bansListUrl = '{!! env('VITE_SITE_DIR') !!}/bans';
+    const recentBansUrl = '{!! env('VITE_SITE_DIR') !!}/bans';
+    const recentMutesUrl = '{!! env('VITE_SITE_DIR') !!}/mutes';
     const adminListUrl = '{!! env('VITE_SITE_DIR') !!}/list/admins';
-    const banListUrl = '{!! env('VITE_SITE_DIR') !!}/list/bans';
+    const bansListUrl = '{!! env('VITE_SITE_DIR') !!}/list/bans';
 </script>
 
 

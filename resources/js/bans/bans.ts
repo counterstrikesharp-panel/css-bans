@@ -7,7 +7,7 @@ function loadBans() {
         "processing": true,
         "serverSide": true,
         "ajax": {
-            "url": banListUrl,
+            "url": bansListUrl,
             "headers": {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr('content')
             },

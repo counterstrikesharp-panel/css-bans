@@ -3,7 +3,7 @@ import {appendTableData, formatDuration, calculateProgress} from '../utility/uti
 import $ from "jquery";
 let tableRows = null;
 // Make a GET request to fetch mutes data
-axios.get(mutesListUrl)
+axios.get(recentMutesUrl)
     .then(response => {
         // Handle successful response
         appendTableData(constructTableRows(response.data), 'recentMutes');
@@ -13,7 +13,7 @@ axios.get(mutesListUrl)
         console.error('Error:', error);
     });
 
-axios.get(bansListUrl)
+axios.get(recentBansUrl)
     .then(response => {
         // Handle successful response
         appendTableData(constructTableRows(response.data), 'recentBans');
