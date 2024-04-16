@@ -22,6 +22,8 @@ PHP Web-based panel for managing bans, mutes, and more on Counter-Strike 2 serve
 - ServerPlayerListFix ([Release Tab](#))
 - SimpleAdmin ([GitHub Repository](https://github.com/daffyyyy/CS2-SimpleAdmin))
 - Demo: [SITE DEMO](https://demo-css-bans.matchclub.xyz/)
+
+# Docs Moved to https://docs.cssbans.online
 ## Installation
 
 ### Setup Game Server
