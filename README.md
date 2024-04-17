@@ -61,7 +61,7 @@ PHP Web-based panel for managing bans, mutes, and more on Counter-Strike 2 serve
 - Live Bans/Mutes/Kick from panel
 - Rcon Management
 
-## Development
+## If you want to contribute for Development
 
 *Make CSS BANS Great Again!*
 
