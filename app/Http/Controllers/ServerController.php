@@ -108,8 +108,10 @@ class ServerController extends Controller
             DB::unprepared($sql);
             $envContent = File::get(base_path('.env'));
             foreach ($request->all() as $key => $value) {
-                if($key !== 'STEAM_ID_64')
-                $envContent .= "$key=$value\n";
+                if($key !== 'STEAM_ID_64' && $key !== 'APP_NAME')
+                    $envContent .= "$key=$value\n";
+                if($key == 'APP_NAME')
+                    $envContent .= "$key='$value'\n";
             }
             $envContent .= "\nSETUP=true";
             $envContent .= "\nASSET_URL=".$request->input('APP_URL');
