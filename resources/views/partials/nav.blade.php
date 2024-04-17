@@ -1,3 +1,4 @@
+@php use App\Helpers\PermissionsHelper; @endphp
 <!--Main Navigation-->
 <header>
     <!-- Sidebar -->
@@ -13,15 +14,21 @@
                 <a href="{{env('VITE_SITE_DIR')}}/list/mutes" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init>
                     <i class="fas fa-microphone-alt-slash fa-fw me-3"></i><span>Mutes</span>
                 </a>
+                @if(PermissionsHelper::isSuperAdmin())
                 <a href="{{env('VITE_SITE_DIR')}}/list/admins" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init>
                     <i class="fas fa-users-cog fa-fw me-3"></i><span>Admins</span>
                 </a>
+                @endif
+                @if(PermissionsHelper::hasBanPermission())
                 <a href="{{env('VITE_SITE_DIR')}}/ban/add" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init>
                     <i class="fas fa-plus fa-fw me-3"></i><span>Add Ban</span>
                 </a>
+                @endif
+                @if(PermissionsHelper::hasMutePermission())
                 <a href="{{env('VITE_SITE_DIR')}}/mute/add" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init>
                     <i class="fas fa-plus fa-fw me-3"></i><span>Add Mute</span>
                 </a>
+                @endif
                 @if(!empty(Auth::user()))
                     <a href="{{env('VITE_SITE_DIR')}}/auth/logout" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init>
                         <i class="fas fa-sign-out-alt fa-fw me-3"></i><span>Logout</span>

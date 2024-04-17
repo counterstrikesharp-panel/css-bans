@@ -27,7 +27,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="appName">Panel Name:</label>
-                            <input type="text" name="APP_NAME" id="appName" class="form-control" value="{{ old('APP_NAME') }}">
+                            <input type="text" name="APP_NAME" id="appName" class="form-control" value="'{{ old('APP_NAME') }}'">
                         </div>
                         <div class="form-group">
                             <label for="appName">Panel URL:</label>
