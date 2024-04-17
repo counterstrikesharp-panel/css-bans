@@ -157,7 +157,7 @@ class BansController extends Controller
                 $saban->server_id = $serverId;
                 $saban->admin_name = auth()->user()->name;
                 $saban->admin_steamid = auth()->user()->steam_id;
-                $saban->ends = $validatedData['duration'];
+                $saban->ends = CommonHelper::formatDate($validatedData['duration']);
                 $saban->save();
                 $bansAdded = true;
             }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\CommonHelper;
 use App\Helpers\PermissionsHelper;
 use App\Http\Requests\StoreAdminRequest;
 use App\Models\Permission;
@@ -44,7 +45,7 @@ class AdminController extends Controller
                         $admin->flags = $permission->permission;
                         $admin->immunity = 1;
                         $admin->server_id = $server_id;
-                        $admin->ends = $validatedData['ends'];
+                        $admin->ends = CommonHelper::formatDate($validatedData['ends']);
                         $admin->created = now();
                         $admin->save();
                         $adminAddedToServerCount++;
@@ -179,7 +180,7 @@ class AdminController extends Controller
         SaAdmin::where('player_steamid', $player_steam)
             ->where('server_id', $validated['server_id'])
             ->update([
-              'ends' => $validated['ends']
+              'ends' => CommonHelper::formatDate($validated['ends'])
             ]);
         return redirect()->route('admins.list')->with('success', 'Admin updated successfully.');
     }

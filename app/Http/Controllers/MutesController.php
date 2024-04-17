@@ -158,7 +158,7 @@ class MutesController extends Controller
                 $samute->server_id = $serverId;
                 $samute->admin_name = auth()->user()->name;
                 $samute->admin_steamid = auth()->user()->steam_id;
-                $samute->ends = $validatedData['duration'];
+                $samute->ends = CommonHelper::formatDate($validatedData['duration']);
                 $samute->save();
                 $bansAdded = true;
             }
