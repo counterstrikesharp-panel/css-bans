@@ -43,6 +43,7 @@
                                 @endforeach
                             </select>
                         </div>
+                        <hr/>
                         <div class="mb-3">
                             <label>Permissions</label><br>
                             @foreach($permissions as $permission)
@@ -54,9 +55,22 @@
                                 </div>
                             @endforeach
                         </div>
+                        <hr/>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="permanent" name="permanent">
+                                <label class="form-check-label" for="permanent">
+                                    Permanent (Never Expire)
+                                </label>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="ends">Ends On</label>
                             <input type="date" id="ends" name="ends" min="{{$today}}" class="form-control" value="{{ old('ends') }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="immunity">Immunity</label>
+                            <input type="number" id="immunity" name="immunity"  class="form-control" value="{{ old('immunity') }}" required>
                         </div>
                         <div class="mt-3">
                             <center> <button type="submit" class="btn btn-primary col-md-2 mx-auto ">Add Admin</button></center>
@@ -66,6 +80,5 @@
             </div>
         </div>
     </div>
-
 @endsection
 @vite(['resources/js/admin/create.ts'])

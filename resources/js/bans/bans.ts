@@ -27,8 +27,14 @@ function loadBans() {
                     return `<a href="https://steamcommunity.com/profiles/${row.player_steamid}">${data}</a>`;
                 }
             },
-            {"data": "admin_steamid"},
-            {"data": "admin_name"},
+            {
+                "data": "admin_steamid", "render": function (data, type, row, meta) {
+                    if(data != 'Console')
+                        return `<a href="https://steamcommunity.com/profiles/${data}">${row.admin_name}</a>`;
+                    else
+                        return data;
+                }
+            },
             {"data": "reason"},
             {"data": "duration"},
             {"data": "ends"},

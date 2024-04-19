@@ -30,7 +30,7 @@ class AdminController extends Controller
     {
         $validatedData = $request->validated();
         try {
-            $adminAddedToServerCount = 0;
+            $adminAddedToServerCount = [];
             foreach ($validatedData['server_ids'] as $server_id) {
                 foreach ($validatedData['permissions'] as $permissionId) {
                     $existingAdmin = SaAdmin::where('player_steamid', $validatedData['steam_id'])
@@ -43,16 +43,16 @@ class AdminController extends Controller
                         $admin->player_steamid = $validatedData['steam_id'];
                         $admin->player_name = $validatedData['player_name'];
                         $admin->flags = $permission->permission;
-                        $admin->immunity = 1;
+                        $admin->immunity = $validatedData['immunity'];
                         $admin->server_id = $server_id;
-                        $admin->ends = CommonHelper::formatDate($validatedData['ends']);
+                        $admin->ends = isset($validatedData['ends']) ? CommonHelper::formatDate($validatedData['ends']): null;
                         $admin->created = now();
                         $admin->save();
-                        $adminAddedToServerCount++;
+                        $adminAddedToServerCount[$server_id] = $server_id;
                     }
                 }
             }
-            return redirect()->route('admins.list')->with('success', 'Admin added successfully to '.$adminAddedToServerCount.' Servers');
+            return redirect()->route('admins.list')->with('success', 'Admin added successfully to '.count($adminAddedToServerCount).' Servers');
         } catch (\Exception $e) {
             return Redirect::back()->withErrors(['msg' => 'There was an error saving the admin: ' . $e->getMessage()]);
         }
@@ -102,7 +102,7 @@ class AdminController extends Controller
                 "id" => $admin->id,
                 "player_steamid" => $admin->player_steamid,
                 "player_name" => $admin->player_name,
-                "ends" => $admin->ends,
+                "ends" => empty($admin->ends) ? "<h6><span class='badge badge-primary'>Never Expires</span></h6>" : $admin->ends,
                 "created" => $admin->created,
                 "flags" => $admin->flags,
                 "hostnames" => $admin->hostnames,
@@ -140,8 +140,9 @@ class AdminController extends Controller
         $validated = $request->validate([
             'permissions' => 'required|array',
             'permissions.*' => 'exists:permissions,permission',
-            'ends' => 'required|date|after:today',
+            'ends' => 'required_without:permanent|date|after:today',
             'server_id' => 'exists:sa_servers,id',
+            'immunity' => 'required'
         ]);
 
         $admin = SaAdmin::with('permissions')
@@ -163,9 +164,9 @@ class AdminController extends Controller
             $saAdmin->player_steamid = $admin->first()->player_steamid;
             $saAdmin->player_name = $admin->first()->player_name;
             $saAdmin->flags = $permissionName;
-            $saAdmin->immunity = 1;
+            $saAdmin->immunity = $validated['immunity'];
             $saAdmin->server_id = $admin->first()->server_id;
-            $saAdmin->ends = $admin->first()->ends;
+            $admin->ends = isset($validated['ends']) ? CommonHelper::formatDate($validated['ends']): null;
             $saAdmin->created = now();
             $saAdmin->save();
         }
@@ -180,7 +181,7 @@ class AdminController extends Controller
         SaAdmin::where('player_steamid', $player_steam)
             ->where('server_id', $validated['server_id'])
             ->update([
-              'ends' => CommonHelper::formatDate($validated['ends'])
+              'ends' => isset($validated['ends']) ? CommonHelper::formatDate($validated['ends']) : null
             ]);
         return redirect()->route('admins.list')->with('success', 'Admin updated successfully.');
     }

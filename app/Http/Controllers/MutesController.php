@@ -53,7 +53,7 @@ class MutesController extends Controller
 
         $formattedData = [];
 
-        // Format each ban record
+        // Format each mute record
         foreach ($mutes as $mute) {
             $formattedData[] = [
                 "id" => $mute->id,
@@ -90,16 +90,16 @@ class MutesController extends Controller
             DB::beginTransaction();
 
             foreach ($mutes as $mute) {
-                // Update each ban record to mark it as unbanned
+                // Update each mute record to mark it as unmuted
                 $mute->status = 'UNMUTED';
                 $mute->ends = now();
                 $mute->save();
             }
 
-            // If all unbans are successful, commit the transaction
+            // If all unmutes are successful, commit the transaction
             DB::commit();
 
-            return response()->json(['success' => true, 'message' => 'All players uunmuted successfully']);
+            return response()->json(['success' => true, 'message' => 'All players unmuted successfully']);
         } catch (\Exception $e) {
             // If any error occurs, rollback the transaction
             DB::rollBack();
@@ -117,7 +117,7 @@ class MutesController extends Controller
         $validatedData = $request->validate([
             'player_steam_id' => 'required|numeric|digits:17',
             'reason' => 'required',
-            'duration' => 'required',
+            'duration' => 'required_without:permanent',
             'server_ids' => 'required|array',
             'server_ids.*' => 'exists:sa_servers,id',
         ]);
@@ -138,18 +138,21 @@ class MutesController extends Controller
 
             $profileName = $responseData['response']['players'][0]['personaname'];
             DB::beginTransaction();
-            $bansAdded = false;
+            $mutesAdded = false;
             foreach ($validatedData['server_ids'] as $serverId) {
-                $existingBan = SaMute::where('player_steamid', $steamId)
+                $existingMute = SaMute::where('player_steamid', $steamId)
                     ->where('server_id', $serverId)
                     ->where('status', 'ACTIVE')
                     ->first();
 
-                if ($existingBan) {
+                if ($existingMute) {
                     continue;
                 }
-                $carbonTimestamp = Carbon::parse($validatedData['duration']);
-                $minutesDifference = $carbonTimestamp->diffInMinutes(Carbon::now());
+                $minutesDifference = 0;
+                if(isset($validatedData['duration'])) {
+                    $carbonTimestamp = Carbon::parse($validatedData['duration']);
+                    $minutesDifference = $carbonTimestamp->diffInMinutes(Carbon::now());
+                }
                 $samute = new SaMute();
                 $samute->player_steamid = $validatedData['player_steam_id'];
                 $samute->reason = $validatedData['reason'];
@@ -158,18 +161,18 @@ class MutesController extends Controller
                 $samute->server_id = $serverId;
                 $samute->admin_name = auth()->user()->name;
                 $samute->admin_steamid = auth()->user()->steam_id;
-                $samute->ends = CommonHelper::formatDate($validatedData['duration']);
+                $samute->ends = !empty($minutesDifference) ? CommonHelper::formatDate($validatedData['duration']): Carbon::now();
                 $samute->save();
-                $bansAdded = true;
+                $mutesAdded = true;
             }
             DB::commit();
         } catch(\Exception $e) {
             DB::rollBack();
-            Log::error('ban.error: ' . $e->getMessage());
-            return Redirect::back()->withErrors(['msg' => 'There was an error while adding the ban.']);
+            Log::error('mute.error: ' . $e->getMessage());
+            return Redirect::back()->withErrors(['msg' => 'There was an error while adding the mute.']);
         }
-        if (!$bansAdded) {
-            return Redirect::back()->withErrors(['msg' => 'Bans already exist for all specified servers.']);
+        if (!$mutesAdded) {
+            return Redirect::back()->withErrors(['msg' => 'Mutes already exist for all specified servers.']);
         }
 
         return redirect()->route('list.mutes')->with('success', 'Mute added successfully');

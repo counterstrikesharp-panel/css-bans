@@ -36,8 +36,7 @@
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Player</th>
-                            <th scope="col">Banned By</th>
-                            <th scope="col">Admin Steam</th>
+                            <th scope="col">Banned By Admin</th>
                             <th scope="col">Reason</th>
                             <th scope="col">Duration</th>
                             <th scope="col">Ends</th>

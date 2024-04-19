@@ -2,6 +2,21 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (session('success'))
+        <x-alert type="success" :message="session('success')"/>
+    @endif
+    @if (session('error'))
+        <x-alert type="danger" :message="session('error')"/>
+    @endif
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <section class="mb-12">
         <div class="card">
             @if(PermissionsHelper::hasMutePermission())
@@ -21,8 +36,7 @@
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Player</th>
-                            <th scope="col">Muted By</th>
-                            <th scope="col">Admin Steam</th>
+                            <th scope="col">Muted By Admin</th>
                             <th scope="col">Reason</th>
                             <th scope="col">Duration</th>
                             <th scope="col">Ends</th>

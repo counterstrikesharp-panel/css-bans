@@ -8,7 +8,7 @@
     @endif
     @if ($errors->any())
         <div class="alert alert-danger">
-            <ul>d
+            <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
@@ -33,6 +33,15 @@
                             <label class="form-label" for="reason">Reason</label>
                         </div>
 
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="permanent" name="permanent">
+                                <label class="form-check-label" for="permanent">
+                                    Permanent (Never Expire)
+                                </label>
+                            </div>
+                        </div>
+
                         <div data-mdb-input-init class="form-outline mb-3">
                             <input  type="datetime-local"  min="{{ date('Y-m-d\TH:i') }}" class="form-control active" id="duration" name="duration" required/>
                             <label class="form-label" for="duration">Duration</label>
@@ -55,4 +64,4 @@
         </div>
     </div>
 @endsection
-@vite(['resources/js/bans/add.ts'])
+@vite(['resources/js/mutes/add.ts'])

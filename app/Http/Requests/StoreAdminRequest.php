@@ -23,7 +23,8 @@ class StoreAdminRequest extends FormRequest
             'server_ids.*' => 'exists:sa_servers,id',
             'permissions' => 'required|array',
             'permissions.*' => 'exists:permissions,id',
-            'ends' => 'required|date|after:today'
+            'ends' => 'required_without:permanent|date|after:today',
+            'immunity' => 'required|numeric'
         ];
     }
 
@@ -39,6 +40,7 @@ class StoreAdminRequest extends FormRequest
             'permission_id.required' => 'The permission field is required.',
             'permission_id.exists' => 'The selected permission is invalid.',
             'ends.after' => 'The end date must be a future date.',
+            'immunity.required' => 'Immunity filed is required.',
         ];
     }
 }

@@ -116,7 +116,7 @@ class BansController extends Controller
         $validatedData = $request->validate([
             'player_steam_id' => 'required|numeric|digits:17',
             'reason' => 'required',
-            'duration' => 'required',
+            'duration' => 'required_without:permanent',
             'server_ids' => 'required|array',
             'server_ids.*' => 'exists:sa_servers,id',
         ]);
@@ -147,8 +147,11 @@ class BansController extends Controller
                 if ($existingBan) {
                     continue;
                 }
-                $carbonTimestamp = Carbon::parse($validatedData['duration']);
-                $minutesDifference = $carbonTimestamp->diffInMinutes(Carbon::now());
+                $minutesDifference = 0;
+                if(isset($validatedData['duration'])) {
+                    $carbonTimestamp = Carbon::parse($validatedData['duration']);
+                    $minutesDifference = $carbonTimestamp->diffInMinutes(Carbon::now());
+                }
                 $saban = new SaBan();
                 $saban->player_steamid = $validatedData['player_steam_id'];
                 $saban->reason = $validatedData['reason'];
@@ -157,7 +160,7 @@ class BansController extends Controller
                 $saban->server_id = $serverId;
                 $saban->admin_name = auth()->user()->name;
                 $saban->admin_steamid = auth()->user()->steam_id;
-                $saban->ends = CommonHelper::formatDate($validatedData['duration']);
+                $saban->ends = !empty($minutesDifference) ? CommonHelper::formatDate($validatedData['duration']): Carbon::now();
                 $saban->save();
                 $bansAdded = true;
             }

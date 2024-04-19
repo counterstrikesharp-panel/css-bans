@@ -46,7 +46,7 @@ class DashboardController extends Controller
      */
     private function checkUpdates()
     {
-        $appVersion = env('APP_VERSION');
+        $appVersion = config('app.version');
         $response = Http::get('https://css-bans-updates.matchclub.xyz/api/version');
         $updates = [];
         if ($response->successful()) {

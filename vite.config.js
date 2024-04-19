@@ -13,6 +13,7 @@ export default defineConfig({
                 'resources/js/dashboard/servers.ts',
                 'resources/js/bans/bans.ts',
                 'resources/js/bans/add.ts',
+                'resources/js/mutes/add.ts',
                 'resources/js/mutes/mutes.ts',
                 'resources/css/admin.css',
                 'resources/css/app.css',
