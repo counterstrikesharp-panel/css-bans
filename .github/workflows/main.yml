@@ -1,0 +1,91 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main  # Change this to your main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Extract previous release version
+      - name: Extract previous release version
+        id: extract_previous_version
+        run: |
+          previous_tag=$(git describe --abbrev=0 --tags)
+          previous_version=$(echo "${previous_tag}" | sed 's/V//')
+          echo "::set-output name=previous_version::${previous_version}"
+
+      # Increment version
+      - name: Increment version
+        id: increment_version
+        run: |
+          major=$(echo "${{ steps.extract_previous_version.outputs.previous_version }}" | cut -d'.' -f1)
+          minor=$(echo "${{ steps.extract_previous_version.outputs.previous_version }}" | cut -d'.' -f2)
+          patch=$(echo "${{ steps.extract_previous_version.outputs.previous_version }}" | cut -d'.' -f3)
+          new_minor=$((minor + 1))
+          new_version="${major}.${new_minor}.${patch}_beta"
+          echo "::set-output name=new_version::${new_version}"
+
+      # Set new version
+      - name: Set new version
+        run: echo "export APP_VERSION=${{ steps.increment_version.outputs.new_version }}" >> $GITHUB_ENV
+
+      # Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      # Set up PHP
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+
+      # Install Composer dependencies
+      - name: Install Composer dependencies
+        run: composer install --no-dev --optimize-autoloader
+
+      # Install npm dependencies
+      - name: Install npm dependencies
+        run: npm install
+
+      # Build assets with npm
+      - name: Build assets with npm
+        run: npm run build
+
+      # Tar project contents with version
+      - name: Tar project contents with version
+        run: |
+          version=${{ steps.increment_version.outputs.new_version }}
+          tar -czf "project_${version}.tar.gz" .
+
+      # Create tag for new version
+      - name: Create tag for new version
+        run: git tag -a "v${{ steps.increment_version.outputs.new_version }}" -m "Release v${{ steps.increment_version.outputs.new_version }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Upload tar file to release
+      - name: Upload tar file to release
+        uses: actions/upload-artifact@v2
+        with:
+          name: project
+          path: project_*.tar.gz
+
+      # Download previous release artifacts
+      - name: Download previous release artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: project
+          path: previous_release
+
+      # Copy previous release artifacts to new release
+      - name: Copy previous release artifacts to new release
+        run: cp previous_release/* .
