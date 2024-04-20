@@ -65,20 +65,22 @@ jobs:
       - name: Build assets with npm
         run: npm run build
 
-        # Copy .env.example to .env
+      # Copy .env.example to .env
       - name: Copy .env.example to .env
         run: cp .env.example .env
+
       # Tar project contents with version
       - name: Tar project contents with version
         run: |
           version=${{ steps.increment_version.outputs.new_version }}
           zip -r "cssbans_${version}.zip" .
-  
-        
+
+      # Set Git user identity
       - name: Set Git user identity
         run: |
           git config --global user.email "yuvim86@gmail.com"
           git config --global user.name "hobsRKM"
+
       # Create tag for new version
       - name: Create tag for new version
         run: git tag -a "v${{ steps.increment_version.outputs.new_version }}" -m "Release v${{ steps.increment_version.outputs.new_version }}"
@@ -91,7 +93,14 @@ jobs:
         with:
           name: project
           path: cssbans_*.zip
+
       # Download artifact from URL
       - name: Download artifact
-        run: wget -O artifact.zip https://github.com/counterstrikesharp-panel/css-bans/releases/download/1.1.4/serverlistplayersfix_windows.zip && wget https://github.com/counterstrikesharp-panel/css-bans/releases/download/1.1.4/serverlistplayersfix_linux.zip
-     
+        run: wget -O serverlistplayersfix_windows.zip https://github.com/counterstrikesharp-panel/css-bans/releases/download/1.1.4/serverlistplayersfix_windows.zip && wget -O serverlistplayersfix_linux.zip https://github.com/counterstrikesharp-panel/css-bans/releases/download/1.1.4/serverlistplayersfix_linux.zip
+
+      # Upload downloaded artifacts to release
+      - name: Upload downloaded artifacts to release
+        uses: actions/upload-artifact@v2
+        with:
+          name: widgets
+          path: serverlistplayersfix_windows.zip serverlistplayersfix_linux.zip
