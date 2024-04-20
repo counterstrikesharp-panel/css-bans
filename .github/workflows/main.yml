@@ -1,26 +1,42 @@
-name: Create Tag Example
+name: Releases
 
-on:
-  push:
-    branches:
-      - main
+on: 
+ push:
+    tags:
+    - '*'
 
 jobs:
-  create_tag:
+ build:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Set Git user identity
-        run: |
-          git config --global user.email "yuvim86@gmail.com"
-          git config --global user.name "hobsRKM"
-      - name: List tags before tag creation
-        run: git tag -l
+    - uses: actions/checkout@v3
 
-      - name: Create tag
-        run: git tag -a "v1.1.5" -m "Tag check"
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.1
+        extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
 
-      - name: List tags after tag creation
-        run: git tag -l
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 17
+
+    - name: Install Composer dependencies
+      run: composer install --prefer-dist --no-interaction --no-suggest
+
+    - name: Install NPM dependencies
+      run: npm install
+
+    - name: Compile assets
+      run: npm run build
+
+    - name: Create Draft Release with Specific File Name and Generate Release Notes
+      uses: ncipollo/release-action@v1.14.0
+      with:
+        artifacts: "cssbans.v${{ github.ref_name }}.zip"
+        bodyFile: "body.md"
+        draft: true
+        generate_release_notes: true
