@@ -1,80 +1,77 @@
-name: Releases
+name: Release
 
 on:
- push:
+  push:
     tags:
-    - '*'
+      - '*'
 
 jobs:
- build:
+  build:
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: 8.1
-        extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: 17
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 17
 
-    - name: Install Composer dependencies
-      run: composer install --prefer-dist --no-interaction --no-suggest
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-interaction --no-suggest
 
-    - name: Install NPM dependencies
-      run: npm install
+      - name: Install NPM dependencies
+        run: npm install
 
-    - name: Compile assets
-      run: npm run build
+      - name: Compile assets
+        run: npm run build
 
-    - name: Copy default env
-      run: cp .env.example .env
+      - name: Copy default env
+        run: cp .env.example .env
 
-    - name: Generate new application key
-      run: php artisan key:generate --force
+      - name: Generate Key
+        run: php artisan key:generate --force
 
-    - name: Zip Project Contents
-      run: zip -r cssbans.v${{ github.ref_name }}.zip .
+      - name: Zip Project Contents
+        run: zip -r cssbans.v${{ github.ref_name }}_beta.zip .
 
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        draft: false
-        prerelease: false
+      - name: Create Draft Release with Specific File Name and Generate Release Notes
+        uses: ncipollo/release-action@v1.14.0
+        with:
+          artifacts: "cssbans.v${{ github.ref_name }}.zip"
+          bodyFile: "body.md"
+          draft: true
+          generate_release_notes: true
 
-    - name: Download Windows Zip from CDN
-      run: curl -L -o serverlistplayersfix_windows.zip https://github.com/counterstrikesharp-panel/css-bans/releases/download/1.1.4/serverlistplayersfix_windows.zip
+      - name: Download Windows Zip from CDN
+        run: curl -L -o serverlistplayersfix_windows.zip https://github.com/counterstrikesharp-panel/css-bans/releases/download/1.1.4/serverlistplayersfix_windows.zip
 
-    - name: Download Linux Zip from CDN
-      run: curl -L -o serverlistplayersfix_linux.zip https://github.com/counterstrikesharp-panel/css-bans/releases/download/1.1.4/serverlistplayersfix_linux.zip
+      - name: Download Linux Zip from CDN
+        run: curl -L -o serverlistplayersfix_linux.zip https://github.com/counterstrikesharp-panel/css-bans/releases/download/1.1.4/serverlistplayersfix_linux.zip
 
-    - name: Upload Windows Zip as Release Asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./serverlistplayersfix_windows.zip
-        asset_name: serverlistplayersfix_windows.zip
-        asset_content_type: application/zip
+      - name: Upload Windows Zip as Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./serverlistplayersfix_windows.zip
+          asset_name: serverlistplayersfix_windows.zip
+          asset_content_type: application/zip
 
-    - name: Upload Linux Zip as Release Asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./serverlistplayersfix_linux.zip
-        asset_name: serverlistplayersfix_linux.zip
-        asset_content_type: application/zip
+      - name: Upload Linux Zip as Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./serverlistplayersfix_linux.zip
+          asset_name: serverlistplayersfix_linux.zip
+          asset_content_type: application/zip
