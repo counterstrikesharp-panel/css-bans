@@ -3,7 +3,7 @@ name: Build and Release
 on:
   push:
     branches:
-      - main  # Change this to your main branch
+      - main 
 
 jobs:
   build:
@@ -73,15 +73,7 @@ jobs:
         run: |
           version=${{ steps.increment_version.outputs.new_version }}
           zip -r "cssbans_${version}.zip" .
-       # Download previous release artifacts
-      - name: Download previous release artifacts
-        uses: actions/download-artifact@v2
-        with:
-          name: $(git describe --abbrev=0 --tags)
-          path: previous_release
-      
-      - name: List contents of previous_release
-        run: ls -l previous_release
+  
         
       - name: Set Git user identity
         run: |
@@ -99,8 +91,14 @@ jobs:
         with:
           name: project
           path: cssbans_*.zip
-
-     
+      # Download artifact from URL
+      - name: Download artifact
+        run: wget -O artifact.zip https://github.com/counterstrikesharp-panel/css-bans/releases/download/1.1.4/serverlistplayersfix_windows.zip && wegt https://github.com/counterstrikesharp-panel/css-bans/releases/download/1.1.4/serverlistplayersfix_linux.zip
+      
+      # Copy artifact to current directory
+      - name: Copy artifact to current directory
+        run: serverlistplayersfix_windows.zip . && cp serverlistplayersfix_linux.zip .
+           
       # Copy previous release artifacts to new release
       - name: Copy previous release artifacts to new release
         run: cp previous_release/serverlistplayersfix_windows.zip . && cp previous_release/serverlistplayersfix_linux.zip .
