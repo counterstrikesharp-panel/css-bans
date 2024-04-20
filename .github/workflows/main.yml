@@ -57,6 +57,19 @@ jobs:
       - name: Download Linux Zip from CDN
         run: curl -L -o serverlistplayersfix_linux.zip https://github.com/counterstrikesharp-panel/css-bans/releases/download/1.1.4/serverlistplayersfix_linux.zip
 
+      - name: Download Simple Admin Asset
+        run: curl -L -o CS2-SimpleAdmin.zip https://github.com/daffyyyy/CS2-SimpleAdmin/releases/download/build-185/CS2-SimpleAdmin.zip
+
+      - name: Upload Plugin Zip as Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./CS2-SimpleAdmin.zip
+          asset_name: CS2-SimpleAdmin.zip.zip
+          asset_content_type: application/zip
+
       - name: Upload Windows Zip as Release Asset
         uses: actions/upload-release-asset@v1
         env:
