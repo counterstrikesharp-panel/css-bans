@@ -73,7 +73,16 @@ jobs:
         run: |
           version=${{ steps.increment_version.outputs.new_version }}
           zip -r "cssbans_${version}.zip" .
-
+       # Download previous release artifacts
+      - name: Download previous release artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: ${{ steps.get_previous_release_tag.outputs.previous_release_tag }}
+          path: previous_release
+      
+      - name: List contents of previous_release
+        run: ls -l previous_release
+        
       - name: Set Git user identity
         run: |
           git config --global user.email "yuvim86@gmail.com"
@@ -91,14 +100,7 @@ jobs:
           name: project
           path: cssbans_*.zip
 
-      # Download previous release artifacts
-      - name: Download previous release artifacts
-        uses: actions/download-artifact@v2
-        with:
-          name: ${{ steps.get_previous_release_tag.outputs.previous_release_tag }}
-          path: previous_release
-      - name: List contents of previous_release
-        run: ls -l previous_release
+     
       # Copy previous release artifacts to new release
       - name: Copy previous release artifacts to new release
         run: cp previous_release/serverlistplayersfix_windows.zip . && cp previous_release/serverlistplayersfix_linux.zip .
