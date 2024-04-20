@@ -43,6 +43,7 @@ jobs:
         run: zip -r cssbans.v${{ github.ref_name }}.zip .
 
       - name: Create Draft Release with Specific File Name and Generate Release Notes
+        id: create_release
         uses: ncipollo/release-action@v1.14.0
         with:
           artifacts: "cssbans.v${{ github.ref_name }}.zip"
