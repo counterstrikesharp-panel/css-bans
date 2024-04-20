@@ -15,6 +15,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Print current directory
+        run: pwd
+
+      - name: List contents of previous_release
+        run: ls -l previous_release
       # Extract previous release version
       - name: Extract previous release version
         id: extract_previous_version
