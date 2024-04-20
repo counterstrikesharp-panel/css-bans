@@ -29,9 +29,8 @@ jobs:
         run: |
           major=$(echo "${{ steps.extract_previous_version.outputs.previous_version }}" | cut -d'.' -f1)
           minor=$(echo "${{ steps.extract_previous_version.outputs.previous_version }}" | cut -d'.' -f2)
-          patch=$(echo "${{ steps.extract_previous_version.outputs.previous_version }}" | cut -d'.' -f3)
           new_minor=$((minor + 1))
-          new_version="${major}.${new_minor}.${patch}_beta"
+          new_version="${major}.${new_minor}.0_beta"
           echo "::set-output name=new_version::${new_version}"
 
       # Set new version
