@@ -32,7 +32,10 @@ jobs:
 
     - name: Compile assets
       run: npm run build
-
+    - name: Copy default env
+      run: cp .env.example .env
+    - name: Zip Project Contents
+      run: zip -r cssbans.v${{ github.ref_name }}.zip .
     - name: Create Draft Release with Specific File Name and Generate Release Notes
       uses: ncipollo/release-action@v1.14.0
       with:
