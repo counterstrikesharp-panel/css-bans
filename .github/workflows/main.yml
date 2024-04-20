@@ -77,7 +77,7 @@ jobs:
       - name: Download previous release artifacts
         uses: actions/download-artifact@v2
         with:
-          name: ${{ steps.get_previous_release_tag.outputs.previous_tag }}
+          name: $(git describe --abbrev=0 --tags)
           path: previous_release
       
       - name: List contents of previous_release
