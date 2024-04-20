@@ -1,6 +1,6 @@
 name: Releases
 
-on: 
+on:
  push:
     tags:
     - '*'
@@ -35,6 +35,9 @@ jobs:
 
     - name: Copy default env
       run: cp .env.example .env
+
+    - name: Generate new application key
+      run: php artisan key:generate --force
 
     - name: Zip Project Contents
       run: zip -r cssbans.v${{ github.ref_name }}.zip .
