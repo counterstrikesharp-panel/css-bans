@@ -1,0 +1,69 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Extract previous release version
+        id: extract_previous_version
+        run: |
+          # Get the previous release version
+          previous_tag=$(git describe --abbrev=0 --tags)
+          # Extract the version number from the tag (assuming it's in the format "Vx.y.z")
+          previous_version=$(echo "${previous_tag}" | sed 's/V//')
+          echo "::set-output name=previous_version::${previous_version}"
+
+      - name: Increment version
+        id: increment_version
+        run: |
+          # Extract the major, minor, and patch versions
+          major=$(echo "${{ steps.extract_previous_version.outputs.previous_version }}" | cut -d'.' -f1)
+          minor=$(echo "${{ steps.extract_previous_version.outputs.previous_version }}" | cut -d'.' -f2)
+          patch=$(echo "${{ steps.extract_previous_version.outputs.previous_version }}" | cut -d'.' -f3)
+          # Increment the minor version
+          new_minor=$((minor + 1))
+          # Construct the new version number
+          new_version="${major}.${new_minor}.${patch}_beta"  # Adjust this format as needed
+          echo "::set-output name=new_version::${new_version}"
+
+      - name: Set new version
+        run: echo "export APP_VERSION=${{ steps.increment_version.outputs.new_version }}" >> $GITHUB_ENV
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '17'  # Specify the desired Node.js version here
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'  # Specify the desired PHP version here
+
+      - name: Install Composer dependencies
+        run: composer install --no-dev --optimize-autoloader
+
+      - name: Install npm dependencies
+        run: npm install
+
+      - name: Build assets with npm
+        run: npm run build
+
+      - name: Tar project contents with version
+        run: |
+          version=${{ steps.increment_version.outputs.new_version }}
+          tar -czf "cssbans_${version}.tar.gz" .
+
+      - name: Upload tar file to release
+        uses: actions/upload-artifact@v2
+        with:
+          name: project
+          path: project_*.tar.gz
