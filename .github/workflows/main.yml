@@ -12,7 +12,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
+      - name: Set Git user identity
+        run: |
+          git config --global user.email "yuvim86@gmail.com"
+          git config --global user.name "hobsRKM"
       - name: List tags before tag creation
         run: git tag -l
 
