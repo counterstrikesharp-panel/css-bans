@@ -101,4 +101,4 @@ jobs:
            
       # Copy previous release artifacts to new release
       - name: Copy previous release artifacts to new release
-        run: cp previous_release/serverlistplayersfix_windows.zip . && cp previous_release/serverlistplayersfix_linux.zip .
+        run: cp serverlistplayersfix_windows.zip cp serverlistplayersfix_linux.zip .
