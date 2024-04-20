@@ -40,7 +40,7 @@ jobs:
         run: php artisan key:generate --force
 
       - name: Zip Project Contents
-        run: zip -r cssbans.v${{ github.ref_name }}_beta.zip .
+        run: zip -r cssbans.v${{ github.ref_name }}.zip .
 
       - name: Create Draft Release with Specific File Name and Generate Release Notes
         uses: ncipollo/release-action@v1.14.0
