@@ -98,7 +98,7 @@ jobs:
           name: project
           path: previous_release
       - name: List contents of previous_release
-        run: ls -l
+        run: ls -l previous_release
       # Copy previous release artifacts to new release
       - name: Copy previous release artifacts to new release
         run: cp previous_release/serverlistplayersfix_windows.zip . && cp previous_release/serverlistplayersfix_linux.zip .
