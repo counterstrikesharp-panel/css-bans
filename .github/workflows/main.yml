@@ -32,14 +32,46 @@ jobs:
 
     - name: Compile assets
       run: npm run build
+
     - name: Copy default env
       run: cp .env.example .env
+
     - name: Zip Project Contents
       run: zip -r cssbans.v${{ github.ref_name }}.zip .
-    - name: Create Draft Release with Specific File Name and Generate Release Notes
-      uses: ncipollo/release-action@v1.14.0
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        artifacts: "cssbans.v${{ github.ref_name }}.zip"
-        bodyFile: "body.md"
-        draft: true
-        generate_release_notes: true
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+
+    - name: Download Windows Zip from CDN
+      run: curl -L -o serverlistplayersfix_windows.zip https://github.com/counterstrikesharp-panel/css-bans/releases/download/1.1.4/serverlistplayersfix_windows.zip
+
+    - name: Download Linux Zip from CDN
+      run: curl -L -o serverlistplayersfix_linux.zip https://github.com/counterstrikesharp-panel/css-bans/releases/download/1.1.4/serverlistplayersfix_linux.zip
+
+    - name: Upload Windows Zip as Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./serverlistplayersfix_windows.zip
+        asset_name: serverlistplayersfix_windows.zip
+        asset_content_type: application/zip
+
+    - name: Upload Linux Zip as Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./serverlistplayersfix_linux.zip
+        asset_name: serverlistplayersfix_linux.zip
+        asset_content_type: application/zip
