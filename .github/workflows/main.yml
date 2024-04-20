@@ -93,7 +93,7 @@ jobs:
           path: cssbans_*.zip
       # Download artifact from URL
       - name: Download artifact
-        run: wget -O artifact.zip https://github.com/counterstrikesharp-panel/css-bans/releases/download/1.1.4/serverlistplayersfix_windows.zip && wegt https://github.com/counterstrikesharp-panel/css-bans/releases/download/1.1.4/serverlistplayersfix_linux.zip
+        run: wget -O artifact.zip https://github.com/counterstrikesharp-panel/css-bans/releases/download/1.1.4/serverlistplayersfix_windows.zip && wget https://github.com/counterstrikesharp-panel/css-bans/releases/download/1.1.4/serverlistplayersfix_linux.zip
       
       # Copy artifact to current directory
       - name: Copy artifact to current directory
