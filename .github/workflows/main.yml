@@ -61,11 +61,14 @@ jobs:
       - name: Build assets with npm
         run: npm run build
 
+        # Copy .env.example to .env
+      - name: Copy .env.example to .env
+        run: cp .env.example .env
       # Tar project contents with version
       - name: Tar project contents with version
         run: |
           version=${{ steps.increment_version.outputs.new_version }}
-          tar -czf "cssbans_${version}.tar.gz" .
+          zip -r "cssbans_${version}.zip" .
 
       # Create tag for new version
       - name: Create tag for new version
@@ -73,12 +76,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Upload tar file to release
+      # Upload zip file to release
       - name: Upload tar file to release
         uses: actions/upload-artifact@v2
         with:
           name: project
-          path: cssbans_*.tar.gz
+          path: cssbans_*.zip
 
       # Download previous release artifacts
       - name: Download previous release artifacts
