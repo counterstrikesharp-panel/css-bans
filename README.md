@@ -20,7 +20,7 @@ PHP Web-based panel for managing bans, mutes, and more on Counter-Strike 2 serve
 - CounterStrikeSharp ([GitHub Repository](https://github.com/roflmuffin/CounterStrikeSharp))
 - MySQL >= 5.7
 - ServerPlayerListFix ([Release Tab](#))
-- SimpleAdmin ([GitHub Repository](https://github.com/daffyyyy/CS2-SimpleAdmin))
+- SimpleAdmin version < 184 ([GitHub Repository](https://github.com/daffyyyy/CS2-SimpleAdmin))
 - Demo: [SITE DEMO](https://cssbans.online/)
 
 # For installation visit https://docs.cssbans.online
