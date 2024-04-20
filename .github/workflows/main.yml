@@ -18,8 +18,7 @@ jobs:
       - name: Print current directory
         run: pwd
 
-      - name: List contents of previous_release
-        run: ls -l previous_release
+      
       # Extract previous release version
       - name: Extract previous release version
         id: extract_previous_version
@@ -98,7 +97,8 @@ jobs:
         with:
           name: project
           path: previous_release
-
+      - name: List contents of previous_release
+        run: ls -l
       # Copy previous release artifacts to new release
       - name: Copy previous release artifacts to new release
         run: cp previous_release/serverlistplayersfix_windows.zip . && cp previous_release/serverlistplayersfix_linux.zip .
