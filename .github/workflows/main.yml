@@ -94,11 +94,4 @@ jobs:
       # Download artifact from URL
       - name: Download artifact
         run: wget -O artifact.zip https://github.com/counterstrikesharp-panel/css-bans/releases/download/1.1.4/serverlistplayersfix_windows.zip && wget https://github.com/counterstrikesharp-panel/css-bans/releases/download/1.1.4/serverlistplayersfix_linux.zip
-      
-      # Copy artifact to current directory
-      - name: Copy artifact to current directory
-        run: serverlistplayersfix_windows.zip . && cp serverlistplayersfix_linux.zip .
-           
-      # Copy previous release artifacts to new release
-      - name: Copy previous release artifacts to new release
-        run: cp serverlistplayersfix_windows.zip cp serverlistplayersfix_linux.zip .
+     
