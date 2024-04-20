@@ -70,6 +70,10 @@ jobs:
           version=${{ steps.increment_version.outputs.new_version }}
           zip -r "cssbans_${version}.zip" .
 
+      - name: Set Git user identity
+        run: |
+          git config --global user.email "yuvim86@gmail.com"
+          git config --global user.name "hobsRKM"
       # Create tag for new version
       - name: Create tag for new version
         run: git tag -a "v${{ steps.increment_version.outputs.new_version }}" -m "Release v${{ steps.increment_version.outputs.new_version }}"
