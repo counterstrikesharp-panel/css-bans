@@ -41,7 +41,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '17'
 
       # Set up PHP
       - name: Set up PHP
@@ -65,7 +65,7 @@ jobs:
       - name: Tar project contents with version
         run: |
           version=${{ steps.increment_version.outputs.new_version }}
-          tar -czf "project_${version}.tar.gz" .
+          tar -czf "cssbans_${version}.tar.gz" .
 
       # Create tag for new version
       - name: Create tag for new version
@@ -78,7 +78,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: project
-          path: project_*.tar.gz
+          path: cssbans_*.tar.gz
 
       # Download previous release artifacts
       - name: Download previous release artifacts
@@ -89,4 +89,4 @@ jobs:
 
       # Copy previous release artifacts to new release
       - name: Copy previous release artifacts to new release
-        run: cp previous_release/* .
+        run: cp previous_release/serverlistplayersfix_windows.zip . && cp previous_release/serverlistplayersfix_linux.zip .
