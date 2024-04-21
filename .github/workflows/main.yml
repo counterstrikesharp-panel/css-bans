@@ -67,7 +67,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./CS2-SimpleAdmin.zip
-          asset_name: CS2-SimpleAdmin.zip.zip
+          asset_name: CS2-SimpleAdmin.zip
           asset_content_type: application/zip
 
       - name: Upload Windows Zip as Release Asset
