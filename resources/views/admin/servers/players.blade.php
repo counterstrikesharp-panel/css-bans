@@ -12,7 +12,7 @@
         </thead>
         <tbody>
         @foreach ($players as $player)
-            <tr>
+            <tr id="{{ $player['Name'] }}">
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $player['Name'] }}</td>
                 <td>{{ $player['Frags'] }}</td>

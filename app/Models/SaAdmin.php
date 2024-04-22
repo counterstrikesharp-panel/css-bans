@@ -16,7 +16,7 @@ class SaAdmin extends Model
         return $this->belongsTo(SaServer::class, 'server_id', 'id');
     }
 
-    public function permissions() {
-        return $this->belongsTo(Permission::class, 'flags', 'permission');
+    public function adminFlags() {
+        return $this->hasMany(SaAdminsFlags::class, 'admin_id', 'id');
     }
 }

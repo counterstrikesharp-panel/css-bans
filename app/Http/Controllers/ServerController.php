@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\PermissionsHelper;
 use App\Models\SaAdmin;
+use App\Models\SaAdminsFlags;
 use App\Models\SaServer;
 use App\Services\RconService;
 use Carbon\Carbon;
@@ -26,6 +27,22 @@ class ServerController extends Controller
 
         foreach ($servers as $server) {
             list($serverIp, $serverPort) = explode(":", $server->address);
+
+            if (!$this->isPortOpen($serverIp, $serverPort)) {
+                Log::error('rcon.servers.list Port Blocked! Unable to read data from port!');
+                $formattedServer = [
+                    'id' => $server->id,
+                    'name' => $server->hostname,
+                    'ip' => $serverIp,
+                    'port' => $serverPort,
+                    'players' => '0',
+                    'map' => '<h6><span class="badge badge-danger">Unable To Connect</span></h6>',
+                    'connect_button' => '<h6><span class="badge badge-danger">Unable To Connect</span></h6>'
+                ];
+                $formattedServers[] = $formattedServer;
+                continue;
+            }
+
             // Fetch server information using the RconService
             try {
                 $rcon->connect($serverIp, $serverPort);
@@ -40,7 +57,8 @@ class ServerController extends Controller
                     'connect_button' => '<a class="btn btn-success" href="steam://connect/' . $serverIp . ':' . $serverPort . '">Connect</a>',
                 ];
                 $rcon->disconnect();
-            } catch(\Exception) {
+            } catch (\Exception $e) {
+                Log::error('rcon.servers.list.error'. $e->getMessage());
                 $formattedServer = [
                     'id' => $server->id,
                     'name' => $server->hostname,
@@ -56,6 +74,16 @@ class ServerController extends Controller
         }
 
         return response()->json($formattedServers);
+    }
+
+    private function isPortOpen($ip, $port, $timeout = 1) {
+        $fp = @fsockopen($ip, $port, $errno, $errstr, $timeout);
+        if ($fp) {
+            fclose($fp);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -120,12 +148,16 @@ class ServerController extends Controller
                 $admin = new SaAdmin();
                 $admin->player_steamid = $request->input('STEAM_ID_64');
                 $admin->player_name = 'Admin';
-                $admin->flags = '@css/root';
                 $admin->immunity = 1;
                 $admin->server_id = $server->id;
                 $admin->ends = Carbon::now()->addYears(5)->format(('Y-m-d'));
                 $admin->created = now();
                 $admin->save();
+
+                $adminFlag = new SaAdminsFlags();
+                $adminFlag->admin_id= $admin->id;
+                $adminFlag->flag = '@css/root';
+                $adminFlag->save();
             }
             return redirect()->route('home')->with('success', 'Environment variables updated successfully. Database connection established. Tables imported.');
         } catch (\Exception $e) {
@@ -137,18 +169,19 @@ class ServerController extends Controller
         $requestType = $request->input('action');
         $playerName = $request->input('name');
         $serverId = $request->input('serverId');
+        $duration = '1440'; // 1 day
         switch ($requestType){
             case "ban":
                 if(PermissionsHelper::hasUnBanPermission())
-                    return $this-> executeCommand('css_ban '.$playerName, $serverId);
+                    return $this-> executeCommand('css_ban '.$playerName.' 1440', $serverId);
                 break;
             case "kick":
                 if(PermissionsHelper::hasKickPermission())
-                    return $this->executeCommand('css_kick '.$playerName, $serverId);
+                    return $this->executeCommand('css_kick '.$playerName.' 1440', $serverId);
                 break;
             case "mute":
                 if(PermissionsHelper::hasMutePermission())
-                    return $this->executeCommand('css_mute ' . $playerName, $serverId);
+                    return $this->executeCommand('css_mute ' . $playerName.' 1440', $serverId);
                 break;
             default: abort(403);
         }

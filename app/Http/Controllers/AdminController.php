@@ -7,6 +7,7 @@ use App\Helpers\PermissionsHelper;
 use App\Http\Requests\StoreAdminRequest;
 use App\Models\Permission;
 use App\Models\SaAdmin;
+use App\Models\SaAdminsFlags;
 use App\Models\SaServer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -34,20 +35,26 @@ class AdminController extends Controller
             foreach ($validatedData['server_ids'] as $server_id) {
                 foreach ($validatedData['permissions'] as $permissionId) {
                     $existingAdmin = SaAdmin::where('player_steamid', $validatedData['steam_id'])
-                        ->where('flags', $permissionId)
                         ->where('server_id', $server_id)
+                        ->first()
+                        ?->adminFlags()
+                        ->where('flag', $permissionId)
                         ->exists();
                     if (!$existingAdmin) {
                         $permission = Permission::find($permissionId);
                         $admin = new SaAdmin();
                         $admin->player_steamid = $validatedData['steam_id'];
                         $admin->player_name = $validatedData['player_name'];
-                        $admin->flags = $permission->permission;
                         $admin->immunity = $validatedData['immunity'];
                         $admin->server_id = $server_id;
                         $admin->ends = isset($validatedData['ends']) ? CommonHelper::formatDate($validatedData['ends']): null;
                         $admin->created = now();
                         $admin->save();
+
+                        $adminFlag = new SaAdminsFlags();
+                        $adminFlag->admin_id= $admin->id;
+                        $adminFlag->flag = $permission->permission;
+                        $adminFlag->save();
                         $adminAddedToServerCount[$server_id] = $server_id;
                     }
                 }
@@ -82,13 +89,14 @@ class AdminController extends Controller
             'player_steamid',
             'player_name',
             'sa_admins.id',
-            DB::raw('GROUP_CONCAT(flags SEPARATOR ", ") as flags'),
-            DB::raw('GROUP_CONCAT(DISTINCT CONCAT(sa_servers.id, ") ", sa_servers.hostname) SEPARATOR ", ") as hostnames'),
+            DB::raw('GROUP_CONCAT(distinct  sa_admins_flags.flag SEPARATOR ", ") as flags'),
+            DB::raw('GROUP_CONCAT(DISTINCT CONCAT("[Hostname] ", sa_servers.hostname) SEPARATOR ", ") as hostnames'),
             'created',
             'ends',
             'server_id'
         )
             ->join('sa_servers', 'sa_admins.server_id', '=', 'sa_servers.id')
+            ->join('sa_admins_flags', 'sa_admins_flags.admin_id', '=', 'sa_admins.id')
             ->groupBy('player_steamid')
             ->orderBy($orderColumnName, $orderDir)
             ->offset($start)
@@ -121,7 +129,7 @@ class AdminController extends Controller
 
     public function edit($player_steam, $server_id)
     {
-        $admin = SaAdmin::with('permissions')
+        $admin = SaAdmin::with('adminFlags.permissions')
             ->where('player_steamid', $player_steam)
             ->where('server_id', $server_id)
             ->get();
@@ -130,7 +138,7 @@ class AdminController extends Controller
         }
         $permissions = Permission::all();
         $servers = SaServer::all();
-        $adminPermissions = $admin->pluck('permissions.permission')->toArray();
+        $adminPermissions = $admin->pluck('adminFlags.*.permissions.permission')->flatten()->toArray();
         return view('admin.admins.edit', compact('admin', 'permissions', 'adminPermissions', 'servers'));
     }
 
@@ -145,14 +153,14 @@ class AdminController extends Controller
             'immunity' => 'required'
         ]);
 
-        $admin = SaAdmin::with('permissions')
+        $admin = SaAdmin::with('adminFlags.permissions')
             ->where('player_steamid',$player_steam)
             ->where('server_id',  $validated['server_id'])
             ->get();
         $submittedPermissions = $validated['permissions'];
 
         // Fetch current permissions from the database
-        $currentPermissions = $admin->pluck('permissions.permission')->toArray();
+        $currentPermissions = $admin->pluck('adminFlags.*.permissions.permission')->flatten()->toArray();
 
         // Determine permissions to add and delete
         $permissionsToAdd = array_diff($submittedPermissions, $currentPermissions);
@@ -163,18 +171,25 @@ class AdminController extends Controller
             $saAdmin = new SaAdmin();
             $saAdmin->player_steamid = $admin->first()->player_steamid;
             $saAdmin->player_name = $admin->first()->player_name;
-            $saAdmin->flags = $permissionName;
             $saAdmin->immunity = $validated['immunity'];
             $saAdmin->server_id = $admin->first()->server_id;
             $admin->ends = isset($validated['ends']) ? CommonHelper::formatDate($validated['ends']): null;
             $saAdmin->created = now();
             $saAdmin->save();
+
+            $adminFlag = new SaAdminsFlags();
+            $adminFlag->admin_id= $saAdmin->id;
+            $adminFlag->flag = $permissionName;
+            $adminFlag->save();
         }
 
         // Handle permissions to delete
-        SaAdmin::whereIn('flags', $permissionsToDelete)
-            ->where('player_steamid', $player_steam)
+        $adminData = SaAdmin::where('player_steamid', $player_steam)
             ->where('server_id', $validated['server_id'])
+            ->get('id');
+
+        SaAdminsFlags::whereIn('flag', $permissionsToDelete)
+            ->whereIn('admin_id', $adminData->pluck('id')->toArray())
             ->delete();
 
         // update new expiry
@@ -202,7 +217,6 @@ class AdminController extends Controller
         $serverIds = $validated['server_ids'];
         SaAdmin::where('player_steamid', $player_steam)
             ->whereIn('server_id', $serverIds)
-            ->where('flags', '<>', '@css/root')
             ->delete();
 
         return redirect()->route('admins.list')->with('success', 'Admin deleted successfully.');

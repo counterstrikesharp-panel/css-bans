@@ -5,13 +5,16 @@ import {showLoader} from "../utility/utility";
 import {hideLoader} from "../utility/utility";
 
 // Make a GET request to fetch mutes data
+showLoader();
 axios.get(serversListUrl)
     .then(response => {
         // Handle successful response
+        hideLoader();
         appendTableData(constructTableRows(response.data), 'serverList');
     })
     .catch(error => {
         // Handle error
+        hideLoader();
         console.error('Error:', error);
     });
 
@@ -91,8 +94,8 @@ function playerAction(playerName: string, action: string, serverId: string) {
         },
         success: function(response) {
             hideLoader();
+            $("#"+playerName).remove();
             toastr.success('Player '+action+' successful.');
-            fetchPlayers(serverId);
         },
         error: function(xhr, status, error) {
             hideLoader();

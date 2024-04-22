@@ -52,9 +52,17 @@ class BansController extends Controller
         $totalBans = SaBan::count();
 
         $formattedData = [];
-
+        $siteDir = env('VITE_SITE_DIR');
         // Format each ban record
         foreach ($bans as $ban) {
+            $editAction = '';
+            if(PermissionsHelper::hasBanPermission($ban->server_id)) {
+                $editAction = "<a href='$siteDir/ban/edit/{$ban->id}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></a>";
+            }
+            $unbanAction = '';
+            if(PermissionsHelper::hasUnBanPermission($ban->server_id) && $ban->status == 'ACTIVE') {
+                $unbanAction = "<button class='btn btn-success btn-sm unban-btn' data-player-steamid='{$ban->player_steamid}'><i class='fas fa-ban'></i></button>";
+            }
             $formattedData[] = [
                 "id" => $ban->id,
                 "player_steamid" => $ban->player_steamid,
@@ -66,7 +74,7 @@ class BansController extends Controller
                 "ends" => $ban->ends,
                 "created" => $ban->created,
                 "server_id" => $ban->server->hostname,
-                'action' => $ban->status == 'ACTIVE' && PermissionsHelper::hasUnBanPermission() ? "<button class='btn btn-success btn-sm unban-btn' data-player-steamid='{$ban->player_steamid}'><i class='fas fa-ban'></i></button>" : "",
+                'action' => $unbanAction." ".$editAction,
                 "status" => $ban->status == 'ACTIVE' ? "<h6><span class='badge badge-success'>Active</span></h6>" : ($ban->status == 'UNBANNED' ? "<h6><span class='badge badge-primary'>Unbanned</span></h6>" : "<h6><span class='badge badge-danger'>Expired</span></h6>"),
             ];
         }
@@ -175,5 +183,41 @@ class BansController extends Controller
         }
 
         return redirect()->route('list.bans')->with('success', 'Ban added successfully');
+    }
+
+    public function edit($id)
+    {
+        $ban = SaBan::findOrFail($id);
+        $servers = SaServer::all();
+        return view('admin.bans.edit', ['ban' => $ban, 'servers' => $servers]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'player_steam_id' => 'required|numeric|digits:17',
+            'reason' => 'required',
+            'duration' => 'required_without:permanent'
+        ]);
+
+        try {
+            $ban = SaBan::findOrFail($id);
+            $ban->player_steamid = $validatedData['player_steam_id'];
+            $ban->reason = $validatedData['reason'];
+            $minutesDifference = 0;
+            $ban->duration = $minutesDifference;
+            if(!$request->has('permanent')) {
+                $carbonTimestamp = Carbon::parse($validatedData['duration']);
+                $minutesDifference = $carbonTimestamp->diffInMinutes(Carbon::now());
+                $ban->duration = $minutesDifference;
+                $ban->ends = CommonHelper::formatDate(Carbon::parse($validatedData['duration']));
+            }
+            $ban->status = 'ACTIVE';
+            $ban->save();
+            return redirect()->route('list.bans')->with('success', 'Ban updated successfully');
+        } catch(\Exception $e) {
+            Log::error('ban.update.error: ' . $e->getMessage());
+            return Redirect::back()->withErrors(['msg' => 'There was an error while updating the ban.']);
+        }
     }
 }

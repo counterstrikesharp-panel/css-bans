@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BansController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogViewerController;
 use App\Http\Controllers\MutesController;
 use App\Http\Controllers\ServerController;
 use Illuminate\Support\Facades\Auth;
@@ -54,10 +55,15 @@ Route::middleware(['checkSetup'])->group(function () {
         Route::put('{player_steam_id}/unban', [BansController::class, 'unban'])->middleware('permission.unban');
         Route::put('{player_steam_id}/unmute', [MutesController::class, 'unmute'])->middleware('permission.unmute');
         Route::post('action', [ServerController::class, 'serverPlayerAction'])->name('player.action');
+        Route::put('ban/{id}', [BansController::class, 'update'])->name('ban.update')->middleware('permission.ban');
+        Route::put('mute/{id}', [MutesController::class, 'update'])->name('mute.update')->middleware('permission.mute');
+
     });
 
     Route::get('/ban/add', [BansController::class, 'create'])->middleware('permission.ban');
+    Route::get('/ban/edit/{id}', [BansController::class, 'edit'])->middleware('permission.ban');
     Route::get('/mute/add', [MutesController::class, 'create'])->middleware('permission.mute');
+    Route::get('/mute/edit/{id}', [MutesController::class, 'edit'])->middleware('permission.mute');
 
     Route::group(['prefix' => 'servers'], function () {
         Route::get('/{server_id}/players', [ServerController::class, 'getPlayers']);
@@ -80,3 +86,5 @@ Route::get('/setup', function () {
 });
 
 Route::post('/setup', [ServerController::class, 'setup']);
+Route::get('/logs', [LogViewerController::class, 'show'])->middleware('superadmin')->name('log-viewer');
+

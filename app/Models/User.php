@@ -30,8 +30,19 @@ class User extends Authenticatable
     protected $casts = [
         'steam_id' => 'int'
     ];
-
     public function permissions()
+    {
+        return $this->hasManyThrough(
+            SaAdminsFlags::class,
+            SaAdmin::class,
+            'player_steamid',
+            'admin_id',
+            'steam_id',
+            'id'
+        );
+    }
+
+    public function servers()
     {
         return $this->hasMany(SaAdmin::class, 'player_steamid', 'steam_id');
     }

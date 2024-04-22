@@ -52,9 +52,17 @@ class MutesController extends Controller
         $totalMutes = SaMute::count();
 
         $formattedData = [];
-
+        $siteDir = env('VITE_SITE_DIR');
         // Format each mute record
         foreach ($mutes as $mute) {
+            $editAction = '';
+            if(PermissionsHelper::hasMutePermission($mute->server_id)) {
+                $editAction = "<a href='$siteDir/mute/edit/{$mute->id}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></a>";
+            }
+            $unmuteAction = '';
+            if(PermissionsHelper::hasUnMutePermission($mute->server_id) && $mute->status == 'ACTIVE') {
+                $unmuteAction = "<button class='btn btn-success btn-sm unmute-btn' data-player-steamid='{$mute->player_steamid}'><i class='fas fa-ban'></i></button>";
+            }
             $formattedData[] = [
                 "id" => $mute->id,
                 "player_steamid" => $mute->player_steamid,
@@ -66,7 +74,7 @@ class MutesController extends Controller
                 "created" => $mute->created,
                 "server_id" => $mute->server->hostname,
                 "status" => $mute->status == 'ACTIVE' ? "<h6><span class='badge badge-success'>Active</span></h6>" : ($mute->status == 'UNMUTED' ? "<h6><span class='badge badge-primary'>Unmuted</span></h6>" : "<h6><span class='badge badge-danger'>Expired</span></h6>"),
-                'action' => $mute->status == 'ACTIVE' && PermissionsHelper::hasUnMutePermission() ? "<button class='btn btn-success btn-sm unmute-btn' data-player-steamid='{$mute->player_steamid}'><i class='fas fa-ban'></i></button>" : "",
+                'action' =>  $unmuteAction." ".$editAction,
                 "duration" => $mute->duration == 0 && $mute->status != 'UNMUTED' ? "<h6><span class='badge badge-danger'>Permanent</span></h6>" : CommonHelper::minutesToTime($mute->duration),
             ];
         }
@@ -176,5 +184,41 @@ class MutesController extends Controller
         }
 
         return redirect()->route('list.mutes')->with('success', 'Mute added successfully');
+    }
+
+    public function edit($id)
+    {
+        $mute = SaMute::findOrFail($id);
+        $servers = SaServer::all();
+        return view('admin.mutes.edit', ['mute' => $mute, 'servers' => $servers]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'player_steam_id' => 'required|numeric|digits:17',
+            'reason' => 'required',
+            'duration' => 'required_without:permanent'
+        ]);
+
+        try {
+            $mute = SaMute::findOrFail($id);
+            $mute->player_steamid = $validatedData['player_steam_id'];
+            $mute->reason = $validatedData['reason'];
+            $minutesDifference = 0;
+            $mute->duration = $minutesDifference;
+            if(!$request->has('permanent')) {
+                $carbonTimestamp = Carbon::parse($validatedData['duration']);
+                $minutesDifference = $carbonTimestamp->diffInMinutes(Carbon::now());
+                $mute->duration = $minutesDifference;
+                $mute->ends = CommonHelper::formatDate(Carbon::parse($validatedData['duration']));
+            }
+            $mute->status = 'ACTIVE';
+            $mute->save();
+            return redirect()->route('list.mutes')->with('success', 'Mute updated successfully');
+        } catch(\Exception $e) {
+            Log::error('mute.update.error: ' . $e->getMessage());
+            return Redirect::back()->withErrors(['msg' => 'There was an error while updating the mute.']);
+        }
     }
 }

@@ -2,22 +2,11 @@
 
 namespace App\Helpers;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class PermissionsHelper
 {
-    public static function isAdmin()
-    {
-        // Get the authenticated user
-        $user = Auth::user();
-
-        // Check if the user has the specified permission
-        if ($user && $user->permissions()->where('player_steamid', $user->steam_id)->exists()) {
-            return true;
-        }
-
-        return false;
-    }
 
     public static function isSuperAdmin()
     {
@@ -25,75 +14,129 @@ class PermissionsHelper
         $user = Auth::user();
 
         // Check if the user has the specified permission
-        if ($user && $user->permissions()->where('player_steamid', $user->steam_id)->where('flags' ,'@css/root')->exists()) {
+        if ($user && $user->permissions()->where('flag' ,'@css/root')->exists()) {
             return true;
         }
 
         return false;
     }
 
-    public static function hasUnBanPermission()
+    public static function hasUnBanPermission(int $serverId=null)
     {
         // Get the authenticated user
+        $allowed = false;
         $user = Auth::user();
-
-        // Check if the user has the specified permission
-        if ($user && $user->permissions()->where('player_steamid', $user->steam_id)->whereIn('flags', ['@css/unban','@css/root'])->exists()) {
-            return true;
+        // Admin expired on all servers
+        if (!self::validateExpiryOnAllServers($user) && !$serverId) {
+            $allowed = false;
+        } elseif ($serverId && self::hasValidPermission($user, $serverId, '@css/unban')) {
+            // has permission on the server
+            $allowed = true;
+        } elseif ($user && !$serverId && $user->permissions()->whereIn('flag', ['@css/chat', '@css/unban'])->exists()) {
+            // Check  perms exists for atleast one of the server - For UI Actions
+            $allowed = true;
         }
 
-        return false;
+        return $allowed;
     }
 
-    public static function hasUnMutePermission()
+    public static function hasUnMutePermission(int $serverId=null)
     {
         // Get the authenticated user
+        $allowed = false;
         $user = Auth::user();
-
-        // Check if the user has the specified permission
-        if ($user && $user->permissions()->where('player_steamid', $user->steam_id)->whereIn('flags', ['@css/chat','@css/root'])->exists()) {
-            return true;
+        // Admin expired on all servers
+        if (!self::validateExpiryOnAllServers($user) && !$serverId) {
+            $allowed = false;
+        } elseif ($serverId && self::hasValidPermission($user, $serverId, '@css/chat')) {
+            // has permission on the server
+            $allowed = true;
+        } elseif ($user && !$serverId && $user->permissions()->whereIn('flag', ['@css/chat', '@css/root'])->exists()) {
+            // Check  perms exists for atleast one of the server - For UI Actions
+            $allowed = true;
         }
 
-        return false;
+        return $allowed;
     }
 
-    public static function hasBanPermission()
+    public static function hasBanPermission(int $serverId=null)
     {
         // Get the authenticated user
+        $allowed = false;
         $user = Auth::user();
-
-        // Check if the user has the specified permission
-        if ($user && $user->permissions()->where('player_steamid', $user->steam_id)->whereIn('flags', ['@css/root', '@css/ban'])->exists()) {
-            return true;
+        // Admin expired on all servers
+        if (!self::validateExpiryOnAllServers($user) && !$serverId) {
+            $allowed = false;
+        } elseif ($serverId && self::hasValidPermission($user, $serverId, '@css/ban')) {
+            // has permission on the server
+            $allowed = true;
+        } elseif ($user && !$serverId && $user->permissions()->whereIn('flag', ['@css/ban', '@css/root'])->exists()) {
+            // Check perms exists for atleast one of the server - For UI Actions
+            $allowed = true;
         }
 
-        return false;
+        return $allowed;
     }
 
-    public static function hasMutePermission()
+    public static function hasMutePermission(int $serverId=null)
     {
         // Get the authenticated user
+        $allowed = false;
         $user = Auth::user();
-
-        // Check if the user has the specified permission
-        if ($user && $user->permissions()->where('player_steamid', $user->steam_id)->whereIn('flags', ['@css/root', '@css/chat'])->exists()) {
-            return true;
+        // Admin expired on all servers
+        if (!self::validateExpiryOnAllServers($user) && !$serverId) {
+            $allowed = false;
+        } elseif ($serverId && self::hasValidPermission($user, $serverId, '@css/chat')) {
+            // has permission on the server
+            $allowed = true;
+        } elseif ($user && !$serverId && $user->permissions()->whereIn('flag', ['@css/chat', '@css/root'])->exists()) {
+            // Check  perms exists for atleast one of the server - For UI Actions
+            $allowed = true;
         }
 
-        return false;
+        return $allowed;
     }
 
-    public static function hasKickPermission()
+    public static function hasKickPermission(int $serverId=null)
     {
         // Get the authenticated user
+        $allowed = false;
         $user = Auth::user();
-
-        // Check if the user has the specified permission
-        if ($user && $user->permissions()->where('player_steamid', $user->steam_id)->whereIn('flags', ['@css/root', '@css/kick'])->exists()) {
-            return true;
+        // Admin expired on all servers
+        if (!self::validateExpiryOnAllServers($user) && !$serverId) {
+            $allowed = false;
+        } elseif ($serverId && self::hasValidPermission($user, $serverId, '@css/kick')) {
+            // has permission on the server
+            $allowed = true;
+        } elseif ($user && !$serverId && $user->permissions()->whereIn('flag', ['@css/kick', '@css/root'])->exists()) {
+            // Check  perms exists for atleast one of the server - For UI Actions
+            $allowed = true;
         }
 
-        return false;
+        return $allowed;
+    }
+
+    private static function validateExpiryOnAllServers(?\Illuminate\Contracts\Auth\Authenticatable $user)
+    {
+       return $user->servers()
+            ->where(function ($query) {
+                $query->where('ends', '>=', Carbon::now()->toDateTimeString())
+                    ->orWhereNull('ends');
+            })
+            ->exists();
+    }
+
+    private static function hasValidPermission(\Illuminate\Contracts\Auth\Authenticatable $user, int $serverId, string $flag)
+    {
+        return $user->servers()
+            ->where('server_id', $serverId)
+            ->where(function ($query) {
+                $query->where('ends', '>=', Carbon::now()->toDateTimeString())
+                    ->orWhereNull('ends');
+            })
+            ->first()
+            ?->adminFlags()
+            ->whereIn('flag', [$flag, '@css/root'])
+            ->exists();
     }
 }

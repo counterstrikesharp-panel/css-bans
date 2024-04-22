@@ -45,7 +45,7 @@ function loadBans() {
             },
             {"data": "server_id"},
             {"data": "status"},
-            {"data": "action"},
+            {"data": "action", "width": "200px"},
             {
                 "data": "duration", "render": function (data, type, row, meta) {
                     const progress = calculateProgress(row.created, row.ends);
