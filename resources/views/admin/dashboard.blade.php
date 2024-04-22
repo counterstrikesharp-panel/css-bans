@@ -17,7 +17,7 @@
                     <p>Version: {{ $updates['version'] }}</p>
                     <div>{!! $updates['notes'] !!}</div>
                 @else
-                    You are using the latest version {{env('APP_VERSION')}}.
+                    You are using the latest version {{config('app.version')}}.
                 @endif
                 <small>This is only visible to you.</small>
                 <ul class="list-unstyled">

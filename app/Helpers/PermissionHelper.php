@@ -118,7 +118,7 @@ class PermissionsHelper
 
     private static function validateExpiryOnAllServers(?\Illuminate\Contracts\Auth\Authenticatable $user)
     {
-       return $user->servers()
+       return $user?->servers()
             ->where(function ($query) {
                 $query->where('ends', '>=', Carbon::now()->toDateTimeString())
                     ->orWhereNull('ends');
@@ -128,7 +128,7 @@ class PermissionsHelper
 
     private static function hasValidPermission(\Illuminate\Contracts\Auth\Authenticatable $user, int $serverId, string $flag)
     {
-        return $user->servers()
+        return $user?->servers()
             ->where('server_id', $serverId)
             ->where(function ($query) {
                 $query->where('ends', '>=', Carbon::now()->toDateTimeString())
