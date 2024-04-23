@@ -31,6 +31,9 @@ class AdminController extends Controller
     {
         $validatedData = $request->validated();
         try {
+            if(in_array('all', $validatedData['server_ids'])) {
+                $validatedData['server_ids'] = SaServer::all()->pluck('id')->toArray();
+            }
             $adminAddedToServerCount = [];
             foreach ($validatedData['server_ids'] as $server_id) {
                 foreach ($validatedData['permissions'] as $permissionId) {

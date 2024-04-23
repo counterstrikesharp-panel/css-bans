@@ -38,10 +38,11 @@
                         <div data-mdb-input-init class="form-outline mb-3">
                             <select multiple="multiple" class="form-select" id="server_id" name="server_ids[]" required>
                                 <option value="">Select Server</option>
+                                <option value="all">All Servers</option>
                                 @foreach($servers as $server)
-                                    <option  value="{{ $server->id }}">{{ $server->hostname }}</option>
-                                @endforeach
-                            </select>
+                                        <option  value="{{ $server->id }}">{{ $server->hostname }}</option>
+                                    @endforeach
+                                </select>
                         </div>
                         <hr/>
                         <div class="mb-3">

@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class StoreAdminRequest extends FormRequest
 {
@@ -20,7 +22,14 @@ class StoreAdminRequest extends FormRequest
             'steam_id' => 'required|numeric|digits:17',
             'player_name' => 'required',
             'server_ids' => 'required|array',
-            'server_ids.*' => 'exists:sa_servers,id',
+            'server_ids.*' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    if ($value !== 'all' && !DB::table('sa_servers')->where('id', $value)->exists()) {
+                        $fail($attribute.' is invalid.');
+                    }
+                },
+            ],
             'permissions' => 'required|array',
             'permissions.*' => 'exists:permissions,id',
             'ends' => 'required_without:permanent|date|after:today',
