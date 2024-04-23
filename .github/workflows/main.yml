@@ -12,6 +12,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v3
+      - name: Backup storage/app folder
+        run: cp -r storage/app storage/app_backup
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -38,6 +40,8 @@ jobs:
 
       - name: Generate Key
         run: php artisan key:generate --force
+      - name: Restore storage/app folder
+        run: cp -r storage/app_backup/* storage/app/
 
       - name: Zip Project Contents
         run: zip -r cssbans.v${{ github.ref_name }}.zip .

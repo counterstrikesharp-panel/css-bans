@@ -11,4 +11,5 @@ Release notes V 1.2.0
 - Improved server listing to detect if port is blocked (Now shows as unable to connect)
 - Added Servers specific permission checks for admins who have been granted only few servers with ban/mute to avoid access to other servers if doesnt exists.
 - Few listing improvements
+- Minor fixes on caching
 
