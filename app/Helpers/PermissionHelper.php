@@ -126,7 +126,7 @@ class PermissionsHelper
             ->exists();
     }
 
-    private static function hasValidPermission(\Illuminate\Contracts\Auth\Authenticatable $user, int $serverId, string $flag)
+    private static function hasValidPermission(?\Illuminate\Contracts\Auth\Authenticatable $user, int $serverId, string $flag)
     {
         return $user?->servers()
             ->where('server_id', $serverId)
