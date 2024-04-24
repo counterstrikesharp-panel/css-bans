@@ -1,9 +1,5 @@
-Release notes V 1.2.0
-## Important- This is major release for SimpleAdmin Support version 1.3.9
+Release notes V 1.2.3
 
-## Update your simpleAdmin to latest version 
- if you do not want to update , you simple ignore this and continue using panel, but this panel update has new features.
-## Future olderversion support will be removed.
 # Update Log
 - Updated the panel to support latest version of cs2SimpleAdmin 1.3.9
 - Added edit/mute ban , you can now edit banned/unbanned players form listing to extend bans or re add ban

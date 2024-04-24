@@ -78,8 +78,8 @@ class ServerController extends Controller
 
     private function isPortOpen($ip, $port, $timeout = 1) {
         $fp = @fsockopen($ip, $port, $errno, $errstr, $timeout);
-        if ($fp) {
-            fclose($fp);
+        if (!in_array($errno, [SOCKET_ETIMEDOUT,SOCKET_EHOSTUNREACH,SOCKET_ENETUNREACH]) && stripos(strtolower($errstr), 'failed') === false) {
+            $fp ? fclose($fp) : '';
             return true;
         } else {
             return false;
