@@ -14,6 +14,14 @@ PHP Web-based panel for managing bans, mutes, and more on Counter-Strike 2 serve
 
 ![image](https://github.com/hobsRKM/css-bans/assets/11420858/84796cb7-31d6-48ef-895e-4af1331ad71c)
 
+## Features
+- Manage Bans
+- Mange Admins
+- Mange Mutes
+- List Servers
+- View Server Players
+- Live Bans/Mutes/Kicks 
+- Manage Groups
 
 ## Requirements
 - PHP >= 8.1
