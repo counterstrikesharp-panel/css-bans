@@ -43,12 +43,21 @@ Route::middleware(['checkSetup'])->group(function () {
     Route::prefix('admin')->group(function () {
         Route::get('/create', [AdminController::class, 'create'])->name('admin.create')->middleware('superadmin');
         Route::post('/store', [AdminController::class, 'store'])->name('admin.store')->middleware('superadmin');
-        Route::get('/edit/{player_steam}/{server_id}', [AdminController::class, 'edit'])->name('admin.edit')->middleware('superadmin');
-        Route::post('/update/{player_steam}', [AdminController::class, 'update'])->name('admin.update')->middleware('superadmin');
+        Route::get('/edit/{player_steam}/{server_id}', [AdminController::class, 'editAdmin'])->name('admin.edit')->middleware('superadmin');
+        Route::post('/update/{player_steam}', [AdminController::class, 'updateAdmin'])->name('admin.update')->middleware('superadmin');
         Route::get('/delete/{player_steam}', [AdminController::class, 'showDeleteForm'])->name('admin.showDeleteForm')->middleware('superadmin');
         Route::post('/delete/{player_steam}', [AdminController::class, 'delete'])->name('admin.delete')->middleware('superadmin');
-    });
+        Route::get('/groups/edit/{player_steam}', [AdminController::class, 'editAdminGroup'])->name('admin.group.edit')->middleware('superadmin');
+        Route::post('/groups/update/{player_steam}', [AdminController::class, 'updateAdminGroup'])->name('admin.groups.update')->middleware('superadmin');
 
+    });
+    Route::prefix('group')->group(function () {
+        Route::get('/create', [AdminController::class, 'createGroup'])->name('group.create')->middleware('superadmin');
+        Route::post('/store', [AdminController::class, 'storeGroup'])->name('group.store')->middleware('superadmin');
+        Route::get('/list', [AdminController::class, 'groups'])->name('groups.list')->middleware('superadmin');
+        Route::post('/list', [AdminController::class, 'getGroupsList'])->name('group.list')->middleware('superadmin');
+
+    });
     Route::prefix('players')->group(function () {
         Route::post('ban', [BansController::class, 'store'])->name('ban.store')->middleware('permission.ban');
         Route::post('mute', [MutesController::class, 'store'])->name('mute.store')->middleware('permission.ban');
@@ -79,7 +88,7 @@ Route::get('/requirement', function () {
     return view('requirement');
 })->name('requirement');
 Route::get('/setup', function () {
-    if (env('SETUP') === 'true') {
+    if (env('SETUP') === true) {
         return redirect('/');
     }
     return view('setup');

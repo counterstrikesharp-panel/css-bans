@@ -18,10 +18,6 @@
 @vite(['resources/js/mdb.umd.min.js'])
 <!-- Custom scripts -->
 @include('partials.scripts')
-<div id="loader">
-    <div class="spinner-border text-primary" role="status">
-        <span class="visually-hidden">Loading...</span>
-    </div>
-</div>
+<x-loader />
 </body>
 </html>

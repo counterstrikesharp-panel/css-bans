@@ -1,12 +1,14 @@
-Release notes V 1.2.3
+Release notes V 1.3.0
 
-# Update Log
-- Updated the panel to support latest version of cs2SimpleAdmin 1.3.9
-- Added edit/mute ban , you can now edit banned/unbanned players form listing to extend bans or re add ban
-- Added new link **/logs** to investigate errors (Can be used only by @css/root)
-- Improved server listing to detect if port is blocked (Now shows as unable to connect)
-- Added Servers specific permission checks for admins who have been granted only few servers with ban/mute to avoid access to other servers if doesnt exists.
-- Few listing improvements
-- Minor fixes on caching
-- Added ability to select all servers while adding admins
+# Update Log - Major Version
+- Added support for groups , now you can create groups and assign admins to groups
+- Added ability to migrate existing admins to group (irreversible)
+- Panel now supports both individual admin flag support along with group support (!IMPORTANT - Recommended to use always groups)
+- Improved server listing - now does not rely on port open status to list servers, server should be just online. (Rcon/port access is still needed for live actions or to view players.)
+- Added player name on edit admin screen
+- Fixed setup screen being accessible even after completion of setup.
+- Note:Adding permissions to an existing group for new servers will append the new permissions to the existing set, applying for all associated servers
+- It is recommended to not use individual flags/perms to add admin
+- Be sure to manage admins/groups from panel as its optimized to disallow duplicates and avoid as much as possible console commands to manage admins/groups.
+#### TODO - Edit group and Delete Group will be added gradually.
 

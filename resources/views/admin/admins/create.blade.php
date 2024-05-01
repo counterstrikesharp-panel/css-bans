@@ -44,8 +44,18 @@
                                     @endforeach
                                 </select>
                         </div>
-                        <hr/>
-                        <div class="mb-3">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" checked type="radio" name="permission_type" id="flagsPermission" value="flags" />
+                            <label class="form-check-label" for="flagsPermission">Permissions</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="permission_type" id="groups" value="groups" />
+                            <label class="form-check-label" for="groups">Groups</label>
+                        </div>
+
+                        <div class="mb-3 flags">
+                            <hr/>
                             <label>Permissions</label><br>
                             @foreach($permissions as $permission)
                                 <div class="form-check">
@@ -55,8 +65,19 @@
                                     </label>
                                 </div>
                             @endforeach
+                            <hr/>
                         </div>
-                        <hr/>
+                        <div class="mb-3 groups" style="display:none">
+                            <label class="form-label" for="group_id"><b>Groups</b></label>
+                            <select multiple="multiple" class="form-select" id="group_id" name="groups[]">play
+                                <option value="">Select Group</option>
+                                @foreach($groups as $group)
+                                    <option value="{{ $group->id }}">
+                                        {{ $group->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="mb-3">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="permanent" name="permanent">

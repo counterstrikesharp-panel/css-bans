@@ -77,3 +77,6 @@ section {
     font-weight: 500;
     font-size: 14px;
 }
+.select2 {
+    width: 100% !important;
+}

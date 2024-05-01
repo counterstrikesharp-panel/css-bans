@@ -22,8 +22,12 @@
         <div class="col-md-8">
             <div class="card shadow">
                 <div class="card-body">
-                    <h5 class="card-title text-center mb-4">Edit Admin</h5>
-                    <form action="{{ route('admin.update', ['player_steam' => $admin->first()->player_steamid]) }}" method="POST">
+                    <h5 class="card-title text-center mb-4">Edit Admin Groups</h5>
+                    @if($allowMigrate)
+                        <form action="{{ route('admin.update', ['player_steam' => $admin->first()->player_steamid]) }}" method="POST">
+                    @else
+                        <form action="{{ route('admin.groups.update', ['player_steam' => $admin->first()->player_steamid]) }}" method="POST">
+                    @endif
                         @csrf
                         <!-- Server Dropdown -->
                         <div data-mdb-input-init class="form-outline mb-3">
@@ -37,21 +41,46 @@
                                 @endforeach
                             </select>
                         </div>
-
-                        <!-- Permissions Checkboxes -->
-                        <div class="mb-3">
-                            <label><b>Permissions</b></label><br>
-                                @foreach($permissions as $permission)
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="permissions[]" value="{{ $permission->permission }}" id="permission{{ $permission->id }}"
-
-                                        {{ in_array($permission->permission, $adminPermissions) ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="permission{{ $permission->id }}">
-                                        {{ $permission->description }} ({{ $permission->permission }})
-                                    </label>
-                                </div>
-                            @endforeach
+                        <div class="form-group mb-3">
+                            <label for="player_name"><b>Player Name</b></label>
+                            <input type="text" class="form-control active" value="{{$admin->first()->player_name}}" id="player_name" name="player_name" required/>
                         </div>
+                        <!-- Permissions Checkboxes -->
+                        @if($allowMigrate)
+                            <div class="mb-3">
+                                <label><b>Permissions</b></label><br>
+                                    @foreach($permissions as $permission)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="permissions[]" value="{{ $permission->permission }}" id="permission{{ $permission->id }}"
+                                            {{ in_array($permission->permission, $adminPermissions) ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="permission{{ $permission->id }}">
+                                            {{ $permission->description }} ({{ $permission->permission }})
+                                        </label>
+                                    </div>
+                                @endforeach
+                            </div>
+                            <hr/>
+                            <div class="note note-danger mb-3">
+                                <strong>Note:</strong> Admin will be moved to below groups selected for ALL Servers. Existing individual permissions of admin will be removed!
+                            </div>
+                            <label class="form-label" for="group_id"><b>Move Admin to Groups</b></label>
+                            <select multiple="multiple" class="form-select" id="group_id" name="groups[]">
+                                @foreach($groups as $group)
+                                    <option value="{{ $group->id }}" {{ in_array($group->name, $adminGroups) ? 'selected' : '' }}>
+                                        {{ $group->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        @else
+                            <label class="form-label" for="group_id"><b>Groups</b></label>
+                            <select multiple="multiple" class="form-select" id="group_id" name="groups[]">
+                                @foreach($groups as $group)
+                                    <option value="{{ $group->id }}" {{ in_array($group->name, $adminGroups) ? 'selected' : '' }}>
+                                        {{ $group->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        @endif
 
                         <div class="mb-3">
                             <div class="form-check">

@@ -24,7 +24,9 @@ export default defineConfig({
                 'resources/js/bootstrap.js',
                 'resources/js/mdb.es.min.js',
                 'resources/js/mdb.umd.min.js',
-                'resources/js/app.js'
+                'resources/js/app.js',
+                'resources/js/groups/groups.ts',
+                'resources/js/groups/list.ts'
             ],
             refresh: true,
         }),

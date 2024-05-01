@@ -19,4 +19,14 @@ class SaAdmin extends Model
     public function adminFlags() {
         return $this->hasMany(SaAdminsFlags::class, 'admin_id', 'id');
     }
+
+    public function adminGroups() {
+        return $this->hasMany(SaGroupsServers::class, 'group_id', 'group_id');
+    }
+
+    public function groupsServers()
+    {
+        return $this->hasMany(SaGroupsServers::class, 'server_id', 'server_id');
+    }
+
 }

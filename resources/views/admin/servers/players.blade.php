@@ -1,5 +1,10 @@
 @php use App\Helpers\PermissionsHelper; @endphp
 <div style="height: 400px; overflow-y: auto;">
+    @if (!empty($error))
+        <div class="note note-danger mb-3">
+            {{$error}}
+        </div>
+    @endif
     <table id="server_players" class="table">
         <thead>
         <tr>

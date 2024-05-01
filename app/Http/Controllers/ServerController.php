@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -27,38 +28,32 @@ class ServerController extends Controller
 
         foreach ($servers as $server) {
             list($serverIp, $serverPort) = explode(":", $server->address);
-
-            if (!$this->isPortOpen($serverIp, $serverPort)) {
-                Log::error('rcon.servers.list Port Blocked! Unable to read data from port!');
-                $formattedServer = [
-                    'id' => $server->id,
-                    'name' => $server->hostname,
-                    'ip' => $serverIp,
-                    'port' => $serverPort,
-                    'players' => '0',
-                    'map' => '<h6><span class="badge badge-danger">Unable To Connect</span></h6>',
-                    'connect_button' => '<h6><span class="badge badge-danger">Unable To Connect</span></h6>'
-                ];
-                $formattedServers[] = $formattedServer;
-                continue;
-            }
-
-            // Fetch server information using the RconService
+            // Fetch server information using the SteamService
             try {
-                $rcon->connect($serverIp, $serverPort);
-                $serverInfo = $rcon->getInfo();
-                $formattedServer = [
-                    'id' => $server->id,
-                    'name' => $server->hostname,
-                    'ip' => $serverIp,
-                    'port' => $serverPort,
-                    'players' => $serverInfo['Players'] . "/" . $serverInfo['MaxPlayers'],
-                    'map' => $serverInfo['Map'],
-                    'connect_button' => '<a class="btn btn-success" href="steam://connect/' . $serverIp . ':' . $serverPort . '">Connect</a>',
-                ];
-                $rcon->disconnect();
+                $serverDetails = $this->getServerDetails($serverIp, $serverPort);
+                if ($serverDetails) {
+                    $formattedServer = [
+                        'id' => $server->id,
+                        'name' => $server->hostname,
+                        'ip' => $serverIp,
+                        'port' => $serverPort,
+                        'players' => $serverDetails['players'] . "/" . $serverDetails['max_players'],
+                        'map' => $serverDetails['map'],
+                        'connect_button' => '<a class="btn btn-success" href="steam://connect/' . $serverIp . ':' . $serverPort . '">Connect</a>',
+                    ];
+                } else {
+                    $formattedServer = [
+                        'id' => $server->id,
+                        'name' => $server->hostname,
+                        'ip' => $serverIp,
+                        'port' => $serverPort,
+                        'players' => '0',
+                        'map' => '<h6><span class="badge badge-danger">Offline</span></h6>',
+                        'connect_button' => '<h6><span class="badge badge-danger">Offline</span></h6>'
+                    ];
+                }
             } catch (\Exception $e) {
-                Log::error('rcon.servers.list.error'. $e->getMessage());
+                Log::error('Steam Web API Error: ' . $e->getMessage());
                 $formattedServer = [
                     'id' => $server->id,
                     'name' => $server->hostname,
@@ -94,16 +89,22 @@ class ServerController extends Controller
      */
     public function getPlayers(Request $request, $serverId, RconService $rcon) {
         $players = [];
+        $error = null;
         $server = SaServer::where('id', $serverId)->first();
         list($serverIp, $serverPort) = explode(":", $server->address);
-        try {
-            $rcon->connect($serverIp, $serverPort);
-            $players = $rcon->getPlayers();
-            $rcon->disconnect();
-        } catch(\Exception $e){
-            Log::error('rcon.players.error'.$e->getMessage());
+        if($this->isPortOpen($serverIp, $serverPort)) {
+            try {
+                $rcon->connect($serverIp, $serverPort);
+                $players = $rcon->getPlayers();
+                $rcon->disconnect();
+            } catch (\Exception $e) {
+                Log::error('rcon.players.error' . $e->getMessage());
+                $error = 'Failed to get server players!';
+            }
+        } else {
+            $error = 'Could not connect to server! Check your firewall gameserver/web ports!';
         }
-        return view('admin.servers.players', compact('players', 'server'));
+        return view('admin.servers.players', compact('players', 'server', 'error'));
     }
 
 
@@ -216,6 +217,18 @@ class ServerController extends Controller
                 'status' => 'error',
                 'message' => 'An error occurred while executing the command.'
             ], 500);
+        }
+    }
+
+    private function getServerDetails($ip, $port)
+    {
+        $apiKey = env('STEAM_CLIENT_SECRET');
+        $response = Http::get("https://api.steampowered.com/IGameServersService/GetServerList/v1/?key=$apiKey&filter=addr\\$ip:$port");
+        if ($response->successful()) {
+            return $response->json('response.servers')[0];
+        } else {
+            Log::error('steam.api.server.listing '. $response->body());
+            return null;
         }
     }
 }

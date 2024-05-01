@@ -46,4 +46,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(SaAdmin::class, 'player_steamid', 'steam_id');
     }
+
+    public function groupPermissions() {
+        return $this->hasManyThrough(
+            SaGroupsFlags::class,
+            SaAdmin::class,
+            'player_steamid',
+            'group_id',
+            'steam_id',
+            'group_id'
+        );
+    }
 }

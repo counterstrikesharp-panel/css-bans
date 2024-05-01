@@ -5,16 +5,16 @@ import {showLoader} from "../utility/utility";
 import {hideLoader} from "../utility/utility";
 
 // Make a GET request to fetch mutes data
-showLoader();
+showLoader('server_list_loader');
 axios.get(serversListUrl)
     .then(response => {
         // Handle successful response
-        hideLoader();
+        hideLoader('server_list_loader');
         appendTableData(constructTableRows(response.data), 'serverList');
     })
     .catch(error => {
         // Handle error
-        hideLoader();
+        hideLoader('server_list_loader');
         console.error('Error:', error);
     });
 

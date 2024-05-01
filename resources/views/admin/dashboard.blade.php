@@ -116,6 +116,7 @@
                     </table>
                 </div>
             </div>
+            <x-loader id="server_list_loader" />
         </div>
     </section>
     <section>

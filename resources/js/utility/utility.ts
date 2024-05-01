@@ -62,10 +62,10 @@ export function calculateProgress(created: string, ends: string): number {
     return progress;
 }
 
-export function showLoader() {
-    document.getElementById("loader").style.display = "block";
+export function showLoader(loaderId = 'loader') {
+    document.getElementById(loaderId).style.display = "block";
 }
 
-export function hideLoader() {
-    document.getElementById("loader").style.display = "none";
+export function hideLoader(loaderId = 'loader') {
+    document.getElementById(loaderId).style.display = "none";
 }

@@ -6,6 +6,7 @@ $('#server_id').on('change', function() {
 });
 $(document).ready(function() {
     $('#server_id').select2();
+    $("#group_id").select2();
 })
 document.addEventListener('change', function(event) {
     if (event.target.matches('#permanent')) {
