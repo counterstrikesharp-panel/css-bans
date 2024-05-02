@@ -362,7 +362,7 @@ class AdminController extends Controller
                     $groupServer->save();
                     $groupAddedToServerCount[$server_id] = $server_id;
                 }
-                foreach ($validatedDfata['permissions'] as $permissionId) {
+                foreach ($validatedData['permissions'] as $permissionId) {
                     $permission = Permission::find($permissionId);
                     if(empty($group->groupFlags()->where('flag', $permission->permission)->first())) {
                         $groupFlags = new SaGroupsFlags();
