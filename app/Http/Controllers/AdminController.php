@@ -85,6 +85,12 @@ class AdminController extends Controller
                             $saAdmin->group_id = $groupId;
                             $saAdmin->created = now();
                             $saAdmin->save();
+
+                            $adminFlag = new SaAdminsFlags();
+                            $adminFlag->admin_id = $saAdmin->id;
+                            $adminFlag->flag = SaGroups::find($groupId)->value('name');
+                            $adminFlag->save();
+
                             $adminAddedToServerCount[$server_id] = $server_id;
                         }
                     }
@@ -231,6 +237,11 @@ class AdminController extends Controller
                     $saAdmin->group_id = $groupId;
                     $saAdmin->created = now();
                     $saAdmin->save();
+
+                    $adminFlag = new SaAdminsFlags();
+                    $adminFlag->admin_id = $saAdmin->id;
+                    $adminFlag->flag = SaGroups::find($groupId)->value('name');
+                    $adminFlag->save();
                 }
             }
         } else {
@@ -384,6 +395,11 @@ class AdminController extends Controller
             $saAdmin->group_id = $groupId;
             $saAdmin->created = now();
             $saAdmin->save();
+
+            $adminFlag = new SaAdminsFlags();
+            $adminFlag->admin_id = $saAdmin->id;
+            $adminFlag->flag = SaGroups::find($groupId)->value('name');
+            $adminFlag->save();
         }
 
         // Handle groups to delete

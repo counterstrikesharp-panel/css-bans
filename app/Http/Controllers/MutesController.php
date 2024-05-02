@@ -60,6 +60,8 @@ class MutesController extends Controller
                 $editAction = "<a href='$siteDir/mute/edit/{$mute->id}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></a>";
             }
             $unmuteAction = '';
+            if(empty($mute->player_steamid))
+                $mute->player_steamid = $mute->id;
             if(PermissionsHelper::hasUnMutePermission($mute->server_id) && $mute->status == 'ACTIVE') {
                 $unmuteAction = "<button class='btn btn-success btn-sm unmute-btn' data-player-steamid='{$mute->player_steamid}'><i class='fas fa-ban'></i></button>";
             }
@@ -89,9 +91,11 @@ class MutesController extends Controller
         return response()->json($response);
     }
 
-    public function unmute(Request $request, $playerSteamid)
+    public function unmute(Request $request, $dataId)
     {
-        $mutes = SaMute::where('player_steamid', $playerSteamid)->get();
+        $mutes = SaMute::where('player_steamid', $dataId)
+            ->orWhere('id', $dataId)
+            ->get();
 
         try {
             // Start a database transaction

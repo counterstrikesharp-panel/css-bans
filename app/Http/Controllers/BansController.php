@@ -60,6 +60,8 @@ class BansController extends Controller
                 $editAction = "<a href='$siteDir/ban/edit/{$ban->id}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></a>";
             }
             $unbanAction = '';
+            if(empty($ban->player_steamid))
+                $ban->player_steamid = $ban->id;
             if(PermissionsHelper::hasUnBanPermission($ban->server_id) && $ban->status == 'ACTIVE') {
                 $unbanAction = "<button class='btn btn-success btn-sm unban-btn' data-player-steamid='{$ban->player_steamid}'><i class='fas fa-ban'></i></button>";
             }
@@ -89,9 +91,11 @@ class BansController extends Controller
         return response()->json($response);
     }
 
-    public function unban(Request $request, $playerSteamid)
+    public function unban(Request $request, $dataId)
     {
-        $bans = SaBan::where('player_steamid', $playerSteamid)->get();
+        $bans = SaBan::where('player_steamid', $dataId)
+            ->orWhere('id', $dataId)
+            ->get();
 
         try {
             // Start a database transaction
