@@ -57,7 +57,7 @@
                             <input type="number" id="immunity" name="immunity"  class="form-control" value="{{ old('immunity') }}" required>
                         </div>
                         <div class="mt-3">
-                            <center> <button type="submit" class="btn btn-primary col-md-2 mx-auto ">Add Admin</button></center>
+                            <center> <button type="submit" class="btn btn-primary col-md-2 mx-auto ">Create Group</button></center>
                         </div>
                     </form>
                 </div>

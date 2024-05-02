@@ -47,7 +47,7 @@ Route::middleware(['checkSetup'])->group(function () {
         Route::post('/update/{player_steam}', [AdminController::class, 'updateAdmin'])->name('admin.update')->middleware('superadmin');
         Route::get('/delete/{player_steam}', [AdminController::class, 'showDeleteForm'])->name('admin.showDeleteForm')->middleware('superadmin');
         Route::post('/delete/{player_steam}', [AdminController::class, 'delete'])->name('admin.delete')->middleware('superadmin');
-        Route::get('/groups/edit/{player_steam}', [AdminController::class, 'editAdminGroup'])->name('admin.group.edit')->middleware('superadmin');
+        Route::get('/groups/edit/{player_steam}/{server_id}', [AdminController::class, 'editAdminGroup'])->name('admin.group.edit')->middleware('superadmin');
         Route::post('/groups/update/{player_steam}', [AdminController::class, 'updateAdminGroup'])->name('admin.groups.update')->middleware('superadmin');
 
     });

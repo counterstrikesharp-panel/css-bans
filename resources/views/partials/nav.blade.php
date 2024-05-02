@@ -30,6 +30,10 @@
                 </a>
                 @endif
                 @if(PermissionsHelper::isSuperAdmin())
+                    <a href="{{env('VITE_SITE_DIR')}}/group/list" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init>
+                        <i class="fas fa-users fa-fw me-3"></i><span>All Groups</span>                    </a>
+                @endif
+                @if(PermissionsHelper::isSuperAdmin())
                     <a href="{{env('VITE_SITE_DIR')}}/group/create" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init>
                     <i class="fas fa-plus fa-fw me-3"></i><span>Create Group</span>                    </a>
                 @endif

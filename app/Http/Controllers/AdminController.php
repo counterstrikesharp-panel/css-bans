@@ -91,6 +91,14 @@ class AdminController extends Controller
                             $adminFlag->flag = SaGroups::find($groupId)->value('name');
                             $adminFlag->save();
 
+                            if (empty(SaGroupsServers::where('group_id', $groupId)->where('server_id', $server_id)->first()))
+                            {
+                                $groupServer = new SaGroupsServers();
+                                $groupServer->group_id = $groupId;
+                                $groupServer->server_id = $server_id;
+                                $groupServer->save();
+                            }
+
                             $adminAddedToServerCount[$server_id] = $server_id;
                         }
                     }
@@ -162,7 +170,7 @@ class AdminController extends Controller
                 "created" => $admin->created,
                 "flags" => $admin->flags,
                 "hostnames" => $admin->hostnames,
-                'actions' => PermissionsHelper::isSuperAdmin() ? ($admin->group_id !== null ? "<a href='$siteDir/admin/groups/edit/{$admin->player_steamid}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></a> <a href='$siteDir/admin/delete/{$admin->player_steamid}' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>" : "<a href='$siteDir/admin/edit/{$admin->player_steamid}/{$admin->server_id}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></a> <a href='$siteDir/admin/delete/{$admin->player_steamid}' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>") : "",
+                'actions' => PermissionsHelper::isSuperAdmin() ? ($admin->group_id !== null ? "<a href='$siteDir/admin/groups/edit/{$admin->player_steamid}/{$admin->server_id}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></a> <a href='$siteDir/admin/delete/{$admin->player_steamid}' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>" : "<a href='$siteDir/admin/edit/{$admin->player_steamid}/{$admin->server_id}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></a> <a href='$siteDir/admin/delete/{$admin->player_steamid}' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>") : "",
             ];
         }
         $response = [
@@ -193,10 +201,11 @@ class AdminController extends Controller
         return view('admin.admins.edit', compact('admin', 'permissions', 'adminPermissions', 'servers', 'allowMigrate', 'groups', 'adminGroups'));
     }
 
-    public function editAdminGroup($player_steam) {
+    public function editAdminGroup($player_steam, $server_id) {
         $allowMigrate = false;
         $admin = SaAdmin::with('adminGroups.groups')
             ->where('player_steamid', $player_steam)
+            ->where('server_id', $server_id)
             ->get();
         if ($admin->isEmpty()) {
             return redirect()->route('admins.list')->with('error', 'Admin with a group does not exist for the selected server!. Add admin to the server!');
@@ -242,6 +251,14 @@ class AdminController extends Controller
                     $adminFlag->admin_id = $saAdmin->id;
                     $adminFlag->flag = SaGroups::find($groupId)->value('name');
                     $adminFlag->save();
+
+                    if (empty(SaGroupsServers::where('group_id', $groupId)->where('server_id', $server)->first()))
+                    {
+                        $groupServer = new SaGroupsServers();
+                        $groupServer->group_id = $groupId;
+                        $groupServer->server_id = $server;
+                        $groupServer->save();
+                    }
                 }
             }
         } else {
@@ -400,6 +417,14 @@ class AdminController extends Controller
             $adminFlag->admin_id = $saAdmin->id;
             $adminFlag->flag = SaGroups::find($groupId)->value('name');
             $adminFlag->save();
+
+            if (empty(SaGroupsServers::where('group_id', $groupId)->where('server_id', $validated['server_id'])->first()))
+            {
+                $groupServer = new SaGroupsServers();
+                $groupServer->group_id = $groupId;
+                $groupServer->server_id = $validated['server_id'];
+                $groupServer->save();
+            }
         }
 
         // Handle groups to delete
