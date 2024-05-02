@@ -37,7 +37,9 @@ Route::middleware(['checkSetup'])->group(function () {
         Route::get('mutes', [MutesController::class, 'mutes'])->name('list.mutes');;
         Route::post('mutes', [MutesController::class, 'getMutesList']);
         Route::get('admins', [AdminController::class, 'admins'])->name('admins.list')->middleware('superadmin');
-        Route::post('admins', [AdminController::class, 'getAdminsList'])->middleware('superadmin');;
+        Route::post('admins', [AdminController::class, 'getAdminsList'])->middleware('superadmin');
+        Route::get('/groups', [AdminController::class, 'groups'])->name('groups.list')->middleware('superadmin');
+        Route::post('/groups', [AdminController::class, 'getGroupsList'])->name('group.list')->middleware('superadmin');
     });
 
     Route::prefix('admin')->group(function () {
@@ -54,9 +56,6 @@ Route::middleware(['checkSetup'])->group(function () {
     Route::prefix('group')->group(function () {
         Route::get('/create', [AdminController::class, 'createGroup'])->name('group.create')->middleware('superadmin');
         Route::post('/store', [AdminController::class, 'storeGroup'])->name('group.store')->middleware('superadmin');
-        Route::get('/list', [AdminController::class, 'groups'])->name('groups.list')->middleware('superadmin');
-        Route::post('/list', [AdminController::class, 'getGroupsList'])->name('group.list')->middleware('superadmin');
-
     });
     Route::prefix('players')->group(function () {
         Route::post('ban', [BansController::class, 'store'])->name('ban.store')->middleware('permission.ban');

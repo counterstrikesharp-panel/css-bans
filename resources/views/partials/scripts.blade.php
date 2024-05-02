@@ -24,7 +24,7 @@
     const adminListUrl = '{!! env('VITE_SITE_DIR') !!}/list/admins';
     const bansListUrl = '{!! env('VITE_SITE_DIR') !!}/list/bans';
     const playerActionUrl = '{!! env('VITE_SITE_DIR') !!}/players/action';
-    const groupsListUrl = '{!! env('VITE_SITE_DIR') !!}/group/list';
+    const groupsListUrl = '{!! env('VITE_SITE_DIR') !!}/list/groups';
 </script>
 
 

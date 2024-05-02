@@ -362,7 +362,7 @@ class AdminController extends Controller
                     $groupServer->save();
                     $groupAddedToServerCount[$server_id] = $server_id;
                 }
-                foreach ($validatedData['permissions'] as $permissionId) {
+                foreach ($validatedDfata['permissions'] as $permissionId) {
                     $permission = Permission::find($permissionId);
                     if(empty($group->groupFlags()->where('flag', $permission->permission)->first())) {
                         $groupFlags = new SaGroupsFlags();
@@ -451,9 +451,8 @@ class AdminController extends Controller
         $searchValue = $request->input('search.value');
         $orderColumn = $request->input('order.0.column');
         $orderDirection = $request->input('order.0.dir');
-
         $query = SaGroups::query();
-
+        DB::statement("SET SESSION sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
         // Join the sa_groups_flag table to fetch flags
         $query->leftJoin('sa_groups_flags', 'sa_groups.id', '=', 'sa_groups_flags.group_id');
 
