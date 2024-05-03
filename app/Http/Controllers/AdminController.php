@@ -484,12 +484,11 @@ class AdminController extends Controller
         // Format each group record
         $siteDir = env('VITE_SITE_DIR');
         foreach ($groups as $group) {
-            $preLoadDefaultServerId = SaGroupsServers::where('group_id', $group->id)?->first()?->server_id;
             $formattedData[] = [
                 "id" => $group->id,
                 "name" => "<span style='font-size: 12px;' class='badge badge-dark'>{$group->name}</span>",
                 "flags" => $group->flags ?: "No flags assigned",
-                'actions' =>  "<a href='$siteDir/group/edit/{$group->id}/{$preLoadDefaultServerId}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></a> <a href='$siteDir/group/delete/{$group->id}' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>",
+                'actions' =>  "<a href='$siteDir/group/edit/{$group->id}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></a> <a href='$siteDir/group/delete/{$group->id}' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>",
             ];
         }
 
