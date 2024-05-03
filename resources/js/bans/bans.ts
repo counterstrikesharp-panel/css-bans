@@ -24,7 +24,7 @@ function loadBans() {
             {"data": "id"},
             {
                 "data": "player_name", "render": function (data, type, row, meta) {
-                    return `<a href="https://steamcommunity.com/profiles/${row.player_steamid}">${truncatePlayerName(data)}</a>`;
+                    return `<a href="https://steamcommunity.com/profiles/${row.player_steamid}">${data}</a>`;
                 }
             },
             {
@@ -84,11 +84,3 @@ $(document).on('click', '.unban-btn', function() {
         }
     });
 });
-
-function truncatePlayerName(playerName: string): string {
-    if (playerName.length > 19) {
-        return playerName.substring(0, 16) + '...';
-    } else {
-        return playerName;
-    }
-}
