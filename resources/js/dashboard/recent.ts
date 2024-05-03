@@ -31,7 +31,7 @@ function constructTableRows(data: any[]): string {
         const progress = calculateProgress(item.created, item.ends);
         html += `
       <tr>
-        <td>${item.player_name}</td>
+        <td>${truncatePlayerName(item.player_name)}</td>
         <td><a href="https://steamcommunity.com/profiles/${item.player_steamid}/">Profile</a></td>
         <td>${formatDuration(item.created)}</td>
         <td>${item.ends}</td>
@@ -50,7 +50,10 @@ function constructTableRows(data: any[]): string {
     return html;
 }
 
-
-
-
-
+function truncatePlayerName(playerName: string): string {
+    if (playerName.length > 19) {
+        return playerName.substring(0, 16) + '...';
+    } else {
+        return playerName;
+    }
+}
