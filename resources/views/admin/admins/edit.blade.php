@@ -28,6 +28,9 @@
                     @else
                         <form action="{{ route('admin.groups.update', ['player_steam' => $admin->first()->player_steamid]) }}" method="POST">
                     @endif
+                        <div class="note note-info mb-3">
+                            <strong>Note:</strong> Admins will not receive their permissions on the server until a map change. Alternatively, you can execute css_reloadadmins for immediate effect.
+                        </div>
                         @csrf
                         <!-- Server Dropdown -->
                         <div data-mdb-input-init class="form-outline mb-3">
