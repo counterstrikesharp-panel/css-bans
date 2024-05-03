@@ -484,7 +484,7 @@ class AdminController extends Controller
         // Format each group record
         $siteDir = env('VITE_SITE_DIR');
         foreach ($groups as $group) {
-            $preLoadDefaultServerId = SaGroupsServers::where('group_id', $group->id)->first()->server_id;
+            $preLoadDefaultServerId = SaGroupsServers::where('group_id', $group->id)?->first()?->server_id;
             $formattedData[] = [
                 "id" => $group->id,
                 "name" => "<span style='font-size: 12px;' class='badge badge-dark'>{$group->name}</span>",
@@ -508,39 +508,29 @@ class AdminController extends Controller
         return view('admin.groups.list');
     }
 
-    public function editGroup(Request $request, $group_id, $server_id) {
-        $groupServer = SaGroupsServers::with('groupsFlags')
-            ->where('server_id', $server_id)
-            ->where('group_id', $group_id)
+    public function editGroup(Request $request, $group_id) {
+        $groupFlags = SaGroupsFlags::where('group_id', $group_id)
             ->get();
 
-        if ($groupServer->isEmpty()) {
-            return redirect()->route('groups.list')->with('error', 'Group does not exist for the selected server!. Add Group to the server!');
-        }
-        $groupPermissions = $groupServer->pluck('groupsFlags.*.flag')->flatten()->toArray();
+        $groupPermissions = $groupFlags->pluck('flag')->toArray();
         $groupDetails = SaGroups::where('id', $group_id)->first();
         $permissions = Permission::all();
-        $servers = SaServer::all();
-        return view('admin.groups.edit', compact('servers', 'permissions', 'groupDetails', 'groupPermissions', 'server_id'));
+        return view('admin.groups.edit', compact('permissions', 'groupDetails', 'groupPermissions'));
     }
 
     public function updateGroup(Request $request, $groupId) {
         $validated = $request->validate([
             'permissions' => 'required|array',
             'permissions.*' => 'exists:permissions,permission',
-            'server_id' => 'exists:sa_servers,id',
             'immunity' => 'required',
             'name' => 'required',
         ]);
 
         $submittedPermissions = $validated['permissions'];
-        $groupServer = SaGroupsServers::with('groupsFlags')
-            ->where('server_id',$validated['server_id'])
-            ->where('group_id', $groupId)
+        $groupFlags = SaGroupsFlags::where('group_id', $groupId)
             ->get();
         // Fetch current permissions from the database
-        $currentPermissions = $groupServer->pluck('groupsFlags.*.flag')->flatten()->toArray();
-        // Determine permissions to add and delete
+        $currentPermissions = $groupFlags->pluck('flag')->toArray();        // Determine permissions to add and delete
         $permissionsToAdd = array_diff($submittedPermissions, $currentPermissions);
         $permissionsToDelete = array_diff($currentPermissions, $submittedPermissions);
 
@@ -571,6 +561,7 @@ class AdminController extends Controller
 
     public function deleteGroup(Request $request, $groupId) {
         $validated = $request->validate([
+            'server_ids' => 'required|array',
             'server_ids.*' => [
                 'required',
                 function ($attribute, $value, $fail) {
@@ -590,6 +581,7 @@ class AdminController extends Controller
 
             SaAdmin::where('group_id', $groupId)
                 ->whereIn('server_id', $validated['server_ids'])->delete();
+
         }
 
         return redirect()->route('groups.list')->with('success', 'Group deleted successfully.');

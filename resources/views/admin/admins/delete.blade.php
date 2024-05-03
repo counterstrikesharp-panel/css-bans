@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (session('error'))
+        <x-alert type="danger" :message="session('error')"/>
+    @endif
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card shadow">

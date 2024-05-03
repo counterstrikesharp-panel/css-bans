@@ -30,21 +30,6 @@
                             <input value="{{$groupDetails->name}}" placeholder="Should Start with #" type="text" class="form-control" id="group_name" name="name" required/>
                             <label class="form-label" for="group_name">Group Name</label>
                         </div>
-
-                        <div data-mdb-input-init class="form-outline mb-3">
-                            <label class="form-check-label" for="server_id">
-                                Server
-                            </label>
-                            <select  class="form-select" id="server_id" name="server_id" required>
-                                <option value="">Select Server</option>
-                                @foreach($servers as $server)
-                                    <option value="{{ $server->id }}" {{ $server->id == $server_id ? 'selected' : '' }}>
-                                        {{ $server->hostname }}
-                                    </option>
-                                @endforeach
-                            </select>
-
-                        </div>
                         <hr/>
                         <div class="mb-3">
                             <label>Permissions</label><br>

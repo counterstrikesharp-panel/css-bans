@@ -56,7 +56,7 @@ Route::middleware(['checkSetup'])->group(function () {
     Route::prefix('group')->group(function () {
         Route::get('/create', [AdminController::class, 'createGroup'])->name('group.create')->middleware('superadmin');
         Route::post('/store', [AdminController::class, 'storeGroup'])->name('group.store')->middleware('superadmin');
-        Route::get('/edit/{group_id}/{server_id}', [AdminController::class, 'editGroup'])->name('group.edit')->middleware('superadmin');
+        Route::get('/edit/{group_id}', [AdminController::class, 'editGroup'])->name('group.edit')->middleware('superadmin');
         Route::put('/update/{id}', [AdminController::class, 'updateGroup'])->name('group.update')->middleware('superadmin');
         Route::get('/delete/{id}', [AdminController::class, 'showGroupDeleteForm'])->name('group.deleteForm')->middleware('superadmin');
         Route::post('/delete/{id}', [AdminController::class, 'deleteGroup'])->name('group.delete')->middleware('superadmin');
