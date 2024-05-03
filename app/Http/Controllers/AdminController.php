@@ -88,7 +88,7 @@ class AdminController extends Controller
 
                             $adminFlag = new SaAdminsFlags();
                             $adminFlag->admin_id = $saAdmin->id;
-                            $adminFlag->flag = SaGroups::find($groupId)->value('name');
+                            $adminFlag->flag = SaGroups::where('id', $groupId)->value('name');
                             $adminFlag->save();
 
                             if (empty(SaGroupsServers::where('group_id', $groupId)->where('server_id', $server_id)->first()))
@@ -249,7 +249,7 @@ class AdminController extends Controller
 
                     $adminFlag = new SaAdminsFlags();
                     $adminFlag->admin_id = $saAdmin->id;
-                    $adminFlag->flag = SaGroups::find($groupId)->value('name');
+                    $adminFlag->flag = SaGroups::where('id', $groupId)->value('name');
                     $adminFlag->save();
 
                     if (empty(SaGroupsServers::where('group_id', $groupId)->where('server_id', $server)->first()))
@@ -415,7 +415,7 @@ class AdminController extends Controller
 
             $adminFlag = new SaAdminsFlags();
             $adminFlag->admin_id = $saAdmin->id;
-            $adminFlag->flag = SaGroups::find($groupId)->value('name');
+            $adminFlag->flag = SaGroups::where('id', $groupId)->value('name');
             $adminFlag->save();
 
             if (empty(SaGroupsServers::where('group_id', $groupId)->where('server_id', $validated['server_id'])->first()))
