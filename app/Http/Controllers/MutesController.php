@@ -134,6 +134,7 @@ class MutesController extends Controller
             'duration' => 'required_without:permanent',
             'server_ids' => 'required|array',
             'server_ids.*' => 'exists:sa_servers,id',
+            'type' => 'required'
         ]);
 
         try {
@@ -175,6 +176,7 @@ class MutesController extends Controller
                 $samute->server_id = $serverId;
                 $samute->admin_name = auth()->user()->name;
                 $samute->admin_steamid = auth()->user()->steam_id;
+                $samute->type = $validatedData['type'];
                 $samute->ends = !empty($minutesDifference) ? CommonHelper::formatDate($validatedData['duration']): Carbon::now();
                 $samute->save();
                 $mutesAdded = true;
@@ -204,7 +206,8 @@ class MutesController extends Controller
         $validatedData = $request->validate([
             'player_steam_id' => 'required|numeric|digits:17',
             'reason' => 'required',
-            'duration' => 'required_without:permanent'
+            'duration' => 'required_without:permanent',
+            'type' => 'required'
         ]);
 
         try {
@@ -220,6 +223,7 @@ class MutesController extends Controller
                 $mute->ends = CommonHelper::formatDate(Carbon::parse($validatedData['duration']));
             }
             $mute->status = 'ACTIVE';
+            $mute->type = $validatedData['type'];
             $mute->save();
             return redirect()->route('list.mutes')->with('success', 'Mute updated successfully');
         } catch(\Exception $e) {

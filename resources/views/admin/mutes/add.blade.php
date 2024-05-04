@@ -27,10 +27,17 @@
                             <input type="number" class="form-control" id="player_steam_id" name="player_steam_id" required/>
                             <label class="form-label" for="player_steam_id">Player Steam ID</label>
                         </div>
-
                         <div data-mdb-input-init class="form-outline mb-3">
-                            <textarea type="text" class="form-control" id="reason" name="reason" required></textarea>
+                            <label class="form-label" for="type">Type</label>
+                            <select class="form-select" id="type" name="type">
+                                <option value="GAG">GAG</option>
+                                <option value="MUTE">MUTE</option>
+                                <option value="SILENCE">SILENCE</option>
+                            </select>
+                        </div>
+                        <div data-mdb-input-init class="mb-3">
                             <label class="form-label" for="reason">Reason</label>
+                            <textarea type="text" class="form-control" id="reason" name="reason" required></textarea>
                         </div>
 
                         <div class="mb-3">
@@ -42,9 +49,9 @@
                             </div>
                         </div>
 
-                        <div data-mdb-input-init class="form-outline mb-3">
-                            <input  type="datetime-local"  min="{{ date('Y-m-d\TH:i') }}" class="form-control active" id="duration" name="duration" required/>
+                        <div data-mdb-input-init class="mb-3">
                             <label class="form-label" for="duration">Duration</label>
+                            <input  type="datetime-local"  min="{{ date('Y-m-d\TH:i') }}" class="form-control active" id="duration" name="duration" required/>
                         </div>
 
                         <div data-mdb-input-init class="form-outline mb-3">
