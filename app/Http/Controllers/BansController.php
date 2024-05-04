@@ -56,14 +56,16 @@ class BansController extends Controller
         // Format each ban record
         foreach ($bans as $ban) {
             $editAction = '';
-            if(PermissionsHelper::hasBanPermission($ban->server_id)) {
-                $editAction = "<a href='$siteDir/ban/edit/{$ban->id}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></a>";
-            }
             $unbanAction = '';
-            if(empty($ban->player_steamid))
-                $ban->player_steamid = $ban->id;
-            if(PermissionsHelper::hasUnBanPermission($ban->server_id) && $ban->status == 'ACTIVE') {
-                $unbanAction = "<button class='btn btn-success btn-sm unban-btn' data-player-steamid='{$ban->player_steamid}'><i class='fas fa-ban'></i></button>";
+            if(!empty($ban->server)) {
+                if (PermissionsHelper::hasBanPermission($ban->server_id)) {
+                    $editAction = "<a href='$siteDir/ban/edit/{$ban->id}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></a>";
+                }
+                if (empty($ban->player_steamid))
+                    $ban->player_steamid = $ban->id;
+                if (PermissionsHelper::hasUnBanPermission($ban->server_id) && $ban->status == 'ACTIVE') {
+                    $unbanAction = "<button class='btn btn-success btn-sm unban-btn' data-player-steamid='{$ban->player_steamid}'><i class='fas fa-ban'></i></button>";
+                }
             }
             $formattedData[] = [
                 "id" => $ban->id,
@@ -75,7 +77,7 @@ class BansController extends Controller
                 "duration" => $ban->duration == 0 && $ban->status != 'UNBANNED' ? "<h6><span class='badge badge-danger'>Permanent</span></h6>" : CommonHelper::minutesToTime($ban->duration),
                 "ends" => $ban->ends,
                 "created" => $ban->created,
-                "server_id" => $ban->server->hostname,
+                "server_id" => $ban->server?->hostname,
                 'action' => $unbanAction." ".$editAction,
                 "status" => $ban->status == 'ACTIVE' ? "<h6><span class='badge badge-success'>Active</span></h6>" : ($ban->status == 'UNBANNED' ? "<h6><span class='badge badge-primary'>Unbanned</span></h6>" : "<h6><span class='badge badge-danger'>Expired</span></h6>"),
             ];
