@@ -28,6 +28,7 @@
                             <th scope="col">ID</th>
                             <th scope="col">Group</th>
                             <th scope="col">Flags</th>
+                            <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>

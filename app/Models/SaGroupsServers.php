@@ -15,6 +15,6 @@ class SaGroupsServers extends Model
     }
 
     public function groupsFlags() {
-        return $this->belongsTo(SaGroupsFlags::class, 'group_id', 'group_id');
+        return $this->hasMany(SaGroupsFlags::class, 'group_id', 'group_id');
     }
 }

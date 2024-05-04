@@ -1,11 +1,18 @@
 import DataTable from 'datatables.net-dt';
 import {formatDuration, calculateProgress} from '../utility/utility';
+import  'datatables.net-fixedcolumns'
 
 let dataTable = null;
 
 loadMutes();
 function loadMutes() {
     dataTable = new DataTable("#mutesList", {
+        fixedColumns: {
+            start: 0,
+            end: 3,
+        },
+        scrollX: true,
+        scrollY: "800px",
         "processing": true,
         "serverSide": true,
         "ajax": {
@@ -47,7 +54,11 @@ function loadMutes() {
             },
             {"data": "server_id"},
             {"data": "status"},
-            {"data": "action", "width": "200px"},
+            {
+                "data": "action", "width": "200px", "render": function (data, type, row, meta) {
+                    return '<div class="action-container">' + data + '</div>';
+                }
+            },
             {
                 "data": "duration", "render": function (data, type, row, meta) {
                     const progress = calculateProgress(row.created, row.ends);

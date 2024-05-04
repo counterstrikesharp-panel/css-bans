@@ -14,6 +14,7 @@
         "@types/datatables.net": "^1.10.28",
         "@types/jquery": "^3.5.29",
         "datatables.net-dt": "^2.0.2",
+        "datatables.net-fixedcolumns": "^5.0.0",
         "dotenv": "^16.4.5",
         "jquery": "^3.7.1",
         "ts-node": "^10.9.2"

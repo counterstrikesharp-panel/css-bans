@@ -22,6 +22,11 @@ function loadGroups() {
             {"data": "id"},
             {"data": "name"},
             {"data": "flags"},
+            {
+                "data": "actions", "width": "200px", "render": function (data, type, row, meta) {
+                    return '<div class="action-container">' + data + '</div>';
+                }
+            },
         ]
     });
 }

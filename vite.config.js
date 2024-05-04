@@ -26,7 +26,8 @@ export default defineConfig({
                 'resources/js/mdb.umd.min.js',
                 'resources/js/app.js',
                 'resources/js/groups/groups.ts',
-                'resources/js/groups/list.ts'
+                'resources/js/groups/list.ts',
+                'resources/js/groups/edit.ts'
             ],
             refresh: true,
         }),

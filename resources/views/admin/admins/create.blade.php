@@ -25,6 +25,9 @@
                     <h5 class="card-title text-center mb-4">Add New Admin</h5>
                     <form action="{{ route('admin.store') }}" method="POST">
                         @csrf
+                        <div class="note note-info mb-3">
+                            <strong>Note:</strong> Newly added admins will not receive their permissions on the server until a map change. Alternatively, you can execute css_reloadadmins for immediate effect.
+                        </div>
                         <div data-mdb-input-init class="form-outline mb-3">
                             <input type="number" class="form-control" id="steam_id" name="steam_id" required/>
                             <label class="form-label" for="steam_id">Steam ID</label>

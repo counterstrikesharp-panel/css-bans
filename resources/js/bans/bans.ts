@@ -1,10 +1,16 @@
 import DataTable from 'datatables.net-dt';
 import {formatDuration, calculateProgress} from '../utility/utility';
-
+import  'datatables.net-fixedcolumns'
 let dataTable = null;
 function loadBans() {
      dataTable = new DataTable("#bansList", {
+         fixedColumns: {
+             start: 0,
+             end: 3,
+         },
         "processing": true,
+         scrollX: true,
+         scrollY: "800px",
         "serverSide": true,
         "ajax": {
             "url": bansListUrl,
@@ -45,7 +51,11 @@ function loadBans() {
             },
             {"data": "server_id"},
             {"data": "status"},
-            {"data": "action", "width": "200px"},
+            {
+                "data": "action", "width": "200px", "render": function (data, type, row, meta) {
+                    return '<div class="action-container">' + data + '</div>';
+                }
+            },
             {
                 "data": "duration", "render": function (data, type, row, meta) {
                     const progress = calculateProgress(row.created, row.ends);

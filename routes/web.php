@@ -39,7 +39,7 @@ Route::middleware(['checkSetup'])->group(function () {
         Route::get('admins', [AdminController::class, 'admins'])->name('admins.list')->middleware('superadmin');
         Route::post('admins', [AdminController::class, 'getAdminsList'])->middleware('superadmin');
         Route::get('/groups', [AdminController::class, 'groups'])->name('groups.list')->middleware('superadmin');
-        Route::post('/groups', [AdminController::class, 'getGroupsList'])->name('group.list')->middleware('superadmin');
+        Route::post('/groups', [AdminController::class, 'getGroupsList'])->middleware('superadmin');
     });
 
     Route::prefix('admin')->group(function () {
@@ -56,6 +56,10 @@ Route::middleware(['checkSetup'])->group(function () {
     Route::prefix('group')->group(function () {
         Route::get('/create', [AdminController::class, 'createGroup'])->name('group.create')->middleware('superadmin');
         Route::post('/store', [AdminController::class, 'storeGroup'])->name('group.store')->middleware('superadmin');
+        Route::get('/edit/{group_id}', [AdminController::class, 'editGroup'])->name('group.edit')->middleware('superadmin');
+        Route::put('/update/{id}', [AdminController::class, 'updateGroup'])->name('group.update')->middleware('superadmin');
+        Route::get('/delete/{id}', [AdminController::class, 'showGroupDeleteForm'])->name('group.deleteForm')->middleware('superadmin');
+        Route::post('/delete/{id}', [AdminController::class, 'deleteGroup'])->name('group.delete')->middleware('superadmin');
     });
     Route::prefix('players')->group(function () {
         Route::post('ban', [BansController::class, 'store'])->name('ban.store')->middleware('permission.ban');

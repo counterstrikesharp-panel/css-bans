@@ -26,6 +26,3 @@
     const playerActionUrl = '{!! env('VITE_SITE_DIR') !!}/players/action';
     const groupsListUrl = '{!! env('VITE_SITE_DIR') !!}/list/groups';
 </script>
-
-
-

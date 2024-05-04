@@ -482,11 +482,13 @@ class AdminController extends Controller
 
         $formattedData = [];
         // Format each group record
+        $siteDir = env('VITE_SITE_DIR');
         foreach ($groups as $group) {
             $formattedData[] = [
                 "id" => $group->id,
-                "name" => $group->name,
+                "name" => "<span style='font-size: 12px;' class='badge badge-dark'>{$group->name}</span>",
                 "flags" => $group->flags ?: "No flags assigned",
+                'actions' =>  "<a href='$siteDir/group/edit/{$group->id}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></a> <a href='$siteDir/group/delete/{$group->id}' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>",
             ];
         }
 
@@ -503,5 +505,85 @@ class AdminController extends Controller
     public function groups()
     {
         return view('admin.groups.list');
+    }
+
+    public function editGroup(Request $request, $group_id) {
+        $groupFlags = SaGroupsFlags::where('group_id', $group_id)
+            ->get();
+
+        $groupPermissions = $groupFlags->pluck('flag')->toArray();
+        $groupDetails = SaGroups::where('id', $group_id)->first();
+        $permissions = Permission::all();
+        return view('admin.groups.edit', compact('permissions', 'groupDetails', 'groupPermissions'));
+    }
+
+    public function updateGroup(Request $request, $groupId) {
+        $validated = $request->validate([
+            'permissions' => 'required|array',
+            'permissions.*' => 'exists:permissions,permission',
+            'immunity' => 'required',
+            'name' => 'required',
+        ]);
+
+        $submittedPermissions = $validated['permissions'];
+        $groupFlags = SaGroupsFlags::where('group_id', $groupId)
+            ->get();
+        // Fetch current permissions from the database
+        $currentPermissions = $groupFlags->pluck('flag')->toArray();        // Determine permissions to add and delete
+        $permissionsToAdd = array_diff($submittedPermissions, $currentPermissions);
+        $permissionsToDelete = array_diff($currentPermissions, $submittedPermissions);
+
+        $groupDetails = SaGroups::where('id', $groupId)->first();
+        SaAdminsFlags::where('flag', $groupDetails->name)->update([
+            'flag' => $validated['name']
+        ]);
+        $groupDetails->name = $validated['name'];
+        $groupDetails->save();
+        foreach($permissionsToAdd as $permission){
+            $groupFlags = new SaGroupsFlags();
+            $groupFlags->group_id = $groupId;
+            $groupFlags->flag = $permission;
+            $groupFlags->save();
+        }
+        SaGroupsFlags::whereIn('flag', $permissionsToDelete)
+            ->where('group_id',$groupId)
+            ->delete();
+
+        return redirect()->route('groups.list')->with('success', 'Group updated successfully.');
+    }
+
+    public function showGroupDeleteForm(Request $request, $groupId) {
+        $groupDetails = SaGroups::where('id', $groupId)->firstOrFail();
+        $servers = SaServer::all();
+        return view('admin.groups.delete', compact('groupDetails', 'servers'));
+    }
+
+    public function deleteGroup(Request $request, $groupId) {
+        $validated = $request->validate([
+            'server_ids' => 'required|array',
+            'server_ids.*' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    if ($value !== 'all' && !DB::table('sa_servers')->where('id', $value)->exists()) {
+                        $fail($attribute.' is invalid.');
+                    }
+                },
+            ],
+        ]);
+
+        if(in_array('all', $validated['server_ids'])) {
+            SaGroups::where('id', $groupId)->delete();
+        }else {
+            $validated['server_ids'] = SaServer::all()->pluck('id')->toArray();
+            SaGroupsServers::where('group_id', $groupId)
+                ->whereIn('server_id', $validated['server_ids'])->delete();
+
+            SaAdmin::where('group_id', $groupId)
+                ->whereIn('server_id', $validated['server_ids'])->delete();
+
+        }
+
+        return redirect()->route('groups.list')->with('success', 'Group deleted successfully.');
+
     }
 }
