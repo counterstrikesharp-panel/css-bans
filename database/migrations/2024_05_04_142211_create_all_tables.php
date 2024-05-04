@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateAllTables extends Migration
@@ -13,13 +14,11 @@ class CreateAllTables extends Migration
      */
     public function up()
     {
-        // Create migrations table
-        Schema::create('migrations', function (Blueprint $table) {
+        Schema::create('sa_groups', function (Blueprint $table) {
             $table->id();
-            $table->string('migration');
-            $table->integer('batch');
+            $table->string('name');
+            $table->integer('immunity')->default('0');
         });
-
         // Create sa_admins table
         Schema::create('sa_admins', function (Blueprint $table) {
             $table->id();
@@ -28,8 +27,8 @@ class CreateAllTables extends Migration
             $table->text('flags')->nullable();
             $table->string('immunity')->default('0');
             $table->timestamp('ends')->nullable();
-            $table->timestamp('created')->default('0000-00-00 00:00:00');
-            $table->integer('group_id')->nullable();
+            $table->timestamp('created')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->unsignedBigInteger('group_id')->nullable(); // Update data type to unsignedBigInteger
             $table->integer('server_id')->nullable();
             $table->foreign('group_id')->references('id')->on('sa_groups')->onDelete('set null');
             $table->index('group_id');
@@ -38,12 +37,20 @@ class CreateAllTables extends Migration
         // Create sa_admins_flags table
         Schema::create('sa_admins_flags', function (Blueprint $table) {
             $table->id();
-            $table->integer('admin_id');
+            $table->unsignedBigInteger('admin_id');
             $table->string('flag');
             $table->foreign('admin_id')->references('id')->on('sa_admins')->onDelete('cascade');
             $table->index('admin_id');
         });
 
+        // Create sa_unbans table
+        Schema::create('sa_unbans', function (Blueprint $table) {
+            $table->id();
+            $table->integer('ban_id');
+            $table->integer('admin_id')->default('0');
+            $table->string('reason')->default('Unknown');
+            $table->timestamp('date')->useCurrent();
+        });
         // Create sa_bans table
         Schema::create('sa_bans', function (Blueprint $table) {
             $table->id();
@@ -57,23 +64,16 @@ class CreateAllTables extends Migration
             $table->timestamp('ends')->useCurrent();
             $table->timestamp('created')->useCurrent();
             $table->integer('server_id')->nullable();
-            $table->integer('unban_id')->nullable();
+            $table->unsignedBigInteger('unban_id')->nullable();
             $table->enum('status', ['ACTIVE', 'UNBANNED', 'EXPIRED', ''])->default('ACTIVE');
             $table->foreign('unban_id')->references('id')->on('sa_unbans')->onDelete('cascade');
             $table->index('unban_id');
         });
 
-        // Create sa_groups table
-        Schema::create('sa_groups', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->integer('immunity')->default('0');
-        });
-
         // Create sa_groups_flags table
         Schema::create('sa_groups_flags', function (Blueprint $table) {
             $table->id();
-            $table->integer('group_id');
+            $table->unsignedBigInteger('group_id');
             $table->string('flag');
             $table->foreign('group_id')->references('id')->on('sa_groups')->onDelete('cascade');
             $table->index('group_id');
@@ -82,7 +82,7 @@ class CreateAllTables extends Migration
         // Create sa_groups_servers table
         Schema::create('sa_groups_servers', function (Blueprint $table) {
             $table->id();
-            $table->integer('group_id');
+            $table->unsignedBigInteger('group_id');
             $table->integer('server_id');
             $table->foreign('group_id')->references('id')->on('sa_groups')->onDelete('cascade');
             $table->index('group_id');
@@ -92,6 +92,14 @@ class CreateAllTables extends Migration
         Schema::create('sa_migrations', function (Blueprint $table) {
             $table->id();
             $table->string('version');
+        });
+        // Create sa_unmutes table
+        Schema::create('sa_unmutes', function (Blueprint $table) {
+            $table->id();
+            $table->integer('mute_id');
+            $table->integer('admin_id')->default('0');
+            $table->string('reason')->default('Unknown');
+            $table->timestamp('date')->useCurrent();
         });
 
         // Create sa_mutes table
@@ -104,9 +112,9 @@ class CreateAllTables extends Migration
             $table->string('reason');
             $table->integer('duration');
             $table->timestamp('ends')->useCurrent();
-            $table->timestamp('created')->default('0000-00-00 00:00:00');
+            $table->timestamp('created')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->integer('server_id')->nullable();
-            $table->integer('unmute_id')->nullable();
+            $table->unsignedBigInteger('unmute_id')->nullable();
             $table->enum('type', ['GAG', 'MUTE', 'SILENCE', ''])->default('GAG');
             $table->enum('status', ['ACTIVE', 'UNMUTED', 'EXPIRED', ''])->default('ACTIVE');
             $table->foreign('unmute_id')->references('id')->on('sa_unmutes')->onDelete('cascade');
@@ -119,24 +127,6 @@ class CreateAllTables extends Migration
             $table->string('hostname')->nullable();
             $table->string('address');
             $table->unique('address');
-        });
-
-        // Create sa_unbans table
-        Schema::create('sa_unbans', function (Blueprint $table) {
-            $table->id();
-            $table->integer('ban_id');
-            $table->integer('admin_id')->default('0');
-            $table->string('reason')->default('Unknown');
-            $table->timestamp('date')->useCurrent();
-        });
-
-        // Create sa_unmutes table
-        Schema::create('sa_unmutes', function (Blueprint $table) {
-            $table->id();
-            $table->integer('mute_id');
-            $table->integer('admin_id')->default('0');
-            $table->string('reason')->default('Unknown');
-            $table->timestamp('date')->useCurrent();
         });
     }
 
