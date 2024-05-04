@@ -56,14 +56,16 @@ class MutesController extends Controller
         // Format each mute record
         foreach ($mutes as $mute) {
             $editAction = '';
-            if(PermissionsHelper::hasMutePermission($mute->server_id)) {
-                $editAction = "<a href='$siteDir/mute/edit/{$mute->id}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></a>";
-            }
             $unmuteAction = '';
-            if(empty($mute->player_steamid))
-                $mute->player_steamid = $mute->id;
-            if(PermissionsHelper::hasUnMutePermission($mute->server_id) && $mute->status == 'ACTIVE') {
-                $unmuteAction = "<button class='btn btn-success btn-sm unmute-btn' data-player-steamid='{$mute->player_steamid}'><i class='fas fa-ban'></i></button>";
+            if(!empty($mute->server)) {
+                if (PermissionsHelper::hasMutePermission($mute->server_id)) {
+                    $editAction = "<a href='$siteDir/mute/edit/{$mute->id}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></a>";
+                }
+                if (empty($mute->player_steamid))
+                    $mute->player_steamid = $mute->id;
+                if (PermissionsHelper::hasUnMutePermission($mute->server_id) && $mute->status == 'ACTIVE') {
+                    $unmuteAction = "<button class='btn btn-success btn-sm unmute-btn' data-player-steamid='{$mute->player_steamid}'><i class='fas fa-ban'></i></button>";
+                }
             }
             $formattedData[] = [
                 "id" => $mute->id,
@@ -74,7 +76,7 @@ class MutesController extends Controller
                 "reason" => $mute->reason,
                 "ends" => $mute->ends,
                 "created" => $mute->created,
-                "server_id" => $mute->server->hostname,
+                "server_id" => $mute->server?->hostname,
                 "status" => $mute->status == 'ACTIVE' ? "<h6><span class='badge badge-success'>Active</span></h6>" : ($mute->status == 'UNMUTED' ? "<h6><span class='badge badge-primary'>Unmuted</span></h6>" : "<h6><span class='badge badge-danger'>Expired</span></h6>"),
                 'action' =>  $unmuteAction." ".$editAction,
                 "duration" => $mute->duration == 0 && $mute->status != 'UNMUTED' ? "<h6><span class='badge badge-danger'>Permanent</span></h6>" : CommonHelper::minutesToTime($mute->duration),
