@@ -26,22 +26,20 @@ jobs:
       run: |
         mkdir -p database
         touch database/database.sqlite
-    - name: Execute tests (Unit and Feature tests) via PHPUnit/Pest
-      env:
-        DB_CONNECTION: sqlite
-        DB_DATABASE: database/database.sqlite
-      run: php artisan test
-    
+       
     - name: Test asset build
       uses: actions/setup-node@v2
       with:
         node-version: 17
-
-    - name: Install Composer dependencies
-      run: composer install --prefer-dist --no-interaction --no-suggest
 
     - name: Install NPM dependencies
       run: npm install
 
     - name: Compile assets
       run: npm run build
+   
+    - name: Execute tests (Unit and Feature tests) via PHPUnit/Pest
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
+      run: php artisan test
