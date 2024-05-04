@@ -14,6 +14,6 @@ class ExampleTest extends TestCase
     {
         $response = $this->withoutMiddleware()->get('/');
 
-        $response->assertStatus(200);
+        $response->assertRedirect();
     }
 }
