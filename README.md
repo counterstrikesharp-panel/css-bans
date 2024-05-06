@@ -11,6 +11,8 @@ PHP Web-based panel for managing bans, mutes, and more on Counter-Strike 2 serve
 ## Discord (Support)
 ![Discord Banner 1](https://discordapp.com/api/guilds/1236186810405883904/widget.png?style=banner4)
 
+# For installation GUIDE visit https://docs.cssbans.online
+
 ## Features
 - Manage Bans
 - Mange Admins
@@ -28,7 +30,7 @@ PHP Web-based panel for managing bans, mutes, and more on Counter-Strike 2 serve
 - SimpleAdmin version >= 1.4.0 ([GitHub Repository](https://github.com/daffyyyy/CS2-SimpleAdmin))
 - Demo: [SITE DEMO](https://cssbans.online/)
 
-# For installation visit https://docs.cssbans.online
+# For installation GUIDE visit https://docs.cssbans.online
 
 
 ## If you want to contribute for Development
