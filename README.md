@@ -9,7 +9,7 @@ PHP Web-based panel for managing bans, mutes, and more on Counter-Strike 2 serve
 ![image](https://github.com/counterstrikesharp-panel/css-bans/assets/11420858/0bb9c039-8ece-4a32-96ec-5fdd6b4a12a1)
 
 ## Discord (Support)
-![Discord Banner 1](https://discordapp.com/api/guilds/1236186810405883904/widget.png?style=banner4)
+[![Discord](https://discordapp.com/api/guilds/1236186810405883904/widget.png?style=banner2)](https://discord.gg/fwg5DKZYqV)
 
 # For installation GUIDE visit https://docs.cssbans.online
 
