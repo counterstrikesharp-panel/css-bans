@@ -34,6 +34,9 @@ jobs:
 
       - name: Compile assets
         run: npm run build
+      
+      - name: Remove dev npm modules
+        run : npm prune --production
 
       - name: Copy default env
         run: cp .env.example .env
