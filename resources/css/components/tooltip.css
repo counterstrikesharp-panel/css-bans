@@ -1,0 +1,72 @@
+@import "tippy.js/dist/tippy.css";
+@import "tippy.js/dist/svg-arrow.css";
+@import "tippy.js/animations/shift-away.css";
+
+.tippy-box {
+  @apply bg-slate-150 text-slate-800 dark:bg-navy-500 dark:text-navy-50;
+}
+
+.tippy-svg-arrow svg {
+  @apply fill-current text-slate-150 shadow-lg dark:text-navy-500;
+}
+
+.tippy-box[data-theme~="content"] .tippy-content {
+  @apply p-0;
+}
+
+.tippy-box[data-theme~="primary"] {
+  @apply bg-primary text-white dark:bg-accent;
+}
+
+.tippy-box[data-theme~="primary"] > .tippy-svg-arrow svg {
+  @apply text-primary dark:text-accent;
+}
+
+.tippy-box[data-theme~="secondary"] {
+  @apply bg-secondary text-white;
+}
+
+.tippy-box[data-theme~="secondary"] > .tippy-svg-arrow svg {
+  @apply text-secondary;
+}
+
+.tippy-box[data-theme~="info"] {
+  @apply bg-info text-white;
+}
+
+.tippy-box[data-theme~="info"] > .tippy-svg-arrow svg {
+  @apply text-info;
+}
+
+.tippy-box[data-theme~="success"] {
+  @apply bg-success text-white;
+}
+
+.tippy-box[data-theme~="success"] > .tippy-svg-arrow svg {
+  @apply text-success;
+}
+
+.tippy-box[data-theme~="warning"] {
+  @apply bg-warning text-white;
+}
+
+.tippy-box[data-theme~="warning"] > .tippy-svg-arrow svg {
+  @apply text-warning;
+}
+
+.tippy-box[data-theme~="error"] {
+  @apply bg-error text-white;
+}
+
+.tippy-box[data-theme~="error"] > .tippy-svg-arrow svg {
+  @apply text-error;
+}
+
+.tippy-box[data-theme~="light"] {
+  @apply bg-slate-150 text-slate-600;
+}
+
+.tippy-box[data-theme~="light"] > .tippy-svg-arrow svg {
+  @apply text-slate-150;
+}
+

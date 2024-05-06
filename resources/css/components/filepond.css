@@ -1,0 +1,35 @@
+@import "filepond/dist/filepond.min.css";
+@import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+
+.filepond{
+    @apply block w-full 
+}
+
+.fp-grid{
+    @apply [--fp-grid:1]
+}
+
+.filepond--credits {
+    @apply !opacity-[.1] !font-light !text-tiny
+    /* @apply hidden*/
+}
+
+.filepond.fp-grid .filepond--item {
+    width: calc(calc(1/var(--fp-grid))*100% - 0.5rem);
+}
+
+.filepond.fp-bordered .filepond--panel-root {
+    @apply border-2 border-slate-300 border-dashed dark:border-navy-450 bg-transparent
+}
+
+.filepond.fp-bg-filled .filepond--panel-root {
+    @apply bg-slate-150/80 dark:bg-navy-500/[.85]
+}
+
+.filepond--drop-label label {
+    @apply text-slate-600 dark:text-navy-100
+}
+
+.filepond.label-icon .filepond--drop-label label {
+    @apply text-slate-400 dark:text-navy-300
+}

@@ -1,0 +1,11 @@
+.avatar {
+  @apply relative inline-flex size-10 shrink-0;
+}
+
+.avatar > img {
+  @apply h-full w-full object-cover object-center;
+}
+
+.avatar > .is-initial {
+  @apply flex h-full w-full items-center justify-center font-medium;
+}

@@ -1,0 +1,5 @@
+.btn {
+  @apply inline-flex cursor-pointer items-center justify-center rounded-lg px-5 py-2
+   text-center tracking-wide outline-none transition-all duration-200
+   focus:outline-none disabled:pointer-events-none;
+}

@@ -19,10 +19,20 @@ const mainNavbar = document.getElementById('main-navbar');
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme === 'dark' || (isSystemThemeSetToDark && savedTheme === null)) {
     themeStitcher.checked = true;
-    mainNavbar.style.background = '#333';
+    mainNavbar.style.background = 'rgb(28 28 28)';
     document.documentElement.dataset.mdbTheme = 'dark';
+    $("body").addClass('body-dark-mode')
+    $(".card").addClass('card-dark-mode')
+    $(".card-body").addClass('card-dark-mode')
+    $(".table").addClass('card-dark-mode')
+    $("#sidebarMenu").addClass('body-dark-mode');
 } else {
     mainNavbar.style.background = '#fff';
+    $("body").removeClass('body-dark-mode')
+    $(".card").removeClass('card-dark-mode')
+    $(".card-body").removeClass('card-dark-mode')
+    $(".table").removeClass('card-dark-mode')
+    $("#sidebarMenu").removeClass('body-dark-mode');
 }
 
 // add listener to theme toggler
@@ -34,9 +44,19 @@ const toggleTheme = (isChecked) => {
     const theme = isChecked ? "dark" : "light";
     document.documentElement.dataset.mdbTheme = theme; // Update data-mdb-theme attribute
     if (theme == 'dark') {
-        mainNavbar.style.background = '#333';
+        mainNavbar.style.background = 'rgb(28 28 28)';
+        $("body").addClass('body-dark-mode')
+        $(".card").addClass('card-dark-mode')
+        $(".card-body").addClass('card-dark-mode')
+        $(".table").addClass('card-dark-mode')
+        $("#sidebarMenu").addClass('body-dark-mode');
     } else {
         mainNavbar.style.background = '#fff';
+        $("body").removeClass('body-dark-mode')
+        $(".card").removeClass('card-dark-mode')
+        $(".card-body").removeClass('card-dark-mode')
+        $(".table").removeClass('card-dark-mode')
+        $("#sidebarMenu").removeClass('body-dark-mode');
     }
     // Save theme preference to local storage
     localStorage.setItem('theme', theme);

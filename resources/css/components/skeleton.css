@@ -1,0 +1,19 @@
+.skeleton {
+  @apply relative overflow-hidden [--sk-color:#ffffff80] dark:[--sk-color:#5C6B8A];
+}
+
+.skeleton.animate-wave:after {
+  @apply absolute inset-0 content-[''];
+  background: linear-gradient(90deg, transparent, var(--sk-color), transparent);
+  animation: skeleton-wave 1.5s ease-in-out 0.5s infinite;
+}
+
+@keyframes skeleton-wave {
+  0% {
+    transform: translateX(-100%);
+  }
+  50%,
+  100% {
+    transform: translateX(100%);
+  }
+}
