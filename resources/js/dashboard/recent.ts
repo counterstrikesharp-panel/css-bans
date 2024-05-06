@@ -31,7 +31,7 @@ function constructTableRows(data: any[]): string {
         const progress = calculateProgress(item.created, item.ends);
         html += `
       <tr>
-        <td>${truncatePlayerName(item.player_name)}</td>
+        <td>${item.player_name}</td>
         <td><a href="https://steamcommunity.com/profiles/${item.player_steamid}/">Profile</a></td>
         <td>${formatDuration(item.created)}</td>
         <td>${item.ends}</td>

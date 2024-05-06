@@ -1,0 +1,35 @@
+.timeline {
+  @apply flex flex-col [--size:12px] [--line:1px];
+}
+
+.timeline.line-space {
+  --space: 12px;
+}
+
+.timeline .timeline-item {
+  @apply relative flex flex-1 pb-8;
+}
+
+.timeline .timeline-item .timeline-item-point {
+  @apply relative m-0 flex h-[var(--size)] w-[var(--size)] shrink-0 items-center justify-center;
+}
+
+.timeline .timeline-item::before {
+  @apply absolute inset-0 order-[-1] w-[var(--line)] translate-x-[calc((var(--size)/2)-(var(--line)/2))] content-[''];
+}
+
+.timeline .timeline-item:not(:last-child)::before {
+  @apply bg-slate-300 dark:bg-navy-400;
+}
+
+.timeline .timeline-item:last-child::before {
+  @apply bg-gradient-to-b from-slate-300 to-transparent dark:from-navy-400;
+}
+
+.timeline .timeline-item:last-child {
+  @apply pb-0;
+}
+
+.timeline.line-space .timeline-item::before {
+  @apply top-[calc(var(--size)+var(--space))] bottom-[var(--space)];
+}

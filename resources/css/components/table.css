@@ -1,0 +1,4 @@
+table.is-hoverable > tbody > tr:hover > td,
+table.is-zebra > tbody > tr:nth-child(even) > td {
+  @apply bg-slate-100 dark:bg-navy-600;
+}

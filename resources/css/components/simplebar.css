@@ -1,0 +1,9 @@
+@import "simplebar/dist/simplebar.min.css";
+
+.simplebar-scrollbar:before{
+    @apply bg-slate-300/80 dark:bg-navy-400
+}
+
+.simplebar-content-wrapper{
+    @apply outline-none
+}

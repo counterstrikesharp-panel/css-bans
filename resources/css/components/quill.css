@@ -1,0 +1,40 @@
+@import "quill/dist/quill.snow.css";
+
+.ql-container.ql-snow,
+.ql-toolbar.ql-snow {
+  @apply border-slate-300 dark:border-navy-450;
+}
+
+.ql-header-filled .ql-toolbar.ql-snow {
+  @apply bg-slate-150/80 dark:bg-navy-500/[.85];
+}
+
+.ql-toolbar.ql-snow {
+  @apply rounded-t-lg;
+}
+
+.ql-container.ql-snow {
+  @apply rounded-b-lg font-inter;
+}
+
+.ql-snow .ql-stroke {
+  @apply stroke-current;
+}
+
+.ql-snow .ql-fill,
+.ql-snow .ql-stroke.ql-fill {
+  @apply fill-current;
+}
+
+.ql-snow .ql-picker,.ql-snow .ql-fill,
+.ql-snow .ql-stroke.ql-fill,.ql-snow .ql-stroke {
+  @apply text-slate-600 dark:text-navy-200;
+}
+
+.ql-editor{
+    @apply text-sm
+}
+
+.ql-editor.ql-blank::before {
+  color: inherit;
+}

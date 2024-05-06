@@ -1,0 +1,63 @@
+/* The-Todo App */
+.todo-app .sortable-ghost {
+  @apply rounded-lg bg-slate-100 ring-4 ring-slate-100  dark:bg-navy-500 dark:ring-navy-500;
+}
+
+/* Kanban App */
+.kanban-app .sortable-ghost {
+  @apply rounded-lg bg-slate-100 dark:bg-navy-500;
+}
+
+.kanban-app .board-draggable-handler {
+  cursor: grab;
+}
+
+
+@supports selector(::-webkit-scrollbar) {
+  .kanban-scrollbar::-webkit-scrollbar {
+    @apply h-2.5;
+  }
+
+  .kanban-scrollbar::-webkit-scrollbar-thumb{
+    @apply rounded-full bg-slate-400/80 dark:bg-navy-400;
+  }
+
+  .kanban-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-500 dark:bg-navy-300;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .kanban-app .sortable-chosen,
+  .todo-app .sortable-chosen {
+    @apply rounded-lg bg-slate-100 dark:bg-navy-500;
+  }
+}
+
+/* Chat App */
+.chat-header:before,
+.chat-footer:before,
+.chat-header:after,
+.chat-footer:after {
+  @apply absolute h-full w-[calc(100vw-100%)] bg-inherit content-[''];
+}
+
+.chat-header:before,
+.chat-footer:before {
+  @apply left-[calc((100vw-100%)*-1)];
+}
+
+.chat-header::after,
+.chat-footer::after {
+  @apply right-[calc((100vw-100%)*-1)];
+}
+
+/* Course Dashboard Timeline*/
+.course-schedule-chart .apexcharts-series path {
+  clip-path: inset(5% 5% 5% 0 round 6px);
+}
+
+/* Analitcis dashboard */
+.top-sellers-analytics .apexcharts-canvas .apexcharts-heatmap-rect {
+  @apply text-slate-100 dark:text-navy-700;
+}

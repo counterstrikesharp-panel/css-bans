@@ -1,3 +1,13 @@
+@import "tailwindcss/base";
+@import "./base.css";
+
+@import "tailwindcss/components";
+@import "./components.css";
+
+@import "tailwindcss/utilities";
+
+@import "./pages.css";
+
 
 /* Width */
 ::-webkit-scrollbar {
@@ -85,4 +95,75 @@ section {
 }
 .action-container {
     width: 100px;
+    display: flex;
+}
+.action-container button, .action-container a {
+    margin-right: 2px;
+}
+a[href*="steamcommunity.com"] {
+   text-decoration: underline;
+}
+.dt-input {
+    height: 26px;
+    border: 1px solid #838f83;
+    border-radius: 8px;
+}
+#main-navbar {
+    height: 70px;
+}
+.avatarDefault {
+    width: 24px;
+    border-radius: 13px;
+}
+#sidebarMenu {
+    background: #fff;
+    visibility: visible;
+}
+
+body {
+    font-size: 16px;
+}
+h1 {
+    font-size: xx-large;
+    font-weight: bold;
+}
+.body-dark-mode {
+    background-color: #000 !important;
+    color: white !important;
+}
+
+.card-dark-mode {
+    background-color: #1c1c1c !important;
+    color: white !important;
+    --mdb-table-bg: #1c1c1c !important;
+}
+
+.badge-danger {
+    background-color: #bf3434;
+    color: white;
+}
+
+.badge-warning {
+    background-color: #f3a006;
+    color: white;
+}
+
+.badge-primary {
+    background-color: #006fff;
+    color: white;
+}
+
+.badge-success {
+    background-color: #00b23e;
+    color: white;
+}
+
+.badge-dark {
+    background-color: #c87d15;
+    color: #ffffff;
+}
+
+.list-group-flush>.list-group-item {
+    margin: 6px;
+    border: none;
 }

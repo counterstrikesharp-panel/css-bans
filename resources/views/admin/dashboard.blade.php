@@ -36,7 +36,7 @@
                                 <i class="fas fa-server text-info fa-3x"></i>
                             </div>
                             <div class="text-end">
-                                <h3>{{$totalServers}}</h3>
+                                <h1>{{$totalServers}}</h1>
                                 <p class="mb-0">Servers</p>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                                 <i class="fas fa-ban text-danger fa-3x"></i>
                             </div>
                             <div class="text-end">
-                                <h3>{{$totalBans}}</h3>
+                                <h1>{{$totalBans}}</h1>
                                 <p class="mb-0">Bans</p>
                             </div>
                         </div>
@@ -66,7 +66,7 @@
                                 <i class="fas fa-volume-mute text-success fa-3x"></i>
                             </div>
                             <div class="text-end">
-                                <h3>{{$totalMutes}}</h3>
+                                <h1>{{$totalMutes}}</h1>
                                 <p class="mb-0">Mutes</p>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                                 <i class="fas fa-user-shield text-primary fa-3x"></i>
                             </div>
                             <div class="text-end">
-                                <h3>{{$totalAdmins}}</h3>
+                                <h1>{{$totalAdmins}}</h1>
                                 <p class="mb-0">Admins</p>
                             </div>
                         </div>
