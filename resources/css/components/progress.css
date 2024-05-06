@@ -1,0 +1,36 @@
+.progress {
+  @apply relative flex w-full overflow-hidden rounded-full;
+}
+
+.progress .is-indeterminate {
+  animation: progress-increase 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.progress .is-active::before {
+  @apply absolute inset-0 rounded bg-white content-[''];
+  animation: progress-active 2s cubic-bezier(0.55, 0.2, 0.3, 0.67) infinite;
+}
+
+@keyframes progress-increase {
+  from {
+    left: -5%;
+    width: 5%;
+  }
+  to {
+    left: 125%;
+    width: 100%;
+  }
+}
+
+@keyframes progress-active {
+  0% {
+    opacity: 0.4;
+    transform: translateX(-100%);
+  }
+  90% {
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+}

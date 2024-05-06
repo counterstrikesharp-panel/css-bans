@@ -1,0 +1,95 @@
+.gridjs-table {
+  @apply w-full text-left;
+}
+
+.gridjs-table > tbody > tr:hover > td {
+  @apply bg-slate-100 dark:bg-navy-600;
+}
+
+th.gridjs-th .gridjs-th-content {
+  @apply float-left overflow-ellipsis overflow-hidden;
+}
+
+.gridjs-table .gridjs-th {
+  @apply whitespace-nowrap bg-slate-200 px-3 py-3 font-semibold uppercase text-slate-800 dark:bg-navy-800 dark:text-navy-100 lg:px-4;
+}
+
+.gridjs-table .gridjs-tr {
+  @apply border border-transparent border-b-slate-200 dark:border-b-navy-500;
+}
+
+.gridjs-table .gridjs-td {
+  @apply whitespace-nowrap px-4 py-3 sm:px-4;
+}
+
+button.gridjs-sort {
+  --neutral: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 401.998 401.998'%3E%3Cpath d='M73.092,164.452h255.813c4.949,0,9.233-1.807,12.848-5.424c3.613-3.616,5.427-7.898,5.427-12.847%0Ac0-4.949-1.813-9.229-5.427-12.85L213.846,5.424C210.232,1.812,205.951,0,200.999,0s-9.233,1.812-12.85,5.424L60.242,133.331%0Ac-3.617,3.617-5.424,7.901-5.424,12.85c0,4.948,1.807,9.231,5.424,12.847C63.863,162.645,68.144,164.452,73.092,164.452z'/%3E%3Cpath d='M328.905,237.549H73.092c-4.952,0-9.233,1.808-12.85,5.421c-3.617,3.617-5.424,7.898-5.424,12.847%0Ac0,4.949,1.807,9.233,5.424,12.848L188.149,396.57c3.621,3.617,7.902,5.428,12.85,5.428s9.233-1.811,12.847-5.428l127.907-127.906%0Ac3.613-3.614,5.427-7.898,5.427-12.848c0-4.948-1.813-9.229-5.427-12.847C338.139,239.353,333.854,237.549,328.905,237.549z'/%3E%3C/svg%3E");
+  --asc: url("data:image/svg+xml,%3Csvg fill='currentColor' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 292.362 292.361'%3E%3Cpath d='M286.935,197.287L159.028,69.381c-3.613-3.617-7.895-5.424-12.847-5.424s-9.233,1.807-12.85,5.424L5.424,197.287 C1.807,200.904,0,205.186,0,210.134s1.807,9.233,5.424,12.847c3.621,3.617,7.902,5.425,12.85,5.425h255.813 c4.949,0,9.233-1.808,12.848-5.425c3.613-3.613,5.427-7.898,5.427-12.847S290.548,200.904,286.935,197.287z'/%3E%3C/svg%3E");
+  --desc: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 292.362 292.362'%3E%3Cpath d='M286.935,69.377c-3.614-3.617-7.898-5.424-12.848-5.424H18.274c-4.952,0-9.233,1.807-12.85,5.424 C1.807,72.998,0,77.279,0,82.228c0,4.948,1.807,9.229,5.424,12.847l127.907,127.907c3.621,3.617,7.902,5.428,12.85,5.428 s9.233-1.811,12.847-5.428L286.935,95.074c3.613-3.617,5.427-7.898,5.427-12.847C292.362,77.279,290.548,72.998,286.935,69.377z'/%3E%3C/svg%3E");
+}
+
+th.gridjs-th-sort {
+  @apply cursor-pointer focus:outline-none;
+}
+
+th.gridjs-th-sort .gridjs-th-content {
+  width: calc(100% - 15px);
+}
+
+button.gridjs-sort {
+  @apply float-right m-0 mt-1 size-3 cursor-pointer border-none bg-no-repeat p-0 outline-none;
+}
+
+button.gridjs-sort-neutral {
+  mask-image: var(--neutral);
+  mask-size: cover;
+  @apply bg-slate-400 dark:bg-navy-400;
+}
+
+button.gridjs-sort-asc {
+  mask-image: var(--asc);
+  mask-size: cover;
+}
+
+button.gridjs-sort-desc {
+  mask-image: var(--desc);
+  mask-size: cover;
+}
+
+button.gridjs-sort-asc,
+button.gridjs-sort-desc {
+  @apply bg-slate-600 dark:bg-navy-100;
+}
+
+.gridjs-input.gridjs-search-input {
+  @apply appearance-none rounded-lg border border-slate-300 px-3 py-2 font-medium outline-none
+    dark:border-navy-450 dark:bg-navy-700 dark:text-navy-100;
+}
+
+.gridjs-pages {
+  @apply flex flex-wrap space-x-1 text-slate-600 dark:text-slate-300;
+}
+
+.gridjs-pages button {
+  @apply flex h-8 min-w-[2rem] items-center justify-center rounded-full bg-slate-150 px-3 leading-tight transition-colors hover:bg-slate-300 focus:bg-slate-300  disabled:pointer-events-none disabled:opacity-60 dark:bg-navy-500 dark:hover:bg-navy-450 dark:focus:bg-navy-450;
+}
+
+.gridjs-pages button.gridjs-currentPage {
+  @apply bg-primary text-white dark:bg-accent;
+}
+
+.gridjs-wrapper {
+  @apply min-w-full overflow-x-auto;
+}
+
+.gridjs-search{
+  @apply flex justify-end px-4 sm:px-5 pb-5 
+}
+
+.gridjs-pagination{
+  @apply flex flex-col justify-between space-y-4 sm:flex-row sm:items-center sm:space-y-0 px-4 sm:px-5 py-4
+}
+
+.gridjs-loading{
+  @apply animate-pulse
+}

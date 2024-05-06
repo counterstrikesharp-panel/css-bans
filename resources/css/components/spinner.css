@@ -1,0 +1,22 @@
+.spinner.is-grow span {
+    animation: spinner-grow 1.5s ease-in-out infinite;
+}
+
+.spinner.is-elastic {
+    animation-timing-function: cubic-bezier(0.53, 0.21, 0.29, 0.67);
+    animation-duration: 1.3;
+}
+
+.spinner.is-grow span:nth-child(1) {
+    animation-delay: -750ms;
+}
+
+@keyframes spinner-grow {
+    0%,
+    100% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}

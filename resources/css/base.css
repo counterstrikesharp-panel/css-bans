@@ -1,0 +1,218 @@
+/* Variables */
+:root {
+    @apply [--margin-x:1rem]
+    [--main-sidebar-width:4.5rem]
+    [--sidebar-panel-width:230px]
+    [--sidebar-panel-min-width:64px]
+    md:[--margin-x:1.5rem]
+    lg:[--main-sidebar-width:5rem]
+    lg:[--sidebar-panel-width:240px]
+    xl:[--margin-x:4rem];
+}
+
+.has-min-sidebar {
+    @apply xl:[--margin-x:2.5rem];
+}
+
+.is-sidebar-open {
+    @apply xl:[--margin-x:1.5rem];
+}
+
+/* Basic styles */
+html {
+    @apply h-full overflow-x-hidden [text-rendering:optimizeLegibility] [-webkit-tap-highlight-color:transparent];
+}
+
+html.dark {
+    @apply [color-scheme:dark];
+}
+
+[x-cloak],
+[data-x-cloak] {
+    @apply !hidden;
+}
+
+body {
+    @apply bg-slate-50 font-sans text-sm leading-5 text-slate-500 antialiased [text-rendering:optimizeLegibility] dark:bg-navy-900 dark:text-navy-200 dark:[color-scheme:dark];
+}
+
+body.is-monochrome::before {
+    @apply pointer-events-none fixed inset-0 z-[999999] -m-[5rem] h-[calc(100%+10rem)] w-[calc(100%+10rem)] backdrop-grayscale backdrop-opacity-[.92] content-[''];
+}
+
+/* app-preloader */
+.app-preloader .app-preloader-inner::after,
+.app-preloader .app-preloader-inner::before {
+    @apply absolute h-full w-full rounded-full bg-slate-300/[.25] content-[''] dark:bg-navy-300/50;
+    animation: spinner-grow 3s cubic-bezier(0.55, 0.15, 0.45, 0.85) infinite;
+}
+
+.app-preloader .app-preloader-inner::after {
+    animation-delay: -1.5s;
+}
+
+/* Sidebar Toggle Button */
+.menu-toggle span {
+    @apply h-[2px] w-5 translate-x-0 bg-current transition-all duration-[.25s] ease-in-out;
+}
+
+.menu-toggle span:nth-child(2) {
+    @apply w-3;
+}
+
+.menu-toggle.active span {
+    @apply ml-2 w-[11px] -translate-x-2;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    @apply -rotate-45;
+}
+
+.menu-toggle.active span:nth-child(2) {
+    @apply hidden;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    @apply rotate-45;
+}
+
+/* Sidebar */
+.main-sidebar {
+    @apply fixed top-0 left-0 z-40 h-full w-[var(--main-sidebar-width)] shrink-0 -translate-x-full transform-gpu transition-transform duration-200 ease-in md:z-[60] md:translate-x-0;
+}
+
+.is-sidebar-open .main-sidebar {
+    @apply translate-x-0;
+}
+
+.sidebar-panel {
+    @apply fixed top-0 left-0 z-30 h-full w-[calc(var(--main-sidebar-width)+var(--sidebar-panel-width))] -translate-x-full transform-gpu shadow-soft transition-transform delay-150 duration-[.25s] ease-in dark:shadow-navy-900/60 md:delay-[unset];
+}
+
+.is-sidebar-open .sidebar-panel {
+    @apply translate-x-0 ease-out;
+}
+
+.sidebar-panel-min {
+    @apply fixed z-40 h-full w-[var(--sidebar-panel-min-width)] shrink-0 -translate-x-full transform-gpu shadow-soft transition-transform duration-[.25s] ease-in dark:shadow-navy-900/60 md:translate-x-[var(--main-sidebar-width)];
+}
+
+.is-sidebar-open .sidebar-panel-min {
+    @apply -translate-x-full;
+}
+
+/* Header */
+nav.header {
+    @apply fixed top-0 right-0 z-20 flex h-[61px] w-full border-b border-slate-150 transition-all duration-[.25s] dark:border-navy-700 md:w-[calc(100%-var(--main-sidebar-width))];
+}
+
+nav.header:before {
+    @apply absolute -left-[calc(100vw-100%)] h-full w-[calc(100vw-100%)] bg-white content-[''] dark:bg-navy-750;
+}
+
+nav.header .header-container {
+    @apply px-[var(--margin-x)] transition-[padding,width] duration-[.25s];
+}
+
+.has-min-sidebar nav.header {
+    @apply md:w-[calc(100%-(var(--main-sidebar-width)+var(--sidebar-panel-min-width)))];
+}
+
+.is-sidebar-open nav.header {
+    @apply xl:w-[calc(100%-(var(--main-sidebar-width)+var(--sidebar-panel-width)))];
+}
+
+.is-header-blur nav.header .header-container {
+    @apply backdrop-blur supports-[backdrop-filter]:bg-white/80 dark:supports-[backdrop-filter]:!bg-navy-750/80;
+}
+
+.is-header-not-sticky nav.header {
+    @apply absolute;
+}
+
+/* Main content */
+.main-content {
+    @apply mt-[60px] grid grid-cols-1 place-content-start transition-[width,margin-left,margin-right,padding-left,padding-right] duration-[.25s] ease-in print:m-0 md:ml-[var(--main-sidebar-width)];
+}
+
+.has-min-sidebar .main-content {
+    @apply md:ml-[calc(var(--main-sidebar-width)+var(--sidebar-panel-min-width))];
+}
+
+.is-sidebar-open .main-content {
+    @apply ease-out xl:ml-[calc(var(--main-sidebar-width)+var(--sidebar-panel-width))];
+}
+
+/* Sideblock styles */
+.navigation\:sideblock {
+    @apply [--sideblock-width:260px];
+}
+
+.navigation\:sideblock .sidebar-panel {
+    @apply w-[var(--sideblock-width)] -translate-x-full;
+}
+
+.navigation\:sideblock.is-sidebar-open .sidebar-panel {
+    @apply translate-x-0;
+}
+
+.navigation\:sideblock nav.header {
+    @apply w-full;
+}
+
+.navigation\:sideblock.is-sidebar-open nav.header {
+    @apply xl:w-[calc(100%-(var(--sideblock-width)))];
+}
+
+.navigation\:sideblock .main-content {
+    @apply ml-0;
+}
+
+.navigation\:sideblock.is-sidebar-open .main-content {
+    @apply xl:ml-[var(--sideblock-width)];
+}
+
+/* Fix 100vh issue for phones */
+.h-100vh {
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+}
+
+.min-h-100vh {
+    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
+}
+
+/* Demo inline space */
+.inline-space > :not([hidden]) {
+    @apply mb-2.5 mr-2.5;
+}
+
+/* Demo inline code style */
+code.inline-code {
+    @apply rounded bg-slate-100 py-0.5 px-1 text-xs+ text-secondary dark:bg-navy-800 dark:text-secondary-light;
+}
+
+/* Scrollbar styles */
+.is-scrollbar-hidden {
+    @apply [scrollbar-width:none]; /* Firefox */
+}
+
+.is-scrollbar-hidden::-webkit-scrollbar {
+    @apply hidden;
+}
+
+@supports selector(::-webkit-scrollbar) {
+    .scrollbar-sm::-webkit-scrollbar {
+        @apply size-1.5;
+    }
+
+    .scrollbar-sm:hover::-webkit-scrollbar-thumb,
+    .scrollbar-sm:focus-within::-webkit-scrollbar-thumb {
+        @apply rounded-full bg-slate-300/80 dark:bg-navy-400;
+    }
+
+    .scrollbar-sm::-webkit-scrollbar-thumb:hover {
+        @apply bg-slate-400 dark:bg-navy-300;
+    }
+}

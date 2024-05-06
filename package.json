@@ -6,8 +6,11 @@
         "build": "vite build"
     },
     "devDependencies": {
+        "autoprefixer": "^10.4.19",
         "axios": "^1.6.4",
         "laravel-vite-plugin": "^1.0.0",
+        "postcss": "^8.4.38",
+        "tailwindcss": "^3.4.3",
         "vite": "^5.0.0"
     },
     "dependencies": {
@@ -17,6 +20,28 @@
         "datatables.net-fixedcolumns": "^5.0.0",
         "dotenv": "^16.4.5",
         "jquery": "^3.7.1",
-        "ts-node": "^10.9.2"
+        "ts-node": "^10.9.2",
+        "tom-select": "^2.3.1",
+        "@alpinejs/collapse": "^3.13.5",
+        "@alpinejs/intersect": "^3.13.5",
+        "@alpinejs/persist": "^3.13.5",
+        "@caneara/iodine": "^8.5.0",
+        "@fortawesome/fontawesome-free": "^6.5.1",
+        "@popperjs/core": "^2.11.8",
+        "alpinejs": "^3.13.5",
+        "apexcharts": "^3.46.0",
+        "cleave.js": "^1.6.0",
+        "dayjs": "^1.11.10",
+        "filepond": "^4.30.6",
+        "filepond-plugin-image-preview": "^4.6.12",
+        "flatpickr": "^4.6.13",
+        "gridjs": "^6.1.1",
+        "highlight.js": "^11.9.0",
+        "quill": "^1.3.7",
+        "simplebar": "^6.2.5",
+        "sortablejs": "^1.15.2",
+        "swiper": "^11.0.7",
+        "tippy.js": "^6.3.7",
+        "toastify-js": "^1.12.0"
     }
 }

@@ -87,7 +87,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
                        id="navbarDropdownMenuLink" role="button" data-mdb-dropdown-init aria-expanded="false">
-                        <img src="{{ Auth::user()?->avatar ?: 'https://mdbootstrap.com/img/Photos/Avatars/img(32).jpg'}}" class="rounded-circle" height="22"
+                        <img class="avatarDefault" src="{{ Auth::user()?->avatar ?: 'https://mdbootstrap.com/img/Photos/Avatars/img(32).jpg'}}" class="rounded-circle" height="22"
                              alt="" loading="lazy" />
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
