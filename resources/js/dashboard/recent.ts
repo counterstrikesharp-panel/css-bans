@@ -51,7 +51,9 @@ function constructTableRows(data: any[]): string {
 }
 
 function truncatePlayerName(playerName: string): string {
-    if (playerName.length > 19) {
+    if (playerName === null) {
+        return "Unknown";
+    } else if (playerName.length > 19) {
         return playerName.substring(0, 16) + '...';
     } else {
         return playerName;
