@@ -2,12 +2,73 @@
 
 namespace App\Http\Controllers\K4Ranks;
 
+use App\Helpers\CommonHelper;
 use App\Http\Controllers\Controller;
+use App\Models\K4Ranks\Ranks;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class RanksController extends Controller
 {
     public function index()
     {
+        return view('k4Ranks.list');
+    }
+    public function getPlayersList(Request $request)
+    {
+        // Extract parameters sent by DataTables
+        $start = $request->input('start');
+        $length = $request->input('length');
+        $searchValue = $request->input('search.value');
+        $orderColumn = $request->input('order.0.column');
+        $orderDirection = $request->input('order.0.dir');
 
+        // Start building the query
+        $query = Ranks::query()->with('k4stats');
+
+        // Apply search filter
+        if (!empty($searchValue)) {
+            $query->where('steam_id', 'like', '%' . $searchValue . '%')
+                ->orWhere('name', 'like', '%' . $searchValue . '%');
+        }
+
+        // Apply sorting
+        if ($orderColumn !== null) {
+            $query->orderBy($request->input('columns.' . $orderColumn . '.data'), $orderDirection);
+        }
+
+        // Fetch all players
+        $players = $query->offset($start)->limit($length)->get();
+
+        // Format the data for the table
+        $formattedData = [];
+        foreach ($players as $player) {
+            $player->player_steamid = $player->steam_id;
+            $response = CommonHelper::steamProfile($player);
+            $formattedData[] = [
+                "name" => $player->name,
+                "points" => $player->points,
+                "rank" => $player->rank,
+                "kills" => $player->k4stats->kills,
+                "deaths" => $player->k4stats->deaths,
+                "assists" => $player->k4stats->assists,
+                "headshots" => $player->k4stats->headshots,
+                "rounds_ct" => $player->k4stats->rounds_ct,
+                "rounds_t" => $player->k4stats->rounds_t,
+                "rounds_overall" => $player->k4stats->rounds_overall,
+                "games_won" => $player->k4stats->game_win,
+                "games_lost" => $player->k4stats->game_lose,
+                "avatar" => !empty($response['response']['players'][0]['avatar']) ? $response['response']['players'][0]['avatar'] : 'https://mdbootstrap.com/img/Photos/Avatars/img(32).jpg',
+                "last_seen" => Carbon::parse($player->lastseen)->diffForHumans()
+            ];
+        }
+
+        // Return the formatted data as JSON for the DataTable
+        return response()->json([
+            'draw' => $request->input('draw'),
+            "recordsTotal" => Ranks::count(),
+            "recordsFiltered" => !empty($searchValue) ? count($formattedData) : Ranks::count() ,
+            "data" => $formattedData
+        ]);
     }
 }

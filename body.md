@@ -1,17 +1,15 @@
-Release notes V 1.3.3
+Release notes V 1.4.3
 
-# Update Log - Major Version
-- Added groups listing
-- Fixed edit amdin groups/add admin groups where groups were missing in sa_groups_servers resulting in premission not found
-- Added support for groups , now you can create groups and assign admins to groups
-- Added ability to migrate existing admins to group (irreversible)
-- Panel now supports both individual admin flag support along with group support (!IMPORTANT - Recommended to use always groups)
-- Improved server listing - now does not rely on port open status to list servers, server should be just online. (Rcon/port access is still needed for live actions or to view players.)
-- Added player name on edit admin screen
-- Fixed setup screen being accessible even after completion of setup.
-- Note:Adding permissions to an existing group for new servers will append the new permissions to the existing set, applying for all associated servers
-- It is recommended to not use individual flags/perms to add admin
-- Be sure to manage admins/groups from panel as its optimized to disallow duplicates and avoid as much as possible console commands to manage admins/groups.
-#### TODO - Edit group and Delete Group will be added gradually.
+## Update - Rank system added (k4Ranks)
 
-**Full Changelog**: https://github.com/counterstrikesharp-panel/css-bans/compare/1.3.0...1.3.2
+## Step to setup ranks
+Download the k4ranks system from github
+Setup the ranks on same database as of cssbans
+To enable the  module go to .env file and edit RANKS="Enabled"
+
+- Add ranks on dashboard
+- Added steam profile pics to listing - (uses cache after first load)
+- Listing of all the ranks on tab
+- Improved UI
+- Fixed flickering for dark mode
+- Included the addition of modules into framework

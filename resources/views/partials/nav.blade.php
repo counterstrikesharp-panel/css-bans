@@ -37,6 +37,10 @@
                     <a href="{{env('VITE_SITE_DIR')}}/group/create" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init>
                     <i class="fas fa-plus fa-fw me-3"></i><span>Create Group</span>                    </a>
                 @endif
+                @if(env('RANKS') == 'Enabled')
+                    <a href="{{env('VITE_SITE_DIR')}}/list/ranks" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init>
+                        <i class="fas fa-trophy fa-fw me-3"></i><span>Ranks</span>                    </a>
+                @endif
                 @if(!empty(Auth::user()))
                     <a href="{{env('VITE_SITE_DIR')}}/auth/logout" class="list-group-item list-group-item-action py-2" data-mdb-ripple-init>
                         <i class="fas fa-sign-out-alt fa-fw me-3"></i><span>Logout</span>

@@ -100,9 +100,6 @@ section {
 .action-container button, .action-container a {
     margin-right: 2px;
 }
-a[href*="steamcommunity.com"] {
-   text-decoration: underline;
-}
 .dt-input {
     height: 26px;
     border: 1px solid #838f83;
@@ -180,4 +177,17 @@ html {
     border-radius: 13px;
     width: 40px;
     height: 40px;
+}
+thead > tr {
+    border-bottom: 1px solid #e0e0e0;
+}
+.card-dark-mode thead > tr {
+    border-bottom: 1px solid rgba(255, 255, 255, .12);
+}
+.ranksList {
+    width: 200px;
+}
+
+td {
+    vertical-align: middle !important;
 }

@@ -27,7 +27,8 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/js/groups/groups.ts',
                 'resources/js/groups/list.ts',
-                'resources/js/groups/edit.ts'
+                'resources/js/groups/edit.ts',
+                'resources/js/ranks/ranks.ts'
             ],
             refresh: true,
         }),

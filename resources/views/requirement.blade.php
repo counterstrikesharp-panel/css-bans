@@ -53,8 +53,8 @@ foreach ($requirements as $requirement) {
 
 ?>
 
-    <!doctype html>
-<html lang="en">
+<!doctype html>
+<html lang="en" style="display: block">
 <head>
     <meta charset="UTF-8">
     <title>Server Requirements</title>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\CommonHelper;
 use App\Helpers\PermissionsHelper;
+use App\Models\K4Ranks\Ranks;
 use App\Models\SaAdmin;
 use App\Models\SaBan;
 use App\Models\SaMute;
@@ -26,7 +28,20 @@ class DashboardController extends Controller
         if(PermissionsHelper::isSuperAdmin()) {
             $updates = $this->checkUpdates();
         }
-        return view('admin.dashboard', compact('totalBans', 'totalServers', 'totalMutes', 'totalAdmins', 'updates'));
+        $topPlayersData = [];
+        if(env('RANKS') == 'Enabled') {
+            $topPlayersData = $this->getTop5Players();
+        }
+        return view('admin.dashboard',
+            compact(
+                'totalBans',
+                'totalServers',
+                'totalMutes',
+                'totalAdmins',
+                'updates',
+                'topPlayersData'
+            )
+        );
     }
 
     public function getMutes()
@@ -68,5 +83,22 @@ class DashboardController extends Controller
             }
         }
         return $updates;
+    }
+
+    public function getTop5Players()
+    {
+        // 'points' in the Ranks table represents CS Rating
+        $topPlayers = Ranks::with('k4stats')
+            ->orderBy('points', 'desc')
+            ->take(5)
+            ->get();
+
+        foreach($topPlayers as $player) {
+            $player->player_steamid = $player->steam_id;
+            $response = CommonHelper::steamProfile($player);
+            $player->avatar = !empty($response['response']['players'][0]['avatar']) ? $response['response']['players'][0]['avatar'] : 'https://mdbootstrap.com/img/Photos/Avatars/img(32).jpg' ;
+        }
+        $totalPlayers = Ranks::count();
+        return ['topPlayers' => $topPlayers, 'totalPlayers' => $totalPlayers];
     }
 }

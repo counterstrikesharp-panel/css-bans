@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BansController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\K4Ranks\RanksController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogViewerController;
 use App\Http\Controllers\MutesController;
@@ -79,6 +80,13 @@ Route::middleware(['checkSetup'])->group(function () {
 
     Route::group(['prefix' => 'servers'], function () {
         Route::get('/{server_id}/players', [ServerController::class, 'getPlayers']);
+    });
+    /**
+     * Ranks Module
+     */
+    Route::group(['prefix' => 'list'], function () {
+        Route::get('/ranks', [RanksController::class, 'index']);
+        Route::post('/ranks', [RanksController::class, 'getPlayersList']);
     });
 });
 /**

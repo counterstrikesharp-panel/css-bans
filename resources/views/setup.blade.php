@@ -87,3 +87,5 @@
         document.getElementById('loader').style.display = 'block';
     }
 </script>
+<script>window.onload = function() { document.documentElement.style.display = 'block'; }</script>
+

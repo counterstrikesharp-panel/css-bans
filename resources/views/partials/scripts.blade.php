@@ -24,4 +24,5 @@
     const bansListUrl = '{!! env('VITE_SITE_DIR') !!}/list/bans';
     const playerActionUrl = '{!! env('VITE_SITE_DIR') !!}/players/action';
     const groupsListUrl = '{!! env('VITE_SITE_DIR') !!}/list/groups';
+    const ranksListUrl = '{!! env('VITE_SITE_DIR') !!}/list/ranks';
 </script>

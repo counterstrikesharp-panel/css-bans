@@ -90,6 +90,55 @@
             </div>
         </div>
     </section>
+    @if(!empty($topPlayersData))
+        <section class="mb-4">
+        <div class="card">
+            <div class="card-header text-center py-3">
+                <h5 class="mb-0 text-center">
+                    <strong>Top Players <span class="badge badge-info">5 of {{$topPlayersData['totalPlayers']}} Players</span></strong>
+                </h5>
+            </div>
+            <table class="table align-middle mb-0 bg-white table-borderless">
+                <thead class="bg-light">
+                <tr>
+                    <th width="25px">Position</th>
+                    <th>Player</th>
+                    <th>CS Rating</th>
+                    <th>Rank</th>
+                    <th><i class="fas fa-skull-crossbones"></i> Kills </th>
+                    <th><i class="fas fa-skull"></i> Deaths </th>
+                    <th><i class="fas fa-trophy"></i> WON</th>
+                    <th><i class="fas fa-times-circle"></i> LOST </th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach ($topPlayersData['topPlayers'] as $key => $player)
+                    <tr>
+                        <td>{{ $key + 1 }}</td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="{{$player->avatar}}" alt="" style="width: 45px; height: 45px" class="rounded-circle"/>
+                                <div class="ms-3">
+                                    <p class="fw-bold mb-1"><a href="https://steamcommunity.com/profile/{{$player->player_steamid}}/">{{ $player->name }}</p>
+                                    <p class="text-muted mb-0">Last seen: <span class="badge badge-info rounded-pill d-inline">{{ \Carbon\Carbon::parse($player->lastseen)->diffForHumans() }}</span></p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="badge badge-success rounded-pill d-inline">{{ $player->points }}</span>
+                        </td>
+                        <td>{{ $player->rank }}</td>
+                        <td>{{ $player->k4stats->kills }}</td>
+                        <td>{{ $player->k4stats->deaths }}</td>
+                        <td>{{ $player->k4stats->game_win }}</td>
+                        <td>{{ $player->k4stats->game_lose }}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+    </section>
+    @endif
     <section class="mb-4">
         <div class="card">
             <div class="card-header text-center py-3">
@@ -99,7 +148,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-hover text-nowrap">
+                    <table class="table table-hover text-nowrap table-borderless">
                         <thead>
                         <tr>
                             <th scope="col">Server</th>
@@ -130,7 +179,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-hover">
+                            <table class="table table-hover table-borderless">
                                 <thead>
                                 <tr>
                                     <th scope="col" class="th-lg">Player</th>
@@ -157,7 +206,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-hover">
+                            <table class="table table-hover table-borderless">
                                 <thead>
                                 <tr>
                                     <th scope="col" class="th-lg">Player</th>
