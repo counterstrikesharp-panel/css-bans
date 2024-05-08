@@ -30,7 +30,7 @@ function loadBans() {
             {"data": "id"},
             {
                 "data": "player_name", "render": function (data, type, row, meta) {
-                    return `<a href="https://steamcommunity.com/profiles/${row.player_steamid}">${data}</a>`;
+                    return `<span class="list-profile"><img src="${row.avatar}" /><a href="https://steamcommunity.com/profiles/${row.player_steamid}">${data}</a></span>`;
                 }
             },
             {

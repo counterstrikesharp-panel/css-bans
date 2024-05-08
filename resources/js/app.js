@@ -26,6 +26,7 @@ if (savedTheme === 'dark' || (isSystemThemeSetToDark && savedTheme === null)) {
     $(".card-body").addClass('card-dark-mode')
     $(".table").addClass('card-dark-mode')
     $("#sidebarMenu").addClass('body-dark-mode');
+    $("html").show();
 } else {
     mainNavbar.style.background = '#fff';
     $("body").removeClass('body-dark-mode')
@@ -33,6 +34,7 @@ if (savedTheme === 'dark' || (isSystemThemeSetToDark && savedTheme === null)) {
     $(".card-body").removeClass('card-dark-mode')
     $(".table").removeClass('card-dark-mode')
     $("#sidebarMenu").removeClass('body-dark-mode');
+    $("html").show();
 }
 
 // add listener to theme toggler
@@ -50,6 +52,7 @@ const toggleTheme = (isChecked) => {
         $(".card-body").addClass('card-dark-mode')
         $(".table").addClass('card-dark-mode')
         $("#sidebarMenu").addClass('body-dark-mode');
+        $("html").show();
     } else {
         mainNavbar.style.background = '#fff';
         $("body").removeClass('body-dark-mode')
@@ -57,6 +60,7 @@ const toggleTheme = (isChecked) => {
         $(".card-body").removeClass('card-dark-mode')
         $(".table").removeClass('card-dark-mode')
         $("#sidebarMenu").removeClass('body-dark-mode');
+        $("html").show(); // flickering fix
     }
     // Save theme preference to local storage
     localStorage.setItem('theme', theme);

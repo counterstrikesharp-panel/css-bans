@@ -136,13 +136,16 @@ h1 {
     background-color: #1c1c1c !important;
     color: white !important;
     --mdb-table-bg: #1c1c1c !important;
+    border-radius: 9px;
 }
 
 .badge-danger {
     background-color: #bf3434;
     color: white;
 }
-
+html {
+    display: none /*prevent filckering of background theme on switch;*/
+}
 .badge-warning {
     background-color: #f3a006;
     color: white;
@@ -166,4 +169,15 @@ h1 {
 .list-group-flush>.list-group-item {
     margin: 6px;
     border: none;
+}
+.list-profile {
+    display: flex;
+    width: 127px;
+}
+
+.list-profile > img {
+    margin-right: 16px;
+    border-radius: 13px;
+    width: 40px;
+    height: 40px;
 }

@@ -8,10 +8,12 @@ use App\Models\SaBan;
 use App\Models\SaServer;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
+use function Laravel\Prompts\error;
 
 class BansController extends Controller
 {
@@ -67,10 +69,12 @@ class BansController extends Controller
                     $unbanAction = "<button class='btn btn-success btn-sm unban-btn' data-player-steamid='{$ban->player_steamid}'><i class='fas fa-ban'></i></button>";
                 }
             }
+            $response = CommonHelper::steamProfile($ban);
             $formattedData[] = [
                 "id" => $ban->id,
                 "player_steamid" => $ban->player_steamid,
                 "player_name" => $ban->player_name,
+                'avatar' => !empty($response['response']['players'][0]['avatar']) ? $response['response']['players'][0]['avatar'] : 'https://mdbootstrap.com/img/Photos/Avatars/img(32).jpg' ,
                 "admin_steamid" => $ban->admin_steamid,
                 "admin_name" => $ban->admin_name,
                 "reason" => $ban->reason,

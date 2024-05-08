@@ -67,10 +67,12 @@ class MutesController extends Controller
                     $unmuteAction = "<button class='btn btn-success btn-sm unmute-btn' data-player-steamid='{$mute->player_steamid}'><i class='fas fa-ban'></i></button>";
                 }
             }
+            $response = CommonHelper::steamProfile($mute);
             $formattedData[] = [
                 "id" => $mute->id,
                 "player_steamid" => $mute->player_steamid,
                 "player_name" => $mute->player_name,
+                'avatar' => !empty($response['response']['players'][0]['avatar']) ? $response['response']['players'][0]['avatar'] : 'https://mdbootstrap.com/img/Photos/Avatars/img(32).jpg' ,
                 "admin_steamid" => $mute->admin_steamid,
                 "admin_name" => $mute->admin_name,
                 "reason" => $mute->reason,
