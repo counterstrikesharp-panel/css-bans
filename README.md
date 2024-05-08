@@ -22,7 +22,7 @@ PHP Web-based panel for managing bans, mutes, and more on Counter-Strike 2 serve
 - Live Bans/Mutes/Kicks 
 - Manage Groups
 
-# Inlcudes support for Modules
+# Includes support for Modules
 - Ranks (K4system) View/listing [https://github.com/K4ryuu/K4-System]
 
 ## Requirements
