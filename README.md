@@ -6,7 +6,8 @@
 </div>
 
 PHP Web-based panel for managing bans, mutes, and more on Counter-Strike 2 servers using CounterStrikeSharp and CS2-SimpleAdmin
-![image](https://github.com/counterstrikesharp-panel/css-bans/assets/11420858/0bb9c039-8ece-4a32-96ec-5fdd6b4a12a1)
+![image](https://github.com/counterstrikesharp-panel/css-bans/assets/11420858/ed1dace2-e8f9-4ffe-8a9d-5dcc183b022d)
+
 
 ## Discord (Support)
 [![Discord](https://discordapp.com/api/guilds/1236186810405883904/widget.png?style=banner2)](https://discord.gg/fwg5DKZYqV)
@@ -22,7 +23,7 @@ PHP Web-based panel for managing bans, mutes, and more on Counter-Strike 2 serve
 - Live Bans/Mutes/Kicks 
 - Manage Groups
 
-# Includes support for Modules
+## Includes support for Modules
 - Ranks (K4system) View/listing [https://github.com/K4ryuu/K4-System]
 
 ## Requirements
