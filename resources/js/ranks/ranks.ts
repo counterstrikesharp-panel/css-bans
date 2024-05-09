@@ -22,7 +22,8 @@ function loadRanks() {
         "columns": [
             {
                 "data": "name" , "render": function (data, type, row, meta) {
-                    return `<div class="ranksList"><span class="list-profile"><img src="${row.avatar}" /><a href="https://steamcommunity.com/profiles/${row.player_steamid}">${data}</a></span><p class="text-muted mb-0">Last seen: <span class="badge badge-info rounded-pill d-inline">${row.last_seen}</span></p></div>`;
+                    const truncatedName = truncatePlayerName(data);
+                    return `<div class="ranksList"><span class="list-profile"><img src="${row.avatar}" /><a href="https://steamcommunity.com/profiles/${row.player_steamid}">${truncatedName}</a></span><p class="text-muted mb-0">Last seen: <span class="badge badge-info rounded-pill d-inline">${row.last_seen}</span></p></div>`;
                 }
             },
             {
@@ -44,6 +45,16 @@ function loadRanks() {
     });
 }
 loadRanks();
+
+function truncatePlayerName(playerName: string): string {
+    if (playerName === null) {
+        return "Unknown";
+    } else if (playerName.length > 15) {
+        return playerName.substring(0, 12) + '...';
+    } else {
+        return playerName;
+    }
+}
 
 
 
