@@ -119,7 +119,7 @@
                             <div class="d-flex align-items-center">
                                 <img src="{{$player->avatar}}" alt="" style="width: 45px; height: 45px" class="rounded-circle"/>
                                 <div class="ms-3">
-                                    <p class="fw-bold mb-1"><a href="https://steamcommunity.com/profile/{{$player->player_steamid}}/">{{ $player->name }}</p>
+                                    <p class="fw-bold mb-1"><a href="https://steamcommunity.com/profiles/{{$player->player_steamid}}/">{{ $player->name }}</p>
                                     <p class="text-muted mb-0">Last seen: <span class="badge badge-info rounded-pill d-inline">{{ \Carbon\Carbon::parse($player->lastseen)->diffForHumans() }}</span></p>
                                 </div>
                             </div>
