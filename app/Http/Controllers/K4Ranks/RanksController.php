@@ -47,6 +47,7 @@ class RanksController extends Controller
             $response = CommonHelper::steamProfile($player);
             $formattedData[] = [
                 "name" => $player->name,
+                "player_steamid" => $player->steam_id,
                 "points" => $player->points,
                 "rank" => $player->rank,
                 "kills" => $player->k4stats->kills,
