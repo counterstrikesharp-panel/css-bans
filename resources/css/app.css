@@ -191,3 +191,20 @@ thead > tr {
 td {
     vertical-align: middle !important;
 }
+
+.top-players {
+    overflow-x: auto;
+}
+
+.text-last-seen{
+    display: flex;
+    line-height: 21px;
+}
+.text-last-seen > span {
+    margin-top: -2px;
+}
+@media only screen and (max-width: 768px) {
+    .text-last-seen>span {
+        margin-top: 20px;
+    }
+}

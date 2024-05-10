@@ -6,11 +6,14 @@ let dataTable = null;
 
 loadMutes();
 function loadMutes() {
-    dataTable = new DataTable("#mutesList", {
+    const fixedColumnsConfig = window.innerWidth > 768 ? {
         fixedColumns: {
-            start: 0,
-            end: 3,
-        },
+            leftColumns: 0,
+            rightColumns: 3
+        }
+    } : {};
+    dataTable = new DataTable("#mutesList", {
+        ...fixedColumnsConfig,
         scrollX: true,
         scrollY: "800px",
         "processing": true,

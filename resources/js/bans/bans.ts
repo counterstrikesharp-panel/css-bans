@@ -3,11 +3,14 @@ import {formatDuration, calculateProgress} from '../utility/utility';
 import  'datatables.net-fixedcolumns'
 let dataTable = null;
 function loadBans() {
+    const fixedColumnsConfig = window.innerWidth > 768 ? {
+        fixedColumns: {
+            leftColumns: 0, // Number of columns to fix on the left
+            rightColumns: 3 // Number of columns to fix on the right
+        }
+    } : {};
      dataTable = new DataTable("#bansList", {
-         fixedColumns: {
-             start: 0,
-             end: 3,
-         },
+        ...fixedColumnsConfig,
         "processing": true,
          scrollX: true,
          scrollY: "800px",
@@ -33,6 +36,7 @@ function loadBans() {
                     return `<span class="list-profile"><img src="${row.avatar}" /><a href="https://steamcommunity.com/profiles/${row.player_steamid}">${data}</a></span>`;
                 }
             },
+            {"data": "player_ip"},
             {
                 "data": "admin_steamid", "render": function (data, type, row, meta) {
                     if(data != 'Console')

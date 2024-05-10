@@ -26,14 +26,21 @@
                         @csrf
                         @method('PUT')
 
-                        <div data-mdb-input-init class="form-outline mb-3">
-                            <input type="number" class="form-control" id="player_steam_id" name="player_steam_id" value="{{ $ban->player_steamid }}" required/>
+                        <div class="form mb-3">
                             <label class="form-label" for="player_steam_id">Player Steam ID</label>
+                            <input type="number" class="form-control" id="player_steam_id" name="player_steam_id" value="{{ $ban->player_steamid }}"/>
                         </div>
-
-                        <div data-mdb-input-init class="form-outline mb-3">
-                            <textarea type="text" class="form-control" id="reason" name="reason" required>{{ $ban->reason }}</textarea>
+                        <div class="form mb-3">
+                            <label class="form-label" for="player_ip">Player IP</label>
+                            <input type="text" class="form-control" id="player_ip" name="player_ip" value="{{ $ban->player_ip }}"/>
+                        </div>
+                        <div class="form mb-3">
+                            <label class="form-label" for="player_name">Player Name (Required only if no steam id is specified)</label>
+                            <input type="text" class="form-control" id="player_name" name="player_name" value="{{ $ban->player_name }}"/>
+                        </div>
+                        <div class="form mb-3">
                             <label class="form-label" for="reason">Reason</label>
+                            <textarea type="text" class="form-control" id="reason" name="reason" required>{{ $ban->reason }}</textarea>
                         </div>
 
                         <div class="mb-3 form-check">
@@ -43,7 +50,8 @@
                             </label>
                         </div>
 
-                        <div data-mdb-input-init class="form-outline mb-3">
+                        <div class="form mb-3">
+                            <label class="form-label" for="duration">Duration</label>
                             <input
                                 type="datetime-local"
                                 class="form-control active"
@@ -51,7 +59,7 @@
                                 name="duration"
                                 value="{{ $ban->ends ? \Carbon\Carbon::parse($ban->ends)->format('Y-m-d\TH:i') : '' }}"
                                 required
-                            {{ $ban->duration == 0 ? 'disabled' : '' }} />                            <label class="form-label" for="duration">Duration</label>
+                            {{ $ban->duration == 0 ? 'disabled' : '' }} />
                         </div>
 
                         <div class="mb-3">

@@ -92,7 +92,7 @@
     </section>
     @if(!empty($topPlayersData))
         <section class="mb-4">
-        <div class="card">
+        <div class="card top-players ">
             <div class="card-header text-center py-3">
                 <h5 class="mb-0 text-center">
                     <strong>Top Players <span class="badge badge-info">5 of {{$topPlayersData['totalPlayers']}} Players</span></strong>

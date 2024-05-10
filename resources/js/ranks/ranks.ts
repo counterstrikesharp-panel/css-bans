@@ -4,7 +4,7 @@ function loadRanks() {
     dataTable = new DataTable("#ranksList", {
         "processing": true,
         "serverSide": true,
-        // pageLength: 50,
+        pageLength: 25,
         "ajax": {
             "url": ranksListUrl,
             "headers": {

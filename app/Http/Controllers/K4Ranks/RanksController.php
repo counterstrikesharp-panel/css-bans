@@ -60,7 +60,7 @@ class RanksController extends Controller
                 "games_won" => $player->k4stats->game_win,
                 "games_lost" => $player->k4stats->game_lose,
                 "avatar" => !empty($response['response']['players'][0]['avatar']) ? $response['response']['players'][0]['avatar'] : 'https://mdbootstrap.com/img/Photos/Avatars/img(32).jpg',
-                "last_seen" => Carbon::parse($player->lastseen)->diffForHumans()
+                "last_seen" => Carbon::parse($player->k4stats->lastseen)->diffForHumans(),
             ];
         }
 

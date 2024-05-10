@@ -23,6 +23,10 @@
                     <h5 class="card-title text-center mb-4">Add Mute</h5>
                     <form action="{{ route('mute.store') }}" method="POST">
                         @csrf
+{{--                        disabled for future use--}}
+{{--                        <div class="note note-info mb-3">--}}
+{{--                            <strong>Note:</strong> You can Mute a player either by Steam ID or Player IP or by both.--}}
+{{--                        </div>--}}
                         <div data-mdb-input-init class="form-outline mb-3">
                             <input type="number" class="form-control" id="player_steam_id" name="player_steam_id" required/>
                             <label class="form-label" for="player_steam_id">Player Steam ID</label>
@@ -35,6 +39,15 @@
                                 <option value="SILENCE">SILENCE</option>
                             </select>
                         </div>
+{{--                        disabled for future use once plugin supports--}}
+{{--                        <div data-mdb-input-init class="form-outline mb-3">--}}
+{{--                            <input type="text" class="form-control" id="player_ip" name="player_ip"/>--}}
+{{--                            <label class="form-label" for="player_ip">Player IP</label>--}}
+{{--                        </div>--}}
+{{--                        <div data-mdb-input-init class="form-outline mb-3">--}}
+{{--                            <input type="text" class="form-control" id="player_name" name="player_name"/>--}}
+{{--                            <label class="form-label" for="player_name">Player Name (Required only if no steam id is specified)</label>--}}
+{{--                        </div>--}}
                         <div data-mdb-input-init class="mb-3">
                             <label class="form-label" for="reason">Reason</label>
                             <textarea type="text" class="form-control" id="reason" name="reason" required></textarea>

@@ -25,11 +25,21 @@
                     <h5 class="card-title text-center mb-4">Add Ban</h5>
                     <form action="{{ route('ban.store') }}" method="POST">
                         @csrf
+                        <div class="note note-info mb-3">
+                            <strong>Note:</strong> You can Ban a player either by Steam ID or Player IP or by both.
+                        </div>
                         <div data-mdb-input-init class="form-outline mb-3">
-                            <input type="number" class="form-control" id="player_steam_id" name="player_steam_id" required/>
+                            <input type="number" class="form-control" id="player_steam_id" name="player_steam_id"/>
                             <label class="form-label" for="player_steam_id">Player Steam ID</label>
                         </div>
-
+                        <div data-mdb-input-init class="form-outline mb-3">
+                            <input type="text" class="form-control" id="player_ip" name="player_ip"/>
+                            <label class="form-label" for="player_ip">Player IP</label>
+                        </div>
+                        <div data-mdb-input-init class="form-outline mb-3">
+                            <input type="text" class="form-control" id="player_name" name="player_name"/>
+                            <label class="form-label" for="player_name">Player Name (Required only if no steam id is specified)</label>
+                        </div>
                         <div data-mdb-input-init class="form-outline mb-3">
                             <textarea type="text" class="form-control" id="reason" name="reason" required></textarea>
                             <label class="form-label" for="reason">Reason</label>

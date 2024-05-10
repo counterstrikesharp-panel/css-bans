@@ -74,6 +74,7 @@ class BansController extends Controller
                 "id" => $ban->id,
                 "player_steamid" => $ban->player_steamid,
                 "player_name" => $ban->player_name,
+                "player_ip" => $ban->player_ip,
                 'avatar' => !empty($response['response']['players'][0]['avatar']) ? $response['response']['players'][0]['avatar'] : 'https://mdbootstrap.com/img/Photos/Avatars/img(32).jpg' ,
                 "admin_steamid" => $ban->admin_steamid,
                 "admin_name" => $ban->admin_name,
@@ -132,32 +133,46 @@ class BansController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'player_steam_id' => 'required|numeric|digits:17',
+            'player_steam_id' => 'required_without:player_ip|nullable|numeric|digits:17',
+            'player_ip' => 'required_without:player_steam_id|nullable|ip',
             'reason' => 'required',
             'duration' => 'required_without:permanent',
             'server_ids' => 'required|array',
             'server_ids.*' => 'exists:sa_servers,id',
+            'player_name' => 'required_without:player_steam_id|nullable|string',
         ]);
 
         try {
-            $steamId = $validatedData['player_steam_id'];
-            $steamApiKey = env('STEAM_CLIENT_SECRET');
-            $response = Http::get("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key={$steamApiKey}&steamids={$steamId}");
+            $steamId = 0;
+            if(!empty($validatedData['player_steam_id'])) {
+                $steamId = $validatedData['player_steam_id'];
+                $steamApiKey = env('STEAM_CLIENT_SECRET');
+                $response = Http::get("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key={$steamApiKey}&steamids={$steamId}");
 
-            if ($response->failed()) {
-                return Redirect::back()->withErrors(['msg' => 'Invalid Steam ID or unable to connect to Steam API.']);
+                if ($response->failed()) {
+                    return Redirect::back()->withErrors(['msg' => 'Invalid Steam ID or unable to connect to Steam API.']);
+                }
+
+                $responseData = $response->json();
+                if (!isset($responseData['response']['players'][0])) {
+                    return Redirect::back()->withErrors(['msg' => 'Invalid Steam ID or unable to connect to Steam API.']);
+                }
+
+                $profileName = $responseData['response']['players'][0]['personaname'];
+            } else {
+                $profileName = $validatedData['player_name'];
             }
-
-            $responseData = $response->json();
-            if (!isset($responseData['response']['players'][0])) {
-                return Redirect::back()->withErrors(['msg' => 'Invalid Steam ID or unable to connect to Steam API.']);
-            }
-
-            $profileName = $responseData['response']['players'][0]['personaname'];
             DB::beginTransaction();
             $bansAdded = false;
+            $playerIp = 0;
+            if(!empty($validatedData['player_ip'])){
+                $playerIp = $validatedData['player_ip'];
+            }
             foreach ($validatedData['server_ids'] as $serverId) {
-                $existingBan = SaBan::where('player_steamid', $steamId)
+                $existingBan = SaBan::where(function ($query) use ($steamId, $playerIp, $serverId) {
+                    $query->where('player_steamid', $steamId)
+                        ->orWhere('player_ip', $playerIp);
+                    })
                     ->where('server_id', $serverId)
                     ->where('status', 'ACTIVE')
                     ->first();
@@ -176,6 +191,7 @@ class BansController extends Controller
                 $saban->player_name = $profileName;
                 $saban->duration = $minutesDifference;
                 $saban->server_id = $serverId;
+                $saban->player_ip = $playerIp;
                 $saban->admin_name = auth()->user()->name;
                 $saban->admin_steamid = auth()->user()->steam_id;
                 $saban->ends = !empty($minutesDifference) ? CommonHelper::formatDate($validatedData['duration']): Carbon::now();
@@ -205,14 +221,18 @@ class BansController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'player_steam_id' => 'required|numeric|digits:17',
+            'player_steam_id' => 'required_without:player_ip|nullable|numeric|digits:17',
+            'player_ip' => 'required_without:player_steam_id|nullable|ip',
             'reason' => 'required',
-            'duration' => 'required_without:permanent'
+            'duration' => 'required_without:permanent',
+            'player_name' => 'required_without:player_steam_id|nullable|string',
         ]);
 
         try {
             $ban = SaBan::findOrFail($id);
             $ban->player_steamid = $validatedData['player_steam_id'];
+            $ban->player_ip = $validatedData['player_ip'];
+            $ban->player_name = $validatedData['player_name'];
             $ban->reason = $validatedData['reason'];
             $minutesDifference = 0;
             $ban->duration = $minutesDifference;
