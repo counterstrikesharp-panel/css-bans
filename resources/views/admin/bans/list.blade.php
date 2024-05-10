@@ -36,6 +36,7 @@
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Player</th>
+                            <th scope="col">IP</th>
                             <th scope="col">Banned By Admin</th>
                             <th scope="col">Reason</th>
                             <th scope="col">Duration</th>

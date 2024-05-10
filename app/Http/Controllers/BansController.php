@@ -74,7 +74,7 @@ class BansController extends Controller
                 "id" => $ban->id,
                 "player_steamid" => $ban->player_steamid,
                 "player_name" => $ban->player_name,
-                "player_ip" => $ban->player_ip,
+                "player_ip" => (PermissionsHelper::isSuperAdmin()) ? $ban->player_ip : '*****',
                 'avatar' => !empty($response['response']['players'][0]['avatar']) ? $response['response']['players'][0]['avatar'] : 'https://mdbootstrap.com/img/Photos/Avatars/img(32).jpg' ,
                 "admin_steamid" => $ban->admin_steamid,
                 "admin_name" => $ban->admin_name,
