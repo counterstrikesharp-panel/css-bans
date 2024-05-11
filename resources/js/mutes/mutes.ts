@@ -1,21 +1,13 @@
 import DataTable from 'datatables.net-dt';
 import {formatDuration, calculateProgress} from '../utility/utility';
 import  'datatables.net-fixedcolumns'
-
+import 'datatables.net-responsive';
 let dataTable = null;
 
 loadMutes();
 function loadMutes() {
-    const fixedColumnsConfig = window.innerWidth > 768 ? {
-        fixedColumns: {
-            leftColumns: 0,
-            rightColumns: 3
-        }
-    } : {};
     dataTable = new DataTable("#mutesList", {
-        ...fixedColumnsConfig,
-        scrollX: true,
-        scrollY: "800px",
+        "responsive": true,
         "processing": true,
         "serverSide": true,
         "ajax": {

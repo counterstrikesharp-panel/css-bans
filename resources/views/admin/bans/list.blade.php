@@ -30,7 +30,7 @@
                 </h5>
             </div>
             <div class="card-body">
-                <div class="table-responsive">
+                <div class="table-responsive display responsive nowrap">
                     <table class="table table-hover " id="bansList">
                         <thead>
                         <tr>

@@ -24,8 +24,9 @@ class RanksController extends Controller
         $orderDirection = $request->input('order.0.dir');
 
         // Start building the query
-        $query = Ranks::query()->with('k4stats');
 
+        // Define the subquery for calculating rank
+        $query = Ranks::selectRaw('*, (SELECT COUNT(*) + 1 FROM k4ranks AS kr WHERE kr.points > k4ranks.points) AS `position`');
         // Apply search filter
         if (!empty($searchValue)) {
             $query->where('steam_id', 'like', '%' . $searchValue . '%')
@@ -46,6 +47,7 @@ class RanksController extends Controller
             $player->player_steamid = $player->steam_id;
             $response = CommonHelper::steamProfile($player);
             $formattedData[] = [
+                "position" => $player->position,
                 "name" => $player->name,
                 "player_steamid" => $player->steam_id,
                 "points" => $player->points,

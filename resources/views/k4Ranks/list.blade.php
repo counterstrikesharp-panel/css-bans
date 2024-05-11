@@ -29,6 +29,7 @@
                     <table class="table table-hover table-borderless" id="ranksList">
                         <thead>
                         <tr>
+                            <th>Position</th>
                             <th>Player</th>
                             <th>CS Rating</th>
                             <th>Rank</th>

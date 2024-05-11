@@ -3,12 +3,6 @@ import {formatDuration, calculateProgress} from '../utility/utility';
 import  'datatables.net-fixedcolumns'
 
 const dataTable = new DataTable("#adminsList", {
-    fixedColumns: {
-        start: 0,
-        end: 3,
-    },
-    scrollX: true,
-    scrollY: "800px",
     "processing": true,
     "serverSide": true,
     "ajax": {

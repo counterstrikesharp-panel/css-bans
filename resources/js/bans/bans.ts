@@ -1,19 +1,12 @@
 import DataTable from 'datatables.net-dt';
 import {formatDuration, calculateProgress} from '../utility/utility';
-import  'datatables.net-fixedcolumns'
+import  'datatables.net-fixedcolumns';
+import 'datatables.net-responsive';
 let dataTable = null;
 function loadBans() {
-    const fixedColumnsConfig = window.innerWidth > 768 ? {
-        fixedColumns: {
-            leftColumns: 0, // Number of columns to fix on the left
-            rightColumns: 3 // Number of columns to fix on the right
-        }
-    } : {};
      dataTable = new DataTable("#bansList", {
-        ...fixedColumnsConfig,
         "processing": true,
-         scrollX: true,
-         scrollY: "800px",
+         responsive: true,
         "serverSide": true,
         "ajax": {
             "url": bansListUrl,
@@ -56,7 +49,7 @@ function loadBans() {
             {"data": "server_id"},
             {"data": "status"},
             {
-                "data": "action", "width": "200px", "render": function (data, type, row, meta) {
+                "data": "action",  "render": function (data, type, row, meta) {
                     return '<div class="action-container">' + data + '</div>';
                 }
             },

@@ -90,9 +90,6 @@ section {
 .select2 {
     width: 100% !important;
 }
-.dt-scroll-body .dataTable thead {
-    display: none;
-}
 .action-container {
     width: 100px;
     display: flex;
@@ -169,7 +166,6 @@ html {
 }
 .list-profile {
     display: flex;
-    width: 127px;
 }
 
 .list-profile > img {

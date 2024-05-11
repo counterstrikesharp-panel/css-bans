@@ -28,7 +28,8 @@ export default defineConfig({
                 'resources/js/groups/groups.ts',
                 'resources/js/groups/list.ts',
                 'resources/js/groups/edit.ts',
-                'resources/js/ranks/ranks.ts'
+                'resources/js/ranks/ranks.ts',
+                'resources/css/datatable.css'
             ],
             refresh: true,
         }),

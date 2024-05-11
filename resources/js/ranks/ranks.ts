@@ -1,9 +1,11 @@
 import DataTable from 'datatables.net-dt';
+import 'datatables.net-responsive';
 let dataTable = null;
 function loadRanks() {
     dataTable = new DataTable("#ranksList", {
         "processing": true,
         "serverSide": true,
+        "responsive" : true,
         pageLength: 25,
         "ajax": {
             "url": ranksListUrl,
@@ -18,8 +20,9 @@ function loadRanks() {
             'processing': '<div class="spinner"></div>'
 
         },
-        order: [[1, 'desc']],
+        order: [[2, 'desc']],
         "columns": [
+            {"data": "position"},
             {
                 "data": "name" , "render": function (data, type, row, meta) {
                     const truncatedName = truncatePlayerName(data);
