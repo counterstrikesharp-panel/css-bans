@@ -31,7 +31,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive display responsive nowrap">
-                    <table class="table table-hover " id="bansList">
+                    <table class="table table-hover " id="bansList" style="width:100%">
                         <thead>
                         <tr>
                             <th scope="col">ID</th>

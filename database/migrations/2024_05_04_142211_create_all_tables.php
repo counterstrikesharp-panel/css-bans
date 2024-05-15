@@ -128,6 +128,70 @@ class CreateAllTables extends Migration
             $table->string('address');
             $table->unique('address');
         });
+
+        Schema::create('k4ranks', function (Blueprint $table) {
+            $table->string('steam_id', 32)->primary();
+            $table->string('name', 255);
+            $table->dateTime('lastseen');
+            $table->string('rank', 255);
+            $table->integer('points')->default(0);
+        });
+
+        Schema::create('k4stats', function (Blueprint $table) {
+            $table->string('steam_id', 32)->primary();
+            $table->string('name', 255);
+            $table->dateTime('lastseen');
+            $table->integer('kills')->default(0);
+            $table->integer('firstblood')->default(0);
+            $table->integer('deaths')->default(0);
+            $table->integer('assists')->default(0);
+            $table->integer('shoots')->default(0);
+            $table->integer('hits_taken')->default(0);
+            $table->integer('hits_given')->default(0);
+            $table->integer('headshots')->default(0);
+            $table->integer('chest_hits')->default(0);
+            $table->integer('stomach_hits')->default(0);
+            $table->integer('left_arm_hits')->default(0);
+            $table->integer('right_arm_hits')->default(0);
+            $table->integer('left_leg_hits')->default(0);
+            $table->integer('right_leg_hits')->default(0);
+            $table->integer('neck_hits')->default(0);
+            $table->integer('unused_hits')->default(0);
+            $table->integer('gear_hits')->default(0);
+            $table->integer('special_hits')->default(0);
+            $table->integer('grenades')->default(0);
+            $table->integer('mvp')->default(0);
+            $table->integer('round_win')->default(0);
+            $table->integer('round_lose')->default(0);
+            $table->integer('game_win')->default(0);
+            $table->integer('game_lose')->default(0);
+            $table->integer('rounds_overall')->default(0);
+            $table->integer('rounds_ct')->default(0);
+            $table->integer('rounds_t')->default(0);
+            $table->integer('bomb_planted')->default(0);
+            $table->integer('bomb_defused')->default(0);
+            $table->integer('hostage_rescued')->default(0);
+            $table->integer('hostage_killed')->default(0);
+            $table->integer('noscope_kill')->default(0);
+            $table->integer('penetrated_kill')->default(0);
+            $table->integer('thrusmoke_kill')->default(0);
+            $table->integer('flashed_kill')->default(0);
+            $table->integer('dominated_kill')->default(0);
+            $table->integer('revenge_kill')->default(0);
+            $table->integer('assist_flash')->default(0);
+        });
+
+        Schema::create('k4times', function (Blueprint $table) {
+            $table->string('steam_id', 32)->primary();
+            $table->string('name', 255);
+            $table->dateTime('lastseen');
+            $table->integer('all')->default(0);
+            $table->integer('ct')->default(0);
+            $table->integer('t')->default(0);
+            $table->integer('spec')->default(0);
+            $table->integer('dead')->default(0);
+            $table->integer('alive')->default(0);
+        });
     }
 
     /**
@@ -154,5 +218,8 @@ class CreateAllTables extends Migration
         Schema::dropIfExists('sa_servers');
         Schema::dropIfExists('sa_unbans');
         Schema::dropIfExists('sa_unmutes');
+        Schema::dropIfExists('k4ranks');
+        Schema::dropIfExists('k4stats');
+        Schema::dropIfExists('k4times');
     }
 }

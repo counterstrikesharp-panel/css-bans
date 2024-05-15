@@ -43,6 +43,7 @@
         "@popperjs/core": "^2.11.8",
         "@types/datatables.net": "^1.10.28",
         "@types/jquery": "^3.5.29",
-        "datatables.net-responsive": "^3.0.2"
+        "datatables.net-responsive": "^3.0.2",
+        "datatables.net-dt": "^2.0.2"
     }
 }

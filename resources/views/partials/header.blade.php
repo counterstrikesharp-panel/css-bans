@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" />
     <!-- Google Fonts Roboto -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
-    <!-- MDB -->
+    <!-- MDB -->cs
     @vite(['resources/css/mdb.min.css'])
     <!-- Custom styles -->
     @vite(['resources/css/admin.css'])

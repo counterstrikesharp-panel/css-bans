@@ -7,7 +7,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.0.0/mdb.min.js"></script>
 {{--Used by typscript files--}}
 <script>
-    function getPlayerUnMuteUrl(playerSteamid) {
+    function getPlayerUnMutesUrl(playerSteamid) {
        return "{!! env('VITE_SITE_DIR') !!}/players/"+playerSteamid+"/unmute";
     }
     function getPlayerUnBanUrl(playerSteamid) {

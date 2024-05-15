@@ -26,7 +26,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-hover table-borderless" id="ranksList">
+                    <table class="table table-hover table-borderless" id="ranksList" style="width:100%">
                         <thead>
                         <tr>
                             <th>Position</th>
