@@ -17,8 +17,8 @@
                     <div class="nav-logo">
                         <div class="nav-item theme-logo">
                             <a href="{{getAppSubDirectoryPath();}}/">
-                                <img src="{{url('/logo/logo-dark.svg')}}" class="navbar-logo logo-dark" alt="logo">
-                                <img src="{{url('/logo/logo-light.svg')}}" class="navbar-logo logo-light" alt="logo">
+                                <img src="{{url(getAppSubDirectoryPath().'/logo/logo-dark.svg')}}" class="navbar-logo logo-dark" alt="logo">
+                                <img src="{{url(getAppSubDirectoryPath().'/logo/logo-light.svg')}}" class="navbar-logo logo-light" alt="logo">
                             </a>
                         </div>
                         <div class="nav-item theme-text">
@@ -103,7 +103,7 @@
                     @endif
                     @if(PermissionsHelper::isSuperAdmin())
                         <li class="menu {{ Request::is('*admin*') ? 'active' : '' }}">
-                            <a href="{{getRouterValue();}}/list/admins" aria-expanded="false" class="dropdown-toggle">
+                            <a href="{{getAppSubDirectoryPath();}}/list/admins" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
                                     <i class="fas fa-users-cog fa-fw me-3"></i><span>Admins</span>
                                 </div>
@@ -112,7 +112,7 @@
                     @endif
                     @if(PermissionsHelper::hasBanPermission())
                         <li class="menu {{ Request::is('ban/create') ? 'active' : '' }}">
-                            <a href="{{getRouterValue();}}/ban/create" aria-expanded="false" class="dropdown-toggle">
+                            <a href="{{getAppSubDirectoryPath();}}/ban/create" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
                                     <i class="fas fa-plus fa-fw me-3"></i><span>Add Ban</span>
                                 </div>
@@ -121,7 +121,7 @@
                     @endif
                     @if(PermissionsHelper::hasMutePermission())
                         <li class="menu {{ Request::is('mute/add') ? 'active' : '' }}">
-                            <a href="{{getRouterValue();}}/mute/add" aria-expanded="false" class="dropdown-toggle">
+                            <a href="{{getAppSubDirectoryPath();}}/mute/add" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
                                     <i class="fas fa-plus fa-fw me-3"></i><span>Add Mute</span>
                                 </div>
@@ -130,14 +130,14 @@
                     @endif
                     @if(PermissionsHelper::isSuperAdmin())
                         <li class="menu {{ Request::is('list/groups') ? 'active' : '' }}">
-                            <a href="{{getRouterValue();}}/list/groups" aria-expanded="false" class="dropdown-toggle">
+                            <a href="{{getAppSubDirectoryPath();}}/list/groups" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
                                     <i class="fas fa-users fa-fw me-3"></i><span>All Groups</span>
                                 </div>
                             </a>
                         </li>
                         <li class="menu {{ Request::is('group/create') ? 'active' : '' }}">
-                            <a href="{{getRouterValue();}}/group/create" aria-expanded="false" class="dropdown-toggle">
+                            <a href="{{getAppSubDirectoryPath();}}/group/create" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
                                     <i class="fas fa-plus fa-fw me-3"></i><span>Create Group</span>
                                 </div>
@@ -149,7 +149,7 @@
                     </li>
                     @if(PermissionsHelper::isSuperAdmin())
                         <li class="menu {{ Request::is('rcon') ? 'active' : '' }}">
-                            <a href="{{getRouterValue();}}/rcon" aria-expanded="false" class="dropdown-toggle">
+                            <a href="{{getAppSubDirectoryPath();}}/rcon" aria-expanded="false" class="dropdown-toggle">
                                 <div class=""><i class="fa fa-terminal fa-fw me-3"></i><span>RCON</span></div>
                             </a>
                         </li>
@@ -159,12 +159,12 @@
                     </li>
                     <li class="menu">
                         @if(!empty(Auth::user()))
-                            <a href="{{getRouterValue();}}/auth/logout" aria-expanded="false" class="dropdown-toggle">
+                            <a href="{{getAppSubDirectoryPath();}}/auth/logout" aria-expanded="false" class="dropdown-toggle">
 
                                 <div class=""><i class="fas fa-sign-out-alt fa-fw me-3"></i><span>Logout</span></div>
                             </a>
                         @else
-                            <a href="{{getRouterValue();}}/auth/steam" aria-expanded="false" class="dropdown-toggle">
+                            <a href="{{getAppSubDirectoryPath();}}/auth/steam" aria-expanded="false" class="dropdown-toggle">
                                 <div class=""><i class="fab fa-steam fa-fw me-3"></i><span>Login with Steam</span></div>
                             </a>
                         @endif
