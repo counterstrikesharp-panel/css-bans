@@ -23,6 +23,7 @@ Admin web panel for CS2(counter-strike2) for managing bans, mutes, and more on C
 - View Server Players
 - Live Bans/Mutes/Kicks 
 - Manage Groups
+- Rcon Panel
 
 ## Includes support for Modules
 - Ranks (K4system) View/listing [https://github.com/K4ryuu/K4-System]
