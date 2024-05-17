@@ -45,9 +45,9 @@
                     @csrf
                     <div class="col-md-12">
                         <label>Server</label>
-                        <select class="form-select" aria-label="Default select example">
+                        <select id="servers" class="form-select" aria-label="Default select example">
                            @foreach($servers as $server)
-                                <option value="{{$server->id}}">{{$server->hostname}} ({{$server->address}})</option>
+                                <option selected="{{($server->id==$serverId) ? 'selected' :''}}" value="{{$server->id}}">{{$server->hostname}} ({{$server->address}})</option>
                            @endforeach
                         </select>
                     </div>
@@ -67,7 +67,15 @@
             </div>
             <!--  BEGIN CUSTOM SCRIPTS FILE  -->
             <x-slot:footerFiles>
-
+                <script>
+                   let baseUrl = '<?php echo env('APP_URL') ?>';
+                    $('#servers').on('change', function() {
+                        let selectedOption = $(this).val();
+                        if (selectedOption) {
+                            window.location.href= baseUrl+'/rcon/'+selectedOption;
+                        }
+                    });
+                </script>
             </x-slot>
             <!--  END CUSTOM SCRIPTS FILE  -->
 </x-base-layout>
