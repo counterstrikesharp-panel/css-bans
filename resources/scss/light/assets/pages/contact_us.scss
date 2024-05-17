@@ -1,0 +1,58 @@
+@import '../../base/base';
+
+
+.widget {
+    .widget-content {
+        padding: 45px;
+        border-radius: 8px;
+    }
+}
+
+
+.contact-us-form {
+
+    .paper {
+        margin-top: 36px;
+        border-radius: 8px;
+
+        .contact-title {
+            margin-bottom: 44px;
+            border-bottom: 1px solid #3d5df3;
+            display: inline-block;
+        }
+
+        .widget-paper {
+
+            background-color: #f1f2f3;
+            padding: 30px 22px;
+            border-radius: 8px;
+            text-align: center;
+            
+            .icon {
+                margin-bottom: 10px;
+                svg {
+                    width: 50px;
+                    height: 50px;
+                    stroke-width: 1px;
+                    color: #3d5df3;
+                }
+            }
+    
+            h5 {
+                font-weight: 500;
+            }
+            p {
+                font-size: 17px;
+                margin-bottom: 0;
+            }
+        }
+
+    }
+  
+}
+
+@media (max-width: 575px) {
+    .widget .widget-content {
+        padding: 25px 25px;
+    }
+}

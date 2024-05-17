@@ -1,0 +1,116 @@
+@import '../../base/base';
+
+/*  Tree View   */
+
+body {
+    &.layout-dark {
+        
+        .treeview {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 0;
+        
+            li {
+                p {
+                    font-size: 13px;
+                    color: #888ea8;
+                    font-weight: 500;
+                }
+            }
+            .tv-item {
+                
+                .tv-header {
+                    padding: 6px 0;
+                    cursor: pointer;
+                    .tv-collapsible {
+                        display: flex;
+            
+                        .icon {
+                            margin-right: 6px;
+                            align-self: center;
+                            svg {
+                                width: 14px;
+                                height: 14px;
+                                transition: .5s;
+        
+                                &.icon-tabler-chevron-right {
+        
+                                }
+                            }
+                        }
+            
+                        .title {
+                            margin-bottom: 0;
+                            align-self: center;
+                            font-size: 14px;
+                            color: #bfc9d4;
+                            font-weight: 500;
+                        }
+        
+                        &:not(.collapsed) {
+                            .icon {
+                                svg {
+                                    &.icon-tabler-chevron-right {
+                                        transform: rotate(90deg);
+                                        color: #fff;
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }
+                }
+            }
+            
+            
+            .treeview {
+                margin-left: 30px;
+                list-style: none;
+                padding: 0;
+            }
+        
+        
+            &.folder-structure {
+        
+                .tv-item {
+                
+                    .tv-header {
+                        padding: 6px 0;
+                        cursor: pointer;
+                        .tv-collapsible {
+                            display: flex;
+                
+                            .icon {
+                                margin-right: 6px;
+                                align-self: center;
+                                svg {
+                                    width: 20px;
+                                    height: 20px;
+                                    transition: .5s;
+                                    color: #e2a03f;
+                                    fill: #e2a03f;
+            
+                                    &.icon-tabler-folder {
+            
+                                    }
+                                }
+                            }
+        
+                            &:not(.collapsed) {
+                                .icon {
+                                    svg {
+                                        color: #e2a03f;
+                                        fill: rgb(226 160 63 / 40%);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+            }
+            
+        }
+
+    }
+}

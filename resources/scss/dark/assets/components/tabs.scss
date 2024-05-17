@@ -1,0 +1,125 @@
+@import '../../base/base';
+
+body.layout-dark {
+    .nav {
+        &.nav-tabs {
+            border: none;
+            li {
+                &.nav-item {
+                    button {
+                        &.nav-link {
+
+                            border: none;
+                            font-weight: 400;
+                            padding: 8px 14px;
+                            letter-spacing: 1px;
+                            color: #bfc9d4;
+                            background: transparent;
+
+                            svg {
+                                vertical-align: text-bottom;
+                                stroke-width: 1.6;
+                                width: 20px;
+                                height: 20px;
+                            }
+
+                            &.active {
+                                border-bottom: 1.6px solid #008eff;
+                                color: #008eff;
+
+                                svg {
+                                    color: #008eff;
+                                }
+                            }
+
+                            &:disabled {
+                                opacity: .5;
+                            }
+                            
+                        }
+                    }
+                }
+            }
+            
+        }
+
+
+        &.nav-pills {
+            border: none;
+            padding: 8px;
+            background: #1b2e4b;
+            border-radius: 8px;
+
+            li {
+                &.nav-item {
+                    button {
+                        &.nav-link {
+
+                            border: none;
+                            font-weight: 500;
+                            padding: 8px 14px;
+                            letter-spacing: 1px;
+                            color: #bfc9d4;
+
+                            svg {
+                                vertical-align: text-bottom;
+                                stroke-width: 1.6;
+                                color: #bfc9d4;
+                                width: 20px;
+                                height: 20px;
+                            }
+
+                            &.active {
+                                border-bottom: none;
+                                background-color: #0e1726;
+                                box-shadow: 1px 1px 4px 0 #00000033;
+                            }
+
+                            &:disabled {
+                                opacity: .5;
+                            }
+                            
+                        }
+                    }
+                }
+            }
+
+            &[aria-orientation="vertical"] {
+                button {
+                    &.nav-link {
+
+                        border: none;
+                        font-weight: 500;
+                        padding: 8px 14px;
+                        letter-spacing: 1px;
+                        color: #bfc9d4;
+
+                        svg {
+                            vertical-align: bottom;
+                            stroke-width: 1.6;
+                            color: #bfc9d4;
+                            width: 20px;
+                            height: 20px;
+                        }
+
+                        &.active {
+                            border-bottom: none;
+                            background-color: #0e1726;
+                            box-shadow: 1px 1px 4px 0 #00000033;
+                        }
+
+                        &:disabled {
+                            opacity: .5;
+                        }
+                        
+                    }
+                }
+            }
+            
+        }
+
+
+
+    
+    }
+}

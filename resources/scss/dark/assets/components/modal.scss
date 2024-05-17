@@ -1,0 +1,299 @@
+@import '../../base/base';
+body.layout-dark {
+.modal-backdrop {
+    background: linear-gradient(75deg, rgba(22, 28, 36, 0.48) 0%, rgb(22, 28, 36) 100%);
+
+  &.show {
+    opacity: .8;
+  }
+}
+
+.modal-content {
+  border: none;
+  border-radius: 6px;
+  background: #0e1726;
+  border: 1px solid #191e3a;
+
+  hr {
+    border-top: 1px solid #191e3a;
+  }
+
+  .modal-header {
+    padding: 12px 26px;
+    border: none;
+    border-bottom: 1px solid #191e3a;
+
+    h5 {
+      font-weight: 600;
+      font-size: 20px;
+      letter-spacing: 1px;
+    }
+
+    svg {
+      width: 17px;
+      color: #bfc9d4;
+    }
+
+    .btn-close {
+      background: none;
+      box-shadow: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      opacity: 1;
+
+      svg {
+        width: 17px;
+        height: 17px;
+        color: #fff;
+      }
+    }
+  }
+
+  .modal-body {
+    padding: 26px 26px;
+
+    a:not(.btn) {
+      color: $primary;
+      font-weight: 600;
+    }
+
+    p {
+      color: #888ea8;
+      letter-spacing: 1px;
+      font-size: 14px;
+      line-height: 22px;
+      text-align: left;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .modal-footer {
+    border-top: 1px solid #191e3a;
+
+    button.btn {
+      font-weight: 600;
+      padding: 10px 25px;
+      letter-spacing: 1px;
+    }
+
+    .btn.btn-primary {
+      background-color: $primary;
+      color: #fff;
+      border: 1px solid $primary;
+    }
+  }
+}
+}
+/*
+    Modal Tabs
+*/
+body.layout-dark {
+.close {
+  text-shadow: none;
+  color: #bfc9d4;
+
+  &:hover {
+    color: #bfc9d4;
+  }
+}
+
+.nav-tabs {
+  svg {
+    width: 20px;
+    vertical-align: bottom;
+  }
+
+  .nav-link {
+    &.active {
+      color: #e95f2b;
+      background-color: #191e3a;
+      border-color: #191e3a #191e3a #0e1726;
+
+      &:after {
+        color: #e95f2b;
+      }
+    }
+
+    &:hover {
+      border-color: #191e3a #191e3a #191e3a;
+    }
+  }
+
+  border-bottom: 1px solid #191e3a;
+}
+}
+/*
+    Modal Success
+*/
+body.layout-dark {
+.modal-success .modal-content {
+  background-color: $l-success;
+}
+}
+
+/*
+    Modal Video
+*/
+body.layout-dark {
+.modal-video {
+  .modal-content {
+    background-color: transparent;
+    border: none;
+  }
+
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .modal {
+    &#videoMedia1 .modal-header, &#videoMedia2 .modal-header {
+      border: none;
+      padding: 12px 0;
+      justify-content: end;
+    }
+  }
+
+  .video-container {
+    iframe, object, embed {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .modal {
+    &#videoMedia1 .modal-header .close, &#videoMedia2 .modal-header .close {
+      color: #fff !important;
+      opacity: 1;
+    }
+  }
+
+  .modal-content .modal-header svg {
+    color: #fff;
+  }
+}
+}
+
+/*
+    Modal Notification
+*/
+body.layout-dark {
+.modal-notification .modal-body .icon-content {
+  margin: 0 0 20px 0px;
+  display: inline-block;
+  padding: 13px;
+  border-radius: 50%;
+  background: #bfc9d4;
+
+  svg {
+    width: 36px;
+    height: 36px;
+    color: #1b2e4b;
+    fill: rgba(0, 23, 55, 0.08);
+  }
+}
+}
+/*
+    Profile
+*/
+body.layout-dark {
+.profile-modal .modal-content {
+  background-color: $secondary;
+
+  .btn-close {
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1;
+    color: #fff;
+    text-shadow: none;
+    opacity: 1;
+    text-align: right;
+    background: none;
+    margin-left: auto;
+    box-shadow: none;
+  }
+
+  .modal-header, .modal-footer {
+    border: none;
+  }
+
+  .modal-body p {
+    color: #fff;
+  }
+
+  .modal-footer button.btn {
+    box-shadow: none;
+  }
+}
+
+.modal#sliderModal .modal-content .modal-body button.btn-close {
+  position: absolute;
+  z-index: 2;
+  right: 4px;
+  top: -35px;
+  opacity: 1;
+  text-shadow: none;
+  background: transparent;
+  box-shadow: none;
+
+  svg {
+    color: #bfc9d4;
+  }
+
+  &:hover svg {
+    color: #fff;
+  }
+}
+}
+
+/*
+    Form
+*/
+
+.inputForm-modal {
+
+  .modal-content {
+
+      .modal-body {
+
+          .form-group {
+              .input-group {
+
+                  .input-group-text {
+                      background: transparent;
+                      border-top-left-radius: 15px;
+                      border-bottom-left-radius: 15px;
+                      border-right: none;
+                  }
+              }
+              input {
+                  border-left: none;
+                  background: transparent;
+                  border-top-right-radius: 15px;
+                  border-bottom-right-radius: 15px;
+
+                  &:focus {
+                      border-color: #bfc9d4;
+                  }
+              }
+          }
+          
+      }
+      
+  }
+
+}

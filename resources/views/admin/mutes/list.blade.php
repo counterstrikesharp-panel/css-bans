@@ -1,7 +1,15 @@
 @php use App\Helpers\PermissionsHelper; @endphp
-@extends('layouts.app')
+<x-base-layout :scrollspy="false">
+    <x-slot:pageTitle>
+        Mutes - CSS-BANS
+    </x-slot>
 
-@section('content')
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <x-slot:headerFiles>
+        @vite(['resources/scss/dark/assets/components/datatable.scss'])
+        <link rel="stylesheet" href="{{asset('plugins/notification/snackbar/snackbar.min.css')}}">
+        @vite(['resources/scss/light/plugins/notification/snackbar/custom-snackbar.scss'])
+    </x-slot>
     @if (session('success'))
         <x-alert type="success" :message="session('success')"/>
     @endif
@@ -55,6 +63,17 @@
             </div>
         </div>
     </section>
-@endsection
-@vite(['resources/js/mutes/mutes.ts'])
+        <!--  BEGIN CUSTOM SCRIPTS FILE  -->
+    <x-slot:footerFiles>
+        <script>
+            function getPlayerUnMuteUrl(playerSteamid) {
+                return "{!! env('VITE_SITE_DIR') !!}/players/"+playerSteamid+"/unmute";
+            }
+            const mutesListUrl = '{!! env('VITE_SITE_DIR') !!}/list/mutes';
+        </script>
+        @vite(['resources/js/mutes/mutes.ts'])
+        <script src="{{asset('plugins/notification/snackbar/snackbar.min.js')}}"></script>
+    </x-slot>
+</x-base-layout>
+
 

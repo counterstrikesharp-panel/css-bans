@@ -1,0 +1,67 @@
+@import '../../../base/base';
+body.layout-dark {
+.maintanence-hero-img img {
+  width: 62px;
+  height: 62px;
+}
+
+  &:before {
+    display: none;
+  }
+
+}
+
+body.layout-dark.maintanence {
+  color: #888ea8;
+  height: 100%;
+  font-size: 0.875rem;
+  background: #060818;
+
+  > .maintanence-content {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+  }
+}
+
+body.layout-dark {
+
+&.maintanence {
+  .error-title {
+    margin-top: 65px;
+    color: #e0e6ed;
+    font-weight: 600;
+    font-size: 54px;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+
+  .error-text {
+    margin-top: 40px;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 0;
+    color: #bfc9d4;
+  }
+
+  a.btn {
+    width: 134px;
+    padding: 6px;
+    font-size: 17px;
+    border: none;
+    letter-spacing: 2px;
+    box-shadow: none;
+  }
+
+  .text {
+    color: #bfc9d4;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 21px;
+  }
+}
+
+}

@@ -83,11 +83,21 @@ $(document).on('click', '.unban-btn', function() {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function(response) {
-            toastr.success('Player unbanned successfully.');
+            Snackbar.show({
+                text: 'Player unbanned successfully.',
+                actionTextColor: '#fff',
+                backgroundColor: '#00ab55',
+                pos: 'top-center'
+            });
             dataTable.ajax.reload();
         },
         error: function(xhr, status, error) {
-            toastr.error('Failed to unban player!');
+            Snackbar.show({
+                text: 'Failed to unban player!',
+                actionTextColor: '#fff',
+                backgroundColor: '#e7515a',
+                pos: 'top-center'
+            });
         }
     });
 });

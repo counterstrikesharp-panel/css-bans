@@ -1,0 +1,245 @@
+@import '../../base/base';
+body.layout-dark {
+.widget-content-area {
+  padding: 10px 20px;
+}
+
+.toggle-code-snippet {
+  margin-bottom: -6px;
+}
+}
+
+/*      Media Object      */
+body.layout-dark {
+.media {
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  img:not(.avatar-img) {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+  }
+
+  .media-body {
+    align-self: center;
+
+    .media-heading {
+      color: #bfc9d4;
+      font-weight: 700;
+      margin-bottom: 10px;
+      font-size: 17px;
+      letter-spacing: 1px;
+    }
+
+    .media-text {
+      color: #888ea8;
+      margin-bottom: 0;
+      font-size: 14px;
+      letter-spacing: 0;
+    }
+  }
+}
+}
+
+/*      Right Aligned   */
+body.layout-dark {
+.media-right-aligned .media img {
+  margin-right: 0;
+  margin-left: 15px;
+}
+}
+
+/* 	Media Notation 	*/
+body.layout-dark {
+.notation-text .media {
+  &:first-child {
+    border-top: none;
+  }
+
+  .media-body .media-notation {
+    margin-top: 8px;
+    margin-bottom: 9px;
+
+    a {
+      color: #506690;
+      font-size: 13px;
+      font-weight: 700;
+      margin-right: 8px;
+
+      &:hover {
+        color: #bfc9d4;
+      }
+    }
+  }
+}
+}
+
+/* 	Media Notation With Icon	*/
+body.layout-dark {
+.notation-text-icon .media {
+  &:first-child {
+    border-top: none;
+  }
+
+  .media-body .media-notation {
+    margin-top: 8px;
+    margin-bottom: 9px;
+
+    a {
+      color: #506690;
+      font-size: 13px;
+      font-weight: 700;
+      margin-right: 8px;
+
+      svg {
+        color: #506690;
+        margin-right: 6px;
+        vertical-align: sub;
+        width: 18px;
+        height: 18px;
+        fill: rgba(0, 23, 55, 0.08);
+      }
+    }
+  }
+}
+}
+/* 	With Labels	*/
+body.layout-dark {
+.m-o-label .media {
+  &:first-child {
+    border-top: none;
+  }
+
+  .badge {
+    float: right;
+  }
+}
+}
+
+/* 	Dropdown	*/
+body.layout-dark {
+.m-o-dropdown-list {
+  .media {
+    &:first-child {
+      border-top: none;
+    }
+
+    .media-heading {
+      display: flex;
+      justify-content: space-between;
+
+      div.dropdown-list {
+        cursor: pointer;
+        color: #888ea8;
+        font-size: 18px;
+        float: right;
+
+        a.dropdown-item {
+          display: flex;
+
+          span {
+            align-self: center;
+          }
+
+          svg {
+            color: #888ea8;
+            align-self: center;
+            width: 20px;
+            height: 20px;
+            fill: rgba(0, 23, 55, 0.08);
+
+            /* float: right; */
+            margin-right: 0;
+          }
+
+          &:hover svg {
+            color: #e0e6ed;
+            fill: rgba(27, 85, 226, 0.2392156863);
+          }
+        }
+      }
+    }
+  }
+
+  .dropdown-menu {
+    border-radius: 6px;
+    min-width: 9rem;
+    border: 1px solid #ebedf2;
+    box-shadow: 0px 0px 15px 1px rgba(113, 106, 202, 0.2);
+    padding: 9px 0;
+  }
+
+  .dropdown-item {
+    font-size: 14px;
+    color: #888ea8;
+    padding: 5px 12px;
+    display: flex;
+    justify-content: space-between;
+
+    &:hover {
+      color: #e95f2b;
+      text-decoration: none;
+      background-color: #f1f2f3;
+    }
+  }
+}
+}
+
+/* 	Label Icon	*/
+body.layout-dark {
+.m-o-label-icon .media {
+  &:first-child {
+    border-top: none;
+  }
+
+  svg.label-icon {
+    align-self: center;
+    width: 30px;
+    height: 30px;
+    margin-right: 16px;
+
+    &.label-success {
+      color: #00ab55;
+    }
+
+    &.label-danger {
+      color: #ee3d49;
+    }
+
+    &.label-warning {
+      color: #ffbb44;
+    }
+  }
+}
+}
+
+/* 	Checkbox	*/
+body.layout-dark {
+.m-o-chkbox .media {
+  &:first-child {
+    border-top: none;
+  }
+
+  .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #515365;
+  }
+}
+}
+
+/* 	Checkbox	*/
+body.layout-dark {
+.m-o-radio .media {
+  &:first-child {
+    border-top: none;
+  }
+
+  .custom-radio .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #515365;
+  }
+}
+
+.custom-control-label::before {
+  background-color: #d3d3d3;
+}
+}

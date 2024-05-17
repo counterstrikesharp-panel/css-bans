@@ -1,0 +1,117 @@
+@import '../../base/base';
+.feather-icon {
+    .icon-section {
+      padding: 30px;
+  
+      h4 {
+        color: $dark;
+        font-size: 17px;
+        font-weight: 600;
+        margin: 0;
+        margin-bottom: 16px;
+      }
+    }
+  
+    .icon-content-container {
+      padding: 0 16px;
+      width: 86%;
+      margin: 0 auto;
+      border: 1px solid #e0e6ed;
+      border-radius: 6px;
+    }
+  
+    .icon-section p.fs-text {
+      padding-bottom: 30px;
+      margin-bottom: 30px;
+    }
+  
+    .icon-container {
+      cursor: pointer;
+  
+      svg {
+        color: $dark;
+        margin-right: 6px;
+        vertical-align: middle;
+        width: 20px;
+        height: 20px;
+        fill: none;
+      }
+  
+      &:hover svg {
+        color: $primary;
+      }
+  
+      span {
+        display: none;
+      }
+  
+      &:hover span {
+        color: #888ea8;
+      }
+    }
+  
+    .icon-link {
+      color: $primary;
+      font-weight: 600;
+      font-size: 14px;
+    }
+  }
+  
+  /*FAB*/
+  
+  .fontawesome {
+    .icon-section {
+      padding: 30px;
+  
+      h4 {
+        color: $dark;
+        font-size: 17px;
+        font-weight: 600;
+        margin: 0;
+        margin-bottom: 16px;
+      }
+    }
+  
+    .icon-content-container {
+      padding: 0 16px;
+      width: 86%;
+      margin: 0 auto;
+      border: 1px solid #e0e6ed;
+      border-radius: 6px;
+    }
+  
+    .icon-section p.fs-text {
+      padding-bottom: 30px;
+      margin-bottom: 30px;
+    }
+  
+    .icon-container {
+      cursor: pointer;
+  
+      i {
+        font-size: 20px;
+        color: $dark;
+        vertical-align: middle;
+        margin-right: 10px;
+      }
+  
+      &:hover i {
+        color: $primary;
+      }
+  
+      span {
+        color: #888ea8;
+        display: none;
+      }
+  
+      &:hover span {
+        color: #888ea8;
+      }
+    }
+  
+    .icon-link {
+      color: $primary;
+      font-weight: 600;
+      font-size: 14px;
+    }
+  }

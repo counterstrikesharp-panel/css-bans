@@ -1,0 +1,13 @@
+@import '../../base/base';
+body.layout-dark {
+#demo_vertical::-ms-clear, #demo_vertical2::-ms-clear {
+  display: none;
+}
+
+input {
+  &#demo_vertical, &#demo_vertical2 {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+}
+}

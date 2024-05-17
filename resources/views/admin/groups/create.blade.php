@@ -1,5 +1,10 @@
-@extends('layouts.app')
-@section('content')
+<x-base-layout :scrollspy="false">
+    <x-slot:pageTitle>
+        Groups - CSS-BANS
+    </x-slot>
+    <x-slot:headerFiles>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    </x-slot>
     @if (session('success'))
         <x-alert type="success" :message="session('success')"/>
     @endif
@@ -22,12 +27,12 @@
                     <h5 class="card-title text-center mb-4">Add New Group</h5>
                     <form action="{{ route('group.store') }}" method="POST">
                         @csrf
-                        <div class="note note-info mb-3">
+                        <div class="alert alert-gradient alert-dismissible fade show mb-4" role="alert">
                             <strong>Note:</strong> Adding permissions to an existing group for new servers will append the new permissions to the existing set, applying for all associated servers.
                         </div>
                         <div data-mdb-input-init class="form-outline mb-3">
-                            <input placeholder="Should Start with #" type="text" class="form-control" id="group_name" name="group_name" required/>
                             <label class="form-label" for="group_name">Group Name</label>
+                            <input placeholder="Should Start with #" type="text" class="form-control" id="group_name" name="group_name" required/>
                         </div>
 
                         <div data-mdb-input-init class="form-outline mb-3">
@@ -64,5 +69,9 @@
             </div>
         </div>
     </div>
-@endsection
-@vite(['resources/js/groups/groups.ts'])
+        <x-slot:footerFiles>
+            <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+            @vite(['resources/js/groups/groups.ts'])
+        </x-slot>
+</x-base-layout>
+

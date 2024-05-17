@@ -1,0 +1,264 @@
+@import '../../base/base';
+
+/*  Tree View   */
+
+.treeview {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 0;
+    position: relative;
+
+    li {
+        p {
+            font-size: 13px;
+            color: #888ea8;
+            font-weight: 500;
+        }
+    }
+    .tv-item {
+        
+        .tv-header {
+            padding: 6px 0;
+            cursor: pointer;
+            position: relative;
+            .tv-collapsible {
+                display: flex;
+
+                // &:before {
+                //     content: '';
+                //     position: absolute;
+                //     height: 100%;
+                //     width: 3px;
+                //     background: #000;
+                //     top: 20px;
+                //     left: 5px;
+                //     display: block;
+                // }
+
+                // &.collapsed {
+
+                //     &:before {
+                //         display: none;
+                //     }
+                    
+                // }
+    
+                .icon {
+                    margin-right: 6px;
+                    align-self: center;
+                    svg {
+                        width: 14px;
+                        height: 14px;
+                        transition: .5s;
+
+                        &.icon-tabler-chevron-right {
+
+                        }
+                    }
+                }
+    
+                .title {
+                    margin-bottom: 0;
+                    align-self: center;
+                    font-size: 14px;
+                    color: #3b3f5c;
+                    font-weight: 600;
+                }
+
+                &:not(.collapsed) {
+                    .icon {
+                        svg {
+                            &.icon-tabler-chevron-right {
+                                transform: rotate(90deg);
+                                color: #3b3f5c;
+                            }
+                        }
+                    }
+                }
+                
+            }
+
+            
+        }
+
+        .treeview-collapse {
+
+            .treeview {
+                position: relative;
+                &:before {
+                    // content: '';
+                    // position: absolute;
+                    // height: 100%;
+                    // width: 3px;
+                    // background: #000;
+                    // top: 0;
+                    // left: 5.5px;
+                    // display: block;
+    
+    
+                    content: "";
+                    position: absolute;
+                    height: calc(100% - 10px);
+                    width: 1px;
+                    /* background: #000; */
+                    top: 0;
+                    // left: 5.5px;
+                    left: -24px;
+                    display: block;
+                    border-right: 1px dashed #888ea8;
+                    display: none;
+                }
+    
+                
+            }
+            
+            &.show {
+                .treeview {
+                    &:before {
+                        display: block;
+                    }
+                }
+            }
+            
+        }
+    }
+    
+    
+    .treeview {
+        margin-left: 30px;
+        list-style: none;
+        padding: 0;
+
+        .tv-item {
+
+            position: relative;
+
+            &:before {
+                content: '';
+                position: absolute;
+                height: 1px;
+                width: 18px;
+                /* background: #000; */
+                left: -22px;
+                top: 10px;
+                border-bottom: 1px dashed #888ea8;
+            }
+            
+            &.tv-folder {
+                
+                &:before {
+                    left: -22px;
+                    top: 18px;
+                    
+                }
+                
+            }
+
+
+            &:not(.tv-folder) {
+                padding-left: 5px;
+
+                // span {
+                //     &.icon {
+                //         svg {
+                            
+                //         }
+                //     }
+                // }
+                // p {
+                //     display: inline-block;
+                // }
+            }
+            
+        }
+        
+    }
+
+
+    &.folder-structure {
+
+        .tv-item {
+        
+            .tv-header {
+                padding: 6px 0;
+                cursor: pointer;
+                .tv-collapsible {
+                    display: flex;
+        
+                    .icon {
+                        margin-right: 6px;
+                        align-self: center;
+                        svg {
+                            width: 20px;
+                            height: 20px;
+                            transition: .5s;
+                            color: #e2a03f;
+                            fill: #e2a03f;
+    
+                            &.icon-tabler-folder {
+    
+                            }
+                        }
+                    }
+
+                    &:not(.collapsed) {
+                        .icon {
+                            svg {
+                                color: #e2a03f;
+                                fill: rgb(226 160 63 / 40%);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+        &.treeview {
+
+            .tv-item {
+
+                &:not(.tv-folder) {
+    
+                    span {
+                        &.icon {
+                            margin-left: 5px;
+                            svg {
+                                color: #888ea8;
+                                fill: #4361ee33;
+                                width: 20px;
+                                height: 20px;
+                            }
+                        }
+                    }
+                    p {
+                        display: inline-block;
+                    }
+                }
+
+
+                &:before {
+                    top: 14px;
+                }
+                
+            }
+
+            
+            
+        }
+
+        .tv-item {
+
+            .treeview-collapse {
+                .treeview {
+                    &:before {
+                        height: calc(100% - 16px);
+                    }
+                }
+            }
+            
+        }
+        
+    }
+    
+}

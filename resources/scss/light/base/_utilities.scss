@@ -1,0 +1,58 @@
+// // Define common padding, margin and border radius sizes and more.
+
+
+
+
+//	==========================
+//		Direction Properties
+//	==========================
+
+$dir-top: top;
+$dir-bottom: bottom;
+$dir-right: right;
+$dir-left: left;
+
+//	==========================
+//		Borders Properties
+//	==========================
+
+
+// // Border styles
+
+$b-dot: dotted;
+$b-dashed: dashed;
+$b-solid: solid;
+$b-double: double;
+
+// Border width
+
+$b-width0: 0;
+$b-width1: 1px;
+$b-width2: 2px;
+$b-width3: 3px;
+$b-width4: 4px;
+$b-width5: 5px;
+$b-width6: 6px;
+
+// Border Radius
+
+$br-0: 0;
+$br-4: 4px;
+$br-6: 6px;
+$br-10: 10px;
+$br-30: 30px;
+$br-50: 50px;
+
+
+
+//	============================
+//		Position Properties
+//	============================
+
+$pos-abs: absolute;
+$pos-static: static;
+$pos-fix: fixed;
+$pos-inherit: inherit;
+$pos-initial: initial;
+$pos-rel: relative;
+$pos-unset: unset;

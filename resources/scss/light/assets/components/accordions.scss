@@ -1,0 +1,155 @@
+@import '../../base/base';
+h1, h2, h3, h4, h5, h6 {
+  color: #e0e6ed;
+}
+
+/*
+    Basic
+*/
+
+.accordion {
+  .card {
+    border: 1px solid #d3d3d3;
+    border-radius: 6px;
+    margin-bottom: 4px;
+    background: #fff;
+  }
+
+  .card-header {
+    background-color: transparent;
+    color: #f8538d;
+    border-radius: 0;
+    padding: 0;
+    position: relative;
+    border-bottom: none;
+
+    section > div {
+      padding: 13px 19px;
+      cursor: pointer;
+      display: block;
+      font-size: 14px;
+      letter-spacing: 1px;
+
+      &.collapsed {
+        color: #888ea8;
+      }
+
+      &:not(.collapsed) {
+        color: $primary;
+        border-bottom: 1px solid #d3d3d3;
+        font-weight: 600;
+      }
+
+      .icons {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        padding: 9px;
+
+        svg {
+          width: 18px;
+          transition: .5s;
+          transform: rotate(0);
+        }
+      }
+
+      &[aria-expanded="true"] .icons svg {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .card .card-body {
+    p {
+      color: #888ea8;
+      letter-spacing: 1px;
+      font-size: 13px;
+
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+    }
+
+    ul {
+      margin-bottom: 0;
+
+      li {
+        font-size: 12px;
+        letter-spacing: 1px;
+
+        &:not(:last-child) {
+          margin-bottom: 5px;
+        }
+
+        a {
+          color: $dark;
+          font-size: 13px;
+          font-weight: 600;
+
+          &:hover {
+            color: $primary;
+          }
+        }
+      }
+    }
+  }
+
+  &.no-outer-spacing {
+    border: 1px solid #d3d3d3;
+    border-radius: 6px;
+
+    .card {
+      margin-bottom: 0;
+      border: none;
+      border-radius: 0;
+
+      &:first-child {
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+      }
+
+      &:last-child {
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+      }
+
+      &:not(:last-child) {
+        border-bottom: 1px solid #d3d3d3;
+      }
+    }
+
+    .card-header section > div:not(.collapsed) {
+      border-bottom: none;
+    }
+  }
+}
+
+/*
+    No Outer Spacing
+*/
+
+/*
+    Accordin with Icons
+*/
+
+.accordion-icons {
+  .accordion-icon {
+    display: inline-block;
+    margin-right: 10px;
+
+    svg {
+      color: #888ea8;
+      margin-right: 6px;
+      vertical-align: middle;
+      width: 20px;
+      height: 20px;
+      fill: rgba(0, 23, 55, 0.08);
+    }
+  }
+
+  div:not(.collapsed) .accordion-icon svg {
+    color: $primary;
+    fill: rgb(27 85 226 / 7%);
+  }
+}

@@ -1,15 +1,16 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LogViewerController;
+use App\Http\Controllers\Rcon\RconController;
+use App\Http\Controllers\ServerController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BansController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\K4Ranks\RanksController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\LogViewerController;
 use App\Http\Controllers\MutesController;
-use App\Http\Controllers\ServerController;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +18,11 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::middleware(['checkSetup'])->group(function () {
     Route::get('/', [DashboardController::class, 'home'])->name('home');
     Route::get('/mutes', [DashboardController::class, 'getMutes']);
@@ -107,4 +109,7 @@ Route::get('/setup', function () {
 
 Route::post('/setup', [ServerController::class, 'setup']);
 Route::get('/logs', [LogViewerController::class, 'show'])->middleware('superadmin')->name('log-viewer');
+Route::get('/rcon/{server_id?}', [RconController::class, 'index'])->middleware('superadmin')->name('rcon');
+Route::post('/rcon/{server_id}', [RconController::class, 'execute'])->middleware('superadmin')->name('rcon.execute');
+
 

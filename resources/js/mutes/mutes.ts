@@ -82,11 +82,21 @@ $(document).on('click', '.unmute-btn', function() {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function(response) {
-            toastr.success('Player unmuted successfully.');
+            Snackbar.show({
+                text: 'Player unmuted successfully',
+                actionTextColor: '#fff',
+                backgroundColor: '#00ab55',
+                pos: 'top-center'
+            });
             dataTable.ajax.reload();
         },
         error: function(xhr, status, error) {
-            toaster.error('Failed to unmute player!');
+            Snackbar.show({
+                text: 'Failed to unmute player!',
+                actionTextColor: '#fff',
+                backgroundColor: '#e7515a',
+                pos: 'top-center'
+            });
         }
     });
 });

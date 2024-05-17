@@ -1,0 +1,121 @@
+@import '../../base/base';
+body.layout-dark {
+    .feather-icon {
+        .icon-section {
+          padding: 30px;
+      
+          h4 {
+            color: #bfc9d4;
+            font-size: 17px;
+            font-weight: 600;
+            margin: 0;
+            margin-bottom: 16px;
+          }
+        }
+      
+        .icon-content-container {
+          padding: 0 16px;
+          width: 86%;
+          margin: 0 auto;
+          border: 1px solid #191e3a;
+          border-radius: 6px;
+        }
+      
+        .icon-section p.fs-text {
+          padding-bottom: 30px;
+          margin-bottom: 30px;
+        }
+      
+        .icon-container {
+          cursor: pointer;
+      
+          svg {
+            color: #bfc9d4;
+            margin-right: 6px;
+            vertical-align: middle;
+            width: 20px;
+            height: 20px;
+            fill: rgba(0, 23, 55, 0.08);
+          }
+      
+          &:hover svg {
+            color: #888ea8;
+          }
+      
+          span {
+            display: none;
+          }
+      
+          &:hover span {
+            color: #888ea8;
+          }
+        }
+      
+        .icon-link {
+          color: #888ea8;
+          font-weight: 600;
+          font-size: 14px;
+        }
+    }
+}
+
+  /*FAB*/
+  
+body.layout-dark {
+    .fontawesome {
+      .icon-section {
+        padding: 30px;
+    
+        h4 {
+          color: #bfc9d4;
+          font-size: 17px;
+          font-weight: 600;
+          margin: 0;
+          margin-bottom: 16px;
+        }
+      }
+    
+      .icon-content-container {
+        padding: 0 16px;
+        width: 86%;
+        margin: 0 auto;
+        border: 1px solid #191e3a;
+        border-radius: 6px;
+      }
+    
+      .icon-section p.fs-text {
+        padding-bottom: 30px;
+        margin-bottom: 30px;
+      }
+    
+      .icon-container {
+        cursor: pointer;
+    
+        i {
+          font-size: 20px;
+          color: #bfc9d4;
+          vertical-align: middle;
+          margin-right: 10px;
+        }
+    
+        &:hover i {
+          color: #888ea8;
+        }
+    
+        span {
+          color: #888ea8;
+          display: none;
+        }
+    
+        &:hover span {
+          color: #888ea8;
+        }
+      }
+    
+      .icon-link {
+        color: #888ea8;
+        font-weight: 600;
+        font-size: 14px;
+      }
+    }
+}

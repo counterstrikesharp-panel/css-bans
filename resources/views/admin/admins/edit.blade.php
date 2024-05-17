@@ -1,8 +1,13 @@
-@extends('layouts.app')
+<x-base-layout :scrollspy="false">
+    <x-slot:pageTitle>
+        Admins - CSS-BANS
+    </x-slot>
+    <x-slot:headerFiles>
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    </x-slot>
 @php
     $today = \Carbon\Carbon::now()->format('Y-m-d');
 @endphp
-@section('content')
     @if (session('success'))
         <x-alert type="success" :message="session('success')"/>
     @endif
@@ -28,7 +33,7 @@
                     @else
                         <form action="{{ route('admin.groups.update', ['player_steam' => $admin->first()->player_steamid]) }}" method="POST">
                     @endif
-                        <div class="note note-info mb-3">
+                        <div class="alert alert-gradient alert-dismissible fade show mb-4" role="alert">
                             <strong>Note:</strong> Admins will not receive their permissions on the server until a map change. Alternatively, you can execute css_reloadadmins for immediate effect.
                         </div>
                         @csrf
@@ -63,7 +68,7 @@
                                 @endforeach
                             </div>
                             <hr/>
-                            <div class="note note-danger mb-3">
+                            <div class="alert alert-info alert-dismissible fade show mb-4" role="alert">
                                 <strong>Note:</strong> Admin will be moved to below groups selected for ALL Servers. Existing individual permissions of admin will be removed!
                             </div>
                             <label class="form-label" for="group_id"><b>Move Admin to Groups</b></label>
@@ -110,5 +115,9 @@
             </div>
         </div>
     </div>
-@endsection
-@vite(['resources/js/admin/edit.ts'])
+    <x-slot:footerFiles>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        @vite(['resources/js/admin/edit.ts'])
+    </x-slot>
+</x-base-layout>
+

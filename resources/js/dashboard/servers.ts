@@ -3,7 +3,7 @@ import {appendTableData, formatDuration} from '../utility/utility';
 import {ServerInfo} from '../Interface/ServerInfo';
 import {showLoader} from "../utility/utility";
 import {hideLoader} from "../utility/utility";
-
+import $ from "jquery";
 // Make a GET request to fetch mutes data
 showLoader('server_list_loader');
 axios.get(serversListUrl)
@@ -70,7 +70,7 @@ function fetchPlayers(serverId: string) {
     axios.get(playersUrl)
         .then(response => {
             $("#modalBody").html(response.data);
-            $("#modal").modal('show');
+            showModal();
             hideLoader();
         })
         .catch(error => {

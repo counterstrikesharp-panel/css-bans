@@ -1,8 +1,6 @@
 <!-- resources/views/components/alert.blade.php -->
 
-<div class="alert alert-{{ $type }} alert-dismissible fade show" role="alert">
+<div class="alert alert-{{$type}} alert-dismissible fade show border-0 mb-4" role="alert">
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     {{ $message }}
-    <button type="button" class="close alert-close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
 </div>

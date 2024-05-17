@@ -1,0 +1,409 @@
+@import '../../base/base';
+/*
+    ============================
+        Pagination container
+    =============================
+*/
+
+.paginating-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
+
+  .prev svg, .next svg {
+    width: 18px;
+    height: 18px;
+    vertical-align: text-bottom;
+  }
+
+  .pagination {
+    margin-bottom: 0;
+  }
+
+  li {
+    a {
+      padding: 10px 15px;
+      font-weight: 600;
+      color: $dark;
+    }
+
+    padding: 10px 0;
+    font-weight: 600;
+    color: $dark;
+    border-radius: 4px;
+
+    &:not(:last-child) {
+      margin-right: 4px;
+    }
+  }
+}
+
+/*
+    Default Style
+*/
+
+.pagination-default {
+  li {
+    border: 2px solid #e0e6ed;
+
+    &:hover {
+      border: 2px solid #4361ee !important;
+
+      a {
+        color: $primary;
+      }
+    }
+
+    &.active {
+      border: 2px solid #4361ee !important;
+      color: $primary;
+    }
+
+    a.active:hover, &.active a {
+      color: $primary;
+    }
+  }
+
+  .prev {
+    border: 2px solid #e0e6ed;
+
+    &:hover {
+      border: 2px solid $primary;
+
+      a, svg {
+        color: $primary;
+      }
+    }
+  }
+
+  .next {
+    border: 2px solid #e0e6ed;
+
+    &:hover {
+      border: 2px solid $primary;
+
+      a, svg {
+        color: $primary;
+      }
+    }
+  }
+}
+
+/* 
+    Solid Style
+*/
+
+.pagination-solid {
+  li {
+    background-color: #e0e6ed;
+
+    &:hover a {
+      color: $primary;
+    }
+
+    &.active {
+      background-color: #4361ee !important;
+      color: #fff;
+    }
+
+    a.active:hover, &.active a {
+      color: #fff;
+    }
+  }
+
+  .prev {
+    background-color: #e0e6ed;
+
+    &:hover {
+      background-color: $primary;
+
+      a, svg {
+        color: #fff;
+      }
+    }
+  }
+
+  .next {
+    background-color: #e0e6ed;
+
+    &:hover {
+      background-color: $primary;
+
+      a, svg {
+        color: #fff;
+      }
+    }
+  }
+}
+
+/*    
+    ===================
+        No Spacing
+    ===================
+*/
+
+.pagination-no_spacing {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
+
+  .prev {
+    background-color: #e0e6ed;
+    border-radius: 50%;
+    padding: 10px 11px;
+    margin-right: 5px;
+
+    &:hover {
+      background-color: $primary;
+
+      svg {
+        color: #fff;
+      }
+    }
+  }
+
+  .next {
+    background-color: #e0e6ed;
+    border-radius: 50%;
+    padding: 10px 11px;
+    margin-left: 5px;
+
+    &:hover {
+      background-color: $primary;
+
+      svg {
+        color: #fff;
+      }
+    }
+  }
+
+  .prev svg, .next svg {
+    width: 18px;
+    height: 18px;
+    vertical-align: text-bottom;
+  }
+
+  .pagination {
+    margin-bottom: 0;
+  }
+
+  li {
+    &:first-child {
+      border-top-left-radius: 50px;
+      border-bottom-left-radius: 50px;
+    }
+
+    &:last-child {
+      border-top-right-radius: 50px;
+      border-bottom-right-radius: 50px;
+    }
+
+    background-color: #e0e6ed;
+
+    a {
+      padding: 10px 15px;
+      font-weight: 600;
+      color: $dark;
+
+      &.active {
+        background-color: #4361ee !important;
+        border-radius: 6px;
+        color: #fff;
+
+        &:hover {
+          color: #fff;
+        }
+      }
+
+      &:hover {
+        color: $primary;
+      }
+    }
+
+    padding: 10px 0;
+    font-weight: 600;
+    color: $dark;
+  }
+}
+
+/*
+    =======================
+        Custom Pagination
+    =======================
+*/
+
+/*
+    Custom Solid
+*/
+
+.pagination-custom_solid {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
+
+  .prev {
+    background-color: #e0e6ed;
+    border-radius: 50%;
+    padding: 10px 11px;
+    margin-right: 25px;
+
+    &:hover {
+      background-color: $primary;
+
+      svg {
+        color: #fff;
+      }
+    }
+  }
+
+  .next {
+    background-color: #e0e6ed;
+    border-radius: 50%;
+    padding: 10px 11px;
+    margin-left: 25px;
+
+    &:hover {
+      background-color: $primary;
+
+      svg {
+        color: #fff;
+      }
+    }
+  }
+
+  .prev svg, .next svg {
+    width: 18px;
+    height: 18px;
+    vertical-align: text-bottom;
+  }
+
+  .pagination {
+    margin-bottom: 0;
+  }
+
+  li {
+    &:first-child {
+      border-top-left-radius: 50px;
+      border-bottom-left-radius: 50px;
+    }
+
+    &:last-child {
+      border-top-right-radius: 50px;
+      border-bottom-right-radius: 50px;
+    }
+
+    background-color: #e0e6ed;
+
+    a {
+      padding: 10px 15px;
+      font-weight: 600;
+      color: $dark;
+
+      &.active {
+        background-color: #4361ee !important;
+        border-radius: 6px;
+        color: #fff;
+
+        &:hover {
+          color: #fff;
+        }
+      }
+
+      &:hover {
+        color: $primary;
+      }
+    }
+
+    padding: 10px 0;
+    font-weight: 600;
+    color: $dark;
+  }
+}
+
+/*
+    Custom Outline
+*/
+
+.pagination-custom_outline {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
+
+  .prev {
+    border: 2px solid #e0e6ed;
+    border-radius: 50%;
+    padding: 8px 11px;
+    margin-right: 25px;
+
+    &:hover {
+      border: 2px solid $primary;
+
+      svg {
+        color: $primary;
+      }
+    }
+  }
+
+  .next {
+    border: 2px solid #e0e6ed;
+    border-radius: 50%;
+    padding: 8px 11px;
+    margin-left: 25px;
+
+    &:hover {
+      border: 2px solid $primary;
+
+      svg {
+        color: $primary;
+      }
+    }
+  }
+
+  .prev svg, .next svg {
+    width: 16px;
+    height: 16px;
+    vertical-align: text-bottom;
+  }
+
+  .pagination {
+    margin-bottom: 0;
+  }
+
+  li {
+    padding: 10px 0;
+    font-weight: 600;
+    color: #888ea8;
+    border: 1px solid #e0e6ed;
+
+    &.active {
+      background-color: transparent;
+    }
+
+    &:first-child {
+      border-top-left-radius: 50px;
+      border-bottom-left-radius: 50px;
+    }
+
+    &:last-child {
+      border-top-right-radius: 50px;
+      border-bottom-right-radius: 50px;
+    }
+
+    a {
+      padding: 10px 15px;
+      font-weight: 600;
+      color: $dark;
+
+      &:hover {
+        color: $primary;
+      }
+    }
+
+    &.active a {
+      background-color: transparent;
+      border: 2px solid #4361ee !important;
+      border-radius: 6px;
+      color: $primary;
+    }
+  }
+}

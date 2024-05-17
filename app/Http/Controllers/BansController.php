@@ -32,7 +32,7 @@ class BansController extends Controller
         $orderDirection = $request->input('order.0.dir');
 
         // Start building the query
-        $query = SaBan::query();
+        $query = SaBan::query()->whereNotNull('server_id');
 
         // Apply search filter
         if (!empty($searchValue)) {
@@ -51,7 +51,7 @@ class BansController extends Controller
         $bans = $query->offset($start)->limit($length)->get();
 
         // Get total count for pagination
-        $totalBans = SaBan::count();
+        $totalBans = SaBan::whereNotNull('server_id')->count();
 
         $formattedData = [];
         $siteDir = env('VITE_SITE_DIR');

@@ -1,0 +1,139 @@
+@import '../../base/base';
+body.layout-dark {
+
+    .tooltip-inner {
+      border-radius: 6px;
+    }
+    
+    .tooltip .tooltip-item {
+      color: #fff;
+      padding: 0 9px;
+    }
+    
+    .tooltip-section h6 {
+      color: $dark;
+      font-size: 0.875rem;
+      margin-top: 25px;
+      margin-bottom: 20px;
+    }
+    
+    .tooltip .tooltip-inner {
+      background-color: #060818;
+    }
+
+    .bs-tooltip-top .tooltip-tooltip-arrow::before {
+      border-top-color: #060818;
+    }
+  }
+    /*
+        ==================
+            Colors
+        =================
+    */
+    
+    /*
+        Tooltips
+    */
+    
+    /*		Tooltip Inner 	*/
+    body.layout-dark {
+
+    .tooltip-primary .tooltip-inner {
+      color: $primary;
+      background-color: #060818;
+    }
+    
+    .tooltip-success .tooltip-inner {
+      color: #00ab55;
+      background-color: #060818;
+    }
+    
+    .tooltip-info .tooltip-inner {
+      color: $info;
+      background-color: #060818;
+    }
+    
+    .tooltip-danger .tooltip-inner {
+      color: $danger;
+      background-color: #060818;
+    }
+    
+    .tooltip-warning .tooltip-inner {
+      color: $warning;
+      background-color: #060818;
+    }
+    
+    .tooltip-secondary .tooltip-inner {
+      color: $secondary;
+      background-color: #060818;
+    }
+    
+    .tooltip-dark .tooltip-inner {
+      color: #bfc9d4;
+      background-color: #060818;
+    }
+  }
+    
+    /*		Tooltip arrow 		*/
+    body.layout-dark {
+    .tooltip {
+      &.bs-tooltip-top .tooltip-arrow:before {
+        border-top-color: #060818;
+      }
+    
+      &.bs-tooltip-bottom .tooltip-arrow:before {
+        border-bottom-color: #060818;
+      }
+    
+      &.bs-tooltip-left .tooltip-arrow:before {
+        border-left-color: #060818;
+      }
+    
+      &.bs-tooltip-right .tooltip-arrow:before {
+        border-right-color: #060818;
+      }
+    }
+    
+    .tooltip-primary {
+      &.bs-tooltip-top .tooltip-arrow:before {
+        border-top-color: #060818;
+      }
+    }
+
+    .tooltip-info {
+      &.bs-tooltip-top .tooltip-arrow:before {
+        border-top-color: #060818;
+      }
+    }
+
+    .tooltip-success {
+      &.bs-tooltip-top .tooltip-arrow:before {
+        border-top-color: #060818;
+      }
+    }
+    .tooltip-warning {
+      &.bs-tooltip-top .tooltip-arrow:before {
+        border-top-color: #060818;
+      }
+    }
+
+    .tooltip-danger {
+      &.bs-tooltip-top .tooltip-arrow:before {
+        border-top-color: #060818;
+      }
+    }
+
+    .tooltip-secondary {
+      &.bs-tooltip-top .tooltip-arrow:before {
+        border-top-color: #060818;
+      }
+    }
+
+    .tooltip-dark {
+      &.bs-tooltip-top .tooltip-arrow:before {
+        border-top-color: #060818;
+      }
+    }
+
+    
+}

@@ -1,5 +1,4 @@
-@extends('layouts.app')
-@section('content')
+<x-base-layout :scrollspy="false">
     @if (session('success'))
         <x-alert type="success" :message="session('success')"/>
     @endif
@@ -18,6 +17,12 @@
     @php
         $today = \Carbon\Carbon::now()->format('Y-m-d');
     @endphp
+    <x-slot:pageTitle>
+        Admins - CSS-BANS
+    </x-slot>
+    <x-slot:headerFiles>
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    </x-slot>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card shadow">
@@ -25,17 +30,17 @@
                     <h5 class="card-title text-center mb-4">Add New Admin</h5>
                     <form action="{{ route('admin.store') }}" method="POST">
                         @csrf
-                        <div class="note note-info mb-3">
+                        <div class="alert alert-gradient alert-dismissible fade show mb-4" role="alert">
                             <strong>Note:</strong> Newly added admins will not receive their permissions on the server until a map change. Alternatively, you can execute css_reloadadmins for immediate effect.
                         </div>
                         <div data-mdb-input-init class="form-outline mb-3">
-                            <input type="number" class="form-control" id="steam_id" name="steam_id" required/>
                             <label class="form-label" for="steam_id">Steam ID</label>
+                            <input type="number" class="form-control" id="steam_id" name="steam_id" required/>
                         </div>
 
                         <div data-mdb-input-init class="form-outline mb-3">
-                            <input type="text" class="form-control" id="player_name" name="player_name" required/>
                             <label class="form-label" for="player_name">Player Name</label>
+                            <input type="text" class="form-control" id="player_name" name="player_name" required/>
                         </div>
 
                         <div data-mdb-input-init class="form-outline mb-3">
@@ -105,5 +110,9 @@
             </div>
         </div>
     </div>
-@endsection
-@vite(['resources/js/admin/create.ts'])
+    <x-slot:footerFiles>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        @vite(['resources/js/admin/create.ts'])
+    </x-slot>
+</x-base-layout>
+

@@ -1,0 +1,125 @@
+@import '../../base/base';
+
+.nav {
+    &.nav-tabs {
+        border: none;
+        li {
+            &.nav-item {
+                button {
+                    &.nav-link {
+
+                        border: none;
+                        font-weight: 500;
+                        padding: 8px 14px;
+                        letter-spacing: 1px;
+                        color: #506690;
+                        background: transparent;
+
+                        svg {
+                            vertical-align: text-bottom;
+                            stroke-width: 1.6;
+                            width: 20px;
+                            height: 20px;
+                        }
+
+                        &.active {
+                            border-bottom: 1.6px solid #4361ee;
+                            color: #4361ee;
+                            font-weight: 600;
+
+                            svg {
+                                color: #4361ee;
+                            }
+                        }
+
+                        &:disabled {
+                            opacity: .5;
+                        }
+                        
+                    }
+                }
+            }
+        }
+        
+    }
+
+
+    &.nav-pills {
+        border: none;
+        padding: 8px;
+        background: #ebedf2;
+        border-radius: 8px;
+
+        li {
+            &.nav-item {
+                button {
+                    &.nav-link {
+
+                        border: none;
+                        font-weight: 500;
+                        padding: 8px 14px;
+                        letter-spacing: 1px;
+                        color: #4361ee;
+
+                        svg {
+                            vertical-align: text-bottom;
+                            stroke-width: 1.6;
+                            color: #4361ee;
+                            width: 20px;
+                            height: 20px;
+                        }
+
+                        &.active {
+                            border-bottom: none;
+                            background-color: #fff;
+                            box-shadow: 1px 1px 4px 0 #00000033;
+                            font-weight: 600;
+                        }
+
+                        &:disabled {
+                            opacity: .5;
+                        }
+                        
+                    }
+                }
+            }
+        }
+
+        &[aria-orientation="vertical"] {
+            button {
+                &.nav-link {
+
+                    border: none;
+                    font-weight: 500;
+                    padding: 8px 14px;
+                    letter-spacing: 1px;
+                    color: #4361ee;
+
+                    svg {
+                        vertical-align: bottom;
+                        stroke-width: 1.6;
+                        color: #4361ee;
+                        width: 20px;
+                        height: 20px;
+                    }
+
+                    &.active {
+                        border-bottom: none;
+                        background-color: #fff;
+                        box-shadow: 1px 1px 4px 0 #00000033;
+                    }
+
+                    &:disabled {
+                        opacity: .5;
+                    }
+                    
+                }
+            }
+        }
+        
+    }
+
+
+
+  
+}

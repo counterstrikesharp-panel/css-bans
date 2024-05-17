@@ -1,7 +1,14 @@
 @php use App\Helpers\PermissionsHelper; @endphp
-@extends('layouts.app')
+<x-base-layout :scrollspy="false">
+    <x-slot:pageTitle>
+        Admins - CSS-BANS
+    </x-slot>
+    @vite(['resources/scss/dark/assets/components/datatable.scss'])
 
-@section('content')
+        <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <x-slot:headerFiles>
+
+    </x-slot>
     @if (session('success'))
         <x-alert type="success" :message="session('success')"/>
     @endif
@@ -21,8 +28,8 @@
                         <a href="{{env('VITE_SITE_DIR')}}/admin/create" class="col-md- btn btn-success">Add Admin</a>
                     </div>
                 @endif
-                <div class="table-responsive">
-                    <table class="table table-hover " id="adminsList">
+                    <div class="table-responsive display responsive nowrap">
+                        <table class="table table-hover " id="adminsList" style="width:100%">
                         <thead>
                         <tr>
                             <th scope="col">ID</th>
@@ -37,7 +44,7 @@
                             <th scope="col"></th>
                         </tr>
                         </thead>
-                        <tbody id="serverList">
+                        <tbody >
 
                         </tbody>
                     </table>
@@ -45,6 +52,13 @@
             </div>
         </div>
     </section>
-@endsection
-@vite(['resources/js/admin/admins.ts'])
+        <!--  BEGIN CUSTOM SCRIPTS FILE  -->
+    <x-slot:footerFiles>
+        <script>
+            const adminListUrl = '{!! env('VITE_SITE_DIR') !!}/list/admins';
+        </script>
+    @vite(['resources/js/admin/admins.ts'])
+    </x-slot>
+</x-base-layout>
+
 

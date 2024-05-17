@@ -1,9 +1,10 @@
 import DataTable from 'datatables.net-dt';
 import {formatDuration, calculateProgress} from '../utility/utility';
-import  'datatables.net-fixedcolumns'
-
+import  'datatables.net-fixedcolumns';
+import 'datatables.net-responsive';
 const dataTable = new DataTable("#adminsList", {
     "processing": true,
+    responsive: true,
     "serverSide": true,
     "ajax": {
         "url": adminListUrl,
@@ -34,7 +35,7 @@ const dataTable = new DataTable("#adminsList", {
             }
         },
         {
-            "data": "progress", "width":"100px", "render": function (data, type, row, meta) {
+            "data": "ends", "width":"100px", "render": function (data, type, row, meta) {
                 const progress = calculateProgress(row.created, row.ends);
                 return `
                 <div class="progress">

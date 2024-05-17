@@ -1,0 +1,165 @@
+@import '../../base/base';
+body.layout-dark {
+
+.list-group-item {
+  border: 1px solid #1b2e4b;
+  padding: 10px 12px;
+  background-color: transparent;
+  color: #bfc9d4;
+  margin-bottom: 0;
+
+  .form-check-input:not(:checked) {
+    background-color: #515365;
+    border-color: #515365;
+  }
+
+  &.active {
+    color: #fff;
+    background-color: $secondary;
+    border-color: transparent;
+    box-shadow: 0 1px 15px 1px rgba(52, 40, 104, 0.15);
+
+    &:hover, &:focus {
+      color: #e0e6ed;
+      background-color: $secondary;
+      box-shadow: 0px 0px 12px 1px rgba(113, 106, 202, 0.08);
+    }
+  }
+
+  &.disabled, &:disabled {
+    background: #50669029;
+    color: #888ea8;
+  }
+}
+
+.new-control-indicator {
+  background-color: #f1f2f3;
+}
+
+a.list-group-item.list-group-item-action.active i {
+  color: #010156;
+}
+
+code {
+  color: $danger;
+}
+
+.list-group-item-action {
+  &:hover {
+    color: #e0e6ed;
+    background-color: #191e3a;
+  }
+
+  &:focus {
+    background-color: transparent;
+    color: #bfc9d4;
+  }
+}
+
+}
+
+/*------list group-----*/
+
+/*
+    Icons Meta
+*/
+
+body.layout-dark {
+
+.list-group {
+  &.list-group-icons-meta .list-group-item {
+    &.active .media {
+      svg {
+        font-size: 27px;
+        color: #fff;
+      }
+
+      .media-body {
+        h6, p {
+          color: #fff;
+          font-weight: 500;
+        }
+      }
+    }
+
+    .media {
+      svg {
+        width: 20px;
+        color: #22c7d5;
+        height: 20px;
+      }
+
+      .media-body {
+        h6 {
+          color: #888ea8;
+          font-weight: 700;
+          margin-bottom: 0;
+          font-size: 15px;
+          letter-spacing: 1px;
+        }
+
+        p {
+          color: #888ea8;
+          margin-bottom: 0;
+          font-size: 12px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  &.list-group-media .list-group-item {
+    &.active .media .media-body {
+      h6, p {
+        color: #fff;
+        font-weight: 500;
+      }
+    }
+
+    .media {
+      img {
+        color: $primary;
+        width: 42px;
+        height: 42px;
+      }
+
+      .media-body {
+        align-self: center;
+
+        h6 {
+          color: #888ea8;
+          font-weight: 700;
+          margin-bottom: 0;
+          font-size: 16px;
+          letter-spacing: 1px;
+        }
+
+        p {
+          color: #888ea8;
+          margin-bottom: 0;
+          font-size: 12px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  &.task-list-group .list-group-item-action.active {
+    background-color: #191e3a;
+    color: #fff;
+
+    .new-control.new-checkbox {
+      color: #fff;
+      font-size: 14px;
+    }
+  }
+}
+}
+
+/*
+    Image Meta
+*/
+
+/*
+    task-list-group
+*/

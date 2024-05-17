@@ -1,6 +1,10 @@
-@extends('layouts.app')
-
-@section('content')
+<x-base-layout :scrollspy="false">
+    <x-slot:pageTitle>
+        Mutes - CSS-BANS
+    </x-slot>
+    <x-slot:headerFiles>
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    </x-slot>
     @if (session('success'))
         <x-alert type="success" :message="session('success')"/>
     @endif
@@ -85,5 +89,9 @@
             </div>
         </div>
     </div>
-@endsection
+    <x-slot:footerFiles>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        @vite(['resources/js/mutes/add.ts'])
+    </x-slot>
+</x-base-layout>
 @vite(['resources/js/mutes/add.ts'])

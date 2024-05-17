@@ -1,7 +1,14 @@
 @php use App\Helpers\PermissionsHelper; @endphp
-@extends('layouts.app')
-
-@section('content')
+<x-base-layout :scrollspy="false">
+    <x-slot:pageTitle>
+        Bans - CSS-BANS
+    </x-slot>
+    @vite(['resources/scss/dark/assets/components/datatable.scss'])
+        <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <x-slot:headerFiles>
+        <link rel="stylesheet" href="{{asset('plugins/notification/snackbar/snackbar.min.css')}}">
+        @vite(['resources/scss/light/plugins/notification/snackbar/custom-snackbar.scss'])
+    </x-slot>
     @if (session('success'))
         <x-alert type="success" :message="session('success')"/>
     @endif
@@ -56,6 +63,16 @@
             </div>
         </div>
     </section>
-@endsection
-@vite(['resources/js/bans/bans.ts'])
+        <!--  BEGIN CUSTOM SCRIPTS FILE  -->
+    <x-slot:footerFiles>
+        <script>
+            function getPlayerUnBanUrl(playerSteamid) {
+                return "{!! env('VITE_SITE_DIR') !!}/players/"+playerSteamid+"/unban";
+            }
+            const bansListUrl = '{!! env('VITE_SITE_DIR') !!}/list/bans';
+        </script>
+        @vite(['resources/js/bans/bans.ts'])
+        <script src="{{asset('plugins/notification/snackbar/snackbar.min.js')}}"></script>
+    </x-slot>
+</x-base-layout>
 

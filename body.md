@@ -1,6 +1,7 @@
-### Release notes V 1.4.4
- 
-- Added ban by player ip in create and listing
-- Fixed ranks dashboard and listing player steam profile links
-- Fixed mobile view alignments for listing
-- Fixed lastseen in ranks listing
+### Release notes V 1.5.0
+### Major Update 
+- Update UI to newest version 1.1 with complete re-vamp 
+- Re-vamped on Bans UI, Admins UI, Dashboard etc.
+- Added rcon management - you can now rcon from panel
+- Added custom links
+- Re-arranged and grouped links on sidebar

@@ -1,0 +1,77 @@
+@import '../../../base/base';
+
+body.layout-dark {
+.theme-logo {
+  width: 62px;
+  height: 62px;
+}
+
+  &:before {
+    display: none;
+  }
+
+}
+body.layout-dark {
+  &.error {
+
+    color: #888ea8;
+    height: 100%;
+    font-size: 0.875rem;
+    background: #060818;
+    
+    > .error-content {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px;
+    }
+    
+    .mini-text {
+      font-size: 33px;
+      font-weight: 700;
+      margin-bottom: 0;
+      color: #bfc9d4;
+    }
+
+    .img-cartoon {
+      width: 170px;
+      height: 170px;
+    }
+
+    .error-img {
+      max-width: 529px;
+      margin-bottom: 50px;
+      width: 100%;
+      width: 363px;
+    }
+
+    .error-number {
+      font-size: 170px;
+      color: #e0e6ed;
+      font-weight: 600;
+      margin-bottom: 5px;
+      margin-top: 15px;
+      text-shadow: 0px 5px 4px rgba(31, 45, 61, 0.1019607843);
+      display: none;
+    }
+
+    .error-text {
+      font-size: 18px;
+      color: #e0e6ed;
+      font-weight: 600;
+    }
+
+    a.btn {
+      width: 134px;
+      padding: 6px;
+      font-size: 17px;
+      border: none;
+      letter-spacing: 2px;
+      box-shadow: none;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}

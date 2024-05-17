@@ -1,0 +1,411 @@
+@import '../../base/base';
+/*
+    ============================
+        Pagination container
+    =============================
+*/
+body.layout-dark {
+.paginating-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
+
+  .prev svg, .next svg {
+    width: 18px;
+    height: 18px;
+    vertical-align: text-bottom;
+  }
+
+  .pagination {
+    margin-bottom: 0;
+  }
+
+  li {
+    a {
+      padding: 10px 15px;
+      font-weight: 600;
+      color: #888ea8;
+    }
+
+    padding: 10px 0;
+    font-weight: 600;
+    color: #888ea8;
+    border-radius: 4px;
+
+    &:not(:last-child) {
+      margin-right: 4px;
+    }
+  }
+}
+}
+
+/*
+    Default Style
+*/
+body.layout-dark {
+.pagination-default {
+  li {
+    border: 2px solid #191e3a;
+
+    &:hover {
+      border: 2px solid #009688 !important;
+
+      a {
+        color: #009688;
+      }
+    }
+
+    &.active {
+      border: 2px solid #009688 !important;
+      color: #009688;
+    }
+
+    a.active:hover, &.active a {
+      color: #009688;
+    }
+  }
+
+  .prev {
+    border: 2px solid #191e3a;
+
+    &:hover {
+      border: 2px solid #009688;
+
+      a, svg {
+        color: #009688;
+      }
+    }
+  }
+
+  .next {
+    border: 2px solid #191e3a;
+
+    &:hover {
+      border: 2px solid #009688;
+
+      a, svg {
+        color: #009688;
+      }
+    }
+  }
+}
+}
+/* 
+    Solid Style
+*/
+body.layout-dark {
+.pagination-solid {
+  li {
+    background-color: #191e3a;
+
+    &:hover a {
+      color: #009688;
+    }
+
+    &.active {
+      background-color: #009688 !important;
+      color: #fff;
+    }
+
+    a.active:hover, &.active a {
+      color: #fff;
+    }
+  }
+
+  .prev {
+    background-color: #191e3a;
+
+    &:hover {
+      background-color: #009688;
+
+      a, svg {
+        color: #fff;
+      }
+    }
+  }
+
+  .next {
+    background-color: #191e3a;
+
+    &:hover {
+      background-color: #009688;
+
+      a, svg {
+        color: #fff;
+      }
+    }
+  }
+}
+}
+/*    
+    ===================
+        No Spacing
+    ===================
+*/
+body.layout-dark {
+.pagination-no_spacing {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
+
+  .prev {
+    background-color: #191e3a;
+    border-radius: 50%;
+    padding: 10px 11px;
+    margin-right: 5px;
+
+    &:hover {
+      background-color: #009688;
+
+      svg {
+        color: #fff;
+      }
+    }
+  }
+
+  .next {
+    background-color: #191e3a;
+    border-radius: 50%;
+    padding: 10px 11px;
+    margin-left: 5px;
+
+    &:hover {
+      background-color: #009688;
+
+      svg {
+        color: #fff;
+      }
+    }
+  }
+
+  .prev svg, .next svg {
+    width: 18px;
+    height: 18px;
+    vertical-align: text-bottom;
+  }
+
+  .pagination {
+    margin-bottom: 0;
+  }
+
+  li {
+    &:first-child {
+      border-top-left-radius: 50px;
+      border-bottom-left-radius: 50px;
+    }
+
+    &:last-child {
+      border-top-right-radius: 50px;
+      border-bottom-right-radius: 50px;
+    }
+
+    background-color: #191e3a;
+
+    a {
+      padding: 10px 15px;
+      font-weight: 600;
+      color: #888ea8;
+
+      &.active {
+        background-color: #009688 !important;
+        border-radius: 6px;
+        color: #fff;
+
+        &:hover {
+          color: #fff;
+        }
+      }
+
+      &:hover {
+        color: #009688;
+      }
+    }
+
+    padding: 10px 0;
+    font-weight: 600;
+    color: #888ea8;
+  }
+}
+}
+/*
+    =======================
+        Custom Pagination
+    =======================
+*/
+
+/*
+    Custom Solid
+*/
+body.layout-dark {
+.pagination-custom_solid {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
+
+  .prev {
+    background-color: #191e3a;
+    border-radius: 50%;
+    padding: 10px 11px;
+    margin-right: 25px;
+
+    &:hover {
+      background-color: #009688;
+
+      svg {
+        color: #fff;
+      }
+    }
+  }
+
+  .next {
+    background-color: #191e3a;
+    border-radius: 50%;
+    padding: 10px 11px;
+    margin-left: 25px;
+
+    &:hover {
+      background-color: #009688;
+
+      svg {
+        color: #fff;
+      }
+    }
+  }
+
+  .prev svg, .next svg {
+    width: 18px;
+    height: 18px;
+    vertical-align: text-bottom;
+  }
+
+  .pagination {
+    margin-bottom: 0;
+  }
+
+  li {
+    &:first-child {
+      border-top-left-radius: 50px;
+      border-bottom-left-radius: 50px;
+    }
+
+    &:last-child {
+      border-top-right-radius: 50px;
+      border-bottom-right-radius: 50px;
+    }
+
+    background-color: #191e3a;
+
+    a {
+      padding: 10px 15px;
+      font-weight: 600;
+      color: #888ea8;
+
+      &.active {
+        background-color: #009688 !important;
+        border-radius: 6px;
+        color: #fff;
+
+        &:hover {
+          color: #fff;
+        }
+      }
+
+      &:hover {
+        color: #009688;
+      }
+    }
+
+    padding: 10px 0;
+    font-weight: 600;
+    color: #888ea8;
+  }
+}
+}
+/*
+    Custom Outline
+*/
+body.layout-dark {
+.pagination-custom_outline {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
+
+  .prev {
+    border: 2px solid #191e3a;
+    border-radius: 50%;
+    padding: 8px 11px;
+    margin-right: 25px;
+
+    &:hover {
+      border: 2px solid #009688;
+
+      svg {
+        color: #009688;
+      }
+    }
+  }
+
+  .next {
+    border: 2px solid #191e3a;
+    border-radius: 50%;
+    padding: 8px 11px;
+    margin-left: 25px;
+
+    &:hover {
+      border: 2px solid #009688;
+
+      svg {
+        color: #009688;
+      }
+    }
+  }
+
+  .prev svg, .next svg {
+    width: 16px;
+    height: 16px;
+    vertical-align: text-bottom;
+  }
+
+  .pagination {
+    margin-bottom: 0;
+  }
+
+  li {
+    padding: 10px 0;
+    font-weight: 600;
+    color: #888ea8;
+    border: 1px solid #191e3a;
+
+    &.active {
+      background-color: #191e3a;
+    }
+
+    &:first-child {
+      border-top-left-radius: 50px;
+      border-bottom-left-radius: 50px;
+    }
+
+    &:last-child {
+      border-top-right-radius: 50px;
+      border-bottom-right-radius: 50px;
+    }
+
+    a {
+      padding: 10px 15px;
+      font-weight: 600;
+      color: #888ea8;
+
+      &:hover {
+        color: #009688;
+      }
+    }
+
+    &.active a {
+      background-color: #191e3a;
+      border: 2px solid #009688 !important;
+      border-radius: 6px;
+      color: #009688;
+    }
+  }
+}
+}

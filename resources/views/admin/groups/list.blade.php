@@ -1,7 +1,12 @@
 @php use App\Helpers\PermissionsHelper; @endphp
-@extends('layouts.app')
+<x-base-layout :scrollspy="false">
+    <x-slot:pageTitle>
+        Groups - CSS-BANS
+    </x-slot>
+        <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <x-slot:headerFiles>
 
-@section('content')
+    </x-slot>
     @if (session('success'))
         <x-alert type="success" :message="session('success')"/>
     @endif
@@ -21,8 +26,8 @@
                         <a href="{{env('VITE_SITE_DIR')}}/group/create" class="col-md- btn btn-success">Create Group</a>
                     </div>
                 @endif
-                <div class="table-responsive">
-                    <table class="table table-hover " id="groupsList">
+                <div class="table-responsive display responsive nowrap">
+                    <table class="table table-hover " id="groupsList" style="width:100%">
                         <thead>
                         <tr>
                             <th scope="col">ID</th>
@@ -39,6 +44,12 @@
             </div>
         </div>
     </section>
-@endsection
-@vite(['resources/js/groups/list.ts'])
+        <x-slot:footerFiles>
+            <script>
+                const groupsListUrl = '{!! env('VITE_SITE_DIR') !!}/list/groups';
+            </script>
+            @vite(['resources/js/groups/list.ts'])
+        </x-slot>
+</x-base-layout>
+
 

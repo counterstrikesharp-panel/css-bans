@@ -1,0 +1,126 @@
+@import '../base/base';
+.sidenav {
+  position: fixed;
+  right: -30px;
+  top: 125px;
+  display: none;
+  width: 236px;
+  width: 168px;
+
+  .sidenav-header {
+    &:after {
+      display: none;
+    }
+
+    p {
+      font-weight: 600;
+      font-size: 18px;
+      color: #fff;
+      margin-bottom: 20px;
+      background: $primary;
+      text-align: center;
+      border-radius: 5px;
+      padding: 4px;
+      letter-spacing: 1px;
+      background-image: linear-gradient(to right, #4361ee 0%, #805dca 100%);
+    }
+  }
+
+  .sidenav-content {
+    background-color: transparent;
+    display: block;
+    border: none;
+
+    a {
+      display: block;
+      padding: 3px 0px;
+      color: #0e1726;
+      font-size: 13px;
+      padding: 3px 25px;
+      position: relative;
+      transition: 0.5s;
+
+      &.active {
+        &:before {
+          background: #008eff;
+          width: 8px;
+          height: 8px;
+        }
+
+        &:hover:before {
+          background: #008eff;
+        }
+      }
+
+      &:before {
+        position: absolute;
+        height: 6px;
+        width: 6px;
+        background: #bfc9d4;
+        content: "";
+        left: -8px;
+        border-radius: 50%;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        transition: 0.5s;
+      }
+
+      &:hover:before {
+        background: $l-success;
+      }
+    }
+  }
+}
+
+#content > .container {
+  display: flex;
+  padding: 0 24px;
+  max-width: none;
+}
+
+.layout-boxed #content > .container {
+  max-width: 1488px;
+}
+
+#content > .container > .container {
+  padding: 0;
+  max-width: 64% !important;
+  margin-left: 0;
+  padding: 0 0 !important;
+}
+
+.footer-wrapper {
+  padding: 10px 24px 10px 24px;
+  max-width: 1488px;
+  margin: auto;
+}
+
+@media (max-width: 575px) {
+  .sidenav .sidenav-content a {
+    padding: 4px 7px;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 1399px) {
+  .sidenav {
+    display: none !important;
+  }
+
+  #content > .container > .container {
+    max-width: 100% !important;
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 991px) {
+  #content > .container {
+    padding: 0 16px;
+  }
+
+  .footer-wrapper {
+    padding: 10px 16px 10px 16px;
+  }
+}

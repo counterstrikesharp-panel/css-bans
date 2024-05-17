@@ -1,5 +1,10 @@
-@extends('layouts.app')
-@section('content')
+<x-base-layout :scrollspy="false">
+    <x-slot:pageTitle>
+        Mutes - CSS-BANS
+    </x-slot>
+    <x-slot:headerFiles>
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    </x-slot>
     @if (session('success'))
         <x-alert type="success" :message="session('success')"/>
     @endif
@@ -28,8 +33,8 @@
 {{--                            <strong>Note:</strong> You can Mute a player either by Steam ID or Player IP or by both.--}}
 {{--                        </div>--}}
                         <div data-mdb-input-init class="form-outline mb-3">
-                            <input type="number" class="form-control" id="player_steam_id" name="player_steam_id" required/>
                             <label class="form-label" for="player_steam_id">Player Steam ID</label>
+                            <input type="number" class="form-control" id="player_steam_id" name="player_steam_id" required/>
                         </div>
                         <div data-mdb-input-init class="form-outline mb-3">
                             <label class="form-label" for="type">Type</label>
@@ -85,5 +90,8 @@
             </div>
         </div>
     </div>
-@endsection
-@vite(['resources/js/mutes/add.ts'])
+        <x-slot:footerFiles>
+            <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+            @vite(['resources/js/mutes/add.ts'])
+        </x-slot>
+</x-base-layout>

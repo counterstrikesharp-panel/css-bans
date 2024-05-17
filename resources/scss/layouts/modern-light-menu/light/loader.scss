@@ -1,0 +1,33 @@
+@import '../../../light/base/base';
+div#load_screen {
+  background: rgb(236, 239, 255);
+  opacity: 1;
+  position: fixed;
+  z-index: 999999;
+  top: 0px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+
+  .loader {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  .loader-content {
+    right: 0;
+    align-self: center;
+
+    .spinner-grow {
+      width: 2.5rem;
+      height: 2.5rem
+    }
+    
+  }
+}
+
+.spinner-grow {
+  color: #304aca;
+}

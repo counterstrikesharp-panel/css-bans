@@ -26,7 +26,7 @@ function loadRanks() {
             {
                 "data": "name" , "render": function (data, type, row, meta) {
                     const truncatedName = truncatePlayerName(data);
-                    return `<div class="ranksList"><span class="list-profile"><img src="${row.avatar}" /><a href="https://steamcommunity.com/profiles/${row.player_steamid}">${truncatedName}</a></span><p class="text-muted mb-0">Last seen: <span class="badge badge-info rounded-pill d-inline">${row.last_seen}</span></p></div>`;
+                    return `<div class="ranksList"><span class="list-profile"><img src="${row.avatar}" /><a href="https://steamcommunity.com/profiles/${row.player_steamid}">${truncatedName}</a></span><p class="text-muted mb-0">Last seen: <span class="badge badge-light-info rounded-pill d-inline">${row.last_seen}</span></p></div>`;
                 }
             },
             {

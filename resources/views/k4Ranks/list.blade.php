@@ -1,7 +1,13 @@
-@php use App\Helpers\PermissionsHelper; @endphp
-@extends('layouts.app')
-
-@section('content')
+<x-base-layout :scrollspy="false">
+    <x-slot:pageTitle>
+        Ranks - CSS-BANS
+    </x-slot>
+        @vite(['resources/scss/dark/assets/components/datatable.scss'])
+        <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <x-slot:headerFiles>
+        <link rel="stylesheet" href="{{asset('plugins/notification/snackbar/snackbar.min.css')}}">
+        @vite(['resources/scss/light/plugins/notification/snackbar/custom-snackbar.scss'])
+    </x-slot>
     @if (session('success'))
         <x-alert type="success" :message="session('success')"/>
     @endif
@@ -52,6 +58,12 @@
             </div>
         </div>
     </section>
-@endsection
-@vite(['resources/js/ranks/ranks.ts'])
+        <x-slot:footerFiles>
+            @vite(['resources/js/ranks/ranks.ts'])
+            <script>
+                const ranksListUrl = '{!! env('VITE_SITE_DIR') !!}/list/ranks';
+            </script>
+        </x-slot>
+</x-base-layout>
+
 

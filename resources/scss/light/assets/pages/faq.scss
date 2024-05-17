@@ -1,0 +1,140 @@
+@import '../../base/base';
+/*
+    Tab Section
+*/
+
+.faq .faq-layouting .fq-tab-section {
+  background: transparent;
+  padding-top: 65px;
+
+  h2 {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 45px;
+    letter-spacing: 0px;
+    text-align: center;
+    color: #060818;
+
+    span {
+      color: $primary;
+    }
+  }
+
+  .accordion .card {
+    border: 1px solid #e0e6ed;
+    border-radius: 6px;
+    margin-bottom: 4px;
+    background: #fff;
+    box-shadow: 0 0 40px 0 rgb(94 92 154 / 6%);
+
+    .card-header {
+      padding: 0;
+      border: none;
+      background: none;
+
+      > div {
+        padding: 15px 19px;
+        font-weight: 600;
+        font-size: 16px;
+        color: $primary;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+
+        &[aria-expanded="true"] {
+          border-bottom: none;
+          background: #eceffe;
+        }
+      }
+
+      div {
+        .faq-q-title {
+          overflow: hidden;
+          font-size: 14px;
+          color: #888ea8;
+          font-weight: 600;
+          letter-spacing: 1px;
+          align-self: center;
+        }
+
+        &[aria-expanded="true"] .faq-q-title {
+          color: $primary;
+        }
+
+        .icons {
+          display: inline-block;
+
+          svg {
+            color: #888ea8;
+            transition: .5s;
+          }
+        }
+
+        &[aria-expanded="true"] .icons svg {
+          color: $primary;
+        }
+      }
+    }
+
+    &.show .card-header .icons svg {
+      transform: rotate(180deg);
+    }
+
+    .card-header div svg.feather-thumbs-up {
+      cursor: pointer;
+      vertical-align: bottom;
+      margin-right: 10px;
+      width: 18px;
+      color: #888ea8;
+      fill: rgba(0, 23, 55, 0.08);
+    }
+
+    &:hover .card-header div svg.feather-thumbs-up {
+      color: $primary;
+      fill: rgba(27, 85, 226, 0.2392156863);
+    }
+
+    .card-header div {
+      &[aria-expanded="true"] svg.feather-thumbs-up {
+        color: $primary;
+        fill: rgba(27, 85, 226, 0.2392156863);
+      }
+
+      span.faq-like-count {
+        font-size: 13px;
+        font-weight: 700;
+        color: #888ea8;
+        fill: rgba(0, 23, 55, 0.08);
+      }
+    }
+
+    &:hover .card-header div span.faq-like-count, .card-header div[aria-expanded="true"] span.faq-like-count {
+      color: $primary;
+      fill: rgba(27, 85, 226, 0.2392156863);
+    }
+
+    .card-body {
+      padding: 19px 30px;
+
+      p {
+        font-size: 13px;
+        line-height: 23px;
+        letter-spacing: 1px;
+        color: #515365;
+      }
+    }
+  }
+}
+
+/*
+    Media Query
+*/
+@media (max-width: 575px) {
+  .faq .faq-layouting .fq-tab-section {
+    padding: 35px 25px;
+
+    .accordion .card .card-header div svg.feather-code {
+      display: none;
+    }
+  }
+}

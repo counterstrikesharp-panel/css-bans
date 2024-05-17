@@ -1,0 +1,62 @@
+@import '../../../base/base';
+.maintanence-hero-img img {
+  width: 62px;
+  height: 62px;
+}
+
+body {
+  &:before {
+    display: none;
+  }
+}
+
+body.maintanence {
+  color: #888ea8;
+  height: 100%;
+  font-size: 0.875rem;
+  background: #060818;
+  background-image: linear-gradient(to bottom, #a8edea 0%, #fed6e3 100%);
+  > .maintanence-content {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+  }
+}
+
+.maintanence {
+  .error-title {
+    margin-top: 65px;
+    color: $dark;
+    font-weight: 600;
+    font-size: 54px;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+
+  .error-text {
+    margin-top: 40px;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 0;
+    color: #515365;
+  }
+
+  a.btn {
+    width: 134px;
+    padding: 6px;
+    font-size: 17px;
+    border: none;
+    letter-spacing: 2px;
+    box-shadow: none;
+  }
+
+  .text {
+    color: #506690;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 21px;
+  }
+}

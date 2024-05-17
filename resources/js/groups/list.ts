@@ -1,9 +1,11 @@
 import DataTable from 'datatables.net-dt';
+import 'datatables.net-responsive';
 let dataTable = null;
 function loadGroups() {
     dataTable = new DataTable("#groupsList", {
         "processing": true,
         "serverSide": true,
+        responsive: true,
         "ajax": {
             "url": groupsListUrl,
             "headers": {
