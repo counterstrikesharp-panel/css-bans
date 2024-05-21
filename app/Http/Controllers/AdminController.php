@@ -104,7 +104,7 @@ class AdminController extends Controller
                     }
                 }
             }
-            return redirect()->route('admins.list')->with('success', 'Admin added successfully to '.count($adminAddedToServerCount).' Servers');
+            return redirect()->route('admins.list')->with('success', __('admins.createdSuccessfully', ['to_server_count' => count($adminAddedToServerCount)]));
         } catch (\Exception $e) {
             return Redirect::back()->withErrors(['msg' => 'There was an error saving the admin: ' . $e->getMessage()]);
         }
@@ -193,7 +193,7 @@ class AdminController extends Controller
         $groups = SaGroups::all();
         $adminGroups = [];
         if ($admin->isEmpty()) {
-            return redirect()->route('admins.list')->with('error', 'Admin does not exists for the server!. Add Admin!');
+            return redirect()->route('admins.list')->with('error', __('admins.adminDoesntexists'));
         }
         $permissions = Permission::all();
         $servers = SaServer::all();
@@ -308,7 +308,7 @@ class AdminController extends Controller
                     'ends' => isset($validated['ends']) ? CommonHelper::formatDate($validated['ends']) : null
                 ]);
         }
-        return redirect()->route('admins.list')->with('success', 'Admin updated successfully.');
+        return redirect()->route('admins.list')->with('success', __('admins.updateSuccessfully'));
     }
 
     public function showDeleteForm($player_steam)
@@ -329,7 +329,7 @@ class AdminController extends Controller
             ->whereIn('server_id', $serverIds)
             ->delete();
 
-        return redirect()->route('admins.list')->with('success', 'Admin deleted successfully.');
+        return redirect()->route('admins.list')->with('success', __('admins.deltedSuccesfully'));
     }
 
     public function createGroup()
@@ -373,7 +373,7 @@ class AdminController extends Controller
                     }
                 }
             }
-            return redirect()->route('admins.list')->with('success', 'Group added successfully to '.count($groupAddedToServerCount).' Servers');
+            return redirect()->route('admins.list')->with('success', __('admins.groupAddedSuccess', ['to_server_count' => count($groupAddedToServerCount)]));
         } catch (\Exception $e) {
             return Redirect::back()->withErrors(['msg' => 'There was an error saving the group: ' . $e->getMessage()]);
         }
@@ -440,7 +440,7 @@ class AdminController extends Controller
             ->update([
                 'ends' => isset($validated['ends']) ? CommonHelper::formatDate($validated['ends']) : null
             ]);
-        return redirect()->route('admins.list')->with('success', 'Admin Group(s) updated successfully.');
+        return redirect()->route('admins.list')->with('success', __('admins.groupupdateSuccess'));
     }
 
     public function getGroupsList(Request $request)
@@ -583,7 +583,7 @@ class AdminController extends Controller
 
         }
 
-        return redirect()->route('groups.list')->with('success', 'Group deleted successfully.');
+        return redirect()->route('groups.list')->with('success', __('admins.groupDeletedSuccess'));
 
     }
 }

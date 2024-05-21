@@ -43,13 +43,13 @@ class LoginController extends Controller
                     $user->save();
                 }
                 Auth::login($user);
-                return redirect()->route('home')->with('success', 'Steam authentication successful.');;
+                return redirect()->route('home')->with('success', __('admins.steamAuthSuccess'));;
             } else {
-                return redirect()->route('home')->with('error', 'Steam authentication failed.');
+                return redirect()->route('home')->with('error', __('admins.steamAuthError'));
             }
         } catch (\Exception $e) {
             Log::error('auth.error'. $e->getMessage());
-            return redirect()->route('home')->with('error', 'Error occurred during Steam authentication.');
+            return redirect()->route('home')->with('error', __('admins.errorSteam'));
         }
     }
 }

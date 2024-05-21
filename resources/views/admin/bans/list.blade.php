@@ -1,7 +1,7 @@
 @php use App\Helpers\PermissionsHelper; @endphp
 <x-base-layout :scrollspy="false">
     <x-slot:pageTitle>
-        Bans - CSS-BANS
+        {{ __('dashboard.bans') }} - CSS-BANS
     </x-slot>
     @vite(['resources/scss/dark/assets/components/datatable.scss'])
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
@@ -28,12 +28,12 @@
         <div class="card">
             @if(PermissionsHelper::hasBanPermission())
                 <div class="mt-3 d-flex justify-content-end p-1">
-                    <a href="{{env('VITE_SITE_DIR')}}/ban/add" class="col-md- btn btn-success">Add Ban</a>
+                    <a href="{{env('VITE_SITE_DIR')}}/ban/add" class="col-md- btn btn-success">{{ __('admins.addBans') }}</a>
                 </div>
             @endif
             <div class="card-header text-center py-3">
                 <h5 class="mb-0 text-center">
-                    <strong>Bans</strong>
+                    <strong>{{ __('dashboard.bans') }}</strong>
                 </h5>
             </div>
             <div class="card-body">
@@ -41,18 +41,18 @@
                     <table class="table table-hover " id="bansList" style="width:100%">
                         <thead>
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Player</th>
-                            <th scope="col">IP</th>
-                            <th scope="col">Banned By Admin</th>
-                            <th scope="col">Reason</th>
-                            <th scope="col">Duration</th>
-                            <th scope="col">Ends</th>
-                            <th scope="col">Banned</th>
-                            <th scope="col">Server</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Action</th>
-                            <th scope="col">Progress</th>
+                            <th scope="col">{{ __('admins.id') }}</th>
+                            <th scope="col">{{ __('dashboard.player') }}</th>
+                            <th scope="col">{{ __('dashboard.ip') }}</th>
+                            <th scope="col">{{ __('admins.bannedBy') }}</th>
+                            <th scope="col">{{ __('admins.banReason') }}</th>
+                            <th scope="col">{{ __('admins.banDuration') }}</th>
+                            <th scope="col">{{ __('admins.ends') }}</th>
+                            <th scope="col">{{ __('admins.banned') }}</th>
+                            <th scope="col">{{ __('dashboard.server') }}</th>
+                            <th scope="col">{{ __('admins.status') }}</th>
+                            <th scope="col">{{ __('admins.action') }}</th>
+                            <th scope="col">{{ __('admins.progress') }}</th>
                         </tr>
                         </thead>
                         <tbody id="serverList">

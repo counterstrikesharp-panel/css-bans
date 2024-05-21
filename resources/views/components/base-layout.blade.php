@@ -47,6 +47,7 @@
     @vite(['resources/scss/dark/assets/components/list-group.scss'])
     @vite(['resources/scss/light/assets/elements/alert.scss'])
     @vite(['resources/scss/dark/assets/elements/alert.scss'])
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <!-- CUSTOM HEADERS IF ANY -->
     {{$headerFiles}}
     <!-- END GLOBAL MANDATORY STYLES -->
@@ -121,6 +122,7 @@
 
         <!-- END GLOBAL MANDATORY STYLES -->
         {{$footerFiles}}
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <x-loader/>
 </body>
 </html>

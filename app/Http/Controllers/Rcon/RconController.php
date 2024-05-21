@@ -42,7 +42,7 @@ class RconController extends Controller
             }
             return redirect()->route('rcon')->with(
                 [
-                    'success' => 'Command Executed Successfully',
+                    'success' => __('admins.rconStatusSuccess'),
                     'data' => $output
                 ]
             );
@@ -50,7 +50,7 @@ class RconController extends Controller
             Log::error('rcon.execute.error ' . $e->getMessage());
             return redirect()->route('rcon')->with(
                 [
-                    'error' => 'Failed to execute command!',
+                    'error' => __('admins.rconStatusFailed'),
                     'data' => $e->getMessage()
                 ]
             );

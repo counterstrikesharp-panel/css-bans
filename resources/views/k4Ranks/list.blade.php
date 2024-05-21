@@ -1,6 +1,6 @@
 <x-base-layout :scrollspy="false">
     <x-slot:pageTitle>
-        Ranks - CSS-BANS
+        {{ __('admins.ranks') }} - CSS-BANS
     </x-slot>
         @vite(['resources/scss/dark/assets/components/datatable.scss'])
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
@@ -27,7 +27,7 @@
         <div class="card">
             <div class="card-header text-center py-3">
                 <h5 class="mb-0 text-center">
-                    <strong>Ranks</strong>
+                    <strong>{{ __('admins.ranks') }}</strong>
                 </h5>
             </div>
             <div class="card-body">
@@ -35,19 +35,19 @@
                     <table class="table table-hover table-borderless" id="ranksList" style="width:100%">
                         <thead>
                         <tr>
-                            <th>Position</th>
-                            <th>Player</th>
-                            <th>CS Rating</th>
-                            <th>Rank</th>
-                            <th>Kills <i class="fas fa-skull-crossbones"></i></th>
-                            <th>Deaths <i class="fas fa-skull"></i></th>
-                            <th>Assists <i class="fas fa-hands-helping"></i></th>
-                            <th>Headshots <i class="fas fa-bullseye"></i></th>
-                            <th>Rounds CT <i class="fas fa-trophy"></i></th>
-                            <th>Rounds T <i class="fas fa-trophy"></i></th>
-                            <th>Rounds Overall <i class="fas fa-trophy"></i></th>
-                            <th>Games Won <i class="fas fa-trophy"></i></th>
-                            <th>Games Lost <i class="fas fa-times-circle"></i></th>
+                            <th>{{ __('dashboard.position') }}</th>
+                            <th>{{ __('dashboard.player') }}</th>
+                            <th>{{ __('dashboard.csRating') }}</th>
+                            <th>{{ __('dashboard.rank') }}</th>
+                            <th>{{ __('dashboard.kills') }} <i class="fas fa-skull-crossbones"></i></th>
+                            <th>{{ __('dashboard.deaths') }} <i class="fas fa-skull"></i></th>
+                            <th>{{ __('admins.assists') }} <i class="fas fa-hands-helping"></i></th>
+                            <th>{{ __('admins.headhost') }} <i class="fas fa-bullseye"></i></th>
+                            <th>{{ __('admins.ct') }} <i class="fas fa-trophy"></i></th>
+                            <th>{{ __('admins.t') }} <i class="fas fa-trophy"></i></th>
+                            <th>{{ __('admins.overall') }} <i class="fas fa-trophy"></i></th>
+                            <th>{{ __('admins.gameswon') }} <i class="fas fa-trophy"></i></th>
+                            <th>{{ __('admins.gameslost') }} <i class="fas fa-times-circle"></i></th>
                         </tr>
                         </thead>
                         <tbody >

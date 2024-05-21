@@ -1,7 +1,7 @@
 @php use App\Helpers\PermissionsHelper; @endphp
 <x-base-layout :scrollspy="false">
     <x-slot:pageTitle>
-        Groups - CSS-BANS
+        {{ __('admins.Groups') }} - CSS-BANS
     </x-slot>
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <x-slot:headerFiles>
@@ -30,10 +30,10 @@
                     <table class="table table-hover " id="groupsList" style="width:100%">
                         <thead>
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Group</th>
-                            <th scope="col">Flags</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">{{ __('admins.id') }}</th>
+                            <th scope="col">{{ __('admins.group') }}</th>
+                            <th scope="col">{{ __('admins.flags') }}</th>
+                            <th scope="col">{{ __('admins.action') }}</th>
                         </tr>
                         </thead>
                         <tbody>

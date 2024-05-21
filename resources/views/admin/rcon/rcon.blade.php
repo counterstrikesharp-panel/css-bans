@@ -15,7 +15,7 @@
         </div>
     @endif
     <x-slot:pageTitle>
-        Logs - CSS-BANS
+        Rcon - CSS-BANS
         </x-slot>
 
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
@@ -34,9 +34,9 @@
                 }
             </style>
             </x-slot>
-            <div class="row layout-top-spacing rcon-container">
+            <div class="row layout-top-spacing rcon-containers">
                 <div class="alert alert-light-success alert-dismissible fade show mb-4" role="alert">
-                    <strong>Note:</strong> Rcon password will be saved automatically on first successful command execution
+                    <strong>{{ __('admins.note') }}</strong> {{ __('admins.rconPasswordNote') }}
                 </div>
                 <pre id="rcon_output">
                     {{session('data')}}
@@ -44,7 +44,7 @@
                 <form class="form-group" action="{{ route('rcon.execute', ['server_id' => $serverId ?? $servers->first()->id]) }}" method="POST">
                     @csrf
                     <div class="col-md-12">
-                        <label>Server</label>
+                        <label>{{ __('dashboard.server') }}</label>
                         <select id="servers" class="form-select" aria-label="Default select example">
                            @foreach($servers as $server)
                                 <option selected="{{($server->id==$serverId) ? 'selected' :''}}" value="{{$server->id}}">{{$server->hostname}} ({{$server->address}})</option>
@@ -53,11 +53,11 @@
                     </div>
                     <div class="row">
                         <div class="col-md-8">
-                            <label>Rcon Command</label>  <input name="command" type="text" required class="form-control"/>
+                            <label>{{ __('admins.rconCommand') }}</label>  <input name="command" type="text" required class="form-control"/>
                         </div>
                         <div class="col-md-4">
 
-                            <label>Password</label> <input type="password" name="password" required value="{{ !empty($server->rcon?->password) ? Illuminate\Support\Facades\Crypt::decrypt($server->rcon?->password): ''}}" class="form-control"/>
+                            <label>{{ __('admins.rconPassword') }}</label> <input type="password" name="password" required value="{{ !empty($server->rcon?->password) ? Illuminate\Support\Facades\Crypt::decrypt($server->rcon?->password): ''}}" class="form-control"/>
                         </div>
                     </div>
                     <div>

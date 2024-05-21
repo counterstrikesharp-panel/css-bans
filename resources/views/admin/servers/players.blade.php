@@ -9,10 +9,10 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th width="20">Name</th>
-            <th>Frags</th>
-            <th>Time</th>
-            <th>Actions</th>
+            <th width="20">{{ __('admins.serverListPlayerName') }}</th>
+            <th>{{ __('admins.playerFrags') }}</th>
+            <th>{{ __('admins.playerPlayTime') }}</th>
+            <th>{{ __('admins.actions') }}</th>
         </tr>
         </thead>
         <tbody>

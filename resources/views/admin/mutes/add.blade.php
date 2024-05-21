@@ -1,6 +1,6 @@
 <x-base-layout :scrollspy="false">
     <x-slot:pageTitle>
-        Mutes - CSS-BANS
+        {{ __('dashboard.mutes') }} - CSS-BANS
     </x-slot>
     <x-slot:headerFiles>
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -25,7 +25,7 @@
         <div class="col-md-8">
             <div class="card shadow">
                 <div class="card-body">
-                    <h5 class="card-title text-center mb-4">Add Mute</h5>
+                    <h5 class="card-title text-center mb-4">{{ __('admins.addMute') }}</h5>
                     <form action="{{ route('mute.store') }}" method="POST">
                         @csrf
 {{--                        disabled for future use--}}
@@ -33,11 +33,11 @@
 {{--                            <strong>Note:</strong> You can Mute a player either by Steam ID or Player IP or by both.--}}
 {{--                        </div>--}}
                         <div data-mdb-input-init class="form-outline mb-3">
-                            <label class="form-label" for="player_steam_id">Player Steam ID</label>
+                            <label class="form-label" for="player_steam_id">{{ __('admins.playerSteam') }}</label>
                             <input type="number" class="form-control" id="player_steam_id" name="player_steam_id" required/>
                         </div>
                         <div data-mdb-input-init class="form-outline mb-3">
-                            <label class="form-label" for="type">Type</label>
+                            <label class="form-label" for="type">{{ __('admins.muteType') }}</label>
                             <select class="form-select" id="type" name="type">
                                 <option value="GAG">GAG</option>
                                 <option value="MUTE">MUTE</option>
@@ -54,7 +54,7 @@
 {{--                            <label class="form-label" for="player_name">Player Name (Required only if no steam id is specified)</label>--}}
 {{--                        </div>--}}
                         <div data-mdb-input-init class="mb-3">
-                            <label class="form-label" for="reason">Reason</label>
+                            <label class="form-label" for="reason">{{ __('admins.banReason') }}</label>
                             <textarea type="text" class="form-control" id="reason" name="reason" required></textarea>
                         </div>
 
@@ -62,13 +62,13 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="permanent" name="permanent">
                                 <label class="form-check-label" for="permanent">
-                                    Permanent (Never Expire)
+                                    {{ __('admins.permanent') }}
                                 </label>
                             </div>
                         </div>
 
                         <div data-mdb-input-init class="mb-3">
-                            <label class="form-label" for="duration">Duration</label>
+                            <label class="form-label" for="duration">{{ __('admins.banDuration') }}</label>
                             <input  type="datetime-local"  min="{{ date('Y-m-d\TH:i') }}" class="form-control active" id="duration" name="duration" required/>
                         </div>
 
@@ -83,7 +83,7 @@
                             </select>
                         </div>
                         <div class="mt-3">
-                            <center> <button type="submit" class="btn btn-primary col-md-2 mx-auto">Add Mute</button></center>
+                            <center> <button type="submit" class="btn btn-primary col-md-2 mx-auto">{{ __('admins.addMute') }}</button></center>
                         </div>
                     </form>
                 </div>

@@ -1,7 +1,7 @@
 @php use App\Helpers\PermissionsHelper; @endphp
 <x-base-layout :scrollspy="false">
     <x-slot:pageTitle>
-        Mutes - CSS-BANS
+        {{ __('dashboard.mutes') }} - CSS-BANS
     </x-slot>
 
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
@@ -29,7 +29,7 @@
         <div class="card">
             @if(PermissionsHelper::hasMutePermission())
                 <div class="mt-3 d-flex justify-content-end p-1">
-                    <a href="{{env('VITE_SITE_DIR')}}/mute/add" class="col-md- btn btn-success">Add Mute</a>
+                    <a href="{{env('VITE_SITE_DIR')}}/mute/add" class="col-md- btn btn-success">{{ __('admins.addMute') }}</a>
                 </div>
             @endif
             <div class="card-header text-center py-3">
@@ -42,17 +42,17 @@
                     <table class="table table-hover " id="mutesList" style="width:100%">
                         <thead>
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Player</th>
-                            <th scope="col">Muted By Admin</th>
-                            <th scope="col">Reason</th>
-                            <th scope="col">Duration</th>
-                            <th scope="col">Ends</th>
-                            <th scope="col">Muted</th>
-                            <th scope="col">Server</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Action</th>
-                            <th scope="col">Progress</th>
+                            <th scope="col">{{ __('admins.id') }}</th>
+                            <th scope="col">{{ __('dashboard.player') }}</th>
+                            <th scope="col">{{ __('admins.mutedBy') }}</th>
+                            <th scope="col">{{ __('admins.banReason') }}</th>
+                            <th scope="col">{{ __('admins.banDuration') }}</th>
+                            <th scope="col">{{ __('admins.ends') }}</th>
+                            <th scope="col">{{ __('admins.muted') }}</th>
+                            <th scope="col">{{ __('dashboard.server') }}</th>
+                            <th scope="col">{{ __('admins.status') }}</th>
+                            <th scope="col">{{ __('admins.action') }}</th>
+                            <th scope="col">{{ __('admins.progress') }}</th>
                         </tr>
                         </thead>
                         <tbody>

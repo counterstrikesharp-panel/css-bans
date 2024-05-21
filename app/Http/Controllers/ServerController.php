@@ -102,7 +102,7 @@ class ServerController extends Controller
                 $error = 'Failed to get server players!';
             }
         } else {
-            $error = 'Could not connect to server! Check your firewall gameserver/web ports!';
+            $error = __('admins.rconError');
         }
         return view('admin.servers.players', compact('players', 'server', 'error'));
     }
@@ -208,14 +208,14 @@ class ServerController extends Controller
             } else {
                 return response()->json([
                     'status' => 'success',
-                    'message' => "Command Executed Successfully."
+                    'message' => __('admins.rconSuccess')
                 ]);
             }
         } catch(\Exception $e){
             Log::error('rcon.players.error ' . $e->getMessage());
             return response()->json([
                 'status' => 'error',
-                'message' => 'An error occurred while executing the command.'
+                'message' => __('admins.rconStatusFailed')
             ], 500);
         }
     }

@@ -2,7 +2,7 @@
 <x-base-layout :scrollspy="false">
 
     <x-slot:pageTitle>
-        Dashboard - CSS-BANS
+       {{ __('dashboard.title') }} - CSS-BANS
     </x-slot>
 
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
@@ -35,13 +35,13 @@
                         <p>Version: {{ $updates['version'] }}</p>
                         <div>{!! $updates['notes'] !!}</div>
                     @else
-                        You are using the latest version {{config('app.version')}}.
+                        {{ __('dashboard.versionText') }} {{config('app.version')}}.
                     @endif
-                    <small>This is only visible to you.</small>
+                    <small>{{ __('dashboard.versionVisible') }}</small>
                     <ul class="list-unstyled">
-                        <li class="mb-1"><i class="fas fa-check-circle me-2 text-success"></i>Ban Management</li>
-                        <li class="mb-1"><i class="fas fa-check-circle me-2 text-success"></i>Mute Management</li>
-                        <li class="mb-1"><i class="fas fa-check-circle me-2 text-success"></i>Admin Management</li>
+                        <li class="mb-1"><i class="fas fa-check-circle me-2 text-success"></i>{{ __('dashboard.banMangement') }}</li>
+                        <li class="mb-1"><i class="fas fa-check-circle me-2 text-success"></i>{{ __('dashboard.muteMangement') }}</li>
+                        <li class="mb-1"><i class="fas fa-check-circle me-2 text-success"></i>{{ __('dashboard.adminManagement') }}</li>
                     </ul>
                 </div>
             @endif
@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="text-end">
                                     <h1>{{$totalServers}}</h1>
-                                    <p class="mb-0">Servers</p>
+                                    <p class="mb-0">{{ __('dashboard.servers') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -70,7 +70,7 @@
                                 </div>
                                 <div class="text-end">
                                     <h1>{{$totalBans}}</h1>
-                                    <p class="mb-0">Bans</p>
+                                    <p class="mb-0">{{ __('dashboard.bans') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                                 </div>
                                 <div class="text-end">
                                     <h1>{{$totalMutes}}</h1>
-                                    <p class="mb-0">Mutes</p>
+                                    <p class="mb-0">{{ __('dashboard.mutes') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="text-end">
                                     <h1>{{$totalAdmins}}</h1>
-                                    <p class="mb-0">Admins</p>
+                                    <p class="mb-0">{{ __('dashboard.admins') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -113,20 +113,20 @@
                 <div class="card top-players ">
                     <div class="card-header text-center py-3">
                         <h5 class="mb-0 text-center">
-                            <strong>Top Players <span class="badge badge-info">5 of {{$topPlayersData['totalPlayers']}} Players</span></strong>
+                            <strong>{{ __('dashboard.topPlayers') }} <span class="badge badge-info">5 {{ __('dashboard.of') }} {{$topPlayersData['totalPlayers']}} {{ __('dashboard.players') }}</span></strong>
                         </h5>
                     </div>
                     <table class="table-responsive table align-middle mb-0 table-borderless">
                         <thead class="bg-light">
                         <tr>
-                            <th width="25px">Position</th>
-                            <th>Player</th>
-                            <th>CS Rating</th>
-                            <th>Rank</th>
-                            <th><i class="fas fa-skull-crossbones"></i> Kills </th>
-                            <th><i class="fas fa-skull"></i> Deaths </th>
-                            <th><i class="fas fa-trophy"></i> WON</th>
-                            <th><i class="fas fa-times-circle"></i> LOST </th>
+                            <th width="25px">{{ __('dashboard.position') }}</th>
+                            <th>{{ __('dashboard.player') }}</th>
+                            <th>{{ __('dashboard.csRating') }}</th>
+                            <th>{{ __('dashboard.rank') }}</th>
+                            <th><i class="fas fa-skull-crossbones"></i> {{ __('dashboard.kills') }} </th>
+                            <th><i class="fas fa-skull"></i> {{ __('dashboard.deaths') }} </th>
+                            <th><i class="fas fa-trophy"></i> {{ __('dashboard.won') }}</th>
+                            <th><i class="fas fa-times-circle"></i> {{ __('dashboard.lost') }} </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -138,7 +138,7 @@
                                         <img src="{{$player->avatar}}" alt="" style="width: 45px; height: 45px" class="rounded-circle"/>
                                         <div class="ms-3">
                                             <p class="fw-bold mb-1"><a href="https://steamcommunity.com/profiles/{{$player->player_steamid}}/">{{ $player->name }}</p>
-                                            <p class="text-muted mb-0">Last seen: <span class="badge badge-light-info rounded-pill d-inline">{{ \Carbon\Carbon::parse($player->k4stats->lastseen)->diffForHumans() }}</span></p>
+                                            <p class="text-muted mb-0">{{ __('dashboard.lastSeen') }}: <span class="badge badge-light-info rounded-pill d-inline">{{ \Carbon\Carbon::parse($player->k4stats->lastseen)->diffForHumans() }}</span></p>
                                         </div>
                                     </div>
                                 </td>
@@ -161,7 +161,7 @@
             <div class="card">
                 <div class="card-header text-center py-3">
                     <h5 class="mb-0 text-center">
-                        <strong>Servers</strong>
+                        <strong>{{ __('dashboard.servers') }}</strong>
                     </h5>
                 </div>
                 <div class="card-body">
@@ -169,11 +169,11 @@
                         <table class="table table-hover text-nowrap table-borderless">
                             <thead>
                             <tr>
-                                <th scope="col">Server</th>
-                                <th scope="col">Players</th>
-                                <th scope="col">IP</th>
-                                <th scope="col">Port</th>
-                                <th scope="col">Map</th>
+                                <th scope="col">{{ __('dashboard.server') }}</th>
+                                <th scope="col">{{ __('dashboard.players') }}</th>
+                                <th scope="col">{{ __('dashboard.ip') }}</th>
+                                <th scope="col">{{ __('dashboard.port') }}</th>
+                                <th scope="col">{{ __('dashboard.map') }}</th>
                                 <th scope="col"></th>
                             </tr>
                             </thead>
@@ -192,7 +192,7 @@
                     <div class="card">
                         <div class="card-header text-center py-3">
                             <h5 class="mb-0 text-center">
-                                <strong>Recent Bans</strong>
+                                <strong>{{ __('dashboard.recentBans') }}</strong>
                             </h5>
                         </div>
                         <div class="card-body">
@@ -200,10 +200,10 @@
                                 <table class="table table-hover table-borderless">
                                     <thead>
                                     <tr>
-                                        <th scope="col" class="th-lg">Player</th>
-                                        <th scope="col" class="th-lg">Steam</th>
-                                        <th scope="col" class="th-lg">Added</th>
-                                        <th scope="col" class="th-lg">Expires</th>
+                                        <th scope="col" class="th-lg">{{ __('dashboard.player') }}</th>
+                                        <th scope="col" class="th-lg">{{ __('dashboard.steam') }}</th>
+                                        <th scope="col" class="th-lg">{{ __('dashboard.added') }}</th>
+                                        <th scope="col" class="th-lg">{{ __('dashboard.expires') }}</th>
                                         <th scope="col" class="th-lg"></th>
                                     </tr>
                                     </thead>
@@ -219,7 +219,7 @@
                     <div class="card">
                         <div class="card-header text-center py-3">
                             <h5 class="mb-0 text-center">
-                                <strong>Recent Mutes</strong>
+                                <strong>{{ __('dashboard.recentMutes') }}</strong>
                             </h5>
                         </div>
                         <div class="card-body">
@@ -227,10 +227,10 @@
                                 <table class="table table-hover table-borderless">
                                     <thead>
                                     <tr>
-                                        <th scope="col" class="th-lg">Player</th>
-                                        <th scope="col" class="th-lg">Steam</th>
-                                        <th scope="col" class="th-lg">Added</th>
-                                        <th scope="col" class="th-lg">Expires</th>
+                                        <th scope="col" class="th-lg">{{ __('dashboard.player') }}</th>
+                                        <th scope="col" class="th-lg">{{ __('dashboard.steam') }}</th>
+                                        <th scope="col" class="th-lg">{{ __('dashboard.added') }}</th>
+                                        <th scope="col" class="th-lg">{{ __('dashboard.expires') }}</th>
                                         <th scope="col" class="th-lg"></th>
                                     </tr>
                                     </thead>

@@ -115,7 +115,7 @@ class MutesController extends Controller
             // If all unmutes are successful, commit the transaction
             DB::commit();
 
-            return response()->json(['success' => true, 'message' => 'All players unmuted successfully']);
+            return response()->json(['success' => true, 'message' => __('admins.unmuteSuccess')]);
         } catch (\Exception $e) {
             // If any error occurs, rollback the transaction
             DB::rollBack();
@@ -193,7 +193,7 @@ class MutesController extends Controller
             return Redirect::back()->withErrors(['msg' => 'Mutes already exist for all specified servers.']);
         }
 
-        return redirect()->route('list.mutes')->with('success', 'Mute added successfully');
+        return redirect()->route('list.mutes')->with('success', __('admins.muteAdded'));
     }
 
     public function edit($id)
@@ -227,7 +227,7 @@ class MutesController extends Controller
             $mute->status = 'ACTIVE';
             $mute->type = $validatedData['type'];
             $mute->save();
-            return redirect()->route('list.mutes')->with('success', 'Mute updated successfully');
+            return redirect()->route('list.mutes')->with('success', __('admins.muteUpdate'));
         } catch(\Exception $e) {
             Log::error('mute.update.error: ' . $e->getMessage());
             return Redirect::back()->withErrors(['msg' => 'There was an error while updating the mute.']);

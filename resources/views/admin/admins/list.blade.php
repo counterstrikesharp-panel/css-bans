@@ -1,7 +1,7 @@
 @php use App\Helpers\PermissionsHelper; @endphp
 <x-base-layout :scrollspy="false">
     <x-slot:pageTitle>
-        Admins - CSS-BANS
+        {{ __('admins.title') }} - CSS-BANS
     </x-slot>
     @vite(['resources/scss/dark/assets/components/datatable.scss'])
 
@@ -19,27 +19,27 @@
         <div class="card">
             <div class="card-header text-center py-3">
                 <h5 class="mb-0 text-center">
-                    <strong>Admins</strong>
+                    <strong>{{ __('admins.title') }}</strong>
                 </h5>
             </div>
             <div class="card-body">
                 @if(PermissionsHelper::isSuperAdmin())
                     <div class="mt-3 d-flex justify-content-end p-1">
-                        <a href="{{env('VITE_SITE_DIR')}}/admin/create" class="col-md- btn btn-success">Add Admin</a>
+                        <a href="{{env('VITE_SITE_DIR')}}/admin/create" class="col-md- btn btn-success">{{ __('admins.addAdminButton') }}</a>
                     </div>
                 @endif
                     <div class="table-responsive display responsive nowrap">
                         <table class="table table-hover " id="adminsList" style="width:100%">
                         <thead>
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Player</th>
-                            <th scope="col">Flags</th>
-                            <th scope="col">Servers</th>
-                            <th scope="col">Created</th>
-                            <th scope="col">Ends</th>
+                            <th scope="col">{{ __('admins.id') }}</th>
+                            <th scope="col">{{ __('dashboard.player') }}</th>
+                            <th scope="col">{{ __('admins.flags') }}</th>
+                            <th scope="col">{{ __('dashboard.servers') }}</th>
+                            <th scope="col">{{ __('admins.created') }}</th>
+                            <th scope="col">{{ __('admins.ends') }}</th>
                             @if(\App\Helpers\PermissionsHelper::isSuperAdmin())
-                                <th scope="col">Actions</th>
+                                <th scope="col">{{ __('admins.actions') }}</th>
                             @endif
                             <th scope="col"></th>
                         </tr>

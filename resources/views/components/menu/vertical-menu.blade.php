@@ -38,7 +38,7 @@
                                 <img src="{{ Auth::user()?->avatar ?: Vite::asset('resources/images/profile-30.png') }}" alt="avatar">
                             </div>
                             <div class="profile-content">
-                                <h6 class="">{{Auth::user()?->name ? : 'Guest'}}</h6>
+                                <h6 class="">{{Auth::user()?->name ? :  __('admins.guest') }}</h6>
                                 <p>
                                     @if(!PermissionsHelper::isSuperAdmin())
                                         @if(PermissionsHelper::hasMutePermission())
@@ -48,7 +48,7 @@
                                             <i class="fas fa-ban fa-fw me-3"></i>
                                         @endif
                                     @else
-                                        Panel Owner
+                                        {{ __('admins.panelOwner') }}
                                     @endif
                                 </p>
                             </div>
@@ -61,7 +61,7 @@
                         <a href="{{getAppSubDirectoryPath();}}/" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                                <span>Dashboard</span>
+                                <span>{{ __('dashboard.title') }}</span>
                             </div>
                         </a>
                     </li>
@@ -74,7 +74,7 @@
                         <a href="{{getAppSubDirectoryPath();}}/list/bans" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <i class="fas fa-ban fa-fw me-3"></i>
-                                <span>Bans</span>
+                                <span>{{ __('dashboard.bans') }}</span>
                             </div>
                         </a>
                     </li>
@@ -82,30 +82,30 @@
                     <li class="menu {{ Request::is('list/mutes') ? 'active' : '' }}">
                         <a href="{{getAppSubDirectoryPath();}}/list/mutes" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
-                                <i class="fas fa-microphone-alt-slash fa-fw me-3"></i> <span>Mutes</span>
+                                <i class="fas fa-microphone-alt-slash fa-fw me-3"></i> <span>{{ __('dashboard.mutes') }}</span>
                             </div>
                         </a>
                     </li>
                     <li class="menu menu-heading">
-                        <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>Stats</span></div>
+                        <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>{{ __('admins.stats') }}</span></div>
                     </li>
                     <li class="menu {{ Request::is('list/ranks') ? "active" : "" }}">
-                        <a href="{{getAppSubDirectoryPath()}}/list/ranks" aria-expanded="{{ Request::is('*/app/invoice/*') ? "true" : "false" }}" class="dropdown-toggle">
+                        <a href="{{getAppSubDirectoryPath()}}/list/ranks"  class="dropdown-toggle">
                             <div class="">
-                                <i class="fas fa-trophy fa-fw me-3"></i><span>Ranks</span>
+                                <i class="fas fa-trophy fa-fw me-3"></i><span>{{ __('admins.ranks') }}</span>
                             </div>
                         </a>
                     </li>
                     @if(PermissionsHelper::isSuperAdmin() || PermissionsHelper::hasBanPermission() || PermissionsHelper::hasMutePermission())
                         <li class="menu menu-heading">
-                            <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>Admin</span></div>
+                            <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>{{ __('admins.admin') }}</span></div>
                         </li>
                     @endif
                     @if(PermissionsHelper::isSuperAdmin())
                         <li class="menu {{ Request::is('*admin*') ? 'active' : '' }}">
                             <a href="{{getAppSubDirectoryPath();}}/list/admins" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
-                                    <i class="fas fa-users-cog fa-fw me-3"></i><span>Admins</span>
+                                    <i class="fas fa-users-cog fa-fw me-3"></i><span>{{ __('admins.title') }}</span>
                                 </div>
                             </a>
                         </li>
@@ -114,7 +114,7 @@
                         <li class="menu {{ Request::is('ban/add') ? 'active' : '' }}">
                             <a href="{{getAppSubDirectoryPath();}}/ban/add" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
-                                    <i class="fas fa-plus fa-fw me-3"></i><span>Add Ban</span>
+                                    <i class="fas fa-plus fa-fw me-3"></i><span>{{ __('admins.addBans') }}</span>
                                 </div>
                             </a>
                         </li>
@@ -123,7 +123,7 @@
                         <li class="menu {{ Request::is('mute/add') ? 'active' : '' }}">
                             <a href="{{getAppSubDirectoryPath();}}/mute/add" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
-                                    <i class="fas fa-plus fa-fw me-3"></i><span>Add Mute</span>
+                                    <i class="fas fa-plus fa-fw me-3"></i><span>{{ __('admins.addMute') }}</span>
                                 </div>
                             </a>
                         </li>
@@ -132,47 +132,47 @@
                         <li class="menu {{ Request::is('list/groups') ? 'active' : '' }}">
                             <a href="{{getAppSubDirectoryPath();}}/list/groups" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
-                                    <i class="fas fa-users fa-fw me-3"></i><span>All Groups</span>
+                                    <i class="fas fa-users fa-fw me-3"></i><span>{{ __('admins.allGroups') }}</span>
                                 </div>
                             </a>
                         </li>
                         <li class="menu {{ Request::is('group/create') ? 'active' : '' }}">
                             <a href="{{getAppSubDirectoryPath();}}/group/create" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
-                                    <i class="fas fa-plus fa-fw me-3"></i><span>Create Group</span>
+                                    <i class="fas fa-plus fa-fw me-3"></i><span>{{ __('admins.createGroup') }}</span>
                                 </div>
                             </a>
                         </li>
                     @endif
             @if(PermissionsHelper::isSuperAdmin())
                         <li class="menu menu-heading">
-                            <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>RCON</span></div>
+                            <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>{{ __('admins.rcon') }}</span></div>
                         </li>
                         <li class="menu {{ Request::is('rcon') ? 'active' : '' }}">
                             <a href="{{getAppSubDirectoryPath();}}/rcon" aria-expanded="false" class="dropdown-toggle">
-                                <div class=""><i class="fa fa-terminal fa-fw me-3"></i><span>RCON</span></div>
+                                <div class=""><i class="fa fa-terminal fa-fw me-3"></i><span>{{ __('admins.rcon') }}</span></div>
                             </a>
                         </li>
                     @endif
                     <li class="menu menu-heading">
-                        <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>Steam</span></div>
+                        <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>{{ __('dashboard.steam') }}</span></div>
                     </li>
                     <li class="menu">
                         @if(!empty(Auth::user()))
                             <a href="{{getAppSubDirectoryPath();}}/auth/logout" aria-expanded="false" class="dropdown-toggle">
 
-                                <div class=""><i class="fas fa-sign-out-alt fa-fw me-3"></i><span>Logout</span></div>
+                                <div class=""><i class="fas fa-sign-out-alt fa-fw me-3"></i><span>{{ __('admins.logout') }}</span></div>
                             </a>
                         @else
                             <a href="{{getAppSubDirectoryPath();}}/auth/steam" aria-expanded="false" class="dropdown-toggle">
-                                <div class=""><i class="fab fa-steam fa-fw me-3"></i><span>Login with Steam</span></div>
+                                <div class=""><i class="fab fa-steam fa-fw me-3"></i><span>{{ __('admins.login') }}</span></div>
                             </a>
                         @endif
                     </li>
 
                     @if(count(customLinks()) > 0)
                         <li class="menu menu-heading">
-                            <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>Other</span></div>
+                            <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>{{ __('admins.othger') }}</span></div>
                         </li>
                         @foreach(customLinks() as $link=>$title)
                                 <li class="menu">

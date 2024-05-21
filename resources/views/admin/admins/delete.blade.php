@@ -1,6 +1,10 @@
-@extends('layouts.app')
-
-@section('content')
+<x-base-layout :scrollspy="false">
+<x-slot:pageTitle>
+    {{ __('admins.title') }} - CSS-BANS
+    </x-slot>
+    <x-slot:headerFiles>
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    </x-slot>
     @if (session('error'))
         <x-alert type="danger" :message="session('error')"/>
     @endif
@@ -8,7 +12,7 @@
         <div class="col-md-8">
             <div class="card shadow">
                 <div class="card-header">
-                    <h5 class="card-title text-center mb-4">Delete Admin</h5>
+                    <h5 class="card-title text-center mb-4">{{ __('admins.delete') }}</h5>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('admin.delete', ['player_steam' => $admin->player_steamid]) }}" method="POST">
@@ -33,5 +37,10 @@
             </div>
         </div>
     </div>
-@endsection
-@vite(['resources/js/admin/delete.ts'])
+    <x-slot:footerFiles>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        @vite(['resources/js/admin/delete.ts'])
+    </x-slot>
+</x-base-layout>
+
+

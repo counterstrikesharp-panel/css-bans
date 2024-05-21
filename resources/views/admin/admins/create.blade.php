@@ -18,7 +18,7 @@
         $today = \Carbon\Carbon::now()->format('Y-m-d');
     @endphp
     <x-slot:pageTitle>
-        Admins - CSS-BANS
+        {{ __('admins.title') }} - CSS-BANS
     </x-slot>
     <x-slot:headerFiles>
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -27,26 +27,26 @@
         <div class="col-md-8">
             <div class="card shadow">
                 <div class="card-body">
-                    <h5 class="card-title text-center mb-4">Add New Admin</h5>
+                    <h5 class="card-title text-center mb-4">{{ __('admins.add') }}</h5>
                     <form action="{{ route('admin.store') }}" method="POST">
                         @csrf
                         <div class="alert alert-gradient alert-dismissible fade show mb-4" role="alert">
-                            <strong>Note:</strong> Newly added admins will not receive their permissions on the server until a map change. Alternatively, you can execute css_reloadadmins for immediate effect.
+                            <strong>{{ __('admins.note') }}</strong> {{ __('admins.noteMessage') }}
                         </div>
                         <div data-mdb-input-init class="form-outline mb-3">
-                            <label class="form-label" for="steam_id">Steam ID</label>
+                            <label class="form-label" for="steam_id">{{ __('admins.steam') }}</label>
                             <input type="number" class="form-control" id="steam_id" name="steam_id" required/>
                         </div>
 
                         <div data-mdb-input-init class="form-outline mb-3">
-                            <label class="form-label" for="player_name">Player Name</label>
+                            <label class="form-label" for="player_name">{{ __('admins.playerName') }}</label>
                             <input type="text" class="form-control" id="player_name" name="player_name" required/>
                         </div>
 
                         <div data-mdb-input-init class="form-outline mb-3">
                             <select multiple="multiple" class="form-select" id="server_id" name="server_ids[]" required>
-                                <option value="">Select Server</option>
-                                <option value="all">All Servers</option>
+                                <option value="">{{ __('admins.selectServers') }}</option>
+                                <option value="all">{{ __('admins.allServers') }}</option>
                                 @foreach($servers as $server)
                                         <option  value="{{ $server->id }}">{{ $server->hostname }}</option>
                                     @endforeach
@@ -54,17 +54,17 @@
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" checked type="radio" name="permission_type" id="flagsPermission" value="flags" />
-                            <label class="form-check-label" for="flagsPermission">Permissions</label>
+                            <label class="form-check-label" for="flagsPermission">{{ __('admins.Permissions') }}</label>
                         </div>
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="permission_type" id="groups" value="groups" />
-                            <label class="form-check-label" for="groups">Groups</label>
+                            <label class="form-check-label" for="groups">{{ __('admins.Groups') }}</label>
                         </div>
 
                         <div class="mb-3 flags">
                             <hr/>
-                            <label>Permissions</label><br>
+                            <label>{{ __('admins.Permissions') }}</label><br>
                             @foreach($permissions as $permission)
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="permissions[]" value="{{ $permission->id }}" id="permission{{ $permission->id }}">
@@ -76,9 +76,9 @@
                             <hr/>
                         </div>
                         <div class="mb-3 groups" style="display:none">
-                            <label class="form-label" for="group_id"><b>Groups</b></label>
+                            <label class="form-label" for="group_id"><b>{{ __('admins.Groups') }}</b></label>
                             <select multiple="multiple" class="form-select" id="group_id" name="groups[]">play
-                                <option value="">Select Group</option>
+                                <option value="">{{ __('admins.selectGroup') }}</option>
                                 @foreach($groups as $group)
                                     <option value="{{ $group->id }}">
                                         {{ $group->name }}
@@ -90,20 +90,20 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="permanent" name="permanent">
                                 <label class="form-check-label" for="permanent">
-                                    Permanent (Never Expire)
+                                    {{ __('admins.permanent') }}
                                 </label>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="ends">Ends On</label>
+                            <label for="ends">{{ __('admins.endsOn') }}</label>
                             <input type="date" id="ends" name="ends" min="{{$today}}" class="form-control" value="{{ old('ends') }}" required>
                         </div>
                         <div class="form-group">
-                            <label for="immunity">Immunity</label>
+                            <label for="immunity">{{ __('admins.Immunity') }}</label>
                             <input type="number" id="immunity" name="immunity"  class="form-control" value="{{ old('immunity') }}" required>
                         </div>
                         <div class="mt-3">
-                            <center> <button type="submit" class="btn btn-primary col-md-2 mx-auto ">Add Admin</button></center>
+                            <center> <button type="submit" class="btn btn-primary col-md-2 mx-auto ">{{ __('admins.addAdminButton') }}</button></center>
                         </div>
                     </form>
                 </div>

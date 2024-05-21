@@ -118,7 +118,7 @@ class BansController extends Controller
             // If all unbans are successful, commit the transaction
             DB::commit();
 
-            return response()->json(['success' => true, 'message' => 'All players unbanned successfully']);
+            return response()->json(['success' => true, 'message' => __('admins.bansSuccess')]);
         } catch (\Exception $e) {
             // If any error occurs, rollback the transaction
             DB::rollBack();
@@ -205,10 +205,10 @@ class BansController extends Controller
             return Redirect::back()->withErrors(['msg' => 'There was an error while adding the ban.']);
         }
         if (!$bansAdded) {
-            return Redirect::back()->withErrors(['msg' => 'Bans already exist for all specified servers.']);
+            return Redirect::back()->withErrors(['msg' => __('admins.banexists')]);
         }
 
-        return redirect()->route('list.bans')->with('success', 'Ban added successfully');
+        return redirect()->route('list.bans')->with('success', __('admins.bandAddedSuccess'));
     }
 
     public function edit($id)
@@ -244,7 +244,7 @@ class BansController extends Controller
             }
             $ban->status = 'ACTIVE';
             $ban->save();
-            return redirect()->route('list.bans')->with('success', 'Ban updated successfully');
+            return redirect()->route('list.bans')->with('success', __('admins.banUpdateSuccess'));
         } catch(\Exception $e) {
             Log::error('ban.update.error: ' . $e->getMessage());
             return Redirect::back()->withErrors(['msg' => 'There was an error while updating the ban.']);
