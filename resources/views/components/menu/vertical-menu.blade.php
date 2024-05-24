@@ -89,13 +89,15 @@
                     <li class="menu menu-heading">
                         <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>{{ __('admins.stats') }}</span></div>
                     </li>
-                    <li class="menu {{ Request::is('list/ranks') ? "active" : "" }}">
-                        <a href="{{getAppSubDirectoryPath()}}/list/ranks"  class="dropdown-toggle">
-                            <div class="">
-                                <i class="fas fa-trophy fa-fw me-3"></i><span>{{ __('admins.ranks') }}</span>
-                            </div>
-                        </a>
-                    </li>
+                    @if(env('RANKS') == 'Enabled')
+                        <li class="menu {{ Request::is('list/ranks') ? "active" : "" }}">
+                            <a href="{{getAppSubDirectoryPath()}}/list/ranks"  class="dropdown-toggle">
+                                <div class="">
+                                    <i class="fas fa-trophy fa-fw me-3"></i><span>{{ __('admins.ranks') }}</span>
+                                </div>
+                            </a>
+                        </li>
+                    @endif
                     @if(PermissionsHelper::isSuperAdmin() || PermissionsHelper::hasBanPermission() || PermissionsHelper::hasMutePermission())
                         <li class="menu menu-heading">
                             <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>{{ __('admins.admin') }}</span></div>
@@ -144,7 +146,7 @@
                             </a>
                         </li>
                     @endif
-            @if(PermissionsHelper::isSuperAdmin())
+                    @if(PermissionsHelper::isSuperAdmin())
                         <li class="menu menu-heading">
                             <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>{{ __('admins.rcon') }}</span></div>
                         </li>

@@ -19,7 +19,8 @@ return [
         'ru', // Russian
         'zh_CN', // Chinese Simplified
         'ja', // Japanese
-        'ko', // Korean
+        'ko', // Korean,
+        'ro', // Romanian
     ],
 
 

@@ -34,6 +34,8 @@
                         <option {{ app()->getLocale() == 'pt' ? 'selected' : '' }} value="pt" data-image="{{ Vite::asset('resources/images/1x1/br.svg') }}">Portuguese</option>
                         <option {{ app()->getLocale() == 'ru' ? 'selected' : '' }} value="ru" data-image="{{ Vite::asset('resources/images/1x1/ru.svg') }}">Russian</option>
                         <option {{ app()->getLocale() == 'zh_CN' ? 'selected' : '' }} value="zh_CN" data-image="{{ Vite::asset('resources/images/1x1/cn.svg') }}">Chinese</option>
+                        <option {{ app()->getLocale() == 'ro' ? 'selected' : '' }} value="ro" data-image="{{ Vite::asset('resources/images/1x1/ro.svg') }}">Romanian </option>
+
                     </select>
                 </li>
                 <li class="nav-item nav-link theme-toggle-item">
