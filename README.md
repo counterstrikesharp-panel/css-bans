@@ -1,5 +1,11 @@
 <div align="center">
 
+![GitHub Releases](https://img.shields.io/github/downloads/counterstrikesharp-panel/css-bans/total)
+![Build Status](https://github.com/counterstrikesharp-panel/css-bans/actions/workflows/main.yml/badge.svg)
+![GitHub Stars](https://img.shields.io/github/stars/counterstrikesharp-panel/css-bans)
+![GitHub Forks](https://img.shields.io/github/forks/counterstrikesharp-panel/css-bans)
+![GitHub Issues](https://img.shields.io/github/issues/counterstrikesharp-panel/css-bans)
+
 # CSS-BANS
 *Your CounterStrikeSharp Admin Web Panel*
 
@@ -8,7 +14,6 @@
 Admin web panel for CS2(counter-strike2) for managing bans, mutes, and more on Counter-Strike 2 servers using CounterStrikeSharp
 
 ![image](https://github.com/counterstrikesharp-panel/css-bans/assets/11420858/3d45df8b-70d0-4072-b35f-949380a6978e)
-
 
 ## Discord (Support)
 [![Discord](https://discordapp.com/api/guilds/1236186810405883904/widget.png?style=banner2)](https://discord.gg/fwg5DKZYqV)
