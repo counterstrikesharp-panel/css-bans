@@ -98,6 +98,15 @@
                             </a>
                         </li>
                     @endif
+                    @if(env('VIP') == 'Enabled')
+                        <li class="menu {{ Request::is('vip') ? "active" : "" }}">
+                            <a href="{{getAppSubDirectoryPath()}}/vip"  class="dropdown-toggle">
+                                <div class="">
+                                    <i class="fas fa-crown fa-fw me-3"></i><span>{{ __('admins.VIP') }}</span>
+                                </div>
+                            </a>
+                        </li>
+                    @endif
                     @if(PermissionsHelper::isSuperAdmin() || PermissionsHelper::hasBanPermission() || PermissionsHelper::hasMutePermission())
                         <li class="menu menu-heading">
                             <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>{{ __('admins.admin') }}</span></div>

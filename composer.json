@@ -14,7 +14,8 @@
         "laravel/tinker": "^2.7",
         "socialiteproviders/steam": "^4.2",
         "spatie/laravel-package-tools": "^1.16",
-        "xpaw/php-source-query-class": "^2.1"
+        "xpaw/php-source-query-class": "^2.1",
+        "ext-bcmath": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

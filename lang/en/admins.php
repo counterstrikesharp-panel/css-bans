@@ -100,4 +100,12 @@ return [
     'muteUpdate' => 'Mute updated successfully',
     'rconError' => 'Could not connect to server! Check your firewall gameserver/web ports!',
     'rconSuccess' => 'Command Executed Successfully.',
+    'VipDelete' => 'VIP Deleted Successfully.',
+    'VipDeleteError' => 'Failed to delete VIP!',
+    'editVIP' => 'Edit VIP',
+    'VIP' => 'VIP',
+    'addVIP' => 'Add VIP',
+    'updateVIP' => 'Update VIP',
+    'vipAddedSuccessfully' => 'VIP Added Successfully',
+    'playerNick' => 'Player Nick',
 ];

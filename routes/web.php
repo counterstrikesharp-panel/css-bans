@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LogViewerController;
 use App\Http\Controllers\Rcon\RconController;
 use App\Http\Controllers\ServerController;
+use App\Http\Controllers\VIP\VIPController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BansController;
@@ -112,4 +113,5 @@ Route::get('/logs', [LogViewerController::class, 'show'])->middleware('superadmi
 Route::get('/rcon/{server_id?}', [RconController::class, 'index'])->middleware('superadmin')->name('rcon');
 Route::post('/rcon/{server_id}', [RconController::class, 'execute'])->middleware('superadmin')->name('rcon.execute');
 
-
+Route::resource('vip', VIPController::class);
+Route::post('vip/list', 'VIPController@getVIPsList')->name('vip.list');

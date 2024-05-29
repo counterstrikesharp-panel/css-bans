@@ -18,8 +18,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Admin web panel for Counter-Strike 2 (CS2) servers. Manage bans, mutes, and more using CounterStrikeSharp for enhanced server administration by HobsRKM.">
-    <meta name="keywords" content="CS2 admin panel, Counter-Strike 2 server management, CS2 bans, CS2 mutes, CounterStrikeSharp, Counter-Strike 2 administration, CS2 server tools, css bans">
+    <meta name="description" content="CS2 Admin web panel for Counter-Strike 2 (CS2) servers. Manage bans, mutes, and more using CounterStrikeSharp for enhanced server administration by HobsRKM.">
+    <meta name="keywords" content="CS2 admin panel, CS2 admin web panel, Counter-Strike 2 server management, CS2 bans, CS2 mutes, CounterStrikeSharp, Counter-Strike 2 administration, CS2 server tools, css bans">
     <title>{{ $pageTitle }}</title>
     <link rel="icon" type="image/x-icon" href="{{url('/logo/favicon.ico')}}"/>
     @vite(['resources/scss/layouts/modern-light-menu/light/loader.scss'])

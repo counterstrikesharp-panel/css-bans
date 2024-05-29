@@ -205,7 +205,8 @@ export default defineConfig({
                 'resources/js/groups/edit.ts',
                 'resources/js/ranks/ranks.ts',
                 'resources/js/admin/delete.ts',
-                'resources/js/nav.js'
+                'resources/js/nav.js',
+                'resources/js/vip/list.ts'
             ],
             refresh: true,
         }),
