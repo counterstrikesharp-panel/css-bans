@@ -128,5 +128,13 @@
    "admins.t":"Rounds de TR",
    "admins.overall":"Rounds gerais",
    "admins.gameswon":"Jogos ganhos",
-   "admins.gameslost":"Jogos perdidos"
+   "admins.gameslost":"Jogos perdidos",
+    "admins.VipDelete": "VIP excluído com sucesso.",
+    "admins.VipDeleteError": "Falha ao excluir VIP!",
+    "admins.editVIP": "Editar VIP",
+    "admins.VIP": "VIP",
+    "admins.addVIP": "Adicionar VIP",
+    "admins.updateVIP": "Atualizar VIP",
+    "admins.vipAddedSuccessfully": "VIP adicionado com sucesso",
+    "admins.playerNick": "Apelido do jogador"
 }

@@ -128,6 +128,13 @@
     "dashboard.steam": "Steam",
     "dashboard.added": "Added",
     "dashboard.expires": "Expires",
-    "dashboard.recentMutes": "Recent Mutes"
-
+    "dashboard.recentMutes": "Recent Mutes",
+    "admins.VipDelete": "VIP Deleted Successfully.",
+    "admins.VipDeleteError": "Failed to delete VIP!",
+    "admins.editVIP": "Edit VIP",
+    "admins.VIP": "VIP",
+    "admins.addVIP": "Add VIP",
+    "admins.updateVIP": "Update VIP",
+    "admins.vipAddedSuccessfully": "VIP Added Successfully",
+    "admins.playerNick": "Player Nick"
 }

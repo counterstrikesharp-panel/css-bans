@@ -129,5 +129,13 @@
     "dashboard.steam": "Steam",
     "dashboard.added": "Adăugat",
     "dashboard.expires": "Expiră",
-    "dashboard.recentMutes": "Mute-uri Recente"
+    "dashboard.recentMutes": "Mute-uri Recente",
+    "admins.VipDelete": "VIP șters cu succes.",
+    "admins.VipDeleteError": "Ștergerea VIP a eșuat!",
+    "admins.editVIP": "Editează VIP",
+    "admins.VIP": "VIP",
+    "admins.addVIP": "Adaugă VIP",
+    "admins.updateVIP": "Actualizează VIP",
+    "admins.vipAddedSuccessfully": "VIP adăugat cu succes",
+    "admins.playerNick": "Porecla jucătorului"
 }
