@@ -72,8 +72,11 @@ class VIPController extends Controller
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>';
                 }
-                $profileName = $response['response']['players'][0]['personaname'];
-                $serverName = $vip->sid ? $vip->server->serverIp . ':' . $vip->server->port : '';
+                if(!empty($response))
+                    $profileName = $response['response']['players'][0]['personaname'];
+                else
+                    $profileName = $vip->name;
+                $serverName = $vip->server->serverIp . ':' . $vip->server->port;
 
                 $formattedData[] = [
                     'id' => $vip->id,
@@ -92,7 +95,7 @@ class VIPController extends Controller
             return response()->json([
                 'draw' => intval($request->input('draw')),
                 'recordsTotal' => $totalVips,
-                'recordsFiltered' => count($formattedData),
+                "recordsFiltered" => !empty($searchValue) ? count($formattedData) : $totalVips ,
                 'data' => $formattedData
             ]);
         } else {
