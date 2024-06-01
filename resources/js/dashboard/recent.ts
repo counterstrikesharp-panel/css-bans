@@ -34,7 +34,7 @@ function constructTableRows(data: any[]): string {
         if (progress === 100) {
             progressBarClass = 'bg-success';
         }
-        else if (item.status === "UNBANNED") {
+        else if (item.status === "UNBANNED" || item.status === "UNMUTED") {
             progressBarClass = 'bg-primary';
         }
         else if (item.duration === 0) {
