@@ -59,10 +59,10 @@ function loadMutes() {
                     let progress = calculateProgress(row.created, row.ends);
 
                     let progressBarClass = 'bg-warning';
-                    if (row.status.includes("Unmuted")) {
+                    if (row.status.includes("badge badge-primary")) {
                         progressBarClass = 'bg-primary';
                     }
-                    else if (row.duration.includes("Permanent")) {
+                    else if (row.duration.includes("badge badge-danger")) {
                         progressBarClass = 'bg-danger';
                     }
                     else {
