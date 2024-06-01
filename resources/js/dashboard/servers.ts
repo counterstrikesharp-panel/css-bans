@@ -32,8 +32,7 @@ function constructTableRows(data: any[]): string {
             </a>
             ${item.players}
         </td>
-        <td>${item.ip}</td>
-        <td>${item.port}</td>
+        <td>${item.ip}:${item.port}</td>
         <td>${item.map}</td>
         <td>${item.connect_button}</td>
       </tr>
