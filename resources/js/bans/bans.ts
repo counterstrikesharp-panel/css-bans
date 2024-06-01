@@ -55,10 +55,21 @@ function loadBans() {
             },
             {
                 "data": "duration", "render": function (data, type, row, meta) {
-                    const progress = calculateProgress(row.created, row.ends);
+                    let progress = calculateProgress(row.created, row.ends);
+
+                    let progressBarClass = 'bg-warning';
+                    if (row.status.includes("Unbanned")) {
+                        progressBarClass = 'bg-primary';
+                    }
+                    else if (row.duration.includes("Permanent")) {
+                        progressBarClass = 'bg-danger';
+                    }
+                    else {
+                        progressBarClass = 'bg-success';
+                    }
                     return `
                 <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated custom-progress bg-danger"
+                    <div class="progress-bar progress-bar-striped progress-bar-animated custom-progress ${progressBarClass}"
                     role="progressbar" style="width:  ${progress}%" aria-valuenow="${progress}"
                     aria-valuemin="0" aria-valuemax="100">
                     </div>
