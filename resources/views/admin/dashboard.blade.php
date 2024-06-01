@@ -172,7 +172,6 @@
                                 <th scope="col">{{ __('dashboard.server') }}</th>
                                 <th scope="col">{{ __('dashboard.players') }}</th>
                                 <th scope="col">{{ __('dashboard.ip') }}</th>
-                                <th scope="col">{{ __('dashboard.port') }}</th>
                                 <th scope="col">{{ __('dashboard.map') }}</th>
                                 <th scope="col"></th>
                             </tr>
