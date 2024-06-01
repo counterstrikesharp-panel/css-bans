@@ -32,7 +32,12 @@ function constructTableRows(data: any[]): string {
             </a>
             ${item.players}
         </td>
-        <td>${item.ip}:${item.port}</td>
+        <td>
+            <a href="#" class="copy-ipandport" data-ip="${item.ip}" data-port="${item.port}">
+                <i class="fas fa-copy"></i>
+            </a>
+            ${item.ip}:${item.port}
+        </td>
         <td>${item.map}</td>
         <td>${item.connect_button}</td>
       </tr>
@@ -59,6 +64,12 @@ document.addEventListener('click', function(event) {
         const action = event.target.parentNode.dataset.action;
         const server = event.target.parentNode.dataset.serverId;
         playerAction(playerName, action, server);
+    }
+    if (event.target.classList.contains('fa-copy')) {
+        event.preventDefault();
+        const ip = event.target.parentNode.dataset.ip;
+        const port = event.target.parentNode.dataset.port;
+        copyToClipboard(`${ip}:${port}`);
     }
 });
 
@@ -103,9 +114,28 @@ function playerAction(playerName: string, action: string, serverId: string) {
     });
 }
 
-
-
-
-
-
-
+function copyToClipboard(text) {
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => {
+            toastr.success('IP and port copied to clipboard!');
+        }).catch(err => {
+            console.error('Failed to copy text: ', err);
+            toastr.error('Failed to copy IP and port.');
+        });
+    } else {
+        // Fallback for older browsers
+        let textArea = document.createElement("textarea");
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            toastr.success('IP and port copied to clipboard!');
+        } catch (err) {
+            console.error('Fallback: Oops, unable to copy', err);
+            toastr.error('Failed to copy IP and port.');
+        }
+        document.body.removeChild(textArea);
+    }
+}
