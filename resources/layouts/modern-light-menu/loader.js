@@ -1,5 +1,4 @@
 window.addEventListener("load", function(){
-
     // Remove Loader
     var load_screen = document.getElementById("load_screen");
 
@@ -12,7 +11,7 @@ window.addEventListener("load", function(){
         settings: {
             layout: {
                 name: layoutName,
-                darkMode: false,
+                darkMode: themeMode,
             }
         },
         reset: false

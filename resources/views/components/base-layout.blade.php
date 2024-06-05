@@ -50,6 +50,8 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <!-- CUSTOM HEADERS IF ANY -->
     {{$headerFiles}}
+    <link rel="stylesheet" href="{{asset('plugins/notification/snackbar/snackbar.min.css')}}">
+    @vite(['resources/scss/light/plugins/notification/snackbar/custom-snackbar.scss'])
     <!-- END GLOBAL MANDATORY STYLES -->
 </head>
 <body @class([
@@ -122,7 +124,11 @@
 
         <!-- END GLOBAL MANDATORY STYLES -->
         {{$footerFiles}}
+        <script>
+            let themeMode = {{ env('DEFAULT_THEME_DARK', true) }}
+        </script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{asset('plugins/notification/snackbar/snackbar.min.js')}}"></script>
     <x-loader/>
 </body>
 </html>

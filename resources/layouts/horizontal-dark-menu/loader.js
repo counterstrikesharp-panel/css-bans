@@ -11,7 +11,7 @@ window.addEventListener("load", function(){
         settings: {
             layout: {
                 name: layoutName,
-                darkMode: true,
+                darkMode: themeMode,
             }
         },
         reset: false

@@ -4,7 +4,7 @@ var App = function() {
         lg: 992,
         md: 991,
         sm: 576
-    };
+    };offsetTop
     var Dom = {
         main: document.querySelector('html, body'),
         id: {

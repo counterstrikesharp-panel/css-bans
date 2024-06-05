@@ -135,6 +135,7 @@ export default defineConfig({
                 'resources/scss/dark/assets/pages/knowledge_base.scss',
                 'resources/scss/dark/assets/pages/error/error.scss',
                 'resources/scss/dark/assets/pages/error/style-maintanence.scss',
+                'resources/scss/common/common.scss',
 
                 /**
                  * =======================
@@ -206,7 +207,11 @@ export default defineConfig({
                 'resources/js/ranks/ranks.ts',
                 'resources/js/admin/delete.ts',
                 'resources/js/nav.js',
-                'resources/js/vip/list.ts'
+                'resources/js/vip/list.ts',
+                'resources/js/skins/weapons.ts',
+                'resources/js/skins/gloves.ts',
+                'resources/js/skins/agents.ts',
+                'resources/js/skins/music.ts'
             ],
             refresh: true,
         }),

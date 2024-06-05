@@ -84,7 +84,7 @@ class VIPController extends Controller
                     'player_nick' => $vip->name,
                     'sid' => $serverName,
                     'group' => $vip->group,
-                    'expires' => Carbon::createFromTimestamp($vip->expires)->toDateTimeString(),
+                    'expires' => empty($vip->expires) ? "<h6><span class='badge badge-primary'>Never Expires</span></h6>" : Carbon::createFromTimestamp($vip->expires)->toDateTimeString(),
                     'action' => $editAction . ' ' . $deleteAction,
                     'steam_profile' => $steamProfileLink ? "<a href='$steamProfileLink' target='_blank'>$profileName</a>" : '',
                     'avatar' => !empty($response['response']['players'][0]['avatar']) ? $response['response']['players'][0]['avatar'] : 'https://mdbootstrap.com/img/Photos/Avatars/img(32).jpg' ,

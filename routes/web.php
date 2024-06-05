@@ -115,3 +115,17 @@ Route::post('/rcon/{server_id}', [RconController::class, 'execute'])->middleware
 
 Route::resource('vip', VIPController::class);
 Route::post('vip/list', 'VIPController@getVIPsList')->name('vip.list');
+use App\Http\Controllers\WeaponSkinController;
+
+Route::get('/weapons/skins', [WeaponSkinController::class, 'index'])->name('weapons.skins.index');
+Route::post('/weapons/skins/apply', [WeaponSkinController::class, 'applySkin'])->name('weapons.skins.apply')->middleware('auth');
+Route::get('/weapons/load/{type}', [WeaponSkinController::class, 'load'])->name('weapons.load')->middleware('auth');
+Route::get('/weapons/loadGloves/{type}', [WeaponSkinController::class, 'loadGloves'])->middleware('auth');
+Route::post('/weapons/agents/apply', [WeaponSkinController::class, 'applyAgent'])->name('weapons.agents.apply')->middleware('auth');
+Route::post('/weapons/gloves/apply', [WeaponSkinController::class, 'applyGlove'])->name('weapons.gloves.apply')->middleware('auth');
+Route::post('/weapons/music/apply', [WeaponSkinController::class, 'applyMusic'])->name('weapons.music.apply')->middleware('auth');
+Route::post('/weapons/knives/apply', [WeaponSkinController::class, 'applyKnife'])->name('weapons.knives.apply')->middleware('auth');
+
+Route::get('/agents/skins', [WeaponSkinController::class, 'agents'])->name('agents')->middleware('auth');
+Route::get('/gloves/skins', [WeaponSkinController::class, 'gloves'])->name('gloves')->middleware('auth');
+Route::get('/music/kits', [WeaponSkinController::class, 'music'])->name('music')->middleware('auth');

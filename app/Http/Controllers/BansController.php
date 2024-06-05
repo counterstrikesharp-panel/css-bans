@@ -171,7 +171,9 @@ class BansController extends Controller
             foreach ($validatedData['server_ids'] as $serverId) {
                 $existingBan = SaBan::where(function ($query) use ($steamId, $playerIp, $serverId) {
                     $query->where('player_steamid', $steamId)
-                        ->orWhere('player_ip', $playerIp);
+                        ->when(!empty($playerIp), function ($query) use ($playerIp) {
+                            return $query->orWhere('player_ip', $playerIp);
+                        });
                     })
                     ->where('server_id', $serverId)
                     ->where('status', 'ACTIVE')
