@@ -21,11 +21,35 @@ class WeaponSkinController extends Controller
         // Group skins by weapon types dynamically
         $weaponTypes = [];
         foreach ($skins as $skin) {
-            $weaponType = explode('_', $skin['weapon_name'])[1]; // Extract weapon type
+            if(in_array($skin['weapon_defindex'], [
+                500,
+                503,
+                505,
+                506,
+                507,
+                508,
+                509,
+                512,
+                514,
+                515,
+                516,
+                517,
+                518,
+                519,
+                520,
+                521,
+                522,
+                523,
+                525,
+                526
+            ])) {
+                $weaponType = 'knife';
+            } else {
+                $weaponType = explode('_', $skin['weapon_name'])[1]; // Extract weapon type
+            }
             if (!isset($weaponTypes[$weaponType])) {
                 $weaponTypes[$weaponType] = [];
             }
-
             // Mark skin as applied if it exists in appliedSkins
             $skin['is_applied'] = $appliedSkins->contains(function ($value) use ($skin) {
                 return $value->weapon_defindex == $skin['weapon_defindex'] && $value->weapon_paint_id == $skin['paint'];
@@ -51,6 +75,30 @@ class WeaponSkinController extends Controller
         $appliedSkins = DB::table('wp_player_skins')->where('steamid', Auth::user()?->steam_id)->get();
 
         $filteredSkins = array_filter($skins, function($skin) use ($type) {
+            if($type == 'knife' && in_array($skin['weapon_defindex'], [
+                    500,
+                    503,
+                    505,
+                    506,
+                    507,
+                    508,
+                    509,
+                    512,
+                    514,
+                    515,
+                    516,
+                    517,
+                    518,
+                    519,
+                    520,
+                    521,
+                    522,
+                    523,
+                    525,
+                    526
+                ])){
+                 return true;
+            }
             return str_contains(strtolower($skin['weapon_name']), strtolower($type));
         });
 
@@ -82,6 +130,37 @@ class WeaponSkinController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
         $validated = $validator->validated();
+        if(in_array($validated['weapon_defindex'], [
+                500,
+                503,
+                505,
+                506,
+                507,
+                508,
+                509,
+                512,
+                514,
+                515,
+                516,
+                517,
+                518,
+                519,
+                520,
+                521,
+                522,
+                523,
+                525,
+                526
+            ])){
+            DB::table('wp_player_knife')->updateOrInsert(
+                [
+                    'steamid' => $validated['steamid'],
+                ],
+                [
+                    'knife' => $request->input('weapon_name'),
+                ]
+            );
+        }
         DB::table('wp_player_skins')->updateOrInsert(
             [
                 'steamid' => $validated['steamid'],
@@ -126,7 +205,11 @@ class WeaponSkinController extends Controller
         $gloves = json_decode(File::get(resource_path('json/gloves.json')), true);
 
         // Fetch applied gloves from the database
-        $appliedGloves = DB::table('wp_player_gloves')->where('steamid', Auth::user()?->steam_id)->get();
+        $appliedGloves = DB::table('wp_player_skins')
+            ->where('steamid', Auth::user()?->steam_id)
+            ->pluck('weapon_paint_id')
+            ->toArray();
+
         // Group gloves by paint name prefix
         $gloveTypes = [];
         foreach ($gloves as $glove) {
@@ -136,12 +219,11 @@ class WeaponSkinController extends Controller
             }
 
             // Mark glove as applied if it exists in appliedGloves
-            $glove['is_applied'] = $appliedGloves->contains(function ($value) use ($glove) {
-                return $value->weapon_defindex == $glove['weapon_defindex'];
-            });
+            $glove['is_applied'] = in_array($glove['paint'], $appliedGloves);
 
             $gloveTypes[$paintPrefix][] = $glove;
         }
+
         // Sort applied gloves to be first in each category
         foreach ($gloveTypes as $type => $gloves) {
             usort($gloves, function($a, $b) {
@@ -152,20 +234,24 @@ class WeaponSkinController extends Controller
 
         return view('weapons.gloves', compact('gloveTypes'));
     }
+
     public function loadGloves($type)
     {
         $gloves = json_decode(File::get(resource_path('json/gloves.json')), true);
-        $appliedGloves = DB::table('wp_player_gloves')->where('steamid', Auth::user()?->steam_id)->get();
+        $appliedGloves = DB::table('wp_player_skins')
+            ->where('steamid', Auth::user()?->steam_id)
+            ->pluck('weapon_paint_id')
+            ->toArray();
+
         $filteredGloves = array_filter($gloves, function($glove) use ($type) {
             return str_contains(strtolower($glove['paint_name']), strtolower($type));
         });
 
         // Mark glove as applied if it exists in appliedGloves
         foreach ($filteredGloves as &$glove) {
-            $glove['is_applied'] = $appliedGloves->contains(function ($value) use ($glove) {
-                return $value->weapon_defindex == $glove['weapon_defindex'];
-            });
+            $glove['is_applied'] = in_array($glove['paint'], $appliedGloves);
         }
+
         // Sort applied gloves to be first
         usort($filteredGloves, function($a, $b) {
             return $b['is_applied'] - $a['is_applied'];
@@ -173,6 +259,7 @@ class WeaponSkinController extends Controller
 
         return view('weapons.partials.gloves-types', ['gloves' => $filteredGloves]);
     }
+
 
     public function music()
     {
@@ -231,6 +318,10 @@ class WeaponSkinController extends Controller
         $validator = Validator::make($request->all(), [
             'steamid' => 'required|string',
             'weapon_defindex' => 'required|integer',
+            'weapon_paint_id' => 'required|integer',
+            'wearSelect' => 'required|numeric',
+            'wear' => 'nullable|numeric',
+            'seed' => 'nullable|integer',
         ]);
 
         if ($validator->fails()) {
@@ -240,12 +331,26 @@ class WeaponSkinController extends Controller
         $validated = $validator->validated();
 
         try {
+            // Update or insert in wp_player_gloves table
             DB::table('wp_player_gloves')->updateOrInsert(
                 [
                     'steamid' => $validated['steamid'],
                 ],
                 [
                     'weapon_defindex' => $validated['weapon_defindex'],
+                ]
+            );
+
+            // Update or insert in wp_player_skins table
+            DB::table('wp_player_skins')->updateOrInsert(
+                [
+                    'steamid' => $validated['steamid'],
+                    'weapon_defindex' => $validated['weapon_defindex'],
+                ],
+                [
+                    'weapon_paint_id' => $validated['weapon_paint_id'],
+                    'weapon_wear' => $validated['wearSelect'],
+                    'weapon_seed' => $validated['seed'] ?? 0,
                 ]
             );
 
@@ -272,25 +377,6 @@ class WeaponSkinController extends Controller
         );
 
         return response()->json(['success' => 'Music applied successfully!']);
-    }
-
-    public function applyKnife(Request $request)
-    {
-        $validated = $request->validate([
-            'steamid' => 'required|string',
-            'weapon_name' => 'required|string',
-        ]);
-
-        DB::table('wp_player_knife')->updateOrInsert(
-            [
-                'steamid' => $validated['steamid'],
-            ],
-            [
-                'knife' => $validated['weapon_name'],
-            ]
-        );
-
-        return response()->json(['success' => 'Knife applied successfully!']);
     }
 
 }

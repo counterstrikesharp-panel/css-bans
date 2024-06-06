@@ -61,10 +61,37 @@
                             <img id="selectedGloveImage" src="" alt="Glove Preview" class="img-fluid" style="max-width: 100px;"> <!-- Set max-width to control the size -->
                             <h5 id="selectedGloveName" class="mt-3"></h5>
                             <form id="applyGloveForm">
-                                <input type="hidden" id="steamid" name="steamid" value="{{Auth::user()->steam_id}}">
+                                <input type="hidden" id="steamid" name="steamid" value="{{ Auth::user()->steam_id }}">
                                 <input type="hidden" id="weapon_defindex" name="weapon_defindex">
-                                <input type="hidden" id="paint_id" name="paint_id">
-                                <button type="button" class="btn btn-primary mt-3" id="saveGloveButton">Save</button>
+                                <input type="hidden" id="weapon_paint_id" name="weapon_paint_id">
+                                <input type="hidden" id="weapon_name" name="weapon_name">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="wearSelect">Select Wear</label>
+                                            <select class="form-select" id="wearSelect" name="wearSelect" onchange="updateWearValue(this.value)">
+                                                <option value="0.00">Select Wear</option>
+                                                <option value="0.00">Factory New</option>
+                                                <option value="0.07">Minimal Wear</option>
+                                                <option value="0.15">Field-Tested</option>
+                                                <option value="0.38">Well-Worn</option>
+                                                <option value="0.45">Battle-Scarred</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="seed">Seed</label>
+                                            <input type="text" class="form-control" id="seed" name="seed" oninput="validateSeed(this)">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <label for="wear">Wear</label>
+                                    <input type="text" class="form-control" id="wear" name="wear" value="0">
+                                </div>
+                                <button type="button" class="btn btn-primary mt-3" id="saveGloveButton">Apply</button>
                             </form>
                         </div>
                     </div>
@@ -107,12 +134,14 @@
                         const gloveImage = card.find('img').attr('src');
                         const gloveName = card.find('b').text();
                         const weaponDefIndex = $(this).data('weapon-defindex');
-                        const paint = $(this).data('paint-id');
+                        const weaponPaintId = $(this).data('paint-id');
+                        const weaponName = $(this).data('weapon-name');
                         // Set the image source and name
                         $('#selectedGloveImage').attr('src', gloveImage);
                         $('#selectedGloveName').text(gloveName);
                         $('#weapon_defindex').val(weaponDefIndex);
-                        $('#paint_id').val(paint);
+                        $('#weapon_paint_id').val(weaponPaintId);
+                        $('#weapon_name').val(weaponName);
                         // Show the apply glove modal
                         $('#applyGloveModal').modal('show');
                     });
@@ -129,7 +158,7 @@
                         }).then(response => response.json()).then(data => {
                             if (data.success) {
                                 $('.glove_active').html('');
-                                $('#glove_'+$('#paint_id').val()).html('Active');
+                                $('#glove_'+$('#weapon_paint_id').val()).html('Active');
                                 Snackbar.show({
                                     text: 'Skin Applied Successfully.',
                                     actionTextColor: '#fff',
@@ -169,11 +198,16 @@
                         $('#glovePreviewModal').modal('show');
                     });
                 });
+                function validateSeed(input) {
+                    if (!/^\d*$/.test(input.value)) {
+                        input.value = input.value.replace(/[^\d]/g, '');
+                    }
+                }
+
+                function updateWearValue(value) {
+                    $('#wear').val(value);
+                }
             </script>
-
-
-
-
 
         </x-slot:footerFiles>
 </x-base-layout>

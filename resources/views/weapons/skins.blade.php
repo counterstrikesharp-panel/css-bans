@@ -155,13 +155,6 @@
                             $('#weapon_paint_id').val(weaponPaintId);
                             $('#weapon_name').val(weaponName);
 
-                            // Show or hide non-knife options
-                            if (weaponName.includes('weapon_knife')) {
-                                $('#non-knife-options').hide();
-                            } else {
-                                $('#non-knife-options').show();
-                            }
-
                             // Show the apply skin modal
                             $('#applySkinModal').modal('show');
                         });
@@ -171,12 +164,7 @@
                             const formData = new FormData(document.getElementById('applySkinForm'));
                             const weaponCategory = $('#weapon_category').val();
                             let route;
-
-                            if ($('#weapon_name').val().includes('weapon_knife')) {
-                                route = '{!! env('VITE_SITE_DIR') !!}/weapons/knives/apply';
-                            } else {
-                                route = '{!! env('VITE_SITE_DIR') !!}/weapons/skins/apply';
-                            }
+                            route = '{!! env('VITE_SITE_DIR') !!}/weapons/skins/apply';
 
                             fetch(route, {
                                 method: 'POST',
@@ -242,19 +230,15 @@
                 </x-slot>
                 @else
                     <!-- Login with Steam modal -->
-                    <div class="modal show" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true" style="display: block;">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="loginModalLabel">Login Required</h5>
-                                </div>
-                                <div class="modal-body text-center">
-                                    <p>You need to login with Steam to access this content.</p>
-                                    <a href="{{ getAppSubDirectoryPath()."/auth/steam" }}" class="btn btn-primary">Login with Steam</a>
-                                </div>
-                            </div>
+                    <div class="container">
+                        <div id="loginAlert" class="alert alert-gradient  fade show" role="alert" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1050;">
+                            <strong>Login Required!</strong> You need to login with Steam to access this content.
+                            <a href="{{ getAppSubDirectoryPath().'/auth/steam' }}" class="btn btn-success">
+                                <i class="fab fa-steam"></i> Login with Steam
+                            </a>
                         </div>
                     </div>
+
                     <x-slot:footerFiles>
                     </x-slot>
     @endauth
