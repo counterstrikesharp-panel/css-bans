@@ -24,7 +24,7 @@
                 </li>
                 <li class="nav-item dropdown">
                     <select id="language-dropdown" class="form-select">
-                        <option {{ app()->getLocale() == 'en' ? 'seRlected' : '' }} value="en" data-image="{{ Vite::asset('resources/images/1x1/us.svg') }}">English</option>
+                        <option {{ app()->getLocale() == 'en' ? 'selected' : '' }} value="en" data-image="{{ Vite::asset('resources/images/1x1/us.svg') }}">English</option>
                         <option {{ app()->getLocale() == 'de' ? 'selected' : '' }} value="de" data-image="{{ Vite::asset('resources/images/1x1/de.svg') }}">German</option>
                         <option {{ app()->getLocale() == 'es' ? 'selected' : '' }} value="es" data-image="{{ Vite::asset('resources/images/1x1/es.svg') }}">Spanish</option>
                         <option {{ app()->getLocale() == 'fr' ? 'selected' : '' }} value="fr" data-image="{{ Vite::asset('resources/images/1x1/fr.svg') }}">French</option>
