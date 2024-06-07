@@ -31,10 +31,12 @@ Admin web panel for CS2(counter-strike2) for managing bans, mutes, vip, skins, r
 - Live Bans/Mutes/Kicks 
 - Manage Groups
 - Rcon Panel
+- Skins
 
 ## Includes support for Modules
 - Ranks (K4system) View/listing [https://github.com/K4ryuu/K4-System]
 - VIP Core - Credits [https://github.com/partiusfabaa/cs2-VIPCore]
+- Skins (Weapon Paints)
 
 ## Requirements
 - PHP >= 8.1
