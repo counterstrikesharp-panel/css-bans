@@ -24,7 +24,7 @@
                                                 <span class="badge badge-warning">T</span>
                                             @endif
 
-                                            <span id="agent_{{$agent['model']}}" class="badge badge-{{ $agent['team'] == 3 ? 'primary' : 'warning' }}">{{ $agent['is_applied'] ? 'Active' : '' }}</span>
+                                            <span id="agent_{{$agent['model']}}" class="badge badge-{{ $agent['team'] == 3 ? 'primary' : 'warning' }}">{{ $agent['is_applied'] ? __('skins.active') : '' }}</span>
                                             <div class="loader-skins"></div> <!-- Add loader -->
                                             <img src="{{ $agent['image'] }}" class="card-img-top" alt="{{ $agent['agent_name'] }}" crossorigin="anonymous">
                                         </a>
@@ -35,7 +35,7 @@
                                                 </div>
                                                 <div class="col-12 text-center">
                                                     <button class="btn btn-primary apply-agent" data-agent-name="{{ $agent['model'] }}" data-team="{{ $agent['team'] }}">
-                                                        <i class="fas fa-cog"></i> Apply Agent
+                                                        <i class="fas fa-cog"></i> {{ __('agent.applyAgent') }}
                                                     </button>
                                                 </div>
                                             </div>
@@ -53,7 +53,7 @@
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="applyAgentModalLabel">Apply Agent Skin</h5>
+                            <h5 class="modal-title" id="applyAgentModalLabel">{{ __('agent.applyAgentSkin') }}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body text-center">
@@ -63,7 +63,7 @@
                                 <input type="hidden" id="steamid" name="steamid" value="{{Auth::user()->steam_id}}">
                                 <input type="hidden" id="team" name="team">
                                 <input type="hidden" id="agent_name" name="agent_name">
-                                <button type="button" class="btn btn-primary mt-3" id="saveAgentButton">Apply</button>
+                                <button type="button" class="btn btn-primary mt-3" id="saveAgentButton">{{ __('skins.apply') }}</button>
                             </form>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="skinPreviewModalLabel">Skin Preview</h5>
+                            <h5 class="modal-title" id="skinPreviewModalLabel">{{ __('skins.skinPreview') }}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -123,7 +123,7 @@
                         }).then(response => response.json()).then(data => {
                             if (data.success) {
                                 Snackbar.show({
-                                    text: 'Skin Applied Successfully.',
+                                    text: '{{ __("skins.applied") }}',
                                     actionTextColor: '#fff',
                                     backgroundColor: '#00ab55',
                                     pos: 'top-center'
@@ -139,7 +139,7 @@
                                 }
                                 alert('Validation failed:\n' + errorMessages);
                             } else {
-                                alert('An error occurred while applying the agent.');
+                                alert('{{ __("agent.error") }}');
                             }
                         }).catch(error => {
                             alert(error);

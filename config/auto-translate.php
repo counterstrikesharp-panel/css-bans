@@ -21,6 +21,7 @@ return [
         'ja', // Japanese
         'ko', // Korean,
         'ro', // Romanian
+        'cz', // Czech
     ],
 
 

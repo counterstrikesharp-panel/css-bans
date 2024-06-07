@@ -86,39 +86,41 @@
                             </div>
                         </a>
                     </li>
-                    <li class="menu menu-heading">
-                        <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>Weapon Paints</span></div>
-                    </li>
                     @if(env('SKINS') == 'Enabled')
+                    <li class="menu menu-heading">
+                        <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>{{ __('dashboard.weaponpaints') }}</span></div>
+                    </li>
                         <li class="menu {{ Request::is('*weapons/skins*') || Request::is('*gloves/skins*') || Request::is('*agents/skins*') || Request::is('*music/kits*') ? "active" : "" }}">
                             <a href="{{getAppSubDirectoryPath()}}/weapons/skins"  class="dropdown-toggle">
                                 <div class="">
-                                    <i class="fas fa-fire fa-fw me-3"></i><span>Skins</span>
+                                    <i class="fas fa-fire fa-fw me-3"></i><span>{{ __('dashboard.skins') }}</span>
                                 </div>
                             </a>
                         </li>
                     @endif
-                    <li class="menu menu-heading">
-                        <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>{{ __('admins.stats') }}</span></div>
-                    </li>
+                    @if(env('RANKS') == 'Enabled' || env('VIP') == 'Enabled')
+                        <li class="menu menu-heading">
+                            <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>{{ __('admins.stats') }}</span></div>
+                        </li>
 
-                    @if(env('RANKS') == 'Enabled')
-                        <li class="menu {{ Request::is('*list/ranks*') ? "active" : "" }}">
-                            <a href="{{getAppSubDirectoryPath()}}/list/ranks"  class="dropdown-toggle">
-                                <div class="">
-                                    <i class="fas fa-trophy fa-fw me-3"></i><span>{{ __('admins.ranks') }}</span>
-                                </div>
-                            </a>
-                        </li>
-                    @endif
-                    @if(env('VIP') == 'Enabled')
-                        <li class="menu {{ Request::is('*vip*') ? "active" : "" }}">
-                            <a href="{{getAppSubDirectoryPath()}}/vip"  class="dropdown-toggle">
-                                <div class="">
-                                    <i class="fas fa-crown fa-fw me-3"></i><span>{{ __('admins.VIP') }}</span>
-                                </div>
-                            </a>
-                        </li>
+                        @if(env('RANKS') == 'Enabled')
+                            <li class="menu {{ Request::is('*list/ranks*') ? "active" : "" }}">
+                                <a href="{{getAppSubDirectoryPath()}}/list/ranks"  class="dropdown-toggle">
+                                    <div class="">
+                                        <i class="fas fa-trophy fa-fw me-3"></i><span>{{ __('admins.ranks') }}</span>
+                                    </div>
+                                </a>
+                            </li>
+                        @endif
+                        @if(env('VIP') == 'Enabled')
+                            <li class="menu {{ Request::is('*vip*') ? "active" : "" }}">
+                                <a href="{{getAppSubDirectoryPath()}}/vip"  class="dropdown-toggle">
+                                    <div class="">
+                                        <i class="fas fa-crown fa-fw me-3"></i><span>{{ __('admins.VIP') }}</span>
+                                    </div>
+                                </a>
+                            </li>
+                        @endif
                     @endif
                     @if(PermissionsHelper::isSuperAdmin() || PermissionsHelper::hasBanPermission() || PermissionsHelper::hasMutePermission())
                         <li class="menu menu-heading">
