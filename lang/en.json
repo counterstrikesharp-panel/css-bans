@@ -179,5 +179,6 @@
     "admins.addVIP": "Add VIP",
     "admins.updateVIP": "Update VIP",
     "admins.vipAddedSuccessfully": "VIP Added Successfully",
-    "admins.playerNick": "Player Nick"
+    "admins.playerNick": "Player Nick",
+    "admins.settings": "Settings"
 }

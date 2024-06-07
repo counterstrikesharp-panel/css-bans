@@ -26,7 +26,11 @@ class VIP extends Model
         'sid' => 'integer',
         'expires' => 'integer'
     ];
-
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->setConnection('mysqlvip');
+    }
     public function server()
     {
         return $this->belongsTo(VIPServer::class, 'sid', 'serverId');

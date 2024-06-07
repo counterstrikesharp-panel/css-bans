@@ -128,3 +128,9 @@ Route::post('/weapons/music/apply', [WeaponSkinController::class, 'applyMusic'])
 Route::get('/agents/skins', [WeaponSkinController::class, 'agents'])->name('agents')->middleware('auth');
 Route::get('/gloves/skins', [WeaponSkinController::class, 'gloves'])->name('gloves')->middleware('auth');
 Route::get('/music/kits', [WeaponSkinController::class, 'music'])->name('music')->middleware('auth');
+
+
+use App\Http\Controllers\SettingsController;
+
+Route::get('/settings', [SettingsController::class, 'showSettings'])->name('settings.show')->middleware('superadmin');
+Route::post('/settings', [SettingsController::class, 'updateSettings'])->name('settings.update')->middleware('superadmin');
