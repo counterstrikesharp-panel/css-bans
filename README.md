@@ -11,9 +11,11 @@
 
 </div>
 
-Admin web panel for CS2(counter-strike2) for managing bans, mutes, and more on Counter-Strike 2 servers using CounterStrikeSharp
+Admin web panel for CS2(counter-strike2) for managing bans, mutes, vip, skins, ranks and more on Counter-Strike 2 servers using CounterStrikeSharp
 
 ![image](https://github.com/counterstrikesharp-panel/css-bans/assets/11420858/3d45df8b-70d0-4072-b35f-949380a6978e)
+![2](https://github.com/counterstrikesharp-panel/css-bans/assets/11420858/e0d9d5d0-f317-43ba-89a5-7dc1f593693d)
+![1](https://github.com/counterstrikesharp-panel/css-bans/assets/11420858/761f6764-4f4e-4271-bb5c-3f685e873b7d)
 
 ## Discord (Support)
 [![Discord](https://discordapp.com/api/guilds/1236186810405883904/widget.png?style=banner2)](https://discord.gg/fwg5DKZYqV)
