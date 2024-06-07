@@ -16,7 +16,7 @@ class WeaponSkinController extends Controller
         $skins = json_decode(File::get(resource_path('json/skins.json')), true);
 
         // Fetch applied skins from the database
-        $appliedSkins = DB::table('wp_player_skins')->where('steamid', Auth::user()?->steam_id)->get();
+        $appliedSkins =  DB::connection('mysqlskins')->table('wp_player_skins')->where('steamid', Auth::user()?->steam_id)->get();
 
         // Group skins by weapon types dynamically
         $weaponTypes = [];
@@ -72,7 +72,7 @@ class WeaponSkinController extends Controller
     public function load($type)
     {
         $skins = json_decode(File::get(resource_path('json/skins.json')), true);
-        $appliedSkins = DB::table('wp_player_skins')->where('steamid', Auth::user()?->steam_id)->get();
+        $appliedSkins =  DB::connection('mysqlskins')->table('wp_player_skins')->where('steamid', Auth::user()?->steam_id)->get();
 
         $filteredSkins = array_filter($skins, function($skin) use ($type) {
             if($type == 'knife' && in_array($skin['weapon_defindex'], [
@@ -152,7 +152,7 @@ class WeaponSkinController extends Controller
                 525,
                 526
             ])){
-            DB::table('wp_player_knife')->updateOrInsert(
+             DB::connection('mysqlskins')->table('wp_player_knife')->updateOrInsert(
                 [
                     'steamid' => $validated['steamid'],
                 ],
@@ -161,7 +161,7 @@ class WeaponSkinController extends Controller
                 ]
             );
         }
-        DB::table('wp_player_skins')->updateOrInsert(
+         DB::connection('mysqlskins')->table('wp_player_skins')->updateOrInsert(
             [
                 'steamid' => $validated['steamid'],
                 'weapon_defindex' => $validated['weapon_defindex'],
@@ -182,7 +182,7 @@ class WeaponSkinController extends Controller
         $agents = json_decode(File::get(resource_path('json/agents.json')), true);
 
         // Fetch applied agents from the database
-        $appliedAgents = DB::table('wp_player_agents')->where('steamid', Auth::user()?->steam_id)->first();
+        $appliedAgents =  DB::connection('mysqlskins')->table('wp_player_agents')->where('steamid', Auth::user()?->steam_id)->first();
 
         foreach ($agents as &$agent) {
             if ($appliedAgents) {
@@ -205,7 +205,7 @@ class WeaponSkinController extends Controller
         $gloves = json_decode(File::get(resource_path('json/gloves.json')), true);
 
         // Fetch applied gloves from the database
-        $appliedGloves = DB::table('wp_player_skins')
+        $appliedGloves =  DB::connection('mysqlskins')->table('wp_player_skins')
             ->where('steamid', Auth::user()?->steam_id)
             ->pluck('weapon_paint_id')
             ->toArray();
@@ -238,7 +238,7 @@ class WeaponSkinController extends Controller
     public function loadGloves($type)
     {
         $gloves = json_decode(File::get(resource_path('json/gloves.json')), true);
-        $appliedGloves = DB::table('wp_player_skins')
+        $appliedGloves =  DB::connection('mysqlskins')->table('wp_player_skins')
             ->where('steamid', Auth::user()?->steam_id)
             ->pluck('weapon_paint_id')
             ->toArray();
@@ -266,7 +266,7 @@ class WeaponSkinController extends Controller
         $music = json_decode(File::get(resource_path('json/music.json')), true);
 
         // Fetch applied music from the database
-        $appliedMusic = DB::table('wp_player_music')->where('steamid', Auth::user()?->steam_id)->get();
+        $appliedMusic =  DB::connection('mysqlskins')->table('wp_player_music')->where('steamid', Auth::user()?->steam_id)->get();
 
         foreach ($music as &$track) {
             $track['is_applied'] = $appliedMusic->contains(function ($value) use ($track) {
@@ -298,7 +298,7 @@ class WeaponSkinController extends Controller
         $validated = $validator->validated();
 
         try {
-            DB::table('wp_player_agents')->updateOrInsert(
+             DB::connection('mysqlskins')->table('wp_player_agents')->updateOrInsert(
                 [
                     'steamid' => $validated['steamid'],
                 ],
@@ -332,7 +332,7 @@ class WeaponSkinController extends Controller
 
         try {
             // Update or insert in wp_player_gloves table
-            DB::table('wp_player_gloves')->updateOrInsert(
+             DB::connection('mysqlskins')->table('wp_player_gloves')->updateOrInsert(
                 [
                     'steamid' => $validated['steamid'],
                 ],
@@ -342,7 +342,7 @@ class WeaponSkinController extends Controller
             );
 
             // Update or insert in wp_player_skins table
-            DB::table('wp_player_skins')->updateOrInsert(
+             DB::connection('mysqlskins')->table('wp_player_skins')->updateOrInsert(
                 [
                     'steamid' => $validated['steamid'],
                     'weapon_defindex' => $validated['weapon_defindex'],
@@ -367,7 +367,7 @@ class WeaponSkinController extends Controller
             'music_id' => 'required|integer',
         ]);
 
-        DB::table('wp_player_music')->updateOrInsert(
+         DB::connection('mysqlskins')->table('wp_player_music')->updateOrInsert(
             [
                 'steamid' => $validated['steamid'],
             ],
