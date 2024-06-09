@@ -156,6 +156,15 @@ CREATE TABLE `rcons` (
  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+DROP TABLE IF EXISTS server_visibility_settings;
+CREATE TABLE `server_visibility_settings` (
+`id` bigint unsigned NOT NULL AUTO_INCREMENT,
+`server_id` bigint unsigned NOT NULL,
+`is_visible` tinyint(1) NOT NULL DEFAULT '1',
+`created_at` timestamp NULL DEFAULT NULL,
+`updated_at` timestamp NULL DEFAULT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 --
 -- Dumping data for table `users`
 --

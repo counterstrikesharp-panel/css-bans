@@ -12,7 +12,7 @@
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.7",
-        "socialiteproviders/steam": "^4.2",
+        "hobsrkmsocialite/steam": "^1.0",
         "spatie/laravel-package-tools": "^1.16",
         "xpaw/php-source-query-class": "^2.1",
         "ext-bcmath": "*"
