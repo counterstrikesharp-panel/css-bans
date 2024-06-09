@@ -18,7 +18,7 @@
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="gloveModalLabel">Select Glove Type</h5>
+                            <h5 class="modal-title" id="gloveModalLabel">{{ __('gloves.select') }}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -54,7 +54,7 @@
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="applyGloveModalLabel">Apply Glove Skin</h5>
+                            <h5 class="modal-title" id="applyGloveModalLabel">{{ __('gloves.applyGloveSkin') }}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body text-center">
@@ -69,29 +69,29 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="wearSelect">Select Wear</label>
+                                            <label for="wearSelect">{{ __('skins.selectwear') }}</label>
                                             <select class="form-select" id="wearSelect" name="wearSelect" onchange="updateWearValue(this.value)">
-                                                <option value="0.00">Select Wear</option>
-                                                <option value="0.00">Factory New</option>
-                                                <option value="0.07">Minimal Wear</option>
-                                                <option value="0.15">Field-Tested</option>
-                                                <option value="0.38">Well-Worn</option>
-                                                <option value="0.45">Battle-Scarred</option>
+                                                <option value="0.01">{{ __('skins.selectwear') }}</option>
+                                                <option value="0.01">{{ __('skins.factoryNew') }}</option>
+                                                <option value="0.07">{{ __('skins.minimalWear') }}</option>
+                                                <option value="0.15">{{ __('skins.fieldTested') }}</option>
+                                                <option value="0.38">{{ __('skins.wellWorn') }}</option>
+                                                <option value="0.45">{{ __('skins.battleScarred') }}</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="seed">Seed</label>
+                                            <label for="seed">{{ __('skins.seed') }}</label>
                                             <input type="text" class="form-control" id="seed" name="seed" oninput="validateSeed(this)">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group mt-3">
-                                    <label for="wear">Wear</label>
+                                    <label for="wear">{{ __('gloves.wear') }}</label>
                                     <input type="text" class="form-control" id="wear" name="wear" value="0">
                                 </div>
-                                <button type="button" class="btn btn-primary mt-3" id="saveGloveButton">Apply</button>
+                                <button type="button" class="btn btn-primary mt-3" id="saveGloveButton">{{ __('skins.apply') }}</button>
                             </form>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="glovePreviewModalLabel">Glove Preview</h5>
+                        <h5 class="modal-title" id="glovePreviewModalLabel">{{ __('gloves.preview') }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body text-center">
@@ -160,7 +160,7 @@
                                 $('.glove_active').html('');
                                 $('#glove_'+$('#weapon_paint_id').val()).html('Active');
                                 Snackbar.show({
-                                    text: 'Skin Applied Successfully.',
+                                    text: '{{ __("skins.applied") }}',
                                     actionTextColor: '#fff',
                                     backgroundColor: '#00ab55',
                                     pos: 'top-center'
@@ -175,10 +175,10 @@
                                 }
                                 alert('Validation failed:\n' + errorMessages);
                             } else {
-                                alert('An error occurred while applying the glove.');
+                                alert('{{ __("gloves.error") }}');
                             }
                         }).catch(error => {
-                            alert('An error occurred while applying the glove.');
+                            alert('{{ __("gloves.error") }}');
                         });
                     });
 

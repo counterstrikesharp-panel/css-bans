@@ -46,7 +46,7 @@
         <div class="container mt-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h1>{{ __('Server Visibility Settings') }}</h1>
-                <button id="syncServersButton" class="btn btn-secondary">Sync New Servers</button>
+                <button id="syncServersButton" class="btn btn-secondary">{{ __('Sync New Servers') }}</button>
             </div>
             @if(session('success'))
                 <div class="alert alert-success">
@@ -97,7 +97,7 @@
                         </div>
                     </div>
                     <div class="card-footer text-center">
-                        <button type="submit" class="btn btn-primary">Update Settings</button>
+                        <button type="submit" class="btn btn-primary">{{ __('settings.update') }}</button>
                     </div>
                 </div>
             </form>
@@ -113,21 +113,21 @@
                     }).then(response => response.json()).then(data => {
                         if (data.success) {
                             Snackbar.show({
-                                text: 'New Servers Synced for visibility settings.',
+                                text: '{{ __("settings.newServers") }}',
                                 actionTextColor: '#fff',
                                 backgroundColor: '#00ab55',
                                 pos: 'top-center'
                             });
                         } else {
                             Snackbar.show({
-                                text: 'No New Servers Found to sync.',
+                                text: '{{ __("settings.noNewServers") }}',
                                 actionTextColor: '#fff',
                                 backgroundColor: '#ff0000',
                                 pos: 'top-center'
                             });
                         }
                     }).catch(error => {
-                        alert('An error occurred while syncing new servers.');
+                        alert('{{ __("settings.error") }}');
                     });
                 });
             </script>

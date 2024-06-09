@@ -79,12 +79,12 @@ class BansController extends Controller
                 "admin_steamid" => $ban->admin_steamid,
                 "admin_name" => $ban->admin_name,
                 "reason" => $ban->reason,
-                "duration" => $ban->duration == 0 && $ban->status != 'UNBANNED' ? "<h6><span class='badge badge-danger'>Permanent</span></h6>" : CommonHelper::minutesToTime($ban->duration),
+                "duration" => $ban->duration == 0 && $ban->status != 'UNBANNED' ? "<h6><span class='badge badge-danger'>" . __('dashboard.permanent') . "</span></h6>" : CommonHelper::minutesToTime($ban->duration),
                 "ends" => $ban->ends,
                 "created" => $ban->created,
                 "server_id" => $ban->server?->hostname,
                 'action' => $unbanAction." ".$editAction,
-                "status" => $ban->status == 'ACTIVE' ? "<h6><span class='badge badge-success'>Active</span></h6>" : ($ban->status == 'UNBANNED' ? "<h6><span class='badge badge-primary'>Unbanned</span></h6>" : "<h6><span class='badge badge-danger'>Expired</span></h6>"),
+                "status" => $ban->status == 'ACTIVE' ? "<h6><span class='badge badge-success'>" . __('dashboard.active') . "</span></h6>" : ($ban->status == 'UNBANNED' ? "<h6><span class='badge badge-primary'>" . __('dashboard.unbanned') . "</span></h6>" : "<h6><span class='badge badge-danger'>" . __('dashboard.expired') . "</span></h6>"),
             ];
         }
 

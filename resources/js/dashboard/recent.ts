@@ -28,7 +28,20 @@ function constructTableRows(data: any[]): string {
     let html = '';
 
     data.forEach((item, index) => {
-        const progress = calculateProgress(item.created, item.ends);
+        let progress = calculateProgress(item.created, item.ends);
+
+        let progressBarClass = 'bg-warning';
+        if (progress === 100) {
+            progressBarClass = 'bg-success';
+        }
+        else if (item.status === "UNBANNED" || item.status === "UNMUTED") {
+            progressBarClass = 'bg-primary';
+        }
+        else if (item.duration === 0) {
+            progressBarClass = 'bg-danger';
+        }
+
+        progress = isNaN(progress) ? 100 : progress;
         html += `
       <tr>
         <td>${truncatePlayerName(item.player_name)}</td>
@@ -37,7 +50,7 @@ function constructTableRows(data: any[]): string {
         <td>${item.ends}</td>
         <td>
             <div class="progress">
-                <div class="progress-bar progress-bar-striped progress-bar-animated custom-progress bg-danger"
+                <div class="progress-bar progress-bar-striped progress-bar-animated custom-progress ${progressBarClass}"
                 role="progressbar" style="width:  ${progress}%" aria-valuenow="${progress}"
                 aria-valuemin="0" aria-valuemax="100">
                 </div>

@@ -22,7 +22,7 @@
                     <div class="modal-dialog modal-lg modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="weaponModalLabel">Select Weapon Type</h5>
+                                <h5 class="modal-title" id="weaponModalLabel">{{ __('skins.select') }}</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-light-dark" data-bs-dismiss="modal"><i class="flaticon-cancel-12"></i> Close</button>
+                                <button class="btn btn-light-dark" data-bs-dismiss="modal"><i class="flaticon-cancel-12"></i> {{ __('skins.close') }}</button>
                             </div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                     <div class="modal-dialog modal-lg modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="applySkinModalLabel">Apply Skin</h5>
+                                <h5 class="modal-title" id="applySkinModalLabel">{{ __('skins.applySkin') }}</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body text-center">
@@ -79,20 +79,20 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="wearSelect">Select Wear</label>
+                                                    <label for="wearSelect">{{ __('skins.selectWear') }}</label>
                                                     <select class="form-select" id="wearSelect" name="wearSelect" onchange="updateWearValue(this.value)">
-                                                        <option value="0.00">Select Wear</option>
-                                                        <option value="0.00">Factory New</option>
-                                                        <option value="0.07">Minimal Wear</option>
-                                                        <option value="0.15">Field-Tested</option>
-                                                        <option value="0.38">Well-Worn</option>
-                                                        <option value="0.45">Battle-Scarred</option>
+                                                        <option value="0.01">{{ __('skins.selectWear') }}</option>
+                                                        <option value="0.01">{{ __('skins.factoryNew') }}</option>
+                                                        <option value="0.07">{{ __('skins.minimalWear') }}</option>
+                                                        <option value="0.15">{{ __('skins.fieldTested') }}</option>
+                                                        <option value="0.38">{{ __('skins.wellWorn') }}</option>
+                                                        <option value="0.45">{{ __('skins.battleScarred') }}</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="seed">Seed</label>
+                                                    <label for="seed">{{ __('skins.seed') }}</label>
                                                     <input type="text" class="form-control" id="seed" name="seed" oninput="validateSeed(this)">
                                                 </div>
                                             </div>
@@ -102,7 +102,7 @@
                                             <input type="text" class="form-control" id="wear" name="wear" value="0">
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-primary mt-3" id="saveSkinButton">Apply</button>
+                                    <button type="button" class="btn btn-primary mt-3" id="saveSkinButton">{{ __('skins.apply') }}</button>
                                 </form>
                             </div>
                         </div>
@@ -114,7 +114,7 @@
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="skinPreviewModalLabel">Skin Preview</h5>
+                                <h5 class="modal-title" id="skinPreviewModalLabel">{{ __('skins.skinPreview') }}</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -177,7 +177,7 @@
                                     $(".skin_active").html('');
                                     $("#skin_"+$('#weapon_paint_id').val()).html('active');
                                     Snackbar.show({
-                                        text: 'Skin Applied Successfully.',
+                                        text: '{{ __("skins.applied") }}',
                                         actionTextColor: '#fff',
                                         backgroundColor: '#00ab55',
                                         pos: 'top-center'
@@ -192,10 +192,10 @@
                                     }
                                     alert('Validation failed:\n' + errorMessages);
                                 } else {
-                                    alert('An error occurred while applying the skin.');
+                                    alert('{{ __("skins.error") }}');
                                 }
                             }).catch(error => {
-                                alert('An error occurred while applying the skin.');
+                                alert('{{ __("skins.error") }}');
                             });
                         });
 
@@ -232,9 +232,9 @@
                     <!-- Login with Steam modal -->
                     <div class="container">
                         <div id="loginAlert" class="alert alert-gradient  fade show" role="alert" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1050;">
-                            <strong>Login Required!</strong> You need to login with Steam to access this content.
+                            <strong>{{ __('skins.loginRequired') }}</strong> {{ __('skins.needToLogin') }}
                             <a href="{{ getAppSubDirectoryPath().'/auth/steam' }}" class="btn btn-success">
-                                <i class="fab fa-steam"></i> Login with Steam
+                                <i class="fab fa-steam"></i> {{ __('skins.loginWithSteam') }}
                             </a>
                         </div>
                     </div>
