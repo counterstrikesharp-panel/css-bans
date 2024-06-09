@@ -73,6 +73,7 @@ class WeaponSkinController extends Controller
     {
         $skins = json_decode(File::get(resource_path('json/skins.json')), true);
         $appliedSkins =  DB::connection('mysqlskins')->table('wp_player_skins')->where('steamid', Auth::user()?->steam_id)->get();
+        $appliedKnife =  DB::connection('mysqlskins')->table('wp_player_knife')->where('steamid', Auth::user()?->steam_id)->first()->knife;
 
         $filteredSkins = array_filter($skins, function($skin) use ($type) {
             if($type == 'knife' && in_array($skin['weapon_defindex'], [
@@ -104,8 +105,11 @@ class WeaponSkinController extends Controller
 
         // Mark skin as applied if it exists in appliedSkins
         foreach ($filteredSkins as &$skin) {
-            $skin['is_applied'] = $appliedSkins->contains(function ($value) use ($skin) {
-                return $value->weapon_defindex == $skin['weapon_defindex'] && $value->weapon_paint_id == $skin['paint'];
+            $skin['is_applied'] = $appliedSkins->contains(function ($value) use ($skin, $type, $appliedKnife){
+                if($type == 'knife'){
+                    return $value->weapon_defindex == $skin['weapon_defindex'] && $value->weapon_paint_id == $skin['paint'] && $appliedKnife == $skin['weapon_name']  ;
+                }
+                return $value->weapon_defindex == $skin['weapon_defindex'] && $value->weapon_paint_id == $skin['paint']  ;
             });
         }
 
@@ -203,13 +207,13 @@ class WeaponSkinController extends Controller
     public function gloves()
     {
         $gloves = json_decode(File::get(resource_path('json/gloves.json')), true);
+        $appliedGloveIndex =  DB::connection('mysqlskins')->table('wp_player_gloves')->where('steamid', Auth::user()?->steam_id)->first()->weapon_defindex;
 
         // Fetch applied gloves from the database
         $appliedGloves =  DB::connection('mysqlskins')->table('wp_player_skins')
             ->where('steamid', Auth::user()?->steam_id)
             ->pluck('weapon_paint_id')
             ->toArray();
-
         // Group gloves by paint name prefix
         $gloveTypes = [];
         foreach ($gloves as $glove) {
@@ -218,9 +222,10 @@ class WeaponSkinController extends Controller
                 $gloveTypes[$paintPrefix] = [];
             }
 
-            // Mark glove as applied if it exists in appliedGloves
-            $glove['is_applied'] = in_array($glove['paint'], $appliedGloves);
 
+            // Mark glove as applied if it exists in appliedGloves
+            $glove['is_applied'] = in_array($glove['paint'], $appliedGloves) && $glove['weapon_defindex'] == $appliedGloveIndex;
+           // dump($glove);
             $gloveTypes[$paintPrefix][] = $glove;
         }
 
@@ -231,7 +236,6 @@ class WeaponSkinController extends Controller
             });
             $gloveTypes[$type] = $gloves;
         }
-
         return view('weapons.gloves', compact('gloveTypes'));
     }
 
@@ -242,6 +246,7 @@ class WeaponSkinController extends Controller
             ->where('steamid', Auth::user()?->steam_id)
             ->pluck('weapon_paint_id')
             ->toArray();
+        $appliedGloveIndex =  DB::connection('mysqlskins')->table('wp_player_gloves')->where('steamid', Auth::user()?->steam_id)->first()->weapon_defindex;
 
         $filteredGloves = array_filter($gloves, function($glove) use ($type) {
             return str_contains(strtolower($glove['paint_name']), strtolower($type));
@@ -249,7 +254,7 @@ class WeaponSkinController extends Controller
 
         // Mark glove as applied if it exists in appliedGloves
         foreach ($filteredGloves as &$glove) {
-            $glove['is_applied'] = in_array($glove['paint'], $appliedGloves);
+            $glove['is_applied'] = in_array($glove['paint'], $appliedGloves) && $glove['weapon_defindex'] == $appliedGloveIndex;;
         }
 
         // Sort applied gloves to be first

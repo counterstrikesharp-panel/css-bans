@@ -180,11 +180,16 @@
                     @endif
                     @if(PermissionsHelper::isSuperAdmin())
                         <li class="menu menu-heading">
-                            <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>{{ __('admins.settings') }}</span></div>
+                            <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>Settings</span></div>
                         </li>
-                        <li class="menu {{ Request::is('*settings*') ? 'active' : '' }}">
+                        <li class="menu {{ Request::is('*settings') ? 'active' : '' }}">
                             <a href="{{getAppSubDirectoryPath();}}/settings" aria-expanded="false" class="dropdown-toggle">
                                 <div class=""><i class="fa fa-cog fa-fw me-3"></i><span>{{ __('admins.settings') }}</span></div>
+                            </a>
+                        </li>
+                        <li class="menu {{ Request::is('*settings/servers*') ? 'active' : '' }}">
+                            <a href="{{getAppSubDirectoryPath();}}/settings/servers" aria-expanded="false" class="dropdown-toggle">
+                                <div class=""><i class="fa fa-cog fa-fw me-3"></i><span>Servers</span></div>
                             </a>
                         </li>
                     @endif

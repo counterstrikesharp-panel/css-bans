@@ -6,6 +6,7 @@ use App\Helpers\PermissionsHelper;
 use App\Models\SaAdmin;
 use App\Models\SaAdminsFlags;
 use App\Models\SaServer;
+use App\Models\ServerVisibilitySetting;
 use App\Services\RconService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -21,12 +22,46 @@ class ServerController extends Controller
      * @param RconService $rcon
      * @return \Illuminate\Http\JsonResponse
      */
+
+    public function showServerSettings()
+    {
+        $servers = SaServer::all();
+        $serverVisibilitySettings = ServerVisibilitySetting::pluck('is_visible', 'server_id')->toArray();
+
+        return view('settings.servers', compact('servers', 'serverVisibilitySettings'));
+    }
+
+    public function updateServerSettings(Request $request)
+    {
+        $serverSettings = $request->input('servers', []);
+
+        try {
+            // Insert new settings
+            foreach ($serverSettings as $serverId => $isVisible) {
+                ServerVisibilitySetting::updateOrCreate(
+                    ['server_id' => $serverId],
+                    ['is_visible' => $isVisible]
+                );
+            }
+
+            return redirect()->back()->with('success', 'Server visibility settings updated successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'Failed to update server visibility settings: ' . $e->getMessage()]);
+        }
+    }
+
     public function getAllServerInfo(RconService $rcon)
     {
         $servers = SaServer::all();
+        $serverVisibilitySettings = ServerVisibilitySetting::pluck('is_visible', 'server_id')->toArray();
+
         $formattedServers = [];
 
         foreach ($servers as $server) {
+            if (isset($serverVisibilitySettings[$server->id]) && !$serverVisibilitySettings[$server->id]) {
+                continue; // Skip hidden servers
+            }
+
             list($serverIp, $serverPort) = explode(":", $server->address);
             // Fetch server information using the SteamService
             try {
@@ -70,7 +105,28 @@ class ServerController extends Controller
 
         return response()->json($formattedServers);
     }
+    public function syncNewServers(Request $request)
+    {
+        $servers = SaServer::all();
+        $synced = false;
 
+        foreach ($servers as $server) {
+            $existingSetting = ServerVisibilitySetting::where('server_id', $server->id)->first();
+            if (!$existingSetting) {
+                ServerVisibilitySetting::create([
+                    'server_id' => $server->id,
+                    'is_visible' => 1 // Default to visible, change as needed
+                ]);
+                $synced = true;
+            }
+        }
+
+        if ($synced) {
+            return response()->json(['success' => 'New servers synced successfully.']);
+        } else {
+            return response()->json(['error' => 'No new servers to sync.']);
+        }
+    }
     private function isPortOpen($ip, $port, $timeout = 1) {
         $fp = @fsockopen($ip, $port, $errno, $errstr, $timeout);
         if (!in_array($errno, [SOCKET_ETIMEDOUT,SOCKET_EHOSTUNREACH,SOCKET_ENETUNREACH]) && stripos(strtolower($errstr), 'failed') === false) {

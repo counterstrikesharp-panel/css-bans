@@ -132,5 +132,11 @@ Route::get('/music/kits', [WeaponSkinController::class, 'music'])->name('music')
 
 use App\Http\Controllers\SettingsController;
 
-Route::get('/settings', [SettingsController::class, 'showSettings'])->name('settings.show')->middleware('superadmin');
-Route::post('/settings', [SettingsController::class, 'updateSettings'])->name('settings.update')->middleware('superadmin');
+Route::middleware(['superadmin'])->group(function () {
+    Route::get('/settings/servers', [ServerController::class, 'showServerSettings'])->name('settings.servers');
+    Route::post('/settings/servers/update', [ServerController::class, 'updateServerSettings'])->name('settings.servers.update');
+    Route::post('/settings/servers/sync', [ServerController::class, 'syncNewServers'])->name('settings.servers.sync');
+    Route::get('/settings', [SettingsController::class, 'showSettings'])->name('settings.show');
+    Route::post('/settings', [SettingsController::class, 'updateSettings'])->name('settings.update');
+});
+

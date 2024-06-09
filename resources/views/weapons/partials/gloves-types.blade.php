@@ -2,7 +2,7 @@
 @foreach($gloves as $glove)
     <div class="col-md-3 mb-4">
         <a class="card style-6 glove-card" href="javascript:void(0);" data-skin-image="{{ $glove['image'] }}" data-skin-name="{{ $glove['paint_name'] }}">
-            <span id="glove_{{ $glove['paint'] }}" class="glove_active agent_active badge badge-danger">{{ $glove['is_applied'] ? 'Active' : '' }}</span>
+            <span id="glove_{{ $glove['paint'] }}" class="glove_active  badge badge-danger">{{ $glove['is_applied'] ? 'Active' : '' }}</span>
             <div class="loader-skins"></div> <!-- Add loader -->
             <img src="{{ $glove['image'] }}" class="card-img-top lazy" alt="{{ $glove['paint_name'] }}" crossorigin="anonymous">
             <div class="card-footer">
