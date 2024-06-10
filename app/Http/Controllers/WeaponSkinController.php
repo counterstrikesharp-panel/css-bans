@@ -73,7 +73,7 @@ class WeaponSkinController extends Controller
     {
         $skins = json_decode(File::get(resource_path('json/skins.json')), true);
         $appliedSkins =  DB::connection('mysqlskins')->table('wp_player_skins')->where('steamid', Auth::user()?->steam_id)->get();
-        $appliedKnife =  DB::connection('mysqlskins')->table('wp_player_knife')->where('steamid', Auth::user()?->steam_id)->first()->knife;
+        $appliedKnife =  DB::connection('mysqlskins')->table('wp_player_knife')->where('steamid', Auth::user()?->steam_id)->first()?->knife;
 
         $filteredSkins = array_filter($skins, function($skin) use ($type) {
             if($type == 'knife' && in_array($skin['weapon_defindex'], [
@@ -207,7 +207,7 @@ class WeaponSkinController extends Controller
     public function gloves()
     {
         $gloves = json_decode(File::get(resource_path('json/gloves.json')), true);
-        $appliedGloveIndex =  DB::connection('mysqlskins')->table('wp_player_gloves')->where('steamid', Auth::user()?->steam_id)->first()->weapon_defindex;
+        $appliedGloveIndex =  DB::connection('mysqlskins')->table('wp_player_gloves')->where('steamid', Auth::user()?->steam_id)->first()?->weapon_defindex;
 
         // Fetch applied gloves from the database
         $appliedGloves =  DB::connection('mysqlskins')->table('wp_player_skins')
@@ -246,7 +246,7 @@ class WeaponSkinController extends Controller
             ->where('steamid', Auth::user()?->steam_id)
             ->pluck('weapon_paint_id')
             ->toArray();
-        $appliedGloveIndex =  DB::connection('mysqlskins')->table('wp_player_gloves')->where('steamid', Auth::user()?->steam_id)->first()->weapon_defindex;
+        $appliedGloveIndex =  DB::connection('mysqlskins')->table('wp_player_gloves')->where('steamid', Auth::user()?->steam_id)->first()?->weapon_defindex;
 
         $filteredGloves = array_filter($gloves, function($glove) use ($type) {
             return str_contains(strtolower($glove['paint_name']), strtolower($type));
