@@ -31,7 +31,7 @@
                 <div class="note note-primary mb-3">
                     <strong>CSS-BANS</strong>
                     @if(!empty($updates))
-                        <h1>New Updates Available!</h1>
+                        <h1>{{ __('dashboard.newUpdatesAvailable') }}</h1>
                         <p>Version: {{ $updates['version'] }}</p>
                         <div>{!! $updates['notes'] !!}</div>
                     @else
@@ -172,7 +172,6 @@
                                 <th scope="col">{{ __('dashboard.server') }}</th>
                                 <th scope="col">{{ __('dashboard.players') }}</th>
                                 <th scope="col">{{ __('dashboard.ip') }}</th>
-                                <th scope="col">{{ __('dashboard.port') }}</th>
                                 <th scope="col">{{ __('dashboard.map') }}</th>
                                 <th scope="col"></th>
                             </tr>

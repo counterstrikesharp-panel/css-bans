@@ -61,7 +61,7 @@
                         </div>
                     </div>
                     <div>
-                        <center><button class="btn btn-success mt-3">Execute Command</button></center>
+                        <center><button class="btn btn-success mt-3">{{ __('admins.rconExecuteCommand') }}</button></center>
                     </div>
                 </form>
             </div>

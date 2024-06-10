@@ -48,7 +48,7 @@ class DashboardController extends Controller
     {
         $recentMutes = SaMute::orderBy('created', 'desc')->take(5)->get();
         foreach($recentMutes as $mute){
-            $mute->ends = $mute->duration == 0 ? "<h6><span class='badge badge-danger'>Permanent</span></h6>" : $mute->ends;
+            $mute->ends = $mute->duration == 0 ? "<h6><span class='badge badge-danger'>" . __('dashboard.permanent') . "</span></h6>" : $mute->ends;
         }
         return response()->json($recentMutes);
     }
@@ -57,7 +57,7 @@ class DashboardController extends Controller
     {
         $recentBans = SaBan::orderBy('created', 'desc')->take(5)->get();
         foreach($recentBans as $ban){
-            $ban->ends = $ban->duration == 0 ? "<h6><span class='badge badge-danger'>Permanent</span></h6>" : $ban->ends;
+            $ban->ends = $ban->duration == 0 ? "<h6><span class='badge badge-danger'>" . __('dashboard.permanent') . "</span></h6>" : $ban->ends;
         }
         return response()->json($recentBans);
     }

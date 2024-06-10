@@ -15,12 +15,14 @@ return [
         'fr', // French
         'de', // German
         'it', // Italian
-        'pt', // Portuguese
+        'pt_BR', // Brazilian
+        'pt_PT', // Portuguese
         'ru', // Russian
         'zh_CN', // Chinese Simplified
         'ja', // Japanese
         'ko', // Korean,
         'ro', // Romanian
+        'cz', // Czech
     ],
 
 

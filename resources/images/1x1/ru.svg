@@ -1,7 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-ru" viewBox="0 0 512 512">
-    <g fill-rule="evenodd">
-        <rect width="512" height="512" fill="#fff"/>
-        <rect width="170.67" height="512" fill="#d52b1e"/>
-        <rect width="170.67" height="512" x="341.33" fill="#0033a0"/>
-    </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500px" height="500px" viewBox="0 0 500 500" version="1.1">
+<g id="surface1">
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 0 0 L 500 0 L 500 250 L 0 250 Z M 0 0 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(83.529412%,16.862745%,11.764706%);fill-opacity:1;" d="M 0 250 L 500 250 L 500 500 L 0 500 Z M 0 250 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,22.352941%,65.098039%);fill-opacity:1;" d="M 0 166.667969 L 500 166.667969 L 500 333.332031 L 0 333.332031 Z M 0 166.667969 "/>
+</g>
 </svg>

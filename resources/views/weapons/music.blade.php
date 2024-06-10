@@ -17,7 +17,7 @@
                             @foreach($music as $track)
                                 <div class="col-md-3 mb-4">
                                     <a class="card style-6" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#skinPreviewModal" data-skin-image="{{ $track['image'] }}" data-skin-name="{{ $track['name'] }}">
-                                        <span  id="music_{{$track['id']}}" class="music_active badge badge-danger">{{ $track['is_applied'] ? 'Active' : '' }}</span>
+                                        <span  id="music_{{$track['id']}}" class="music_active badge badge-danger">{{ $track['is_applied'] ? __('skins.active') : '' }}</span>
                                         <div class="loader-skins"></div> <!-- Add loader -->
                                         <img src="{{ $track['image'] }}" class="card-img-top" alt="{{ $track['name'] }}" crossorigin="anonymous">
                                         <div class="card-footer">
@@ -27,7 +27,7 @@
                                                 </div>
                                                 <div class="col-12 text-center">
                                                     <button class="btn btn-primary apply-music" data-music-id="{{ $track['id'] }}" data-bs-toggle="modal" data-bs-target="#applyMusicModal">
-                                                        <i class="fas fa-cog"></i> Apply Music
+                                                        <i class="fas fa-cog"></i> {{ __('music.applyMusic') }}
                                                     </button>
                                                 </div>
                                             </div>
@@ -44,7 +44,7 @@
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="applyMusicModalLabel">Apply Music Skin</h5>
+                            <h5 class="modal-title" id="applyMusicModalLabel">{{ __('music.applyMusicSkin') }}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body text-center">
@@ -53,7 +53,7 @@
                             <form id="applyMusicForm">
                                 <input type="hidden" id="steamid" name="steamid" value="{{Auth::user()->steam_id}}">
                                 <input type="hidden" id="music_id" name="music_id">
-                                <button type="button" class="btn btn-primary mt-3" id="saveMusicButton">Apply</button>
+                                <button type="button" class="btn btn-primary mt-3" id="saveMusicButton">{{ __('skins.apply') }}</button>
                             </form>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="skinPreviewModalLabel">Skin Preview</h5>
+                        <h5 class="modal-title" id="skinPreviewModalLabel">{{ __('skins.skinPreview') }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -112,7 +112,7 @@
                         }).then(response => response.json()).then(data => {
                             if (data.success) {
                                 Snackbar.show({
-                                    text: 'Skin Applied Successfully.',
+                                    text: '{{ __("skins.applied") }}',
                                     actionTextColor: '#fff',
                                     backgroundColor: '#00ab55',
                                     pos: 'top-center'
@@ -129,10 +129,10 @@
                                 }
                                 alert('Validation failed:\n' + errorMessages);
                             } else {
-                                alert('An error occurred while applying the music.');
+                                alert('{{ __("music.error") }}');
                             }
                         }).catch(error => {
-                            alert('An error occurred while applying the music.');
+                            alert('{{ __("music.error") }}');
                         });
                     });
 

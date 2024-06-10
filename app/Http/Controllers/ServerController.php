@@ -74,7 +74,7 @@ class ServerController extends Controller
                         'port' => $serverPort,
                         'players' => $serverDetails['players'] . "/" . $serverDetails['max_players'],
                         'map' => $serverDetails['map'],
-                        'connect_button' => '<a class="btn btn-success" href="steam://connect/' . $serverIp . ':' . $serverPort . '">Connect</a>',
+                        'connect_button' => '<a class="btn btn-success" href="steam://connect/' . $serverIp . ':' . $serverPort . '">' . __('dashboard.connect') . '</a>',
                     ];
                 } else {
                     $formattedServer = [
@@ -83,8 +83,8 @@ class ServerController extends Controller
                         'ip' => $serverIp,
                         'port' => $serverPort,
                         'players' => '0',
-                        'map' => '<h6><span class="badge badge-danger">Offline</span></h6>',
-                        'connect_button' => '<h6><span class="badge badge-danger">Offline</span></h6>'
+                        'map' => '<h6><span class="badge badge-danger">' . __('dashboard.offline') . '</span></h6>',
+                        'connect_button' => '<h6><span class="badge badge-danger">' . __('dashboard.offline') . '</span></h6>'
                     ];
                 }
             } catch (\Exception $e) {
@@ -95,8 +95,8 @@ class ServerController extends Controller
                     'ip' => $serverIp,
                     'port' => $serverPort,
                     'players' => '0',
-                    'map' => '<h6><span class="badge badge-danger">Offline</span></h6>',
-                    'connect_button' => '<h6><span class="badge badge-danger">Offline</span></h6>'
+                    'map' => '<h6><span class="badge badge-danger">' . __('dashboard.offline') . '</span></h6>',
+                    'connect_button' => '<h6><span class="badge badge-danger">' . __('dashboard.offline') . '</span></h6>'
                 ];
             }
 

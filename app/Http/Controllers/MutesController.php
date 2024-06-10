@@ -79,9 +79,9 @@ class MutesController extends Controller
                 "ends" => $mute->ends,
                 "created" => $mute->created,
                 "server_id" => $mute->server?->hostname,
-                "status" => $mute->status == 'ACTIVE' ? "<h6><span class='badge badge-success'>Active</span></h6>" : ($mute->status == 'UNMUTED' ? "<h6><span class='badge badge-primary'>Unmuted</span></h6>" : "<h6><span class='badge badge-danger'>Expired</span></h6>"),
+                "status" => $mute->status == 'ACTIVE' ? "<h6><span class='badge badge-success'>" . __('dashboard.active') . "</span></h6>" : ($mute->status == 'UNMUTED' ? "<h6><span class='badge badge-primary'>" . __('dashboard.unmuted') . "</span></h6>" : "<h6><span class='badge badge-danger'>" . __('dashboard.expired') . "</span></h6>"),
                 'action' =>  $unmuteAction." ".$editAction,
-                "duration" => $mute->duration == 0 && $mute->status != 'UNMUTED' ? "<h6><span class='badge badge-danger'>Permanent</span></h6>" : CommonHelper::minutesToTime($mute->duration),
+                "duration" => $mute->duration == 0 && $mute->status != 'UNMUTED' ? "<h6><span class='badge badge-danger'>" . __('dashboard.permanent') . "</span></h6>" : CommonHelper::minutesToTime($mute->duration),
             ];
         }
 
