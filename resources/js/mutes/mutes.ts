@@ -66,7 +66,7 @@ function loadMutes() {
                     else if (row.duration.includes("badge badge-danger")) {
                         progressBarClass = 'bg-danger';
                     }
-                    else {
+                    else if (progress == 100) {
                         progressBarClass = 'bg-success';
                     }
                     return `
