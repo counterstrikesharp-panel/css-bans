@@ -58,15 +58,15 @@ function loadBans() {
                     let progress = calculateProgress(row.created, row.ends);
 
                     let progressBarClass = 'bg-warning';
-                    if(progress === 100) {
-                        progressBarClass = 'bg-success';
-                    }
-                    else if (row.status.includes("badge badge-primary")) {
+                    if (row.status.includes("badge badge-primary")) {
                         progressBarClass = 'bg-primary';
                         progress = 100;
                     }
                     else if (row.duration.includes("badge badge-danger")) {
                         progressBarClass = 'bg-danger';
+                    }
+                    else if (progress == 100) {
+                        progressBarClass = 'bg-success';
                     }
                     return `
                 <div class="progress">
