@@ -87,7 +87,7 @@ body.layout-dark a , body.layout-dark .card{
     max-height: 400px; /* Adjust as needed */
     overflow-y: auto;
 }
-.weapon-paints .weapon-select-button, .weapon-paints .glove-select-button {
+.weapon-paints .weapon-select-button, .weapon-paints .glove-select-button, .weapon-paints .knife-select-button {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -98,7 +98,7 @@ body.layout-dark a , body.layout-dark .card{
     transition: transform 0.3s ease;
     min-height: 168px;
 }
-.weapon-paints .weapon-select-button img, .weapon-paints .glove-select-button img {
+.weapon-paints .weapon-select-button img, .weapon-paints .glove-select-button img, .weapon-paints .knife-select-button img {
     width: 100%;
     height: auto;
     margin-bottom: 0.5rem;
