@@ -29,4 +29,14 @@
             <a href="{{getAppSubDirectoryPath()}}/music/kits"><img src="https://raw.githubusercontent.com/daffyyyy/cs2-WeaponPaints/main/website/img/skins/music_kit-3.png" alt="Music" width="50" height="50"></a>
         </button>
     </li>
+    <li class="nav-item">
+        <button class="nav-link {{ Request::is('*weapons/knives*') ? 'active' : '' }}" id="knife-dropdown-tab" data-bs-toggle="modal" data-bs-target="#knifeModal" type="button">
+            <a href="{{ !Request::is('*weapons/knives*') ? getAppSubDirectoryPath()."/weapons/knives" : 'javascript:void(0);'}}"><img src="https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_knife_push-38.png" alt="Knives" width="50" height="50"></a>
+            @if(Request::is('*weapons/knives*'))
+                <span class="modal-icon">
+                    <i class="fas fa-chevron-down"></i>
+                </span>
+            @endif
+        </button>
+    </li>
 </ul>
