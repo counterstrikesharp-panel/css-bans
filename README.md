@@ -17,11 +17,17 @@ Admin web panel for CS2(counter-strike2) for managing bans, mutes, vip, skins, r
 ![2](https://github.com/counterstrikesharp-panel/css-bans/assets/11420858/e0d9d5d0-f317-43ba-89a5-7dc1f593693d)
 ![1](https://github.com/counterstrikesharp-panel/css-bans/assets/11420858/761f6764-4f4e-4271-bb5c-3f685e873b7d)
 
+# Support Our Work
+<p align="center">
+<a href="https://buymeacoffee.com/hobsrkm">
+<img src="https://img.buymeacoffee.com/button-api/?text=Support Me&emoji=☕&slug=hobsrkm&button_colour=FF5F5F&font_colour=ffffff&font_family=Inter&outline_colour=000000&coffee_colour=FFDD00" />
+</a>
+</p>
+
 ## Discord (Support)
 [![Discord](https://discordapp.com/api/guilds/1236186810405883904/widget.png?style=banner2)](https://discord.gg/fwg5DKZYqV)
 # [Join Discord](https://discord.gg/fwg5DKZYqV)
 # For installation GUIDE visit https://docs.cssbans.online
-
 ## Features
 - Manage Bans
 - Mange Admins
