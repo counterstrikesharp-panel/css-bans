@@ -67,7 +67,7 @@ Admin web panel for CS2(counter-strike2) for managing bans, mutes, vip, skins, r
 cp .env.exampple .env
 ## Install dependencies
 composer install
-php artisan migrate
+php artisan migrate (if fails reach out to me on discord to get the dump)
 ## Build Assets   
 npm run build
 
