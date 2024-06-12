@@ -56,6 +56,7 @@ class WeaponSkinController extends Controller
             });
 
             $weaponTypes[$weaponType][] = $skin;
+            unset($weaponTypes['knife']);
         }
 
         // Sort applied skins to be first in each category
@@ -383,7 +384,113 @@ class WeaponSkinController extends Controller
 
         return response()->json(['success' => 'Music applied successfully!']);
     }
+    public function knives()
+    {
+        $skins = json_decode(File::get(resource_path('json/skins.json')), true);
 
+        // Fetch applied knives from the database
+        $appliedSkins =  DB::connection('mysqlskins')->table('wp_player_skins')->where('steamid', Auth::user()?->steam_id)->get();
+        $appliedKnife = DB::connection('mysqlskins')->table('wp_player_knife')->where('steamid', Auth::user()?->steam_id)->first()?->knife;
+
+        // Group knives by weapon types dynamically
+        $knifeCategories = [];
+        foreach ($skins as $skin) {
+            if (in_array($skin['weapon_defindex'], [
+                500, 503, 505, 506, 507, 508, 509, 512, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 525, 526
+            ])) {
+                if (!isset($knifeCategories[$skin['weapon_defindex']])) {
+                    $knifeCategories[$skin['weapon_defindex']] = [];
+                }
+
+                // Mark skin as applied if it exists in appliedKnives
+                $skin['is_applied'] = $appliedSkins->contains(function ($value) use ($skin, $appliedKnife) {
+                    return $value->weapon_defindex == $skin['weapon_defindex'] && $value->weapon_paint_id == $skin['paint'] && $skin['weapon_name'] == $appliedKnife;
+                });
+                $knifeCategories[$skin['weapon_defindex']][] = $skin;
+            }
+        }
+
+        // Sort applied knives to be first in each category
+        foreach ($knifeCategories as $type => $knives) {
+            usort($knives, function ($a, $b) {
+                return $b['is_applied'] - $a['is_applied'];
+            });
+            $knifeCategories[$type] = $knives;
+        }
+        return view('weapons.knives', compact('knifeCategories'));
+    }
+
+    public function loadKnives($category)
+    {
+        $skins = json_decode(File::get(resource_path('json/skins.json')), true);
+        $appliedSkins =  DB::connection('mysqlskins')->table('wp_player_skins')->where('steamid', Auth::user()?->steam_id)->get();
+        $appliedKnife = DB::connection('mysqlskins')->table('wp_player_knife')->where('steamid', Auth::user()?->steam_id)->first()?->knife;
+
+        $filteredKnives = array_filter($skins, function ($skin) use ($category) {
+            return in_array($skin['weapon_defindex'], [
+                500, 503, 505, 506, 507, 508, 509, 512, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 525, 526
+            ]) && $skin['weapon_defindex'] == $category;
+        });
+
+        // Mark skin as applied if it exists in appliedKnives
+        foreach ($filteredKnives as &$skin) {
+            $skin['is_applied'] = $appliedSkins->contains(function ($value) use ($skin, $appliedKnife) {
+                return $value->weapon_defindex == $skin['weapon_defindex'] && $value->weapon_paint_id == $skin['paint'] && $skin['weapon_name'] == $appliedKnife;  ;
+            });
+        }
+
+        // Sort applied knives to be first
+        usort($filteredKnives, function ($a, $b) {
+            return $b['is_applied'] - $a['is_applied'];
+        });
+
+        return view('weapons.partials.knife-types', ['skins' => $filteredKnives]);
+    }
+
+    public function applyKnife(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'steamid' => 'required|string',
+            'weapon_defindex' => 'required|integer',
+            'weapon_paint_id' => 'required|integer',
+            'wearSelect' => 'required|numeric',
+            'wear' => 'nullable|numeric',
+            'seed' => 'nullable|integer',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        $validated = $validator->validated();
+
+        try {
+            DB::connection('mysqlskins')->table('wp_player_knife')->updateOrInsert(
+                [
+                    'steamid' => $validated['steamid'],
+                ],
+                [
+                    'knife' => $request->input('weapon_name'),
+                ]
+            );
+
+            DB::connection('mysqlskins')->table('wp_player_skins')->updateOrInsert(
+                [
+                    'steamid' => $validated['steamid'],
+                    'weapon_defindex' => $validated['weapon_defindex'],
+                ],
+                [
+                    'weapon_paint_id' => $validated['weapon_paint_id'],
+                    'weapon_wear' => $validated['wearSelect'],
+                    'weapon_seed' => $validated['seed'] ?? 0,
+                ]
+            );
+
+            return response()->json(['success' => 'Knife applied successfully!']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 }
 
 
