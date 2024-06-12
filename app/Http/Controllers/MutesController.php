@@ -58,7 +58,7 @@ class MutesController extends Controller
             $editAction = '';
             $unmuteAction = '';
             if(!empty($mute->server)) {
-                if (PermissionsHelper::hasMutePermission($mute->server_id)) {
+                if (PermissionsHelper::hasMutePermission($mute->server_id) || PermissionsHelper::hasWebMuteEditPermissions($mute->server_id)) {
                     $editAction = "<a href='$siteDir/mute/edit/{$mute->id}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></a>";
                 }
                 if (empty($mute->player_steamid))
