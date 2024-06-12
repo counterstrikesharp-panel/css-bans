@@ -57,6 +57,15 @@ For detailed installation instructions, please visit our [Documentation](https:/
 - SimpleAdmin version >= 1.4.0 ([GitHub Repository](https://github.com/daffyyyy/CS2-SimpleAdmin))
 - Demo: [Site Demo](https://cssbans.online/)
 
+## Supports Majority of Web Hosting Platforms
+- Apache
+- Nginx
+- Pterodactyl Egg (https://github.com/counterstrikesharp-panel/css-bans-egg)
+- Vercel
+- Shared Hosting
+- cPanel
+- Docker
+
 ## Contributing to Development
 
 *Make CSS-BANS Great Again!*
