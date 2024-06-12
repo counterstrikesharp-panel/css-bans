@@ -1,3 +1,4 @@
+
 <div align="center">
 
 ![GitHub Releases](https://img.shields.io/github/downloads/counterstrikesharp-panel/css-bans/total)
@@ -11,63 +12,74 @@
 
 </div>
 
-Admin web panel for CS2(counter-strike2) for managing bans, mutes, vip, skins, ranks and more on Counter-Strike 2 servers using CounterStrikeSharp
+CSS-BANS is an admin web panel for Counter-Strike 2, powered by CounterStrikeSharp. It allows for comprehensive management of bans, mutes, VIP statuses, skins, ranks, and more on your CS2 servers.
 
 ![image](https://github.com/counterstrikesharp-panel/css-bans/assets/11420858/3d45df8b-70d0-4072-b35f-949380a6978e)
 ![2](https://github.com/counterstrikesharp-panel/css-bans/assets/11420858/e0d9d5d0-f317-43ba-89a5-7dc1f593693d)
 ![1](https://github.com/counterstrikesharp-panel/css-bans/assets/11420858/761f6764-4f4e-4271-bb5c-3f685e873b7d)
 
-# Support Our Work
-<p align="center">
+## Support Our Work
+
+<div align="center">
 <a href="https://buymeacoffee.com/hobsrkm">
 <img src="https://img.buymeacoffee.com/button-api/?text=Support Me&emoji=☕&slug=hobsrkm&button_colour=FF5F5F&font_colour=ffffff&font_family=Inter&outline_colour=000000&coffee_colour=FFDD00" />
 </a>
-</p>
+</div>
 
 ## Discord (Support)
 [![Discord](https://discordapp.com/api/guilds/1236186810405883904/widget.png?style=banner2)](https://discord.gg/fwg5DKZYqV)
 # [Join Discord](https://discord.gg/fwg5DKZYqV)
-# For installation GUIDE visit https://docs.cssbans.online
+
+## Installation Guide
+For detailed installation instructions, please visit our [Documentation](https://docs.cssbans.online).
+
 ## Features
 - Manage Bans
-- Mange Admins
-- Mange Mutes
+- Manage Admins
+- Manage Mutes
 - List Servers
 - View Server Players
-- Live Bans/Mutes/Kicks 
+- Live Bans/Mutes/Kicks
 - Manage Groups
 - Rcon Panel
 - Skins
 
-## Includes support for Modules
-- Ranks (K4system) View/listing [https://github.com/K4ryuu/K4-System]
-- VIP Core - Download from release TAB [FOLLOW DOCS GUIDE]
+## Modules Support
+- Ranks (K4system) - View/listing [K4-System](https://github.com/K4ryuu/K4-System)
+- VIP Core - Download from the release tab (Follow the documentation guide)
 - Skins (Weapon Paints)
 
 ## Requirements
 - PHP >= 8.1
 - CounterStrikeSharp ([GitHub Repository](https://github.com/roflmuffin/CounterStrikeSharp))
 - MySQL >= 5.7
-- ServerPlayerListFix ([Github Repository](https://github.com/Source2ZE/ServerListPlayersFix))
+- ServerPlayerListFix ([GitHub Repository](https://github.com/Source2ZE/ServerListPlayersFix))
 - SimpleAdmin version >= 1.4.0 ([GitHub Repository](https://github.com/daffyyyy/CS2-SimpleAdmin))
-- Demo: [SITE DEMO](https://cssbans.online/)
+- Demo: [Site Demo](https://cssbans.online/)
 
-# For installation GUIDE visit https://docs.cssbans.online
+## Contributing to Development
 
+*Make CSS-BANS Great Again!*
 
-## If you want to contribute for Development
+To contribute to the development of CSS-BANS, you'll need:
 
-*Make CSS BANS Great Again!*
+- Node.js version >=17
+- Laravel Version >=10
 
-- Requires Node.js version >=17
-- Requires Laravel Version >=10
+### Development Setup
 
 ```bash
-### Below steps is only for development purpose
-cp .env.exampple .env
-## Install dependencies
-composer install
-php artisan migrate (if fails reach out to me on discord to get the dump)
-## Build Assets   
-npm run build
+# Copy the example environment file
+cp .env.example .env
 
+# Install dependencies
+composer install
+
+# Run database migrations (if this fails, reach out on Discord for the database dump)
+php artisan migrate
+
+# Build assets
+npm run build
+```
+
+For further information, please visit our [Documentation](https://docs.cssbans.online) or join our [Discord](https://discord.gg/fwg5DKZYqV) for support.
