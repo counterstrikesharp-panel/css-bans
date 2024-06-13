@@ -43,7 +43,9 @@
                         <tr>
                             <th scope="col">{{ __('admins.id') }}</th>
                             <th scope="col">{{ __('dashboard.player') }}</th>
-                            <th scope="col">{{ __('dashboard.ip') }}</th>
+                            @if(PermissionsHelper::isSuperAdmin())
+                                <th scope="col">{{ __('dashboard.ip') }}</th>
+                            @endif
                             <th scope="col">{{ __('admins.bannedBy') }}</th>
                             <th scope="col">{{ __('admins.banReason') }}</th>
                             <th scope="col">{{ __('admins.banDuration') }}</th>
@@ -51,7 +53,9 @@
                             <th scope="col">{{ __('admins.banned') }}</th>
                             <th scope="col">{{ __('dashboard.server') }}</th>
                             <th scope="col">{{ __('admins.status') }}</th>
-                            <th scope="col">{{ __('admins.action') }}</th>
+                            @if(PermissionsHelper::hasBanPermission())
+                                <th scope="col">{{ __('admins.action') }}</th>
+                            @endif
                             <th scope="col">{{ __('admins.progress') }}</th>
                         </tr>
                         </thead>
@@ -70,6 +74,8 @@
                 return "{!! env('VITE_SITE_DIR') !!}/players/"+playerSteamid+"/unban";
             }
             const bansListUrl = '{!! env('VITE_SITE_DIR') !!}/list/bans';
+            const isSuperAdmin = <?php echo json_encode(PermissionsHelper::isSuperAdmin()); ?>;
+            const hasBanPermission = <?php echo json_encode(PermissionsHelper::hasBanPermission()); ?>;
         </script>
         @vite(['resources/js/bans/bans.ts'])
         <script src="{{asset('plugins/notification/snackbar/snackbar.min.js')}}"></script>
