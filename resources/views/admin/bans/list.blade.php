@@ -75,8 +75,8 @@
             }
             const bansListUrl = '{!! env('VITE_SITE_DIR') !!}/list/bans';
             const isSuperAdmin = <?php echo json_encode(PermissionsHelper::isSuperAdmin()); ?>;
-            const hasBanPermission = <?php echo json_encode(PermissionsHelper::hasBanPermission()); ?>;
-            const hasWebBanEditPermissions = <?php echo json_encode(PermissionsHelper::hasWebBanEditPermissions()); ?>;
+            //const hasBanPermission = <?php echo json_encode(PermissionsHelper::hasBanPermission()); ?>;
+            //const hasWebBanEditPermissions = <?php echo json_encode(PermissionsHelper::hasWebBanEditPermissions()); ?>;
             window.translations = {
                 searchByPlayernameAndSteamid: "{{ __('admins.searchByPlayernameAndSteamid') }}"
             };

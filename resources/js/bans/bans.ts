@@ -63,9 +63,9 @@ function loadBans() {
     if (!isSuperAdmin) {
         columns = columns.filter(column => column.data !== "player_ip");
     }
-    if (!hasBanPermission || !hasWebBanEditPermissions) {
+    /*if (!hasBanPermission || !hasWebBanEditPermissions) {
         columns = columns.filter(column => column.data !== "action");
-    }
+    }*/
 
     dataTable = new DataTable("#bansList", {
         "processing": true,

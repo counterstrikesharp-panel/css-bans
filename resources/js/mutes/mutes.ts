@@ -62,9 +62,9 @@ function loadMutes() {
         }
     ];
 
-    if (!hasMutePermission) {
+    /*if (!hasMutePermission) {
         columns = columns.filter(column => column.data !== "action");
-    }
+    }*/
 
     dataTable = new DataTable("#mutesList", {
         "responsive": true,
