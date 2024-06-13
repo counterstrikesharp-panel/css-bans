@@ -53,7 +53,7 @@
                             <th scope="col">{{ __('admins.banned') }}</th>
                             <th scope="col">{{ __('dashboard.server') }}</th>
                             <th scope="col">{{ __('admins.status') }}</th>
-                            @if(PermissionsHelper::hasBanPermission() || PermissionsHelper::hasWebBanEditPermissions())
+                            @if(PermissionsHelper::hasBanPermission() || PermissionsHelper::hasWebBanEditPermissions() || PermissionsHelper::hasUnBanPermission())
                                 <th scope="col">{{ __('admins.action') }}</th>
                             @endif
                             <th scope="col">{{ __('admins.progress') }}</th>
@@ -77,6 +77,7 @@
             const isSuperAdmin = <?php echo json_encode(PermissionsHelper::isSuperAdmin()); ?>;
             //const hasBanPermission = <?php echo json_encode(PermissionsHelper::hasBanPermission()); ?>;
             //const hasWebBanEditPermissions = <?php echo json_encode(PermissionsHelper::hasWebBanEditPermissions()); ?>;
+            //const hasUnBanPermission = <?php echo json_encode(PermissionsHelper::hasUnBanPermission()); ?>;
             window.translations = {
                 searchByPlayernameAndSteamid: "{{ __('admins.searchByPlayernameAndSteamid') }}"
             };
