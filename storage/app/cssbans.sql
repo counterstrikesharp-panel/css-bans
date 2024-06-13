@@ -106,6 +106,23 @@ INSERT INTO `permissions` (`id`, `permission`, `description`, `created_at`, `upd
 (15, '@css/cheats', 'Change sv_cheats or use cheating commands.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
 (16, '@css/root', 'Magically enables all flags and ignores immunity values.', '2024-04-14 15:27:44', '2024-04-14 15:27:44');
 
+INSERT INTO `permissions` (`id`, `permission`, `description`, `created_at`, `updated_at`) VALUES
+(NULL, '@web/admin.create', 'Web-only: Permission to create an admin.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
+(NULL, '@web/admin.edit', 'Web-only: Permission to edit an admin.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
+(NULL, '@web/admin.delete', 'Web-only: Permission to delete an admin.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
+(NULL, '@web/ban.add', 'Web-only: Permission to create a ban.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
+(NULL, '@web/ban.edit', 'Web-only: Permission to edit a ban.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
+(NULL, '@web/ban.unban', 'Web-only: Permission to unban a user.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
+(NULL, '@web/group.create', 'Web-only: Permission to create a group.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
+(NULL, '@web/group.edit', 'Web-only: Permission to edit a group.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
+(NULL, '@web/group.delete', 'Web-only: Permission to delete a group.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
+(NULL, '@web/mute.add', 'Web-only: Permission to create a mute.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
+(NULL, '@web/mute.edit', 'Web-only: Permission to edit a mute.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
+(NULL, '@web/mute.unmute', 'Web-only: Permission to unmute a user.', '2024-04-14 15:27:44', '2024-04-14 15:27:44')
+(NULL, '@web/group.create', 'Web-only: Permission to create group.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
+(NULL, '@web/group.edit', 'Web-only: Permission to edit group.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
+(NULL, '@web/group.delete', 'Web-only: Permission to delete group.', '2024-04-14 15:27:44', '2024-04-14 15:27:44');
+
 -- --------------------------------------------------------
 
 --

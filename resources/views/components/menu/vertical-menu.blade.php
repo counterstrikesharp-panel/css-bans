@@ -122,12 +122,29 @@
                             </li>
                         @endif
                     @endif
-                    @if(PermissionsHelper::isSuperAdmin() || PermissionsHelper::hasBanPermission() || PermissionsHelper::hasMutePermission())
+                    @php
+                        $sectionPermissions = [
+                           PermissionsHelper::isSuperAdmin(),
+                           PermissionsHelper::hasAdminCreatePermission(),
+                           PermissionsHelper::hasAdminEditPermission(),
+                           PermissionsHelper::hasAdminDeletePermission(),
+                           PermissionsHelper::hasBanPermission(),
+                           PermissionsHelper::hasMutePermission(),
+                       ];
+                    @endphp
+                    @php
+                        $onlyManageAdminPerms = [
+                           PermissionsHelper::isSuperAdmin(),
+                           PermissionsHelper::hasAdminCreatePermission(),
+                           PermissionsHelper::hasAdminEditPermission(),
+                           PermissionsHelper::hasAdminDeletePermission(),
+                       ];
+                    @endphp
+                    @if(in_array(true, $sectionPermissions))
                         <li class="menu menu-heading">
                             <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>{{ __('admins.admin') }}</span></div>
                         </li>
-                    @endif
-                    @if(PermissionsHelper::isSuperAdmin())
+                    @if(in_array(true, $onlyManageAdminPerms))
                         <li class="menu {{ Request::is('*admin*') ? 'active' : '' }}">
                             <a href="{{getAppSubDirectoryPath();}}/list/admins" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
@@ -154,7 +171,7 @@
                             </a>
                         </li>
                     @endif
-                    @if(PermissionsHelper::isSuperAdmin())
+                    @if(PermissionsHelper::isSuperAdmin() || PermissionsHelper::hasGroupCreatePermission() || PermissionsHelper::hasGroupDeletePermission() || PermissionsHelper::hasGroupEditPermission())
                         <li class="menu {{ Request::is('*list/groups*') ? 'active' : '' }}">
                             <a href="{{getAppSubDirectoryPath();}}/list/groups" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
@@ -162,13 +179,16 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="menu {{ Request::is('*group/create*') ? 'active' : '' }}">
-                            <a href="{{getAppSubDirectoryPath();}}/group/create" aria-expanded="false" class="dropdown-toggle">
-                                <div class="">
-                                    <i class="fas fa-plus fa-fw me-3"></i><span>{{ __('admins.createGroup') }}</span>
-                                </div>
-                            </a>
-                        </li>
+                        @if(PermissionsHelper::hasGroupCreatePermission() || PermissionsHelper::isSuperAdmin())
+                            <li class="menu {{ Request::is('*group/create*') ? 'active' : '' }}">
+                                <a href="{{getAppSubDirectoryPath();}}/group/create" aria-expanded="false" class="dropdown-toggle">
+                                    <div class="">
+                                        <i class="fas fa-plus fa-fw me-3"></i><span>{{ __('admins.createGroup') }}</span>
+                                    </div>
+                                </a>
+                            </li>
+                        @endif
+                    @endif
                     @endif
                     @if(PermissionsHelper::isSuperAdmin())
                         <li class="menu menu-heading">
