@@ -9,7 +9,7 @@
                 {{ $body }}
             </div>
             <div class="modal-footer">
-                <button class="btn btn btn-light-dark" data-bs-dismiss="modal"><i class="flaticon-cancel-12"></i> Close</button>
+                <button class="btn btn btn-light-dark" data-bs-dismiss="modal"><i class="flaticon-cancel-12"></i> {{ __('Close') }}</button>
             </div>
         </div>
     </div>
