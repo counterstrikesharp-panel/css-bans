@@ -6,25 +6,7 @@ let dataTable = null;
 
 loadMutes();
 function loadMutes() {
-    dataTable = new DataTable("#mutesList", {
-        "responsive": true,
-        "processing": true,
-        "serverSide": true,
-        "ajax": {
-            "url": mutesListUrl,
-            "headers": {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr('content')
-            },
-            "type": "POST",
-            "dataType": "json"
-        },
-        "language": {
-            "search": "Search by player steamid:",
-            'processing': '<div class="spinner"></div>'
-
-        },
-        order: [[0, 'desc']],
-        "columns": [
+        let columns = [
             {"data": "id"},
             {
                 "data": "player_name", "render": function (data, type, row, meta) {
@@ -78,7 +60,30 @@ function loadMutes() {
                 </div>`
                 }
             }
-        ]
+        ];
+
+        if (!hasMutePermission) {
+            columns = columns.filter(column => column.data !== "action");
+        }
+
+        dataTable = new DataTable("#mutesList", {
+            "responsive": true,
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": mutesListUrl,
+                "headers": {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr('content')
+                },
+                "type": "POST",
+                "dataType": "json"
+            },
+            "language": {
+                "search": "Search by player steamid:",
+                'processing': '<div class="spinner"></div>'
+    
+            },
+            "columns": columns
     });
 }
 $(document).on('click', '.unmute-btn', function() {
