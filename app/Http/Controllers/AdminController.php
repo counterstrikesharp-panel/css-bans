@@ -162,6 +162,21 @@ class AdminController extends Controller
         $formattedData = [];
         $siteDir = env('VITE_SITE_DIR');
         foreach ($admins as $admin) {
+            $actions = "";
+            if (PermissionsHelper::isSuperAdmin()) {
+                $actions .= $admin->group_id !== null
+                    ? "<a href='$siteDir/admin/groups/edit/{$admin->player_steamid}/{$admin->server_id}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></a> <a href='$siteDir/admin/delete/{$admin->player_steamid}' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>"
+                    : "<a href='$siteDir/admin/edit/{$admin->player_steamid}/{$admin->server_id}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></a> <a href='$siteDir/admin/delete/{$admin->player_steamid}' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>";
+            } else {
+                if (PermissionsHelper::hasAdminEditPermission()) {
+                    $actions .= $admin->group_id !== null
+                        ? "<a href='$siteDir/admin/groups/edit/{$admin->player_steamid}/{$admin->server_id}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></a>"
+                        : "<a href='$siteDir/admin/edit/{$admin->player_steamid}/{$admin->server_id}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></a>";
+                }
+                if (PermissionsHelper::hasAdminDeletePermission()) {
+                    $actions .= "<a href='$siteDir/admin/delete/{$admin->player_steamid}' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>";
+                }
+            }
             $formattedData[] = [
                 "id" => $admin->id,
                 "player_steamid" => $admin->player_steamid,
@@ -170,7 +185,7 @@ class AdminController extends Controller
                 "created" => $admin->created,
                 "flags" => $admin->flags,
                 "hostnames" => $admin->hostnames,
-                'actions' => PermissionsHelper::isSuperAdmin() ? ($admin->group_id !== null ? "<a href='$siteDir/admin/groups/edit/{$admin->player_steamid}/{$admin->server_id}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></a> <a href='$siteDir/admin/delete/{$admin->player_steamid}' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>" : "<a href='$siteDir/admin/edit/{$admin->player_steamid}/{$admin->server_id}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></a> <a href='$siteDir/admin/delete/{$admin->player_steamid}' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>") : "",
+                'actions' => $actions,
             ];
         }
         $response = [
@@ -484,11 +499,22 @@ class AdminController extends Controller
         // Format each group record
         $siteDir = env('VITE_SITE_DIR');
         foreach ($groups as $group) {
+            $actions = "";
+
+            // Check for edit permission or if the user is a super admin
+            if (PermissionsHelper::isSuperAdmin() || PermissionsHelper::hasGroupEditPermission()) {
+                $actions .= "<a href='$siteDir/group/edit/{$group->id}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></a> ";
+            }
+
+            // Check for delete permission or if the user is a super admin
+            if (PermissionsHelper::isSuperAdmin() || PermissionsHelper::hasGroupDeletePermission()) {
+                $actions .= "<a href='$siteDir/group/delete/{$group->id}' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>";
+            }
             $formattedData[] = [
                 "id" => $group->id,
                 "name" => "<span style='font-size: 12px;' class='badge badge-dark'>{$group->name}</span>",
                 "flags" => $group->flags ?: "No flags assigned",
-                'actions' =>  "<a href='$siteDir/group/edit/{$group->id}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></a> <a href='$siteDir/group/delete/{$group->id}' class='btn btn-danger btn-sm'><i class='fa fa-trash'></i></a>",
+                'actions' =>  $actions,
             ];
         }
 

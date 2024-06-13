@@ -23,7 +23,7 @@
                 </h5>
             </div>
             <div class="card-body">
-                @if(PermissionsHelper::isSuperAdmin())
+                @if(PermissionsHelper::isSuperAdmin() || PermissionsHelper::hasAdminCreatePermission())
                     <div class="mt-3 d-flex justify-content-end p-1">
                         <a href="{{env('VITE_SITE_DIR')}}/admin/create" class="col-md- btn btn-success">{{ __('admins.addAdminButton') }}</a>
                     </div>
