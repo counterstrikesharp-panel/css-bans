@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-light-dark" data-bs-dismiss="modal"><i class="flaticon-cancel-12"></i> {{ __('Close') }}</button>
+                                <button class="btn btn-light-dark" data-bs-dismiss="modal"><i class="flaticon-cancel-12"></i> {{ __('skins.close') }}</button>
                             </div>
                         </div>
                     </div>

@@ -51,9 +51,7 @@
                             <th scope="col">{{ __('admins.muted') }}</th>
                             <th scope="col">{{ __('dashboard.server') }}</th>
                             <th scope="col">{{ __('admins.status') }}</th>
-                            @if(PermissionsHelper::hasMutePermission())
-                                <th scope="col">{{ __('admins.action') }}</th>
-                            @endif
+                            <th scope="col">{{ __('admins.action') }}</th>
                             <th scope="col">{{ __('admins.progress') }}</th>
                         </tr>
                         </thead>
@@ -72,7 +70,6 @@
                 return "{!! env('VITE_SITE_DIR') !!}/players/"+playerSteamid+"/unmute";
             }
             const mutesListUrl = '{!! env('VITE_SITE_DIR') !!}/list/mutes';
-            const hasMutePermission = <?php echo json_encode(PermissionsHelper::hasMutePermission()); ?>;
         </script>
         @vite(['resources/js/mutes/mutes.ts'])
         <script src="{{asset('plugins/notification/snackbar/snackbar.min.js')}}"></script>
