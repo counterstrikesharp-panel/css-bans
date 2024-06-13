@@ -33,7 +33,7 @@
             @endif
             <div class="card-header text-center py-3">
                 <h5 class="mb-0 text-center">
-                    <strong>{{ __('dashboard.bans') }}</strong>
+                    <strong>{{ __('Ban List') }}</strong>
                 </h5>
             </div>
             <div class="card-body">
@@ -43,7 +43,9 @@
                         <tr>
                             <th scope="col">{{ __('admins.id') }}</th>
                             <th scope="col">{{ __('dashboard.player') }}</th>
-                            <th scope="col">{{ __('dashboard.ip') }}</th>
+                            @if(PermissionsHelper::isSuperAdmin())
+                                <th scope="col">{{ __('dashboard.ip') }}</th>
+                            @endif
                             <th scope="col">{{ __('admins.bannedBy') }}</th>
                             <th scope="col">{{ __('admins.banReason') }}</th>
                             <th scope="col">{{ __('admins.banDuration') }}</th>
@@ -51,7 +53,9 @@
                             <th scope="col">{{ __('admins.banned') }}</th>
                             <th scope="col">{{ __('dashboard.server') }}</th>
                             <th scope="col">{{ __('admins.status') }}</th>
-                            <th scope="col">{{ __('admins.action') }}</th>
+                            @if(PermissionsHelper::hasBanPermission() || PermissionsHelper::hasWebBanEditPermissions() || PermissionsHelper::hasUnBanPermission())
+                                <th scope="col">{{ __('admins.action') }}</th>
+                            @endif
                             <th scope="col">{{ __('admins.progress') }}</th>
                         </tr>
                         </thead>
@@ -70,6 +74,13 @@
                 return "{!! env('VITE_SITE_DIR') !!}/players/"+playerSteamid+"/unban";
             }
             const bansListUrl = '{!! env('VITE_SITE_DIR') !!}/list/bans';
+            const isSuperAdmin = <?php echo json_encode(PermissionsHelper::isSuperAdmin()); ?>;
+            //const hasBanPermission = <?php echo json_encode(PermissionsHelper::hasBanPermission()); ?>;
+            //const hasWebBanEditPermissions = <?php echo json_encode(PermissionsHelper::hasWebBanEditPermissions()); ?>;
+            //const hasUnBanPermission = <?php echo json_encode(PermissionsHelper::hasUnBanPermission()); ?>;
+            window.translations = {
+                searchByPlayernameAndSteamid: "{{ __('admins.searchByPlayernameAndSteamid') }}"
+            };
         </script>
         @vite(['resources/js/bans/bans.ts'])
         <script src="{{asset('plugins/notification/snackbar/snackbar.min.js')}}"></script>

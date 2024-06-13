@@ -34,7 +34,7 @@
             @endif
             <div class="card-header text-center py-3">
                 <h5 class="mb-0 text-center">
-                    <strong>Mutes</strong>
+                    <strong>{{ __('Mute List') }}</strong>
                 </h5>
             </div>
             <div class="card-body">
@@ -70,6 +70,11 @@
                 return "{!! env('VITE_SITE_DIR') !!}/players/"+playerSteamid+"/unmute";
             }
             const mutesListUrl = '{!! env('VITE_SITE_DIR') !!}/list/mutes';
+            //const hasMutePermission = <?php echo json_encode(PermissionsHelper::hasMutePermission()); ?>;
+            //const hasWebMuteEditPermissions = <?php echo json_encode(PermissionsHelper::hasWebMuteEditPermissions()); ?>;
+            window.translations = {
+                searchByPlayernameAndSteamid: "{{ __('admins.searchByPlayernameAndSteamid') }}"
+            };
         </script>
         @vite(['resources/js/mutes/mutes.ts'])
         <script src="{{asset('plugins/notification/snackbar/snackbar.min.js')}}"></script>
