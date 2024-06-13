@@ -105,7 +105,7 @@
         <x-slot:footerFiles>
             <script>
                 document.getElementById('syncServersButton').addEventListener('click', function() {
-                    fetch('{{ route('settings.servers.sync') }}', {
+                    fetch('{{ getAppSubDirectoryPath() }}/settings/servers/sync', {
                         method: 'POST',
                         headers: {
                             'X-CSRF-TOKEN': '{{ csrf_token() }}'
