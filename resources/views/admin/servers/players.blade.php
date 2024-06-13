@@ -12,7 +12,9 @@
             <th width="20">{{ __('admins.serverListPlayerName') }}</th>
             <th>{{ __('admins.playerFrags') }}</th>
             <th>{{ __('admins.playerPlayTime') }}</th>
-            <th>{{ __('admins.actions') }}</th>
+            @if(PermissionsHelper::hasKickPermission() || PermissionsHelper::hasMutePermission() || PermissionsHelper::hasBanPermission())
+                <th>{{ __('admins.actions') }}</th>
+            @endif
         </tr>
         </thead>
         <tbody>
