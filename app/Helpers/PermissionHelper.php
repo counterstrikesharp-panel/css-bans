@@ -273,7 +273,7 @@ class PermissionsHelper
                     ->orWhereNull('ends');
             })
             ->whereNull('group_id')
-            ->get();
+            ->get() ?? [];
 
         foreach ($serverPermissions as $permission) {
             if ($permission?->adminFlags()->whereIn('flag', $flags)->exists()) {
@@ -290,7 +290,7 @@ class PermissionsHelper
                         ->orWhereNull('ends');
                 })
                 ->whereNotNull('group_id')
-                ->get();
+                ->get() ?? [];
 
             foreach ($serverGroups as $server) {
                 $groupServer = $server->groupsServers()->get();

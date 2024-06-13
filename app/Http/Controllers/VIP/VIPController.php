@@ -73,7 +73,7 @@ class VIPController extends Controller
                                     </form>';
                 }
                 if(!empty($response))
-                    $profileName = $response['response']['players'][0]['personaname'];
+                    $profileName = isset($response['response']['players'][0]['personaname']) ? $response['response']['players'][0]['personaname'] : $vip->name;
                 else
                     $profileName = $vip->name;
                 $serverName = $vip->server->serverIp . ':' . $vip->server->port;
