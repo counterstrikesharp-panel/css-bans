@@ -69,9 +69,9 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="wearSelect">{{ __('skins.selectwear') }}</label>
+                                            <label for="wearSelect">{{ __('skins.selectWear') }}</label>
                                             <select class="form-select" id="wearSelect" name="wearSelect" onchange="updateWearValue(this.value)">
-                                                <option value="0.01">{{ __('skins.selectwear') }}</option>
+                                                <option value="0.01">{{ __('skins.selectWear') }}</option>
                                                 <option value="0.01">{{ __('skins.factoryNew') }}</option>
                                                 <option value="0.07">{{ __('skins.minimalWear') }}</option>
                                                 <option value="0.15">{{ __('skins.fieldTested') }}</option>
