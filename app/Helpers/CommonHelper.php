@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use App\Models\Appeal\Appeal;
+use App\Models\Report\Report;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
 use Illuminate\Support\Facades\Cache;
@@ -36,5 +38,13 @@ class CommonHelper
                }
            });
        }
+   }
+
+   public static function appealCheck() {
+       return Appeal::where('status', 'pending')->count();
+   }
+
+   public static function reportCheck() {
+       return Report::count();
    }
 }

@@ -4886,3 +4886,16 @@ body.layout-dark .table tbody tr td {
 #sidebar ul.menu-categories li.menu.active>.dropdown-toggle {
     background-color: #4361ee !important;
 }
+.dash-active-stat {
+    position: absolute;
+    margin-top: -24px;
+    left: 0px;
+    width: 100%;
+}
+body.layout-dark blockquote.blockquote{
+    color:white !important;
+}
+.form-control.is-invalid {
+    background-position: right calc(.375em + .1875rem) center !important;
+    background-repeat: no-repeat !important;
+}

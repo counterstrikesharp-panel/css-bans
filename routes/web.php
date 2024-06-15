@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Appeal\AppealController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LogViewerController;
 use App\Http\Controllers\Rcon\RconController;
+use App\Http\Controllers\Report\ReportController;
 use App\Http\Controllers\ServerController;
 use App\Http\Controllers\VIP\VIPController;
 use Illuminate\Support\Facades\Route;
@@ -145,3 +147,18 @@ Route::middleware(['superadmin'])->group(function () {
     Route::post('/settings', [SettingsController::class, 'updateSettings'])->name('settings.update');
 });
 
+Route::get('/appeals', [AppealController::class, 'list'])->name('appeals.list');
+Route::get('/appeals/create', [AppealController::class, 'create'])->name('appeals.create');
+Route::post('appeals', [AppealController::class, 'store'])->name('appeals.store');
+Route::get('/appeals/{id}', [AppealController::class, 'view'])->name('appeals.show');
+Route::put('/appeals/{id}/status', [AppealController::class, 'updateStatus'])->name('appeals.updateStatus');
+
+
+
+Route::prefix('reports')->group(function () {
+    Route::get('create', [ReportController::class, 'create'])->name('reports.create');
+    Route::post('store', [ReportController::class, 'store'])->name('reports.store');
+    Route::get('list', [ReportController::class, 'list'])->name('reports.list');
+    Route::get('show/{id}', [ReportController::class, 'show'])->name('reports.show');
+    Route::delete('destroy/{id}', [ReportController::class, 'destroy'])->name('reports.destroy');
+});

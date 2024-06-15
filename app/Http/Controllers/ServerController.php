@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Helpers\PermissionsHelper;
 use App\Models\SaAdmin;
 use App\Models\SaAdminsFlags;
+use App\Models\SaBan;
 use App\Models\SaServer;
 use App\Models\ServerVisibilitySetting;
 use App\Services\RconService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
@@ -56,7 +58,10 @@ class ServerController extends Controller
         $serverVisibilitySettings = ServerVisibilitySetting::pluck('is_visible', 'server_id')->toArray();
 
         $formattedServers = [];
-
+        $loggedInPlayerSteam = null;
+        if(auth()->check()){
+            $loggedInPlayerSteam = Auth::user()?->steam_id;
+        }
         foreach ($servers as $server) {
             if (isset($serverVisibilitySettings[$server->id]) && !$serverVisibilitySettings[$server->id]) {
                 continue; // Skip hidden servers
@@ -67,9 +72,18 @@ class ServerController extends Controller
             try {
                 $serverDetails = $this->getServerDetails($serverIp, $serverPort);
                 if ($serverDetails) {
+                    $banned = '';
+                    if($loggedInPlayerSteam){
+                        if(SaBan::where('player_steamid', $loggedInPlayerSteam)
+                            ->where('server_id', $server->id)
+                            ->where('status', 'ACTIVE')
+                            ->exists()) {
+                            $banned = ' <span class="badge badge-light-danger mb-2 me-4">Banned</span>';
+                        }
+                    }
                     $formattedServer = [
                         'id' => $server->id,
-                        'name' => $server->hostname,
+                        'name' => $server->hostname.$banned,
                         'ip' => $serverIp,
                         'port' => $serverPort,
                         'players' => $serverDetails['players'] . "/" . $serverDetails['max_players'],
