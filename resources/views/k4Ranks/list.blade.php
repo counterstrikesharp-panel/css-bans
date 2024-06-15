@@ -62,6 +62,9 @@
             @vite(['resources/js/ranks/ranks.ts'])
             <script>
                 const ranksListUrl = '{!! env('VITE_SITE_DIR') !!}/list/ranks';
+                window.translations = {
+                    lastSeen: "{{ __('dashboard.lastSeen') }}"
+                };
             </script>
         </x-slot>
 </x-base-layout>
