@@ -16,6 +16,10 @@
             "dest": "/public/resources/"
         },
         {
+            "src": "/resources/(.*)",
+            "dest": "/public/images/"
+        },
+        {
             "src": "/favicon/(.*)",
             "dest": "/public/favicon/"
         },
