@@ -114,7 +114,9 @@
                     // Function to save agent
                     $('#saveAgentButton').on('click', function() {
                         const formData = new FormData(document.getElementById('applyAgentForm'));
-                        fetch('{{ route('weapons.agents.apply') }}', {
+                        let route;
+                        route = '{!! env('VITE_SITE_DIR') !!}/weapons/agents/apply';
+                        fetch(route, {
                             method: 'POST',
                             headers: {
                                 'X-CSRF-TOKEN': '{{ csrf_token() }}'

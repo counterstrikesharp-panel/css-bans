@@ -159,7 +159,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <span class="badge badge-success rounded-pill d-inline">{{ $player->points }}</span>
+                                    {!! $player->ratingImage !!}
                                 </td>
                                 <td>{{ $player->rank }}</td>
                                 <td>{{ $player->k4stats->kills }}</td>

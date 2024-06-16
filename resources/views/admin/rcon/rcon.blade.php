@@ -5,6 +5,10 @@
     @if (session('error'))
         <x-alert type="danger" :message="session('error')"/>
     @endif
+    @php if(!empty(session('serverId'))) {
+        $serverId = session('serverId');
+    }
+    @endphp;
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -47,7 +51,7 @@
                         <label>{{ __('dashboard.server') }}</label>
                         <select id="servers" class="form-select" aria-label="Default select example">
                            @foreach($servers as $server)
-                                <option selected="{{($server->id==$serverId) ? 'selected' :''}}" value="{{$server->id}}">{{$server->hostname}} ({{$server->address}})</option>
+                                <option {{$server->id==$serverId || $server->id==session('serverId') ? 'selected' :''}} value="{{$server->id}}">{{$server->hostname}} ({{$server->address}})</option>
                            @endforeach
                         </select>
                     </div>
@@ -57,7 +61,7 @@
                         </div>
                         <div class="col-md-4">
 
-                            <label>{{ __('admins.rconPassword') }}</label> <input type="password" name="password" required value="{{ !empty($server->rcon?->password) ? Illuminate\Support\Facades\Crypt::decrypt($server->rcon?->password): ''}}" class="form-control"/>
+                            <label>{{ __('admins.rconPassword') }}</label> <input type="password" name="password" required value="{{ !empty(\App\Models\SaServer::where('id', $serverId)->first()->rcon?->password) ? Illuminate\Support\Facades\Crypt::decrypt(\App\Models\SaServer::where('id', $serverId)->first()->rcon?->password): ''}}" class="form-control"/>
                         </div>
                     </div>
                     <div>

@@ -145,6 +145,7 @@ Route::middleware(['superadmin'])->group(function () {
     Route::post('/settings/servers/sync', [ServerController::class, 'syncNewServers'])->name('settings.servers.sync');
     Route::get('/settings', [SettingsController::class, 'showSettings'])->name('settings.show');
     Route::post('/settings', [SettingsController::class, 'updateSettings'])->name('settings.update');
+    Route::post('/settings/test-email', [SettingsController::class, 'sendTestEmail'])->name('settings.test-email');
 });
 
 Route::get('/appeals', [AppealController::class, 'list'])->name('appeals.list');

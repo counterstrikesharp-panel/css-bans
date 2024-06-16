@@ -46,6 +46,7 @@ class RanksController extends Controller
         foreach ($players as $player) {
             $player->player_steamid = $player->steam_id;
             $response = CommonHelper::steamProfile($player);
+            $player->points = CommonHelper::getCSRatingImage($player->points);
             $formattedData[] = [
                 "position" => $player->position,
                 "name" => $player->name,

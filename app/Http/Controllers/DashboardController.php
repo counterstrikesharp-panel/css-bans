@@ -110,6 +110,7 @@ class DashboardController extends Controller
             $player->player_steamid = $player->steam_id;
             $response = CommonHelper::steamProfile($player);
             $player->avatar = !empty($response['response']['players'][0]['avatar']) ? $response['response']['players'][0]['avatar'] : 'https://mdbootstrap.com/img/Photos/Avatars/img(32).jpg' ;
+            $player->ratingImage = CommonHelper::getCSRatingImage($player->points);
         }
         $totalPlayers = Ranks::count();
         return ['topPlayers' => $topPlayers, 'totalPlayers' => $totalPlayers];

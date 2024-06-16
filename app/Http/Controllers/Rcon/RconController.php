@@ -15,8 +15,8 @@ class RconController extends Controller
     public function index(Request $request, $serverId=null)
     {
         $servers = SaServer::all();
-        if(!Rcon::where('server_id', $serverId)->exists()){
-            $serverId = null;
+        if(empty($serverId)){
+            $serverId = SaServer::first()?->id;
         }
         return view('admin.rcon.rcon', compact('servers','serverId'));
     }
@@ -43,7 +43,8 @@ class RconController extends Controller
             return redirect()->route('rcon')->with(
                 [
                     'success' => __('admins.rconStatusSuccess'),
-                    'data' => $output
+                    'data' => $output,
+                    'serverId' => $serverId
                 ]
             );
         } catch(\Exception $e){
@@ -51,7 +52,8 @@ class RconController extends Controller
             return redirect()->route('rcon')->with(
                 [
                     'error' => __('admins.rconStatusFailed'),
-                    'data' => $e->getMessage()
+                    'data' => $e->getMessage(),
+                    'serverId' => $serverId
                 ]
             );
         }

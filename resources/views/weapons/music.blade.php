@@ -103,7 +103,9 @@
                     // Function to save music
                     $('#saveMusicButton').on('click', function() {
                         const formData = new FormData(document.getElementById('applyMusicForm'));
-                        fetch('{{ route('weapons.music.apply') }}', {
+                        let route;
+                        route = '{!! env('VITE_SITE_DIR') !!}/weapons/music/apply';
+                        fetch(route, {
                             method: 'POST',
                             headers: {
                                 'X-CSRF-TOKEN': '{{ csrf_token() }}'

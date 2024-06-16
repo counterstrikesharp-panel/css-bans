@@ -4899,3 +4899,72 @@ body.layout-dark blockquote.blockquote{
     background-position: right calc(.375em + .1875rem) center !important;
     background-repeat: no-repeat !important;
 }
+
+.cs2rating {
+    height: 24px;
+    font-size: 16px;
+    align-items: center;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    text-shadow: 0 1px 0 black;
+    font-weight: 700;
+    margin: auto;
+}
+.cs2rating-text-unusual {
+    position: absolute;
+    padding-left: 14px;
+    padding-top: 2px;
+    font-style: italic;
+    font-weight: bold;
+    color: yellow;
+}
+.cs2rating-text-common {
+    position: absolute;
+    padding-left: 14px;
+    padding-top: 2px;
+    font-style: italic;
+    font-weight: bold;
+    color: #B1C3D9;
+}
+.cs2rating-text-uncommon {
+    position: absolute;
+    padding-left: 14px;
+    padding-top: 2px;
+    font-style: italic;
+    font-weight: bold;
+    color: #5E98D7;
+}
+.cs2rating-text-rare {
+    position: absolute;
+    padding-left: 14px;
+    padding-top: 2px;
+    font-style: italic;
+    font-weight: bold;
+    color: #4B69FF;
+}
+.cs2rating-text-mythical {
+    position: absolute;
+    padding-left: 14px;
+    padding-top: 2px;
+    font-style: italic;
+    font-weight: bold;
+    color: #8846FF;
+}
+.cs2rating-text-legendary {
+    position: absolute;
+    padding-left: 14px;
+    padding-top: 2px;
+    font-style: italic;
+    font-weight: bold;
+    color: #D22CE6;
+}
+.cs2rating-text-ancient {
+    position: absolute;
+    padding-left: 14px;
+    padding-top: 2px;
+    font-style: italic;
+    font-weight: bold;
+    color: #EB4B4B;
+}

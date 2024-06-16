@@ -29,11 +29,7 @@ function loadRanks() {
                     return `<div class="ranksList"><span class="list-profile"><img src="${row.avatar}" /><a href="https://steamcommunity.com/profiles/${row.player_steamid}">${truncatedName}</a></span><p class="text-muted mb-0">${window.translations.lastSeen}: <span class="badge badge-light-info rounded-pill d-inline">${row.last_seen}</span></p></div>`;
                 }
             },
-            {
-                "data": "points", "render": function (data, type, row, meta) {
-                    return `<span class="badge badge-success rounded-pill d-inline">${row.points}</span>`;
-                }
-            },
+            {"data": "points"},
             {"data": "rank"},
             {"data": "kills"},
             {"data": "deaths"},

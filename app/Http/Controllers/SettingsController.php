@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+// app/Http/Controllers/SettingsController.php
+
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 
 class SettingsController extends Controller
@@ -45,7 +48,13 @@ class SettingsController extends Controller
                 'DB_PASSWORD_SKINS' => env('DB_PASSWORD_SKINS'),
                 'DB_PORT_SKINS' => env('DB_PORT_SKINS'),
             ],
-            // Add other settings as needed
+            'SMTP Settings' => [
+                'MAIL_HOST' => env('MAIL_HOST'),
+                'MAIL_PORT' => env('MAIL_PORT'),
+                'MAIL_USERNAME' => env('MAIL_USERNAME'),
+                'MAIL_PASSWORD' => env('MAIL_PASSWORD'),
+                'MAIL_ENCRYPTION' => env('MAIL_ENCRYPTION'),
+            ],
         ];
 
         return view('settings.index', compact('settings'));
@@ -61,6 +70,39 @@ class SettingsController extends Controller
         }
 
         return redirect()->back()->with('success', 'Settings updated successfully.');
+    }
+
+    public function sendTestEmail(Request $request)
+    {
+        $request->validate([
+            'test_email' => 'required|email',
+        ]);
+
+        $email = $request->input('test_email');
+
+        // Temporarily set mail configuration
+        Config::set('mail.mailers.smtp', [
+            'transport' => 'smtp',
+            'host' => env('MAIL_HOST'),
+            'port' => env('MAIL_PORT'),
+            'encryption' => env('MAIL_ENCRYPTION'),
+            'username' => env('MAIL_USERNAME'),
+            'password' => env('MAIL_PASSWORD'),
+        ]);
+
+        Config::set('mail.from.address', env('MAIL_FROM_ADDRESS'));
+        Config::set('mail.from.name', config('app.name'));
+
+        try {
+            Mail::raw('This is a test email.', function ($message) use ($email) {
+                $message->to($email)
+                    ->subject('Test Email');
+            });
+
+            return redirect()->back()->with('success', 'Test email sent successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to send test email: ' . $e->getMessage());
+        }
     }
 
     private function setEnvironmentValue($key, $value)
@@ -80,6 +122,7 @@ class SettingsController extends Controller
         }
     }
 }
+
 
 
 
