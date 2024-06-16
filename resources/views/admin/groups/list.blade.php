@@ -23,7 +23,7 @@
             <div class="card-body">
                 @if(PermissionsHelper::isSuperAdmin() || @PermissionsHelper::hasGroupCreatePermission())
                     <div class="mt-3 d-flex justify-content-end p-1">
-                        <a href="{{env('VITE_SITE_DIR')}}/group/create" class="col-md- btn btn-success">Create Group</a>
+                        <a href="{{env('VITE_SITE_DIR')}}/group/create" class="col-md- btn btn-success">{{ __('admins.createGroup') }}</a>
                     </div>
                 @endif
                 <div class="table-responsive display responsive nowrap">
