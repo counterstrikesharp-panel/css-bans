@@ -118,7 +118,7 @@ INSERT INTO `permissions` (`id`, `permission`, `description`, `created_at`, `upd
 (NULL, '@web/group.delete', 'Web-only: Permission to delete a group.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
 (NULL, '@web/mute.add', 'Web-only: Permission to create a mute.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
 (NULL, '@web/mute.edit', 'Web-only: Permission to edit a mute.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
-(NULL, '@web/mute.unmute', 'Web-only: Permission to unmute a user.', '2024-04-14 15:27:44', '2024-04-14 15:27:44')
+(NULL, '@web/mute.unmute', 'Web-only: Permission to unmute a user.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
 (NULL, '@web/group.create', 'Web-only: Permission to create group.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
 (NULL, '@web/group.edit', 'Web-only: Permission to edit group.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
 (NULL, '@web/group.delete', 'Web-only: Permission to delete group.', '2024-04-14 15:27:44', '2024-04-14 15:27:44');
@@ -182,6 +182,38 @@ CREATE TABLE `server_visibility_settings` (
 `updated_at` timestamp NULL DEFAULT NULL,
 PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+DROP TABLE IF EXISTS appeals;
+CREATE TABLE `appeals` (
+`id` int NOT NULL AUTO_INCREMENT,
+`ban_type` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+`steamid` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+`ip` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+`name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+`reason` text COLLATE utf8mb4_general_ci NOT NULL,
+`email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+`status` enum('PENDING','APPROVED','REJECTED') COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'PENDING',
+`created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+`updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+DROP TABLE IF EXISTS reports;
+CREATE TABLE `reports` (
+`id` bigint unsigned NOT NULL AUTO_INCREMENT,
+`ban_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+`steamid` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+`ip` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+`nickname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+`comments` text COLLATE utf8mb4_unicode_ci NOT NULL,
+`name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+`email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+`server_id` bigint unsigned NOT NULL,
+`media_link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+`created_at` timestamp NULL DEFAULT NULL,
+`updated_at` timestamp NULL DEFAULT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 --
 -- Dumping data for table `users`
 --

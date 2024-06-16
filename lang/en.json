@@ -198,5 +198,13 @@
     "skins.skinPreview": "Skin Preview",
     "skins.wellWorn": "Well-Worn",
     "Sync New Servers": "Sync New Servers",
-    "Visibility": "Visibility"
+    "Visibility": "Visibility",
+    "emails.subject.APPROVED": "Your Ban Appeal has been Approved ",
+    "emails.subject.REJECTED": "Your Ban Appeal has been Denied ",
+    "emails.greeting": "Dear :name,",
+    "emails.body.APPROVED": "Your ban appeal has been approved. You can now rejoin the server. If you have any questions, feel free to contact us.",
+    "emails.body.REJECTED": "Your ban appeal has been denied. If you have any questions or need further information, feel free to contact us.",
+    "emails.regards": "Best regards, Server Administration Team",
+    "emails.footer.copyright": "&copy; :year :app_name. All rights reserved.",
+    "emails.footer.github": "GitHub Repository"
 }

@@ -14,7 +14,7 @@
 
 CSS-BANS is an admin web panel for Counter-Strike 2, powered by CounterStrikeSharp. It allows for comprehensive management of bans, mutes, VIP statuses, skins, ranks, and more on your CS2 servers.
 
-![image](https://github.com/counterstrikesharp-panel/css-bans/assets/11420858/3d45df8b-70d0-4072-b35f-949380a6978e)
+![image](https://github.com/counterstrikesharp-panel/css-bans/assets/11420858/4fef7e7b-c4d7-4e29-bebe-9c45b5071e45)
 ![2](https://github.com/counterstrikesharp-panel/css-bans/assets/11420858/e0d9d5d0-f317-43ba-89a5-7dc1f593693d)
 ![1](https://github.com/counterstrikesharp-panel/css-bans/assets/11420858/761f6764-4f4e-4271-bb5c-3f685e873b7d)
 
@@ -43,6 +43,8 @@ For detailed installation instructions, please visit our [Documentation](https:/
 - Manage Groups
 - Rcon Panel
 - Skins
+- Appeal System
+- Report Player System
 
 ## Modules Support
 - Ranks (K4system) - View/listing [K4-System](https://github.com/K4ryuu/K4-System)
@@ -50,7 +52,7 @@ For detailed installation instructions, please visit our [Documentation](https:/
 - Skins (Weapon Paints)
 
 ## Requirements
-- PHP >= 8.1
+- PHP >= 8.1 (Recommended PHP 8.3)
 - CounterStrikeSharp ([GitHub Repository](https://github.com/roflmuffin/CounterStrikeSharp))
 - MySQL >= 5.7
 - ServerPlayerListFix ([GitHub Repository](https://github.com/Source2ZE/ServerListPlayersFix))

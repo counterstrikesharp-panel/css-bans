@@ -10,6 +10,7 @@ use App\Models\SaBan;
 use App\Models\SaMute;
 use App\Models\SaServer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 class DashboardController extends Controller
@@ -21,10 +22,18 @@ class DashboardController extends Controller
     public function home()
     {
         $updates = [];
+        $activeBans = null;
+        $activeMutes = null;
         $totalBans = SaBan::count();
         $totalServers = SaServer::count();
         $totalMutes = SaMute::count();
         $totalAdmins = SaAdmin::distinct('player_steamid')->count();
+        $totalActiveBans =  SaBan::where('status', 'ACTIVE')->count();
+        $totalActiveMutes =  SaMute::where('status', 'ACTIVE')->count();
+        if(auth()->check()){
+            $activeBans = SaBan::where('player_steamid', Auth::user()->steam_id)->where('status', 'ACTIVE')->count();
+            $activeMutes = SaMute::where('player_steamid', Auth::user()->steam_id)->where('status', 'ACTIVE')->count();
+        }
         if(PermissionsHelper::isSuperAdmin()) {
             $updates = $this->checkUpdates();
         }
@@ -39,7 +48,11 @@ class DashboardController extends Controller
                 'totalMutes',
                 'totalAdmins',
                 'updates',
-                'topPlayersData'
+                'topPlayersData',
+                'activeBans',
+                'activeMutes',
+                'totalActiveBans',
+                'totalActiveMutes'
             )
         );
     }
