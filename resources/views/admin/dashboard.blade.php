@@ -161,7 +161,7 @@
                                 <td>
                                     {!! $player->ratingImage !!}
                                 </td>
-                                <td>{{ $player->rank }}</td>
+                                <td>{!! $player->rank !!}</td>
                                 <td>{{ $player->k4stats->kills }}</td>
                                 <td>{{ $player->k4stats->deaths }}</td>
                                 <td>{{ $player->k4stats->game_win }}</td>

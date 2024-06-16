@@ -76,4 +76,69 @@ class CommonHelper
         }
         return '<span class="cs2rating-text-' . $classRating . '">'.$score.'</span><img src="' . asset(getAppSubDirectoryPath().$imagePath) . '" class="cs2rating" alt="CS Rating">';
     }
+
+    public static function getCSRankImage($rank)
+    {
+        if ($rank == 'Silver I') {
+            $imagePath = 'images/ratings/1.png';
+            $classRating = 'silver1';
+        } elseif ($rank == 'Silver II') {
+            $imagePath = 'images/ratings/2.png';
+            $classRating = 'silver2';
+        } elseif ($rank == 'Silver III') {
+            $imagePath = 'images/ratings/3.png';
+            $classRating = 'silver3';
+        } elseif ($rank == 'Silver IV') {
+            $imagePath = 'images/ratings/4.png';
+            $classRating = 'silver4';
+        } elseif ($rank == 'Silver Elite') {
+            $imagePath = 'images/ratings/5.png';
+            $classRating = 'silverelite';
+        } elseif ($rank == 'Silver Elite Master') {
+            $imagePath = 'images/ratings/6.png';
+            $classRating = 'silverelitemaster';
+        } elseif ($rank == 'Gold Nova I') {
+            $imagePath = 'images/ratings/7.png';
+            $classRating = 'goldnova1';
+        } elseif ($rank == 'Gold Nova II') {
+            $imagePath = 'images/ratings/8.png';
+            $classRating = 'goldnova2';
+        } elseif ($rank == 'Gold Nova III') {
+            $imagePath = 'images/ratings/9.png';
+            $classRating = 'goldnova3';
+        } elseif ($rank == 'Gold Nova Master') {
+            $imagePath = 'images/ratings/10.png';
+            $classRating = 'goldnovamaster';
+        } elseif ($rank == 'Master Guardian I') {
+            $imagePath = 'images/ratings/11.png';
+            $classRating = 'masterguardian1';
+        } elseif ($rank == 'Master Guardian II') {
+            $imagePath = 'images/ratings/12.png';
+            $classRating = 'masterguardian2';
+        } elseif ($rank == 'Master Guardian Elite') {
+            $imagePath = 'images/ratings/13.png';
+            $classRating = 'masterguardianelite';
+        } elseif ($rank == 'Distinguished Master Guardian') {
+            $imagePath = 'images/ratings/14.png';
+            $classRating = 'distinguishedmasterguardian';
+        } elseif ($rank == 'Legendary Eagle') {
+            $imagePath = 'images/ratings/15.png';
+            $classRating = 'legendaryeagle';
+        } elseif ($rank == 'Legendary Eagle Master') {
+            $imagePath = 'images/ratings/16.png';
+            $classRating = 'legendaryeaglemaster';
+        } elseif ($rank == 'Supreme Master First Class') {
+            $imagePath = 'images/ratings/17.png';
+            $classRating = 'suprememasterfirstclass';
+        } elseif ($rank == 'Global Elite') {
+            $imagePath = 'images/ratings/18.png';
+            $classRating = 'globalelite';
+        }
+        else {
+            $imagePath = 'images/ratings/1.png';
+            $classRating = 'none';
+        }
+
+        return '<img src="' . asset($imagePath) . '" class="cs2rating" alt="CS Rating">';
+    }
 }

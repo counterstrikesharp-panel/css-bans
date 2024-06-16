@@ -52,7 +52,7 @@ class RanksController extends Controller
                 "name" => $player->name,
                 "player_steamid" => $player->steam_id,
                 "points" => $player->points,
-                "rank" => $player->rank,
+                "rank" => CommonHelper::getCSRankImage($player->rank),
                 "kills" => $player->k4stats->kills,
                 "deaths" => $player->k4stats->deaths,
                 "assists" => $player->k4stats->assists,
