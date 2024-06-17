@@ -115,12 +115,21 @@ function playerAction(playerName: string, action: string, serverId: string) {
 }
 
 function copyToClipboard(text) {
+    function showSnackbar(message) {
+        let snackbar = document.getElementById("snackbar");
+        snackbar.innerHTML = message;
+        snackbar.className = "show";
+        setTimeout(() => {
+            snackbar.className = snackbar.className.replace("show", "");
+        }, 3000);
+    }
+
     if (navigator.clipboard) {
         navigator.clipboard.writeText(text).then(() => {
-            toastr.success('IP and port copied to clipboard!');
+            showSnackbar('IP and port copied to clipboard!');
         }).catch(err => {
             console.error('Failed to copy text: ', err);
-            toastr.error('Failed to copy IP and port.');
+            showSnackbar('Failed to copy IP and port.');
         });
     } else {
         // Fallback for older browsers
@@ -131,10 +140,10 @@ function copyToClipboard(text) {
         textArea.select();
         try {
             document.execCommand('copy');
-            toastr.success('IP and port copied to clipboard!');
+            showSnackbar('IP and port copied to clipboard!');
         } catch (err) {
             console.error('Fallback: Oops, unable to copy', err);
-            toastr.error('Failed to copy IP and port.');
+            showSnackbar('Failed to copy IP and port.');
         }
         document.body.removeChild(textArea);
     }
