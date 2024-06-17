@@ -144,6 +144,7 @@
     "dashboard.ip": "IP",
     "dashboard.kills": "Kills",
     "dashboard.lastSeen": "Last seen",
+    "dashboard.lists": "Lists",
     "dashboard.lost": "LOST",
     "dashboard.map": "Map",
     "dashboard.muteMangement": "Mute Management",

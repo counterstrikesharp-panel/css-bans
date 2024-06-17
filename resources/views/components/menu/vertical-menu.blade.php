@@ -93,7 +93,7 @@
                          class="feather feather-minus">
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                     </svg>
-                    <span>SERVER</span></div>
+                    <span>{{ __('dashboard.lists') }}</span></div>
             </li>
 
             <li class="menu {{ Request::is('*list/bans*') ? 'active' : '' }}">
