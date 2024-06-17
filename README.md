@@ -93,3 +93,5 @@ npm run build
 ```
 
 For further information, please visit our [Documentation](https://docs.cssbans.online) or join our [Discord](https://discord.gg/fwg5DKZYqV) for support.
+
+![Alt](https://repobeats.axiom.co/api/embed/25f27b45de54ec2177e206ee8dfbbde4bd01dccf.svg "Repobeats analytics image")
