@@ -29,8 +29,7 @@
 
                         <div class="card-body">
                             <blockquote class="blockquote">
-                                If you are indeed on our ban list and you feel it is unjust or any other circumstances,
-                                please fill out the appeal format below.
+                                {{ __('appeals.textOne') }}
                             </blockquote>
                             <form method="POST" action="{{ getAppSubDirectoryPath()}}/appeals">
                                 @csrf
@@ -92,8 +91,8 @@
                         </div>
 
                         <div class="card-footer text-center">
-                            <p>{{ __('What happens after I post my appeal?') }}</p>
-                            <p>{{ __('The staff team will be notified of your appeal. They will then review if the ban is conclusive. After reviewing you will get a reply, which usually means within 24 hours.') }}</p>
+                            <p>{{ __('appeals.textTwo') }}</p>
+                            <p>{{ __('appeals.textThree') }}</p>
                         </div>
                     </div>
                 </div>
