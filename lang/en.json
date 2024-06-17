@@ -161,6 +161,8 @@
     "dashboard.versionVisible": "This is only visible to you.",
     "dashboard.weaponpaints": "Weapon Paints",
     "dashboard.won": "WON",
+    "dashboard.youHaveActiveBans": "You have active Bans on <b>:activeBans</b> servers",
+    "dashboard.youHaveActiveMutes": "You have active Mutes on <b>:activeMutes</b> servers",
     "Delete": "Delete",
     "gloves.applyGlove": "Apply Glove",
     "gloves.applyGloveSkin": "Apply Glove Skin",
@@ -206,5 +208,12 @@
     "emails.body.REJECTED": "Your ban appeal has been denied. If you have any questions or need further information, feel free to contact us.",
     "emails.regards": "Best regards, Server Administration Team",
     "emails.footer.copyright": "&copy; :year :app_name. All rights reserved.",
-    "emails.footer.github": "GitHub Repository"
+    "emails.footer.github": "GitHub Repository",
+    "Warning": "Warning",
+    "settings.beCareful": "Be careful when making changes here. Incorrect settings can cause issues with the application.",
+    "Enabled": "Enabled",
+    "Disabled": "Disabled",
+    "Test SMTP Settings": "Test SMTP Settings",
+    "settings.testEmailAddress": "Test Email Address",
+    "settings.sendTestEmail": "Send Test Email"
 }
