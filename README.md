@@ -44,9 +44,10 @@ For detailed installation instructions, please visit our [Documentation](https:/
 - Skins
 - Appeal System
 - Report Player System
+- Ranks (Multi Server Support)
 
 ## Modules Support
-- Ranks (K4system) - View/listing [K4-System](https://github.com/K4ryuu/K4-System)
+- Ranks (K4system) (Multi Server Support) - View/listing [K4-System](https://github.com/K4ryuu/K4-System)
 - VIP Core - Download from the release tab (Follow the documentation guide)
 - Skins (Weapon Paints)
 
