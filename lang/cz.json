@@ -179,5 +179,7 @@
     "skins.select": "Vyberte typ zbraně",
     "skins.selectWear": "Vyberte opotřebení",
     "skins.skinPreview": "Náhled skinu",
-    "skins.wellWorn": "Dobře opotřebovaný"
+    "skins.wellWorn": "Dobře opotřebovaný",
+    "Sync New Servers": "Synchronizovat nové servery",
+    "Visibility": "Viditelnost serveru"
 }
