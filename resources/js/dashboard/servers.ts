@@ -115,36 +115,30 @@ function playerAction(playerName: string, action: string, serverId: string) {
 }
 
 function copyToClipboard(text) {
-    function showSnackbar(message) {
-        let snackbar = document.getElementById("snackbar");
-        snackbar.innerHTML = message;
-        snackbar.className = "show";
-        setTimeout(() => {
-            snackbar.className = snackbar.className.replace("show", "");
-        }, 3000);
-    }
-
     if (navigator.clipboard) {
         navigator.clipboard.writeText(text).then(() => {
-            showSnackbar('IP and port copied to clipboard!');
+            Snackbar.show({
+                text: 'IP and port copied to clipboard!',
+                actionTextColor: '#fff',
+                backgroundColor: '#00ab55',
+                pos: 'top-center'
+            });
         }).catch(err => {
             console.error('Failed to copy text: ', err);
-            showSnackbar('Failed to copy IP and port.');
+            Snackbar.show({
+                text: 'Failed to copy IP and port.',
+                actionTextColor: '#fff',
+                backgroundColor: '#e7515a',
+                pos: 'top-center'
+            });
         });
     } else {
-        // Fallback for older browsers
-        let textArea = document.createElement("textarea");
-        textArea.value = text;
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        try {
-            document.execCommand('copy');
-            showSnackbar('IP and port copied to clipboard!');
-        } catch (err) {
-            console.error('Fallback: Oops, unable to copy', err);
-            showSnackbar('Failed to copy IP and port.');
-        }
-        document.body.removeChild(textArea);
+        // Notify the user that their browser doesn't support the Clipboard API
+        Snackbar.show({
+            text: 'Clipboard API not supported in this browser. Please copy manually.',
+            actionTextColor: '#fff',
+            backgroundColor: '#e7515a',
+            pos: 'top-center'
+        });
     }
 }
