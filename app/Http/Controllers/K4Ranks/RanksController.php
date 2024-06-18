@@ -3,19 +3,29 @@
 namespace App\Http\Controllers\K4Ranks;
 
 use App\Helpers\CommonHelper;
+use App\Helpers\ModuleHelper;
 use App\Http\Controllers\Controller;
 use App\Models\K4Ranks\Ranks;
+use App\Models\ModuleServerSetting;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class RanksController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('k4Ranks.list');
+        $serverId = $request->query('server_id');
+        ModuleHelper::useConnection('Ranks', $serverId);
+        $servers = ModuleServerSetting::all();
+        return view('k4Ranks.list', compact('servers'));
     }
     public function getPlayersList(Request $request)
     {
+        ModuleHelper::useConnection('Ranks');
         // Extract parameters sent by DataTables
         $start = $request->input('start');
         $length = $request->input('length');

@@ -311,6 +311,11 @@
                         </svg>
                         <span>{{ __('admins.settings') }}</span></div>
                 </li>
+                <li class="menu {{ Request::is('*modules*') ? 'active' : '' }}">
+                    <a href="{{getAppSubDirectoryPath();}}/modules" aria-expanded="false" class="dropdown-toggle">
+                        <div class=""><i class="fa fa-cog fa-fw me-3"></i><span>{{ __('Module Settings') }}</span></div>
+                    </a>
+                </li>
                 <li class="menu {{ Request::is('*settings') ? 'active' : '' }}">
                     <a href="{{getAppSubDirectoryPath();}}/settings" aria-expanded="false" class="dropdown-toggle">
                         <div class=""><i class="fa fa-cog fa-fw me-3"></i><span>{{ __('admins.panel') }}</span></div>

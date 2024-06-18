@@ -30,6 +30,12 @@ class User extends Authenticatable
     protected $casts = [
         'steam_id' => 'int'
     ];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->setConnection('mysql');
+    }
     public function permissions()
     {
         return $this->hasManyThrough(

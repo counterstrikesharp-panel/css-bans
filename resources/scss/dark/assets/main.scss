@@ -4968,3 +4968,16 @@ body.layout-dark blockquote.blockquote{
     font-weight: bold;
     color: #EB4B4B;
 }
+#serverSelect {
+    width: 327px;
+
+}
+.rank-servers {
+    display: flex;
+    right: 0;
+    flex-direction: row-reverse;
+}
+.serverSelectLabel {
+    padding-top: 11px;
+    padding-right: 11px;
+}

@@ -15,4 +15,10 @@ class Appeal extends Model
         'reason',
         'email'
     ];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->setConnection('mysql');
+    }
 }

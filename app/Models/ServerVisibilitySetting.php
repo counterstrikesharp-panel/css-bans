@@ -14,6 +14,11 @@ class ServerVisibilitySetting extends Model
         'is_visible',
     ];
 
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->setConnection('mysql');
+    }
     public function server()
     {
         return $this->belongsTo(SaServer::class, 'server_id');
