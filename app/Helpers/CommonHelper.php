@@ -74,7 +74,7 @@ class CommonHelper
             $imagePath = 'images/ratings/rating.unusual.png';
             $classRating = 'unusual';
         }
-        return '<span class="cs2rating-text-' . $classRating . '">'.$score.'</span><img src="' . asset(getAppSubDirectoryPath().$imagePath) . '" class="cs2rating" alt="CS Rating">';
+        return '<span class="cs2rating-text-' . $classRating . '">'.$score.'</span><img src="' . asset($imagePath) . '" class="cs2rating" alt="CS Rating">';
     }
 
     public static function getCSRankImage($rank)

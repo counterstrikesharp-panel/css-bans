@@ -8,7 +8,7 @@
     @php if(!empty(session('serverId'))) {
         $serverId = session('serverId');
     }
-    @endphp;
+    @endphp
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>

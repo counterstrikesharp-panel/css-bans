@@ -34,13 +34,6 @@ class SettingsController extends Controller
                 'DB_PASSWORD_VIP' => env('DB_PASSWORD_VIP'),
                 'DB_PORT_VIP' => env('DB_PORT_VIP'),
             ],
-            'Ranks Module' => [
-                'DB_HOST_RANKS' => env('DB_HOST_RANKS'),
-                'DB_DATABASE_RANKS' => env('DB_DATABASE_RANKS'),
-                'DB_USERNAME_RANKS' => env('DB_USERNAME_RANKS'),
-                'DB_PASSWORD_RANKS' => env('DB_PASSWORD_RANKS'),
-                'DB_PORT_RANKS' => env('DB_PORT_RANKS'),
-            ],
             'Skins Module' => [
                 'DB_HOST_SKINS' => env('DB_HOST_SKINS'),
                 'DB_DATABASE_SKINS' => env('DB_DATABASE_SKINS'),

@@ -21,6 +21,12 @@ class Report extends Model
         'media_link',
     ];
 
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->setConnection('mysql');
+    }
+
     public function server()
     {
         return $this->belongsTo(\App\Models\SaServer::class);

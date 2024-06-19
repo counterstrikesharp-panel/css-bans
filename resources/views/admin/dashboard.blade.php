@@ -94,7 +94,7 @@
                 <div class="col-xl-3  mb-3">
                     <div class="card">
                         <div class="card-body">
-                            <span  class="dash-active-stat badge badge-light-warning mb-2 me-4">{{$totalActiveBans}} Active</span>
+                            <span  class="dash-active-stat badge badge-light-warning mb-2 me-4">{{$totalActiveMutes}} Active</span>
                             <div class="d-flex justify-content-between px-md-1">
                                 <div class="align-self-center">
                                     <i class="fas fa-volume-mute text-success fa-3x"></i>
