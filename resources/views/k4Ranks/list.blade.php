@@ -36,7 +36,7 @@
                             <select class="form-select" id="serverSelect">
                                 @foreach ($servers as $server)
                                     <option
-                                        {{$server->id == Session::get('module_ranks_server') ? 'selected': ''}} value="{{ Crypt::encrypt($server->id) }}">
+                                        {{$server->id == Session::get('Ranks_server') ? 'selected': ''}} value="{{ Crypt::encrypt($server->id) }}">
                                         {{ $server->name }}
                                     </option>
                                 @endforeach

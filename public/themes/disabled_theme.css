@@ -1,0 +1,38 @@
+/**
+#################################################################
+Rename this file to theme.css if you want to enable theme and customzie it
+
+ **/
+
+body.layout-dark:before, .layout-dark {
+    background: rgb(2,0,36) !important;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(53,59,57) 35%, rgb(16,94,110) 100%) !important;
+}
+body.layout-dark .header-container {
+    background: rgb(131,58,180) !important;
+    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%) !important;
+}
+
+.sidebar-theme{
+    background: rgb(2,0,36) !important;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(53,59,57) 35%, rgb(16,94,110) 100%) !important;
+}
+.theme-brand {
+    background: rgb(2,0,36) !important;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(53,59,57) 35%, rgb(16,94,110) 100%) !important;
+    border: none !important;
+}
+
+.card {
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(57,71,73,0.9585084033613446) 100%, rgba(0,212,255,1) 100%) !important;
+border-radius(37,31,27)
+}
+body.layout-dark #sidebar ul.menu-categories li.menu.active>.dropdown-toggle {
+    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%) !important;
+}
+/**
+ Text COLORrgb(76,28,109)rgb(77,29,10rgb(104,55,136)
+**/
+body {
+    color: #fff !important;
+}
