@@ -117,25 +117,28 @@ function playerAction(playerName: string, action: string, serverId: string) {
 function copyToClipboard(text) {
     if (navigator.clipboard) {
         navigator.clipboard.writeText(text).then(() => {
-            toastr.success('IP and port copied to clipboard!');
+            Snackbar.show({
+                text: 'IP and port copied to clipboard!',
+                actionTextColor: '#fff',
+                backgroundColor: '#00ab55',
+                pos: 'top-center'
+            });
         }).catch(err => {
             console.error('Failed to copy text: ', err);
-            toastr.error('Failed to copy IP and port.');
+            Snackbar.show({
+                text: 'Failed to copy IP and port.',
+                actionTextColor: '#fff',
+                backgroundColor: '#e7515a',
+                pos: 'top-center'
+            });
         });
     } else {
-        // Fallback for older browsers
-        let textArea = document.createElement("textarea");
-        textArea.value = text;
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        try {
-            document.execCommand('copy');
-            toastr.success('IP and port copied to clipboard!');
-        } catch (err) {
-            console.error('Fallback: Oops, unable to copy', err);
-            toastr.error('Failed to copy IP and port.');
-        }
-        document.body.removeChild(textArea);
+        // Notify the user that their browser doesn't support the Clipboard API
+        Snackbar.show({
+            text: 'Clipboard API not supported in this browser. Please copy manually.',
+            actionTextColor: '#fff',
+            backgroundColor: '#e7515a',
+            pos: 'top-center'
+        });
     }
 }
