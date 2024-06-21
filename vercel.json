@@ -24,6 +24,10 @@
             "dest": "/public/images/"
         },
         {
+            "src": "/theme/(.*)",
+            "dest": "/public/theme/"
+        },
+        {
             "src": "/favicon/(.*)",
             "dest": "/public/favicon/"
         },
