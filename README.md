@@ -13,7 +13,7 @@
 
 CSS-BANS is an admin web panel for Counter-Strike 2, powered by CounterStrikeSharp. It allows for comprehensive management of bans, mutes, VIP statuses, skins, ranks, and more on your CS2 servers.
 
-![image](https://github.com/counterstrikesharp-panel/css-bans/assets/11420858/5414048c-df6b-48c0-b23e-0e6aea613bc9)
+![image](https://github.com/counterstrikesharp-panel/css-bans/assets/11420858/fc32b224-ae87-46e3-9f21-1d3b9c5df515)
 ![2](https://github.com/counterstrikesharp-panel/css-bans/assets/11420858/e0d9d5d0-f317-43ba-89a5-7dc1f593693d)
 ![1](https://github.com/counterstrikesharp-panel/css-bans/assets/11420858/761f6764-4f4e-4271-bb5c-3f685e873b7d)
 
