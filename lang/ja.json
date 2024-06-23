@@ -61,7 +61,7 @@
     "admins.muteUpdate": "ミュートが正常に更新されました",
     "admins.note": "注記：",
     "admins.noteMessage": "新しく追加された管理者は、マップが変更されるまでサーバー上で権限を受け取りません。あるいは、css_reloadadmins を実行してすぐに効果を得ることができます。",
-    "admins.othger": "他の",
+    "admins.other": "他の",
     "admins.overall": "ラウンド全体",
     "admins.panelOwner": "パネル所有者",
     "admins.permanent": "永久 (期限切れなし)",

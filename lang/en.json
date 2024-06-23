@@ -65,7 +65,7 @@
     "admins.note": "Note:",
     "admins.noteGroupMessage": "If you want to delete a group, select all servers. Selecting specific servers will only remove the group from those servers but will not delete the group itself.",
     "admins.noteMessage": "Newly added admins will not receive their permissions on the server until a map change. Alternatively, you can execute css_reloadadmins for immediate effect.",
-    "admins.othger": "Other",
+    "admins.other": "Other",
     "admins.overall": "Rounds Overall",
     "admins.panel": "Panel",
     "admins.panelOwner": "Panel Owner",

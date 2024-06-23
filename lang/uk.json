@@ -62,7 +62,7 @@
     "admins.muteUpdate": "Мут успішно оновлено",
     "admins.note": "Примітка:",
     "admins.noteMessage": "Нещодавно додані адміни не отримають своїх дозволів на сервері до зміни карти. Або ви можете виконати css_reloadadmins для негайного ефекту.",
-    "admins.othger": "Інше",
+    "admins.other": "Інше",
     "admins.overall": "Раунди загалом",
     "admins.panel": "Панель",
     "admins.panelOwner": "Власник панелі",

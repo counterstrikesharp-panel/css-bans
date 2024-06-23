@@ -62,9 +62,9 @@
     "admins.muteType":"Tipo",
     "admins.muteUpdate":"Mute atualizado com sucesso",
     "admins.note":"Observação:",
-    "admins.noteGroupMessage": "Se você deseja excluir um grupo, selecione todos os servidores. Selecionar servidores específicos apenas removerá o grupo desses servidores, mas não excluirá o grupo em si."
+    "admins.noteGroupMessage": "Se você deseja excluir um grupo, selecione todos os servidores. Selecionar servidores específicos apenas removerá o grupo desses servidores, mas não excluirá o grupo em si.",
     "admins.noteMessage":"Os administradores recém-adicionados não receberão suas permissões no servidor até que o mapa seja alterado. Alternativamente, você pode executar css_reloadadmins para efeito imediato.",
-    "admins.othger":"Outro",
+    "admins.other":"Outro",
     "admins.overall":"Rounds gerais",
     "admins.panel": "Painel",
     "admins.panelOwner":"Proprietário do painel",
