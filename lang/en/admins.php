@@ -70,7 +70,7 @@ return [
     'rcon' => 'RCON',
     'login' => 'Login with Steam',
     'logout' => 'Logout',
-    'othger' => 'Other',
+    'other' => 'Other',
     'user' => 'User',
     'assists' => 'Assists',
     'headhost' => 'Headshots',
