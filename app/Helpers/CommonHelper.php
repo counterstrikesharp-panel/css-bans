@@ -4,8 +4,12 @@ namespace App\Helpers;
 
 use App\Models\Appeal\Appeal;
 use App\Models\Report\Report;
+use App\Models\SaBan;
+use App\Models\SaMute;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -140,5 +144,173 @@ class CommonHelper
         }
 
         return '<img src="' . asset($imagePath) . '" class="cs2rating" alt="CS Rating">';
+    }
+
+    private static function getActionColor($action)
+    {
+        switch ($action) {
+            case 'ban':
+                return 0xFF0000; // Red
+            case 'unban':
+                return 0x00FF00; // Green
+            case 'mute':
+                return 0xFFFF00; // Yellow
+            case 'unmute':
+                return 0x00FFFF; // Cyan
+            default:
+                return 0xFFFFFF; // White
+        }
+    }
+
+    private static function getActionVerb($action)
+    {
+        switch ($action) {
+            case 'ban':
+                return 'banned';
+            case 'unban':
+                return 'unbanned';
+            case 'mute':
+                return 'muted';
+            case 'unmute':
+                return 'unmuted';
+            case 'appeal':
+                return 'appealed';
+            case 'report':
+                return 'reported';
+            default:
+                return 'acted upon';
+        }
+    }
+
+    public static function sendActionLog($action, $actionId)
+    {
+        if(!empty(env('DISCORD_WEBHOOK'))) {
+            switch ($action) {
+                case "ban":
+                    $actionDetails = SaBan::where('id', $actionId)->first();
+                    $username = $actionDetails->player_name;
+                    $steamId = $actionDetails->player_steamid;
+                    $admin = "[$actionDetails->admin_name](https://steamcommunity.com/profiles/{$actionDetails->admin_steamid})";
+                    $reason = $actionDetails->reason;
+                    break;
+                case "unban":
+                    $actionDetails = SaBan::where('id', $actionId)->first();
+                    $username = $actionDetails->player_name;
+                    $steamId = $actionDetails->player_steamid;
+                    $admin = "[$actionDetails->admin_name](https://steamcommunity.com/profiles/{$actionDetails->admin_steamid})";
+                    break;
+                case "mute":
+                    $actionDetails = SaMute::where('id', $actionId)->first();
+                    $username = $actionDetails->player_name;
+                    $steamId = $actionDetails->player_steamid;
+                    $admin = "[$actionDetails->admin_name](https://steamcommunity.com/profiles/{$actionDetails->admin_steamid})";
+                    $reason = $actionDetails->reason;
+                    break;
+                case "unmute":
+                    $actionDetails = SaMute::where('id', $actionId)->first();
+                    $username = $actionDetails->player_name;
+                    $steamId = $actionDetails->player_steamid;
+                    $admin = "[$actionDetails->admin_name](https://steamcommunity.com/profiles/{$actionDetails->admin_steamid})";
+                    break;
+                case "appeal":
+                    $actionDetails = Appeal::where('id', $actionId)->first();
+                    $username = $actionDetails->name;
+                    $steamId = $actionDetails->steamid;
+                    $admin = null;
+                    $reason = $actionDetails->reason;
+                    break;
+                case "report":
+                    $actionDetails = Report::where('id', $actionId)->first();
+                    $username = $actionDetails->nickname;
+                    $steamId = $actionDetails->steamid;
+                    $admin = null;
+                    $reason = $actionDetails->comments;
+                    break;
+            }
+            $appUrl = env('APP_URL');
+            $website = "[CSS-BANS]($appUrl)";
+            if($action == 'appeal'){
+                $website = "[View Appeal]($appUrl/appeal/$actionDetails->id)";
+            }else if($action == 'ban' || $action == 'unban') {
+                $website = "[View Bans]($appUrl/list/bans)";
+            }else if($action == 'mute' || $action == 'unmute') {
+                $website = "[View Mutes]($appUrl/list/mutes)";
+            }else if($action == 'report'){
+                $website = "[View Report]($appUrl/reports/show/$actionDetails->id)";
+            }
+
+            $actionVerb = CommonHelper::getActionVerb($action);
+
+            $client = new Client();
+
+            $embed = [
+                'title' => ucfirst($action) . ' Notification',
+                'description' => "User **{$username}** has been **{$actionVerb}**.",
+                'color' => CommonHelper::getActionColor($action),
+                'fields' => [
+                    [
+                        'name' => 'Username',
+                        'value' => $username,
+                        'inline' => true,
+                    ],
+                    [
+                        'name' => 'Steam Profile',
+                        'value' => "[View Profile](https://steamcommunity.com/profiles/{$steamId})",
+                        'inline' => true,
+                    ],
+                    [
+                        'name' => 'Steam ID',
+                        'value' => $steamId,
+                        'inline' => true,
+                    ],
+                    [
+                        'name' => 'Action',
+                        'value' => ucfirst($action),
+                        'inline' => true,
+                    ],
+                    [
+                        'name' => 'Reason',
+                        'value' => $reason ?? 'No reason provided'
+                    ],
+                    [
+                        'name' => 'Website',
+                        'value' => $website,
+                        'inline' => true,
+                    ],
+                ],
+                'thumbnail' => [
+                    'url' => 'https://i.imgur.com/n2JVS9z.png'
+                ],
+                'author' => [
+                    'name' => 'CSS-BANS',
+                    'url' => 'https://github.com/counterstrikesharp-panel/css-bans',
+                    'icon_url' => 'https://i.imgur.com/n2JVS9z.png'
+                ],
+                'footer' => [
+                    'text' => 'Powered by CSS-BANS. Action performed at ' . Carbon::now()->format('Y-m-d H:i:s'),
+                    'icon_url' => 'https://i.imgur.com/n2JVS9z.png'
+                ],
+            ];
+            if(!empty($admin)) {
+                $embed['fields'][] = [
+                    'name' => 'Admin',
+                    'value' => $admin,
+                    'inline' => true,
+                ];
+            }
+
+            $data = [
+                'content' => '',
+                'embeds' => [$embed],
+            ];
+
+            $response = $client->post(env('DISCORD_WEBHOOK'), [
+                'json' => $data,
+            ]);
+
+            Log::info("discord", [
+                "response" => $response->getBody()
+            ]);
+        }
     }
 }

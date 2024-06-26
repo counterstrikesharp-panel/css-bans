@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Appeal;
 
+use App\Helpers\CommonHelper;
 use App\Http\Controllers\Controller;
 use App\Mail\AppealApproved;
 use App\Models\Appeal\Appeal;
@@ -37,8 +38,8 @@ class AppealController extends Controller
             $data = $request->only(['ban_type', 'steamid', 'ip', 'name', 'reason', 'email']);
             $data['status'] = 'PENDING';
             // Save the appeal
-            Appeal::create($data);
-
+            $appeal = Appeal::create($data);
+            CommonHelper::sendActionLog('appeal', $appeal->id);
             return redirect()->route('appeals.create')->with('success', 'Appeal submitted successfully.');
         }
         else {

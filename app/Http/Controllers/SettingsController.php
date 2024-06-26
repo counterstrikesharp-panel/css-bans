@@ -21,6 +21,7 @@ class SettingsController extends Controller
                 'DB_DATABASE' => env('DB_DATABASE'),
                 'DB_USERNAME' => env('DB_USERNAME'),
                 'DB_PASSWORD' => env('DB_PASSWORD'),
+                'DISCORD_WEBHOOK' => env('DISCORD_WEBHOOK')
             ],
             'Modules' => [
                 'RANKS' => env('RANKS'),

@@ -113,11 +113,11 @@ class BansController extends Controller
                 $ban->status = 'UNBANNED';
                 $ban->ends = now();
                 $ban->save();
+                CommonHelper::sendActionLog('unban', $ban->id);
             }
 
             // If all unbans are successful, commit the transaction
             DB::commit();
-
             return response()->json(['success' => true, 'message' => __('admins.bansSuccess')]);
         } catch (\Exception $e) {
             // If any error occurs, rollback the transaction
@@ -199,6 +199,7 @@ class BansController extends Controller
                 $saban->ends = !empty($minutesDifference) ? CommonHelper::formatDate($validatedData['duration']): Carbon::now();
                 $saban->save();
                 $bansAdded = true;
+                CommonHelper::sendActionLog('ban', $saban->id);
             }
             DB::commit();
         } catch(\Exception $e) {
@@ -246,6 +247,7 @@ class BansController extends Controller
             }
             $ban->status = 'ACTIVE';
             $ban->save();
+            CommonHelper::sendActionLog('ban', $ban->id);
             return redirect()->route('list.bans')->with('success', __('admins.banUpdateSuccess'));
         } catch(\Exception $e) {
             Log::error('ban.update.error: ' . $e->getMessage());
