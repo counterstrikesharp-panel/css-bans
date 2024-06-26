@@ -37,7 +37,7 @@
                             <td>{{ $report->email }}</td>
                         </tr>
                         <tr>
-                            <th>{{ __('Server') }}</th>
+                            <th>{{ __('dashboard.server') }}</th>
                             <td>{{ $report->server->hostname }}</td>
                         </tr>
                         <tr>

@@ -1,14 +1,14 @@
 <x-base-layout :scrollspy="false">
     <x-slot:pageTitle>
-        {{ __('Settings') }}
+    {{ __('admins.settings') }}
     </x-slot:pageTitle>
     <x-slot:headerFiles>
 
     </x-slot:headerFiles>
     <div class="container mt-5">
-        <h1>{{ __('Settings') }}</h1>
+        <h1>{{ __('admins.settings') }}</h1>
         <div class="alert alert-warning" role="alert">
-            <strong>Warning!</strong> Be careful when making changes here. Incorrect settings can cause issues with the application.
+            <strong>{{ __('Warning') }}!</strong> {{ __('settings.beCareful') }}
         </div>
         @if(session('success'))
             <div class="alert alert-success">
@@ -33,8 +33,8 @@
                                     <label for="{{ $key }}" class="form-label">{{ $key }}</label>
                                     @if(in_array($key, ['RANKS', 'VIP', 'SKINS']))
                                         <select class="form-select" id="{{ $key }}" name="{{ $key }}">
-                                            <option value="Enabled" {{ $value == 'Enabled' ? 'selected' : '' }}>Enabled</option>
-                                            <option value="Disabled" {{ $value == 'Disabled' ? 'selected' : '' }}>Disabled</option>
+                                            <option value="Enabled" {{ $value == 'Enabled' ? 'selected' : '' }}>{{ __('Enabled') }}</option>
+                                            <option value="Disabled" {{ $value == 'Disabled' ? 'selected' : '' }}>{{ __('Disabled') }}</option>
                                         </select>
                                     @else
                                         <input type="text" class="form-control" id="{{ $key }}" name="{{ $key }}" value="{{ old($key, $value) }}">
@@ -45,17 +45,17 @@
                     </div>
                 </div>
             @endforeach
-            <button type="submit" class="btn btn-primary">Update Settings</button>
+            <button type="submit" class="btn btn-primary">{{ __('settings.update') }}</button>
         </form>
 
         <h2 class="mt-5">{{ __('Test SMTP Settings') }}</h2>
         <form action="{{getAppSubDirectoryPath()}}/settings/test-email" method="POST">
             @csrf
             <div class="mb-3">
-                <label for="test_email" class="form-label">Test Email Address</label>
+                <label for="test_email" class="form-label">{{ __('settings.testEmailAddress') }}</label>
                 <input type="email" class="form-control" id="test_email" name="test_email" required>
             </div>
-            <button type="submit" class="btn btn-secondary">Send Test Email</button>
+            <button type="submit" class="btn btn-secondary">{{ __('settings.sendTestEmail') }}</button>
         </form>
     </div>
     <x-slot:footerFiles>

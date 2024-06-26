@@ -61,7 +61,7 @@
     "admins.muteUpdate":"Mute foi atualizado!",
     "admins.note":"Nota:",
     "admins.noteMessage":"Os administradores recém-adicionados não receberão suas permissões no servidor até que o mapa seja alterado. Alternativamente, você pode executar css_reloadadmins para efeito imediato.",
-    "admins.othger":"Outro",
+    "admins.other":"Outro",
     "admins.overall":"Roundas Gerais",
     "admins.panel":"Painel",
     "admins.panelOwner":"Proprietário do painel",

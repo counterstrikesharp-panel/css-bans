@@ -18,12 +18,12 @@
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <th>{{ __('ID') }}</th>
+                            <th>{{ __('admins.id') }}</th>
                             <th>{{ __('SteamID/IP') }}</th>
                             <th>{{ __('Nickname') }}</th>
-                            <th>{{ __('Server') }}</th>
+                            <th>{{ __('dashboard.server') }}</th>
                             <th>{{ __('Created At') }}</th>
-                            <th>{{ __('Actions') }}</th>
+                            <th>{{ __('admins.actions') }}</th>
                         </tr>
                         </thead>
                         <tbody>
