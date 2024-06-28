@@ -18,10 +18,10 @@
 
                         <div class="card-body">
                             <p>
-                                {{ __('reports.textOne') }}
+                                In order to keep our servers running smoothly, offenders of our rules should be punished and we can't always be on call to help.
                             </p>
                             <p>
-                                {{ __('reports.textTwo') }}
+                                When submitting a player report, we ask you to fill out the report as detailed as possible to help ban the offender as this will help us process your report quickly.
                             </p>
                             <form method="POST" action="{{getAppSubDirectoryPath()}}/reports/store">
                                 @csrf
@@ -29,13 +29,13 @@
                                 <div class="mb-3">
                                     <label for="ban_type" class="form-label">{{ __('Ban Type') }}</label>
                                     <select id="ban_type" class="form-select" name="ban_type" required>
-                                        <option value="Steam ID">SteamID</option>
+                                        <option value="Steam ID">Steam ID</option>
                                         <option value="IP">IP</option>
                                     </select>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="steamid" class="form-label">{{ __('Players SteamID') }}</label>
+                                    <label for="steamid" class="form-label">{{ __('Players Steam ID') }}</label>
                                     <input id="steamid" type="text" class="form-control @error('steamid') is-invalid @enderror" name="steamid" value="{{ old('steamid') }}" required autofocus>
                                     @error('steamid')
                                     <span class="invalid-feedback" role="alert">
@@ -95,7 +95,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="server" class="form-label">{{ __('dashboard.server') }}</label>
+                                    <label for="server" class="form-label">{{ __('Server') }}</label>
                                     <select id="server" class="form-select" name="server_id" required>
                                         <option value="">{{ __('-- Select Server --') }}</option>
                                         @foreach ($servers as $server)
@@ -125,8 +125,8 @@
                         </div>
 
                         <div class="card-footer text-center">
-                            <p>{{ __('reports.textThree') }}</p>
-                            <p>{{ __('reports.textFour') }}</p>
+                            <p>{{ __('The staff team will be notified of your report. They will then review if the report is conclusive.') }}</p>
+                            <p>{{ __('If your report is approved you will find the player banned status in ban list') }}</p>
                         </div>
                     </div>
                 </div>

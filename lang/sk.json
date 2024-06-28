@@ -64,7 +64,7 @@
     "admins.note": "Poznámka:",
     "admins.noteGroupMessage": "Ak chcete odstrániť skupinu, vyberte všetky servery. Výberom konkrétnych serverov sa odstráni iba skupina z týchto serverov, ale samotná skupina sa neodstráni.",
     "admins.noteMessage": "Noví administrátori neobdržia svoje oprávnenia na serveri až do zmeny mapy. Alternatívne môžete spustiť css_reloadadmins pre okamžitý efekt.",
-    "admins.other": "Ostatné",
+    "admins.othger": "Ostatné",
     "admins.overall": "Celkovo kôl",
     "admins.panel": "Panel",
     "admins.panelOwner": "Majiteľ panelu",

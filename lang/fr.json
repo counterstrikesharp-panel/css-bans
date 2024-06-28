@@ -61,7 +61,7 @@
     "admins.muteUpdate": "Muet mis à jour avec succès",
     "admins.note": "Note:",
     "admins.noteMessage": "Les administrateurs nouvellement ajoutés ne recevront pas leurs autorisations sur le serveur jusqu'à ce qu'un changement de carte. Alternativement, vous pouvez exécuter css_reloadadmins pour un effet immédiat.",
-    "admins.other": "Autre",
+    "admins.othger": "Autre",
     "admins.overall": "Tours au total",
     "admins.panelOwner": "Propriétaire du panel",
     "admins.permanent": "Permanent (ne jamais expirer)",
