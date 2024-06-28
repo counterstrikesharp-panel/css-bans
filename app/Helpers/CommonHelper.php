@@ -230,7 +230,7 @@ class CommonHelper
             $appUrl = env('APP_URL');
             $website = "[CSS-BANS]($appUrl)";
             if($action == 'appeal'){
-                $website = "[View Appeal]($appUrl/appeal/$actionDetails->id)";
+                $website = "[View Appeal]($appUrl/appeals/$actionDetails->id)";
             }else if($action == 'ban' || $action == 'unban') {
                 $website = "[View Bans]($appUrl/list/bans)";
             }else if($action == 'mute' || $action == 'unmute') {
