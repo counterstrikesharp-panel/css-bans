@@ -18,15 +18,15 @@
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <th>{{ __('admins.id') }}</th>
+                            <th>{{ __('ID') }}</th>
                             <th>{{ __('Ban Type') }}</th>
                             <th>{{ __('SteamID/IP') }}</th>
                             <th>{{ __('Name') }}</th>
-                            <th>{{ __('admins.banReason') }}</th>
+                            <th>{{ __('Reason') }}</th>
                             <th>{{ __('Email') }}</th>
                             <th>{{ __('Status') }}</th>
                             <th>{{ __('Created At') }}</th>
-                            <th>{{ __('admins.actions') }}</th>
+                            <th>{{ __('Actions') }}</th>
                         </tr>
                         </thead>
                         <tbody>

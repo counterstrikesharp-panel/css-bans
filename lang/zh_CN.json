@@ -61,7 +61,7 @@
     "admins.muteUpdate": "静音更新成功",
     "admins.note": "笔记：",
     "admins.noteMessage": "在地图发生更改之前，新添加的管理员不会收到服务器上的权限。或者，您可以执行 css_reloadadmins 以立即生效。",
-    "admins.other": "其他",
+    "admins.othger": "其他",
     "admins.overall": "总轮数",
     "admins.panelOwner": "面板所有者",
     "admins.permanent": "永久（永不过期）",

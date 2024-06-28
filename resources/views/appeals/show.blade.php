@@ -16,7 +16,7 @@
                             <p><strong>{{ __('Ban Type') }}:</strong> {{ $appeal->ban_type }}</p>
                             <p><strong>{{ __('Identifier') }}:</strong> {{ $appeal->ban_type === 'IP' ? $appeal->ip : $appeal->steamid }}</p>
                             <p><strong>{{ __('Name') }}:</strong> {{ $appeal->name }}</p>
-                            <p><strong>{{ __('admins.banReason') }}:</strong> {{ $appeal->reason }}</p>
+                            <p><strong>{{ __('Reason') }}:</strong> {{ $appeal->reason }}</p>
                             <p><strong>{{ __('Email') }}:</strong> {{ $appeal->email }}</p>
                             <p><strong>{{ __('Status') }}:</strong> {{ $appeal->status }}</p>
                             <p><strong>{{ __('Created At') }}:</strong> {{ $appeal->created_at }}</p>
