@@ -154,7 +154,7 @@ class PermissionsHelper
         } elseif ($serverId && self::hasValidPermission($user, $serverId, '@css/unban')) {
             // has permission on the server
             $allowed = true;
-        } elseif ($user && !$serverId && ($user->permissions()->whereIn('flag', ['@css/root', '@css/unban'])->exists()
+        } elseif ($user && !$serverId && ($user->permissions()->whereIn('flag', ['@css/root', '@css/unban', '@web/ban.unban'])->exists()
                 || $user->groupPermissions()->whereIn('flag',['@css/root', '@css/unban', '@web/ban.unban'])->exists())) {
             // Check  perms exists for atleast one of the server - For UI Actions
             $allowed = true;

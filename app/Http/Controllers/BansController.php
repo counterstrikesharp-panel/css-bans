@@ -138,7 +138,6 @@ class BansController extends Controller
             'reason' => 'required',
             'duration' => 'required_without:permanent',
             'server_ids' => 'required|array',
-            'server_ids.*' => 'exists:sa_servers,id',
             'player_name' => 'required_without:player_steam_id|nullable|string',
         ]);
 
@@ -167,6 +166,9 @@ class BansController extends Controller
             $playerIp = 0;
             if(!empty($validatedData['player_ip'])){
                 $playerIp = $validatedData['player_ip'];
+            }
+            if(in_array('all', $validatedData['server_ids'])) {
+                $validatedData['server_ids'] = SaServer::all()->pluck('id')->toArray();
             }
             foreach ($validatedData['server_ids'] as $serverId) {
                 $existingBan = SaBan::where(function ($query) use ($steamId, $playerIp, $serverId) {

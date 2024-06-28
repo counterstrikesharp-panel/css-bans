@@ -360,35 +360,17 @@
                     </ul>
                 </li>
             @endif
-
             <li class="menu">
-                <a href="#steamSection" data-bs-toggle="collapse" aria-expanded="{{ Request::is('*auth/logout*') || Request::is('*auth/steam*') ? 'true' : 'false' }}" class="dropdown-toggle">
-                    <div class="">
-                        <i class="fab fa-steam fa-fw"></i>
-                        <span>{{ __('dashboard.steam') }}</span>
-                    </div>
-                    <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                             class="feather feather-chevron-right">
-                            <polyline points="9 18 15 12 9 6"></polyline></svg>
-                    </div>
-                </a>
-                <ul class="collapse submenu list-unstyled {{ Request::is('*auth/logout*') || Request::is('*auth/steam*') ? 'show' : '' }}" id="steamSection" data-bs-parent="#accordionExample">
-                    <li class="menu">
-                        @if(!empty(Auth::user()))
-                            <a href="{{getAppSubDirectoryPath();}}/auth/logout" aria-expanded="false" class="dropdown-toggle">
-                                <div class=""><i class="fas fa-sign-out-alt fa-fw me-3"></i><span>{{ __('admins.logout') }}</span></div>
-                            </a>
-                        @else
-                            <a href="{{getAppSubDirectoryPath();}}/auth/steam" aria-expanded="false" class="dropdown-toggle">
-                                <div class=""><i class="fab fa-steam fa-fw me-3"></i><span>{{ __('admins.login') }}</span></div>
-                            </a>
-                        @endif
-                    </li>
-                </ul>
+                @if(!empty(Auth::user()))
+                    <a href="{{getAppSubDirectoryPath();}}/auth/logout" aria-expanded="false" class="dropdown-toggle">
+                        <div class=""><i class="fas fa-sign-out-alt fa-fw me-3"></i><span>{{ __('admins.logout') }}</span></div>
+                    </a>
+                @else
+                    <a href="{{getAppSubDirectoryPath();}}/auth/steam" aria-expanded="false" class="dropdown-toggle">
+                        <div class=""><i class="fab fa-steam fa-fw me-3"></i><span>{{ __('admins.login') }}</span></div>
+                    </a>
+                @endif
             </li>
-
             @if(count(customLinks()) > 0)
                 <li class="menu">
                     <a href="#otherSection" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">

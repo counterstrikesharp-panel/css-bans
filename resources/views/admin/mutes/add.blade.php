@@ -75,6 +75,7 @@
                         <div data-mdb-input-init class="form-outline mb-3">
                             <select multiple="multiple" class="form-select" id="server_ids" name="server_ids[]" required>
                                 <option value="">Select Servers</option>
+                                <option value="all">{{__('admins.allServers')}}</option>
                                 @foreach($servers as $server)
                                     @if(\App\Helpers\PermissionsHelper::hasMutePermission($server->id))
                                         <option  value="{{ $server->id }}">{{ $server->hostname }}</option>

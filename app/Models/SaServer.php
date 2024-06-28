@@ -17,4 +17,7 @@ class SaServer extends Model
     public function rcon() {
         return $this->hasOne(Rcon::class, 'server_id', 'id');
     }
+    public function visible() {
+        return $this->hasOne(ServerVisibilitySetting::class, 'server_id', 'id')->where('is_visible', 1);
+    }
 }
