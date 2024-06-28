@@ -21,7 +21,8 @@
                         <!-- Servers Multi-Select Dropdown -->
                         <div class="mb-3">
                             <select multiple="multiple"  class="form-control" id="server_ids" name="server_ids[]">
-                                @foreach($servers as $server)
+                            <option value="all">{{__('admins.allServers')}}</option>
+                            @foreach($servers as $server)
                                     <option value="{{ $server->id }}" {{ in_array($server->id, old('server_ids', [])) ? 'selected' : '' }}>
                                         {{ $server->hostname }}
                                     </option>

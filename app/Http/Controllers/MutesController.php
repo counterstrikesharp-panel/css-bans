@@ -135,7 +135,6 @@ class MutesController extends Controller
             'reason' => 'required',
             'duration' => 'required_without:permanent',
             'server_ids' => 'required|array',
-            'server_ids.*' => 'exists:sa_servers,id',
             'type' => 'required'
         ]);
 
@@ -156,6 +155,9 @@ class MutesController extends Controller
             $profileName = $responseData['response']['players'][0]['personaname'];
             DB::beginTransaction();
             $mutesAdded = false;
+            if(in_array('all', $validatedData['server_ids'])) {
+                $validatedData['server_ids'] = SaServer::all()->pluck('id')->toArray();
+            }
             foreach ($validatedData['server_ids'] as $serverId) {
                 $existingMute = SaMute::where('player_steamid', $steamId)
                     ->where('server_id', $serverId)

@@ -337,9 +337,11 @@ class AdminController extends Controller
     {
         $validated = $request->validate([
             'server_ids' => 'required|array',
-            'server_ids.*' => 'exists:sa_servers,id',
         ]);
         $serverIds = $validated['server_ids'];
+        if(in_array('all', $validated['server_ids'])) {
+            $serverIds = SaServer::all()->pluck('id')->toArray();
+        }
         SaAdmin::where('player_steamid', $player_steam)
             ->whereIn('server_id', $serverIds)
             ->delete();

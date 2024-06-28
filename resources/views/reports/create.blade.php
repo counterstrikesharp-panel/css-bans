@@ -99,7 +99,9 @@
                                     <select id="server" class="form-select" name="server_id" required>
                                         <option value="">{{ __('-- Select Server --') }}</option>
                                         @foreach ($servers as $server)
-                                            <option value="{{ $server->id }}">{{ $server->hostname }}</option>
+                                            @if($server?->visible)
+                                                <option value="{{ $server->id }}">{{ $server->hostname }}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>
