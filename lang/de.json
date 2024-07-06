@@ -59,7 +59,7 @@
     "admins.muteUpdate":"Stummschaltung erfolgreich aktualisiert",
     "admins.note":"Notiz:",
     "admins.noteMessage":"Neu hinzugefügte Admins erhalten ihre Berechtigungen auf dem Server erst bei einem Kartenwechsel. Alternativ können Sie css_reloadadmins mit sofortiger Wirkung ausführen.",
-    "admins.othger":"Andere",
+    "admins.other":"Andere",
     "admins.overall":"Runden insgesamt",
     "admins.panelOwner":"Panel-Inhaber",
     "admins.permanent":"Dauerhaft (läuft nie ab)",
