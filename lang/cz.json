@@ -61,7 +61,7 @@
     "admins.muteUpdate": "Ztlumení úspěšně aktualizováno",
     "admins.note": "Poznámka:",
     "admins.noteMessage": "Nově přidaní administrátoři neobdrží svá oprávnění na serveru až do změny mapy. Alternativně můžete spustit css_reloadadmins pro okamžitý efekt.",
-    "admins.othger": "Ostatní",
+    "admins.other": "Ostatní",
     "admins.overall": "Celkem kol",
     "admins.panelOwner": "Majitel panelu",
     "admins.permanent": "Trvalé (Nikdy nevyprší)",

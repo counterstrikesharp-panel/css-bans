@@ -61,7 +61,7 @@
     "admins.muteUpdate": "Mute actualizat cu succes",
     "admins.note": "Notă:",
     "admins.noteMessage": "Adminii adăugați recent nu vor primi permisiunile pe server până la schimbarea hărții. Alternativ, puteți executa css_reloadadmins pentru efect imediat.",
-    "admins.othger": "Altul",
+    "admins.other": "Altul",
     "admins.overall": "Runde Total",
     "admins.panelOwner": "Proprietar Panou",
     "admins.permanent": "Permanent (Nu Expiră Niciodată)",
