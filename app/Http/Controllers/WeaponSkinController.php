@@ -120,7 +120,8 @@ class WeaponSkinController extends Controller
         });
 
         return view('weapons.partials.weapon-types', ['skins' => $filteredSkins]);
-    }public function applySkin(Request $request)
+    }
+    public function applySkin(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'steamid' => 'required|string',
