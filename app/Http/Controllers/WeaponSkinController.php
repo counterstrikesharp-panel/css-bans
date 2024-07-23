@@ -120,14 +120,13 @@ class WeaponSkinController extends Controller
         });
 
         return view('weapons.partials.weapon-types', ['skins' => $filteredSkins]);
-    }
-    public function applySkin(Request $request)
+    }public function applySkin(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'steamid' => 'required|string',
             'weapon_defindex' => 'required|integer',
             'weapon_paint_id' => 'required|integer',
-            'wearSelect' => 'required|numeric',
+            'wearSelect' => 'required_without:wear|numeric',
             'wear' => 'nullable|numeric',
             'seed' => 'nullable|integer',
         ]);
@@ -166,6 +165,10 @@ class WeaponSkinController extends Controller
                 ]
             );
         }
+
+        $wear = $validated['wear'] ?? $validated['wearSelect'];
+    
+        
          DB::connection('mysqlskins')->table('wp_player_skins')->updateOrInsert(
             [
                 'steamid' => $validated['steamid'],
@@ -173,7 +176,7 @@ class WeaponSkinController extends Controller
             ],
             [
                 'weapon_paint_id' => $validated['weapon_paint_id'],
-                'weapon_wear' => $validated['wearSelect'],
+                'weapon_wear' => $wear,
                 'weapon_seed' => $validated['seed'] ?? 0,
             ]
         );
