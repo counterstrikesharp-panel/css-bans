@@ -18,7 +18,7 @@ function loadVIPs() {
             dataType: 'json'
         },
         language: {
-            search: "Search by name:",
+            search: "Search by name or steam id:",
             processing: '<div class="spinner"></div>'
         },
         order: [[3, 'desc']],

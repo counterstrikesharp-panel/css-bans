@@ -294,7 +294,7 @@ class WeaponSkinController extends Controller
         $validator = Validator::make($request->all(), [
             'steamid' => 'required|string',
             'team' => 'required|integer',
-            'agent_name' => 'required|string',
+            'agent_name' => 'string|nullable',
         ]);
 
         if ($validator->fails()) {

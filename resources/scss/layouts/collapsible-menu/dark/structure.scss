@@ -701,8 +701,8 @@ body.layout-dark {
       flex-flow: row wrap;
       -ms-flex-align: center;
       align-items: center;
-      
-      
+
+
       .search-form-control {
         opacity: 1;
         transition: opacity 200ms, right 200ms;
@@ -712,7 +712,7 @@ body.layout-dark {
         }
       }
 
-      
+
 
       .search-bar {
         width: 100%;
@@ -901,7 +901,7 @@ body.layout-dark {
             display: inline-block;
           }
         }
-        
+
       }
 
       span {
@@ -909,7 +909,7 @@ body.layout-dark {
           display: none;
         }
       }
-      
+
     }
 
     #content {
@@ -1203,7 +1203,7 @@ body.layout-dark {
               }
             }
           }
-          
+
         }
       }
 
@@ -1233,13 +1233,13 @@ body.layout-dark {
 
         &:hover {
           color: #fff;
-  
+
           svg:not(.badge-icon) {
             color: #fff;
             fill: #4361ee0a;
           }
         }
-        
+
       }
 
       > {
@@ -1269,7 +1269,7 @@ body.layout-dark {
 
             &:hover {
               color: #fff;
-    
+
               svg {
                 color: #fff!important;
                 fill: #4361ee0a;
@@ -1337,14 +1337,14 @@ body.layout-dark {
           border-top-left-radius: 10px;
           border-bottom-left-radius: 10px;
           font-weight: 500;
-          
+
           &:before {
             background-color: $white;
           }
-  
+
           &:hover {
             color: #fff!important;
-      
+
             &:before {
               background: #fff !important;
               box-shadow: 0 0 0px 2px rgb(255 255 255 / 43%);
@@ -1353,14 +1353,14 @@ body.layout-dark {
           }
         }
       }
-  
+
     }
 
     ul.submenu {
       > li {
 
         margin-top: 3px;
-        
+
         &.active {
           position: relative;
 
@@ -1378,7 +1378,7 @@ body.layout-dark {
             left: -5px;
             top: 1px;
           }
-          
+
         }
 
         a {
@@ -1503,7 +1503,7 @@ body.layout-dark {
     animation-name: e-fadeInUp;
   }
 
-  /*  
+  /*
     ======================
         Footer-wrapper
     ======================
@@ -1565,7 +1565,7 @@ body.layout-dark {
 
 /*Page title*/
 
-/* 
+/*
 =====================
     Navigation Bar
 =====================
@@ -1582,7 +1582,7 @@ body.layout-dark {
 
 /* User Profile Dropdown*/
 
-/* 
+/*
 ===============
     Sidebar
 ===============
@@ -1612,13 +1612,13 @@ body.layout-dark {
   }
 }
 
-/*  
+/*
     ======================
         Footer-wrapper
     ======================
 */
 
-/*  
+/*
     ======================
         MEDIA QUERIES
     ======================
@@ -1665,8 +1665,8 @@ body.layout-dark {
           display: none;
         }
       }
-      
-      
+
+
 
       #content {
         margin-left: 0;
@@ -1699,7 +1699,7 @@ body.layout-dark {
       &.search-active .form-inline.search {
         display: flex;
       }
-      
+
     }
 
     &.alt-menu .sidebar-closed > .sidebar-wrapper {
@@ -1746,7 +1746,7 @@ body.layout-dark {
     }
   }
 
-  
+
 
   /*
       =============

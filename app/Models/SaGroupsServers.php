@@ -10,6 +10,11 @@ class SaGroupsServers extends Model
     use HasFactory;
     public $timestamps = false;
 
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->setConnection('mysql');
+    }
     public function groups() {
         return $this->belongsTo(SaGroups::class, 'group_id', 'id');
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\CommonHelper;
+use App\Helpers\ModuleHelper;
 use App\Helpers\PermissionsHelper;
 use App\Models\K4Ranks\Ranks;
 use App\Models\SaAdmin;
@@ -101,6 +102,7 @@ class DashboardController extends Controller
     public function getTop5Players()
     {
         // 'points' in the Ranks table represents CS Rating
+        ModuleHelper::useConnection('Ranks');
         $topPlayers = Ranks::with('k4stats')
             ->orderBy('points', 'desc')
             ->take(5)

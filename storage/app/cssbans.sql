@@ -214,6 +214,22 @@ CREATE TABLE `reports` (
 `updated_at` timestamp NULL DEFAULT NULL,
 PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+DROP TABLE IF EXISTS module_server_settings;
+CREATE TABLE `module_server_settings` (
+`id` bigint unsigned NOT NULL AUTO_INCREMENT,
+`module_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+`name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+`db_host` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+`db_user` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+`db_pass` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+`port` int NOT NULL DEFAULT '3306',
+`db_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+`active` tinyint(1) DEFAULT '1',
+`created_at` timestamp NULL DEFAULT NULL,
+`updated_at` timestamp NULL DEFAULT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 --
 -- Dumping data for table `users`
 --

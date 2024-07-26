@@ -52,6 +52,7 @@
     {{$headerFiles}}
     <link rel="stylesheet" href="{{asset('plugins/notification/snackbar/snackbar.min.css')}}">
     @vite(['resources/scss/light/plugins/notification/snackbar/custom-snackbar.scss'])
+    <link rel="stylesheet" href="{{asset('theme/theme.css')}}">
     <!-- END GLOBAL MANDATORY STYLES -->
 </head>
 <body @class([

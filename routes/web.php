@@ -163,3 +163,14 @@ Route::prefix('reports')->group(function () {
     Route::get('show/{id}', [ReportController::class, 'show'])->name('reports.show');
     Route::delete('destroy/{id}', [ReportController::class, 'destroy'])->name('reports.destroy');
 });
+
+
+use App\Http\Controllers\ModuleServerSettingsController;
+
+Route::get('/modules', [ModuleServerSettingsController::class, 'index'])->name('module-server-settings.index')->middleware('superadmin');
+Route::get('/modules/create', [ModuleServerSettingsController::class, 'create'])->name('module-server-settings.create')->middleware('superadmin');
+Route::post('/modules', [ModuleServerSettingsController::class, 'store'])->name('module-server-settings.store')->middleware('superadmin');
+Route::get('/modules/{id}/edit', [ModuleServerSettingsController::class, 'edit'])->name('module-server-settings.edit')->middleware('superadmin');
+Route::put('/modules/{id}', [ModuleServerSettingsController::class, 'update'])->name('module-server-settings.update')->middleware('superadmin');
+Route::delete('/modules/{id}', [ModuleServerSettingsController::class, 'destroy'])->name('module-server-settings.destroy')->middleware('superadmin');
+

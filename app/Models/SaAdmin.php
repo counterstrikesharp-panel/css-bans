@@ -11,6 +11,11 @@ class SaAdmin extends Model
 
     public $timestamps = false;
 
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->setConnection('mysql');
+    }
     public function servers()
     {
         return $this->belongsTo(SaServer::class, 'server_id', 'id');

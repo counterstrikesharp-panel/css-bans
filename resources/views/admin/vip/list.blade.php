@@ -27,7 +27,7 @@
                     </ul>
                 </div>
             @endif
-
+        @auth
             <section class="mb-12">
                 <div class="card">
                     @if(PermissionsHelper::isSuperAdmin())
@@ -60,13 +60,24 @@
                     </div>
                 </div>
             </section>
-
-            <!--  BEGIN CUSTOM SCRIPTS FILE  -->
+            @else
+                <!-- Login with Steam modal -->
+                <div class="container">
+                    <div id="loginAlert" class="alert alert-gradient  fade show" role="alert" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1050;">
+                        <strong>{{ __('skins.loginRequired') }}</strong> {{ __('skins.needToLogin') }}
+                        <a href="{{ getAppSubDirectoryPath().'/auth/steam' }}" class="btn btn-success">
+                            <i class="fab fa-steam"></i> {{ __('skins.loginWithSteam') }}
+                        </a>
+                    </div>
+                </div>
+            @endauth
+                <!--  BEGIN CUSTOM SCRIPTS FILE  -->
             <x-slot:footerFiles>
                 <script>
                     const vipListUrl = '{{ env('VITE_SITE_DIR') }}/vip';
                 </script>
                 @vite(['resources/js/vip/list.ts'])
                 <script src="{{asset('plugins/notification/snackbar/snackbar.min.js')}}"></script>
-                </x-slot>
+            </x-slot>
+
 </x-base-layout>

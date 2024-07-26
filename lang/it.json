@@ -61,7 +61,7 @@
     "admins.muteUpdate": "Disattivazione audio aggiornata correttamente",
     "admins.note": "Nota:",
     "admins.noteMessage": "Gli amministratori appena aggiunti non riceveranno le loro autorizzazioni sul server fino a quando non verrà modificata la mappa. In alternativa, puoi eseguire css_reloadadmins con effetto immediato.",
-    "admins.othger": "Altro",
+    "admins.other": "Altro",
     "admins.overall": "Turni complessivi",
     "admins.panelOwner": "Proprietario del pannello",
     "admins.permanent": "Permanente (non scade mai)",

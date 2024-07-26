@@ -29,8 +29,11 @@ class VIPController extends Controller
             // Apply search filter
             if (!empty($searchValue)) {
                 $query->where(function ($query) use ($searchValue) {
+                    if(is_numeric($searchValue)){
+                        $searchValue = $this->convertSteamID64ToAccountId(trim($searchValue));
+                    }
                     $query->where('name', 'like', '%' . $searchValue . '%')
-                        ->orWhere('sid', 'like', '%' . $searchValue . '%');
+                        ->orWhere('account_id', 'like', '%' . $searchValue . '%');
                 });
             }
 

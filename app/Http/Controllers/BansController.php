@@ -113,11 +113,11 @@ class BansController extends Controller
                 $ban->status = 'UNBANNED';
                 $ban->ends = now();
                 $ban->save();
+                CommonHelper::sendActionLog('unban', $ban->id);
             }
 
             // If all unbans are successful, commit the transaction
             DB::commit();
-
             return response()->json(['success' => true, 'message' => __('admins.bansSuccess')]);
         } catch (\Exception $e) {
             // If any error occurs, rollback the transaction
@@ -138,7 +138,6 @@ class BansController extends Controller
             'reason' => 'required',
             'duration' => 'required_without:permanent',
             'server_ids' => 'required|array',
-            'server_ids.*' => 'exists:sa_servers,id',
             'player_name' => 'required_without:player_steam_id|nullable|string',
         ]);
 
@@ -167,6 +166,9 @@ class BansController extends Controller
             $playerIp = 0;
             if(!empty($validatedData['player_ip'])){
                 $playerIp = $validatedData['player_ip'];
+            }
+            if(in_array('all', $validatedData['server_ids'])) {
+                $validatedData['server_ids'] = SaServer::all()->pluck('id')->toArray();
             }
             foreach ($validatedData['server_ids'] as $serverId) {
                 $existingBan = SaBan::where(function ($query) use ($steamId, $playerIp, $serverId) {
@@ -199,6 +201,7 @@ class BansController extends Controller
                 $saban->ends = !empty($minutesDifference) ? CommonHelper::formatDate($validatedData['duration']): Carbon::now();
                 $saban->save();
                 $bansAdded = true;
+                CommonHelper::sendActionLog('ban', $saban->id);
             }
             DB::commit();
         } catch(\Exception $e) {
@@ -246,6 +249,7 @@ class BansController extends Controller
             }
             $ban->status = 'ACTIVE';
             $ban->save();
+            CommonHelper::sendActionLog('ban', $ban->id);
             return redirect()->route('list.bans')->with('success', __('admins.banUpdateSuccess'));
         } catch(\Exception $e) {
             Log::error('ban.update.error: ' . $e->getMessage());

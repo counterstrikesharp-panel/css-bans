@@ -64,7 +64,7 @@
     "admins.note": "Nota:",
     "admins.noteGroupMessage": "Si desea eliminar un grupo, seleccione todos los servidores. Al seleccionar servidores específicos solo se eliminará el grupo de esos servidores, pero no se eliminará el grupo en sí.",
     "admins.noteMessage": "Los administradores recién agregados no recibirán sus permisos en el servidor hasta que se produzca un cambio en el mapa. Alternativamente, puede ejecutar css_reloadadmins para obtener un efecto inmediato.",
-    "admins.othger": "Otro",
+    "admins.other": "Otro",
     "admins.overall": "Rondas en general",
     "admins.panel": "Panel",
     "admins.panelOwner": "Propietario del panel",

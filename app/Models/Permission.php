@@ -11,6 +11,12 @@ class Permission extends Model
 
     protected $table = 'permissions';
 
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->setConnection('mysql');
+    }
+
     public function admin() {
         return $this->hasMany(SaAdmin::class, 'flags', 'permission');
     }
