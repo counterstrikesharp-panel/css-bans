@@ -83,6 +83,7 @@ function loadMutes() {
             'processing': '<div class="spinner"></div>'
 
         },
+        order: [[0, 'desc']],
         "columns": columns
     });
 }

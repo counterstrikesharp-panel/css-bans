@@ -44,8 +44,8 @@ function constructTableRows(data: any[]): string {
         progress = isNaN(progress) ? 100 : progress;
         html += `
       <tr>
-        <td>${truncatePlayerName(item.player_name)}</td>
-        <td><a href="https://steamcommunity.com/profiles/${item.player_steamid}/">Profile</a></td>
+        <td><a href="https://steamcommunity.com/profiles/${item.player_steamid}/">${truncatePlayerName(item.player_name)}</a></td>
+        <td><a href="https://steamcommunity.com/profiles/${item.admin_steamid}/">${truncatePlayerName(item.admin_name)}</a></td>
         <td>${formatDuration(item.created)}</td>
         <td>${item.ends}</td>
         <td>

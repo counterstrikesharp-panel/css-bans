@@ -216,7 +216,7 @@
                                     <thead>
                                     <tr>
                                         <th scope="col" class="th-lg">{{ __('dashboard.player') }}</th>
-                                        <th scope="col" class="th-lg">{{ __('dashboard.steam') }}</th>
+                                        <th scope="col" class="th-lg">{{ __('admins.admin') }}</th>
                                         <th scope="col" class="th-lg">{{ __('dashboard.added') }}</th>
                                         <th scope="col" class="th-lg">{{ __('dashboard.expires') }}</th>
                                         <th scope="col" class="th-lg"></th>
@@ -243,7 +243,7 @@
                                     <thead>
                                     <tr>
                                         <th scope="col" class="th-lg">{{ __('dashboard.player') }}</th>
-                                        <th scope="col" class="th-lg">{{ __('dashboard.steam') }}</th>
+                                        <th scope="col" class="th-lg">{{ __('admins.admin') }}</th>
                                         <th scope="col" class="th-lg">{{ __('dashboard.added') }}</th>
                                         <th scope="col" class="th-lg">{{ __('dashboard.expires') }}</th>
                                         <th scope="col" class="th-lg"></th>

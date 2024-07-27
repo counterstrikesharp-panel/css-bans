@@ -7,17 +7,18 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class SuperAdminMiddleware
+class Admin
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next): Response
     {
-        if (!PermissionsHelper::isSuperAdmin()) {
-            abort(403, 'Unauthorized');
+        // Check if the authenticated user has the required permission
+        if (! PermissionsHelper::isSuperAdmin() && ! PermissionsHelper::hasAdminCreatePermission() && ! PermissionsHelper::hasAdminEditPermission()) {
+            abort(403, 'Unauthorized action.');
         }
 
         return $next($request);

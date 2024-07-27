@@ -212,7 +212,8 @@ export default defineConfig({
                 'resources/js/skins/gloves.ts',
                 'resources/js/skins/agents.ts',
                 'resources/js/skins/music.ts',
-                'resources/js/skins/knives.ts'
+                'resources/js/skins/knives.ts',
+                'resources/js/vip/create.ts'
             ],
             refresh: true,
         }),
