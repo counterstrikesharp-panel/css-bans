@@ -116,7 +116,11 @@ class VIPController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $data['expires'] = Carbon::parse($data['expires'])->timestamp;
+        if(isset($data['permanent'])) {
+            $data['expires'] = 0;
+        } else {
+            $data['expires'] = Carbon::parse($data['expires'])->timestamp;
+        }
         $data['account_id'] = $this->convertSteamID64ToAccountId($data['account_id']);
         $data['lastvisit'] = Carbon::now()->timestamp;
         $vip = new VIP($data);
@@ -131,14 +135,18 @@ class VIPController extends Controller
     public function edit($id)
     {
         $vip = VIP::findOrFail($id);
-        $vip['expires'] = Carbon::parse($vip['expires'])->toDateTimeString();
+        $vip->ends = Carbon::parse($vip->expires)->toDateString();
         $servers = VIPServer::all();
         return view('admin.vip.edit', compact('vip', 'servers'));
     }
     public function update(Request $request, $id)
     {
         $data = $request->all();
-        $data['expires'] = Carbon::parse($data['expires'])->timestamp;
+        if(isset($data['permanent'])) {
+            $data['expires'] = 0;
+        } else {
+            $data['expires'] = Carbon::parse($data['expires'])->timestamp;
+        }
         $vip = VIP::findOrFail($id);
         $vip->update($data);
         return redirect()->route('vip.index')->with('success', __('admins.vipAddedSuccessfully'));

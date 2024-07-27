@@ -48,6 +48,14 @@
                             <label class="form-label" for="group">{{ __('admins.group') }}</label>
                             <input type="text" class="form-control" id="group" name="group" required/>
                         </div>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="permanent" name="permanent">
+                                <label class="form-check-label" for="permanent">
+                                    {{ __('admins.permanent') }}
+                                </label>
+                            </div>
+                        </div>
                         <div class="form-outline mb-3">
                             <label class="form-label" for="expires">{{ __('admins.endsOn') }}</label>
                             <input type="date" class="form-control" id="expires" name="expires" required/>
@@ -62,5 +70,6 @@
     </div>
     <x-slot:footerFiles>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        @vite(['resources/js/vip/create.ts'])
     </x-slot>
 </x-base-layout>

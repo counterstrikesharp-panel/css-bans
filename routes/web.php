@@ -42,19 +42,19 @@ Route::middleware(['checkSetup'])->group(function () {
         Route::post('bans', [BansController::class, 'getBansList']);
         Route::get('mutes', [MutesController::class, 'mutes'])->name('list.mutes');;
         Route::post('mutes', [MutesController::class, 'getMutesList']);
-        Route::get('admins', [AdminController::class, 'admins'])->name('admins.list')->middleware('superadmin');
-        Route::post('admins', [AdminController::class, 'getAdminsList'])->middleware('superadmin');
+        Route::get('admins', [AdminController::class, 'admins'])->name('admins.list')->middleware('admin');
+        Route::post('admins', [AdminController::class, 'getAdminsList'])->middleware('admin');
         Route::get('/groups', [AdminController::class, 'groups'])->name('groups.list')->middleware('superadmin');
         Route::post('/groups', [AdminController::class, 'getGroupsList'])->middleware('superadmin');
     });
 
     Route::prefix('admin')->group(function () {
-        Route::get('/create', [AdminController::class, 'create'])->name('admin.create')->middleware('superadmin');
-        Route::post('/store', [AdminController::class, 'store'])->name('admin.store')->middleware('superadmin');
-        Route::get('/edit/{player_steam}/{server_id}', [AdminController::class, 'editAdmin'])->name('admin.edit')->middleware('superadmin');
-        Route::post('/update/{player_steam}', [AdminController::class, 'updateAdmin'])->name('admin.update')->middleware('superadmin');
-        Route::get('/delete/{player_steam}', [AdminController::class, 'showDeleteForm'])->name('admin.showDeleteForm')->middleware('superadmin');
-        Route::post('/delete/{player_steam}', [AdminController::class, 'delete'])->name('admin.delete')->middleware('superadmin');
+        Route::get('/create', [AdminController::class, 'create'])->name('admin.create')->middleware('admin');
+        Route::post('/store', [AdminController::class, 'store'])->name('admin.store')->middleware('admin');
+        Route::get('/edit/{player_steam}/{server_id}', [AdminController::class, 'editAdmin'])->name('admin.edit')->middleware('admin');
+        Route::post('/update/{player_steam}', [AdminController::class, 'updateAdmin'])->name('admin.update')->middleware('admin');
+        Route::get('/delete/{player_steam}', [AdminController::class, 'showDeleteForm'])->name('admin.showDeleteForm')->middleware('admin');
+        Route::post('/delete/{player_steam}', [AdminController::class, 'delete'])->name('admin.delete')->middleware('admin');
         Route::get('/groups/edit/{player_steam}/{server_id}', [AdminController::class, 'editAdminGroup'])->name('admin.group.edit')->middleware('superadmin');
         Route::post('/groups/update/{player_steam}', [AdminController::class, 'updateAdminGroup'])->name('admin.groups.update')->middleware('superadmin');
 

@@ -51,9 +51,17 @@
                             <label class="form-label" for="group">{{ __('admins.group') }}</label>
                             <input type="text" class="form-control" id="group" name="group" value="{{ $vip->group }}" required/>
                         </div>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input"  {{ $vip->expires == 0 ? 'checked' : '' }}  type="checkbox" id="permanent" name="permanent">
+                                <label class="form-check-label" for="permanent">
+                                    {{ __('admins.permanent') }}
+                                </label>
+                            </div>
+                        </div>
                         <div class="form-outline mb-3">
                             <label class="form-label" for="expires">{{ __('admins.endsOn') }}</label>
-                            <input type="date" class="form-control" id="expires" name="expires" value="{{ $vip->expires }}" required/>
+                            <input type="date" {{ $vip->expires == 0 ? 'disabled' : 'required' }} class="form-control" id="expires" name="expires" value="{{ $vip->expires != 0 ? $vip->ends : null }}" required/>
                         </div>
                         <div class="mt-3">
                             <center><button type="submit" class="btn btn-primary col-md-2 mx-auto">{{ __('admins.updateVIP') }}</button></center>
@@ -65,5 +73,6 @@
     </div>
     <x-slot:footerFiles>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        @vite(['resources/js/vip/create.ts'])
     </x-slot>
 </x-base-layout>

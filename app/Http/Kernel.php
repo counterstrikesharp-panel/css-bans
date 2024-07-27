@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Admin;
 use App\Http\Middleware\Ban;
 use App\Http\Middleware\CheckSetupMiddleware;
 use App\Http\Middleware\Kick;
@@ -78,5 +79,6 @@ class Kernel extends HttpKernel
         'permission.mute' => Mute::class,
         'permission.kick' => Kick::class,
         'checkSetup' => CheckSetupMiddleware::class,
+        'admin' => Admin::class,
     ];
 }
