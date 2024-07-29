@@ -38,6 +38,7 @@
                         <option {{ app()->getLocale() == 'ro' ? 'selected' : '' }} value="ro" data-image="{{ Vite::asset('resources/images/1x1/ro.svg') }}">Românesc</option>
                         <option {{ app()->getLocale() == 'cz' ? 'selected' : '' }} value="cs" data-image="{{ Vite::asset('resources/images/1x1/cz.svg') }}">Čeština</option>
                         <option {{ app()->getLocale() == 'sk' ? 'selected' : '' }} value="sk" data-image="{{ Vite::asset('resources/images/1x1/sk.svg') }}">Slovenčina</option>
+                        <option {{ app()->getLocale() == 'tr' ? 'selected' : '' }} value="tr" data-image="{{ Vite::asset('resources/images/1x1/tr.svg') }}">Türkçe</option>
                         <option {{ app()->getLocale() == 'uk' ? 'selected' : '' }} value="uk" data-image="{{ Vite::asset('resources/images/1x1/uk.svg') }}">українська</option>
                     </select>
                 </li>
