@@ -244,15 +244,15 @@ class ServerController extends Controller
         switch ($requestType){
             case "ban":
                 if(PermissionsHelper::hasUnBanPermission())
-                    return $this-> executeCommand('css_ban '.$playerName.' 1440', $serverId);
+                    return $this->executeCommand('css_ban "' . $playerName . '" 1440', $serverId);
                 break;
             case "kick":
                 if(PermissionsHelper::hasKickPermission())
-                    return $this->executeCommand('css_kick '.$playerName.' 1440', $serverId);
+                    return $this->executeCommand('css_kick "' . $playerName . '"', $serverId);
                 break;
             case "mute":
                 if(PermissionsHelper::hasMutePermission())
-                    return $this->executeCommand('css_mute ' . $playerName.' 1440', $serverId);
+                    return $this->executeCommand('css_mute "' . $playerName . '" 1440', $serverId);
                 break;
             default: abort(403);
         }
