@@ -159,7 +159,7 @@
 "dashboard.unmuted": "Susturma kaldırıldı",
 "dashboard.versionText": "En son sürümü kullanıyorsunuz",
 "dashboard.versionVisible": "Bu sadece sizin için görünür.",
-"dashboard.weaponpaints": "Silah boyaları",
+"dashboard.weaponpaints": "Silah skinleri",
 "dashboard.won": "KAZANDI",
 "Delete": "Sil",
 "gloves.applyGlove": "Eldiven seç",
@@ -206,5 +206,5 @@
 "emails.body.REJECTED": "Yasak/Ban kaldırma başvurunuz reddedildi. Herhangi bir sorunuz veya daha fazla bilgiye ihtiyacınız varsa, bizimle iletişime geçmekten çekinmeyin.",
 "emails.regards": "Saygılarımızla, Sunucu Yönetim Ekibi",
 "emails.footer.copyright": "&copy; :year :app_name. Tüm hakları saklıdır.",
-"emails.footer.github": "GitHub Deposu",
+"emails.footer.github": "GitHub Deposu"
 }
