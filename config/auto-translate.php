@@ -23,6 +23,10 @@ return [
         'ko', // Korean,
         'ro', // Romanian
         'cz', // Czech
+        'hu', // Magyar
+        'sk', // Slovakian
+        'tr', // Turkish
+        'uk', // Ukrainian
     ],
 
 
