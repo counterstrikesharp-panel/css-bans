@@ -16,6 +16,7 @@ CSS-BANS is an admin web panel for Counter-Strike 2, powered by CounterStrikeSha
 ![image](https://github.com/counterstrikesharp-panel/css-bans/assets/11420858/fc32b224-ae87-46e3-9f21-1d3b9c5df515)
 ![image](https://github.com/counterstrikesharp-panel/css-bans/assets/11420858/693ad9a1-1972-40d1-9281-7733508fedf9)
 ![1](https://github.com/counterstrikesharp-panel/css-bans/assets/11420858/761f6764-4f4e-4271-bb5c-3f685e873b7d)
+![image](https://github.com/user-attachments/assets/edf0e8e4-d0d9-4684-b663-d2adc7aa4a57)
 
 ## Support Our Work
 
@@ -45,6 +46,7 @@ For detailed installation instructions, please visit our [Documentation](https:/
 - Appeal System
 - Report Player System
 - Ranks (Multi Server Support)
+- Discord Webhook
 
 ## Modules Support
 - Ranks (K4system) (Multi Server Support) - View/listing [K4-System](https://github.com/K4ryuu/K4-System)
