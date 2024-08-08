@@ -88,7 +88,7 @@
                             <line x1="6" y1="6" x2="6.01" y2="6"></line>
                             <line x1="6" y1="18" x2="6.01" y2="18"></line>
                         </svg>
-                        <span>Server</span>
+                        <span>{{ __('dashboard.server') }}</span>
                     </div>
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -118,14 +118,14 @@
                     <li class="{{ Request::is('*appeals/create*') ? 'active' : '' }}">
                         <a href="{{ getAppSubDirectoryPath() }}/appeals/create" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
-                                <i class="fas fa-gavel fa-fw me-3"></i> <span>Appeal Ban</span>
+                                <i class="fas fa-gavel fa-fw me-3"></i> <span>{{ __('Appeal Ban') }}</span>
                             </div>
                         </a>
                     </li>
                     <li class="{{ Request::is('*reports/create*') ? 'active' : '' }}">
                         <a href="{{ getAppSubDirectoryPath() }}/reports/create" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
-                                <i class="fas fa-user-alt-slash fa-fw me-3"></i> <span>Report Player</span>
+                                <i class="fas fa-user-alt-slash fa-fw me-3"></i> <span>{{ __('Report Player') }}</span>
                             </div>
                         </a>
                     </li>
@@ -133,7 +133,7 @@
                         <li class="{{ Request::is('*appeals') ? 'active' : '' }}">
                             <a href="{{ getAppSubDirectoryPath() }}/appeals" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
-                                    <i class="fas fa-list-alt fa-fw me-3"></i> <span>Appeals</span>
+                                    <i class="fas fa-list-alt fa-fw me-3"></i> <span>{{ __('Appeals') }}</span>
                                     @if(CommonHelper::appealCheck() > 0)
                                         <span class="badge badge-primary sidebar-label">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -151,7 +151,7 @@
                         <li class="{{ Request::is('*reports*') ? 'active' : '' }}">
                             <a href="{{ getAppSubDirectoryPath() }}/reports/list" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
-                                    <i class="fas fa-list-alt fa-fw me-3"></i> <span>Reports</span>
+                                    <i class="fas fa-list-alt fa-fw me-3"></i> <span>{{ __('Reports') }}</span>
                                     @if(CommonHelper::reportCheck() > 0)
                                         <span class="badge badge-primary sidebar-label">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"

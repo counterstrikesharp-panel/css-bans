@@ -40,6 +40,8 @@
                         <option {{ app()->getLocale() == 'sk' ? 'selected' : '' }} value="sk" data-image="{{ Vite::asset('resources/images/1x1/sk.svg') }}">Slovenčina</option>
                         <option {{ app()->getLocale() == 'tr' ? 'selected' : '' }} value="tr" data-image="{{ Vite::asset('resources/images/1x1/tr.svg') }}">Türkçe</option>
                         <option {{ app()->getLocale() == 'uk' ? 'selected' : '' }} value="uk" data-image="{{ Vite::asset('resources/images/1x1/uk.svg') }}">українська</option>
+                        <option {{ app()->getLocale() == 'hu' ? 'selected' : '' }} value="hu" data-image="{{ Vite::asset('resources/images/1x1/hu.svg') }}">Magyar</option>
+                        <option {{ app()->getLocale() == 'se' ? 'selected' : '' }} value="se" data-image="{{ Vite::asset('resources/images/1x1/se.svg') }}">Svenska</option>
                     </select>
                 </li>
                 <li class="nav-item nav-link theme-toggle-item">
