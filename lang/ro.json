@@ -8,6 +8,8 @@
     "admins.addMute": "Adaugă Mute",
     "admins.addNewGroup": "Adaugă Grup Nou",
     "admins.addVIP": "Adaugă VIP",
+    "admins.panel": "Panel Admini",
+    "admins.settings": "Setari Admini",
     "admins.admin": "Admin",
     "admins.adminDoesntexists": "Adminul nu există pentru server! Adăugați Admin!",
     "admins.allGroups": "Toate Grupurile",
