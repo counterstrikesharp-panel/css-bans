@@ -29,8 +29,7 @@
 
                         <div class="card-body">
                             <blockquote class="blockquote">
-                                If you are indeed on our ban list and you feel it is unjust or any other circumstances,
-                                please fill out the appeal format below.
+                                {{ __('appeal.blockquote') }}
                             </blockquote>
                             <form method="POST" action="{{ getAppSubDirectoryPath()}}/appeals">
                                 @csrf

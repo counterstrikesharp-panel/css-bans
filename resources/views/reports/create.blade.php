@@ -18,10 +18,10 @@
 
                         <div class="card-body">
                             <p>
-                                In order to keep our servers running smoothly, offenders of our rules should be punished and we can't always be on call to help.
+                                {{ __('report.textFirst') }}
                             </p>
                             <p>
-                                When submitting a player report, we ask you to fill out the report as detailed as possible to help ban the offender as this will help us process your report quickly.
+                                {{ __('report.textSecond') }}
                             </p>
                             <form method="POST" action="{{getAppSubDirectoryPath()}}/reports/store">
                                 @csrf
@@ -30,12 +30,11 @@
                                     <label for="ban_type" class="form-label">{{ __('Ban Type') }}</label>
                                     <select id="ban_type" class="form-select" name="ban_type" required>
                                         <option value="Steam ID">Steam ID</option>
-                                        <option value="IP">IP</option>
                                     </select>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="steamid" class="form-label">{{ __('Players Steam ID') }}</label>
+                                    <label for="steamid" class="form-label">{{ __('Target SteamID') }}</label>
                                     <input id="steamid" type="text" class="form-control @error('steamid') is-invalid @enderror" name="steamid" value="{{ old('steamid') }}" required autofocus>
                                     @error('steamid')
                                     <span class="invalid-feedback" role="alert">
@@ -45,17 +44,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="ip" class="form-label">{{ __('Players IP') }}</label>
-                                    <input id="ip" type="text" class="form-control @error('ip') is-invalid @enderror" name="ip" value="{{ old('ip') }}">
-                                    @error('ip')
-                                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="nickname" class="form-label">{{ __('Players Nickname') }}</label>
+                                    <label for="nickname" class="form-label">{{ __('Target Nickname') }}</label>
                                     <input id="nickname" type="text" class="form-control @error('nickname') is-invalid @enderror" name="nickname" value="{{ old('nickname') }}" required>
                                     @error('nickname')
                                     <span class="invalid-feedback" role="alert">
@@ -95,7 +84,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="server" class="form-label">{{ __('Server') }}</label>
+                                    <label for="server" class="form-label">{{ __('dashboard.server') }}</label>
                                     <select id="server" class="form-select" name="server_id" required>
                                         <option value="">{{ __('-- Select Server --') }}</option>
                                         @foreach ($servers as $server)
@@ -138,15 +127,10 @@
                 document.addEventListener('DOMContentLoaded', function() {
                     const banTypeSelect = document.getElementById('ban_type');
                     const steamidField = document.getElementById('steamid');
-                    const ipField = document.getElementById('ip');
 
                     banTypeSelect.addEventListener('change', function() {
                         if (this.value === 'Steam ID') {
                             steamidField.closest('.mb-3').style.display = 'block';
-                            ipField.closest('.mb-3').style.display = 'none';
-                        } else {
-                            steamidField.closest('.mb-3').style.display = 'none';
-                            ipField.closest('.mb-3').style.display = 'block';
                         }
                     });
 
