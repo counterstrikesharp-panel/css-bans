@@ -136,7 +136,7 @@ class AdminController extends Controller
             'sa_admins.id',
             'sa_admins.group_id',
             DB::raw('CASE WHEN COUNT(sa_admins_flags.flag) = 0 THEN COALESCE(GROUP_CONCAT(DISTINCT sa_groups.name SEPARATOR ", "), "") ELSE COALESCE(GROUP_CONCAT(DISTINCT sa_admins_flags.flag SEPARATOR ", "), "") END AS flags'),
-            DB::raw('GROUP_CONCAT(DISTINCT CONCAT("[Hostname] ", sa_servers.hostname) SEPARATOR ", ") as hostnames'),
+            DB::raw('GROUP_CONCAT(DISTINCT CONCAT(sa_servers.hostname) SEPARATOR ", ") as hostnames'),
             'created',
             'ends',
             'sa_admins.server_id'
@@ -181,7 +181,7 @@ class AdminController extends Controller
                 "id" => $admin->id,
                 "player_steamid" => $admin->player_steamid,
                 "player_name" => $admin->player_name,
-                "ends" => empty($admin->ends) ? "<h6><span class='badge badge-primary'>Never Expires</span></h6>" : $admin->ends,
+                "ends" => empty($admin->ends) ? "<h6><span class='badge badge-primary'>" . __('Never Expires') . "</span></h6>" : $admin->ends,
                 "created" => $admin->created,
                 "flags" => $admin->flags,
                 "hostnames" => $admin->hostnames,
