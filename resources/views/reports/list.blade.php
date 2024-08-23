@@ -23,7 +23,7 @@
                             <th>{{ __('Nickname') }}</th>
                             <th>{{ __('dashboard.server') }}</th>
                             <th>{{ __('Created At') }}</th>
-                            <th>{{ __('Actions') }}</th>
+                            <th>{{ __('admins.actions') }}</th>
                         </tr>
                         </thead>
                         <tbody>

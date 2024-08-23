@@ -26,7 +26,7 @@
                             <th>{{ __('Email') }}</th>
                             <th>{{ __('admins.status') }}</th>
                             <th>{{ __('Created At') }}</th>
-                            <th>{{ __('Actions') }}</th>
+                            <th>{{ __('admins.actions') }}</th>
                         </tr>
                         </thead>
                         <tbody>
