@@ -6,10 +6,12 @@ use App\Helpers\CommonHelper;
 use App\Helpers\ModuleHelper;
 use App\Helpers\PermissionsHelper;
 use App\Models\K4Ranks\Ranks;
+use App\Models\K4Ranks\ZenithPlayerStorage;
 use App\Models\SaAdmin;
 use App\Models\SaBan;
 use App\Models\SaMute;
 use App\Models\SaServer;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -101,21 +103,60 @@ class DashboardController extends Controller
 
     public function getTop5Players()
     {
-        // 'points' in the Ranks table represents CS Rating
         ModuleHelper::useConnection('Ranks');
-        $topPlayers = Ranks::with('k4stats')
-            ->orderBy('points', 'desc')
-            ->take(5)
-            ->get();
 
-        foreach($topPlayers as $player) {
-            $player->player_steamid = $player->steam_id;
-            $response = CommonHelper::steamProfile($player);
-            $player->avatar = !empty($response['response']['players'][0]['avatar']) ? $response['response']['players'][0]['avatar'] : 'https://mdbootstrap.com/img/Photos/Avatars/img(32).jpg' ;
-            $player->ratingImage = CommonHelper::getCSRatingImage($player->points);
-            $player->rank = CommonHelper::getCSRankImage($player->rank);
+        // Get the flag to determine whether to use old or new logic
+        $useOldLogic = env('K4LegacySupport', 'no') == 'yes' ? true : false;
+
+        if ($useOldLogic) {
+            // Old Logic
+            $topPlayers = Ranks::with('k4stats')
+                ->orderBy('points', 'desc')
+                ->take(5)
+                ->get();
+
+            foreach ($topPlayers as $player) {
+                $player->player_steamid = $player->steam_id;
+                $response = CommonHelper::steamProfile($player);
+                $player->avatar = !empty($response['response']['players'][0]['avatar']) ? $response['response']['players'][0]['avatar'] : 'https://mdbootstrap.com/img/Photos/Avatars/img(32).jpg';
+                $player->ratingImage = CommonHelper::getCSRatingImage($player->points);
+                $player->rank = CommonHelper::getCSRankImage($player->rank);
+                $player->last_seen = Carbon::parse($player->k4stats->lastseen ?? now())->diffForHumans();
+                $player->kills = $player->k4stats->kills;
+                $player->deaths = $player->k4stats->deaths;
+                $player->game_win = $player->k4stats->game_win;
+                $player->game_lose = $player->k4stats->game_lose;
+            }
+
+            $totalPlayers = Ranks::count();
+        } else {
+            // New Logic
+            $topPlayers = ZenithPlayerStorage::orderByRaw('JSON_EXTRACT(`K4-Zenith-Ranks.storage`, "$.Points") DESC')
+                ->take(5)
+                ->get();
+
+            foreach ($topPlayers as $player) {
+                $playerRank = $player['K4-Zenith-Ranks.storage'];
+                $playerStats = $player['K4-Zenith-Stats.storage'];
+                $player->player_steamid = $player->steam_id;
+                $response = CommonHelper::steamProfile($player);
+                $player->name = !empty($response['response']['players'][0]['personaname']) ? $response['response']['players'][0]['personaname'] : 'Profile';
+                $player->avatar = !empty($response['response']['players'][0]['avatar']) ? $response['response']['players'][0]['avatar'] : 'https://mdbootstrap.com/img/Photos/Avatars/img(32).jpg';
+                $player->ratingImage = CommonHelper::getCSRatingImage($playerRank['Points']);
+                $player->rank = CommonHelper::getCSRankImage($playerRank['Rank'] ?? 'N/A');
+
+                // Assigning additional stats
+                $player->kills = $playerStats['Kills'] ?? 0;
+                $player->deaths = $playerStats['Deaths'] ?? 0;
+                $player->game_win = $playerStats['GameWin'] ?? 0;
+                $player->game_lose = $playerStats['GameLose'] ?? 0;
+                $player->last_seen = Carbon::parse($player->last_online ?? now())->diffForHumans();
+            }
+
+            $totalPlayers = ZenithPlayerStorage::count();
         }
-        $totalPlayers = Ranks::count();
+
         return ['topPlayers' => $topPlayers, 'totalPlayers' => $totalPlayers];
     }
+
 }

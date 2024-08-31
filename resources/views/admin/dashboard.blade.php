@@ -154,7 +154,7 @@
                                         <img src="{{$player->avatar}}" alt="" style="width: 45px; height: 45px" class="rounded-circle"/>
                                         <div class="ms-3">
                                             <p class="fw-bold mb-1"><a href="https://steamcommunity.com/profiles/{{$player->player_steamid}}/">{{ $player->name }}</p>
-                                            <p class="text-muted mb-0">{{ __('dashboard.lastSeen') }}: <span class="badge badge-light-info rounded-pill d-inline">{{ \Carbon\Carbon::parse($player->k4stats->lastseen)->diffForHumans() }}</span></p>
+                                            <p class="text-muted mb-0">{{ __('dashboard.lastSeen') }}: <span class="badge badge-light-info rounded-pill d-inline">{{ $player->last_seen }}</span></p>
                                         </div>
                                     </div>
                                 </td>
@@ -162,10 +162,10 @@
                                     {!! $player->ratingImage !!}
                                 </td>
                                 <td>{!! $player->rank !!}</td>
-                                <td>{{ $player->k4stats->kills }}</td>
-                                <td>{{ $player->k4stats->deaths }}</td>
-                                <td>{{ $player->k4stats->game_win }}</td>
-                                <td>{{ $player->k4stats->game_lose }}</td>
+                                <td>{{ $player->kills }}</td>
+                                <td>{{ $player->deaths }}</td>
+                                <td>{{ $player->game_win }}</td>
+                                <td>{{ $player->game_lose }}</td>
                             </tr>
                         @endforeach
                         </tbody>
