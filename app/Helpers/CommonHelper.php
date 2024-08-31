@@ -33,7 +33,7 @@ class CommonHelper
            return Cache::get('steam_player_summary_' . $resource->player_steamid);
        } else {
            // If not found in cache, fetch from API and cache it
-          Cache::remember('steam_player_summary_' . $resource->player_steamid, 60 * 60 * 24, function () use ($steamApiKey, $resource) {
+          return Cache::remember('steam_player_summary_' . $resource->player_steamid, 60 * 60 * 24, function () use ($steamApiKey, $resource) {
                try {
                    return Http::get("https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key={$steamApiKey}&steamids={$resource->player_steamid}")->json();
                } catch (\Exception $e) {
