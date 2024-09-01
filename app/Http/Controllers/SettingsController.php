@@ -27,7 +27,7 @@ class SettingsController extends Controller
                 'RANKS' => env('RANKS'),
                 'VIP' => env('VIP'),
                 'SKINS' => env('SKINS'),
-                'k4StatsLegacySupport' => env('K4LegacySupport')
+                'K4LegacySupport' => env('K4LegacySupport')
             ],
             'VIP Module' => [
                 'DB_HOST_VIP' => env('DB_HOST_VIP'),
