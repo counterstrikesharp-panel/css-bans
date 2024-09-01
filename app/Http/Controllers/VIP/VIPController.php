@@ -64,7 +64,7 @@ class VIPController extends Controller
                 }
                 // Create edit action link
                 if (PermissionsHelper::isSuperAdmin()) {
-                    $editAction = '<a href="' . $siteDir . '/vip/' . $vip->account_id . '/edit" class="btn btn-warning">Edit</a>';
+                    $editAction = '<a href="' . $siteDir . '/vip/' . $vip->account_id . '/edit" class="btn btn-warning">' . __('Edit') . '</a>';
                 }
 
                 // Create delete action link
@@ -72,7 +72,7 @@ class VIPController extends Controller
                     $deleteAction = '<form action="' . $siteDir . '/vip/' . $vip->account_id . '" method="POST" style="display:inline;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="' . csrf_token() . '">
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-danger">' . __('Delete') . '</button>
                                     </form>';
                 }
                 if(!empty($response))
@@ -87,7 +87,7 @@ class VIPController extends Controller
                     'player_nick' => $vip->name,
                     'sid' => $serverName,
                     'group' => $vip->group,
-                    'expires' => empty($vip->expires) ? "<h6><span class='badge badge-primary'>Never Expires</span></h6>" : Carbon::createFromTimestamp($vip->expires)->toDateTimeString(),
+                    'expires' => empty($vip->expires) ? "<h6><span class='badge badge-primary'>" . __('Never Expires') . "</span></h6>" : Carbon::createFromTimestamp($vip->expires)->toDateTimeString(),
                     'action' => $editAction . ' ' . $deleteAction,
                     'steam_profile' => $steamProfileLink ? "<a href='$steamProfileLink' target='_blank'>$profileName</a>" : '',
                     'avatar' => !empty($response['response']['players'][0]['avatar']) ? $response['response']['players'][0]['avatar'] : 'https://mdbootstrap.com/img/Photos/Avatars/img(32).jpg' ,

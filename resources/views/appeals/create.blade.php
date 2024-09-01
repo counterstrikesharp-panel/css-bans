@@ -29,8 +29,7 @@
 
                         <div class="card-body">
                             <blockquote class="blockquote">
-                                If you are indeed on our ban list and you feel it is unjust or any other circumstances,
-                                please fill out the appeal format below.
+                                {{ __('appeal.blockquote') }}
                             </blockquote>
                             <form method="POST" action="{{ getAppSubDirectoryPath()}}/appeals">
                                 @csrf
@@ -38,7 +37,7 @@
                                 <div class="mb-3">
                                     <label for="ban_type" class="form-label">{{ __('Ban Type') }}</label>
                                     <select id="ban_type" class="form-select" name="ban_type" required onchange="toggleBanInput()">
-                                        <option value="Steam ID">Steam ID</option>
+                                        <option value="Steam ID">{{ __('admins.steam') }}</option>
                                         <option value="IP">IP</option>
                                     </select>
                                 </div>
@@ -111,7 +110,7 @@
                         banInputLabel.textContent = 'Your IP';
                         banInput.name = 'ip';
                     } else {
-                        banInputLabel.textContent = 'Your SteamID';
+                        banInputLabel.textContent = '{{ __('Your SteamID') }}';
                         banInput.name = 'steamid';
                     }
                 }

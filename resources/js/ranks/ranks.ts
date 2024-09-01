@@ -16,7 +16,7 @@ function loadRanks() {
             "dataType": "json"
         },
         "language": {
-            "search": "Search by player steam or name:",
+            "search": window.translations.searchByPlayernameAndSteamid,
             'processing': '<div class="spinner"></div>'
 
         },
