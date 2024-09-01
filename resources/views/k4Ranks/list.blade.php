@@ -42,7 +42,7 @@
                                 @endforeach
                             </select>
                             <label for="serverSelect"
-                                   class="serverSelectLabel form-label">{{ __('Select Server') }}</label>
+                                   class="serverSelectLabel form-label">{{ __('admins.selectServers') }}</label>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-hover table-borderless" id="ranksList" style="width:100%">
@@ -86,6 +86,9 @@
                             window.location.href = '{{ url()->current() }}' + '?server_id=' + serverId;
                         });
                     });
+                    window.translations = {
+                        searchByPlayernameAndSteamid: "{{ __('admins.searchByPlayernameAndSteamid') }}"
+                    };
                 </script>
                 </x-slot>
 </x-base-layout>

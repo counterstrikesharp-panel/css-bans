@@ -75,6 +75,10 @@
             <x-slot:footerFiles>
                 <script>
                     const vipListUrl = '{{ env('VITE_SITE_DIR') }}/vip';
+                    window.translations = {
+                        searchByPlayernameAndSteamid: "{{ __('admins.searchByPlayernameAndSteamid') }}",
+                        lastSeen: "{{ __('dashboard.lastSeen') }}"
+                    };
                 </script>
                 @vite(['resources/js/vip/list.ts'])
                 <script src="{{asset('plugins/notification/snackbar/snackbar.min.js')}}"></script>

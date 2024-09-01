@@ -27,6 +27,7 @@ return [
         'sk', // Slovakian
         'tr', // Turkish
         'uk', // Ukrainian
+        'bg', // Bulgarian
     ],
 
 

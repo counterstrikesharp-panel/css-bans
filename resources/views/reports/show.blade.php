@@ -37,11 +37,11 @@
                             <td>{{ $report->email }}</td>
                         </tr>
                         <tr>
-                            <th>{{ __('Server') }}</th>
+                            <th>{{ __('dashboard.server') }}</th>
                             <td>{{ $report->server->hostname }}</td>
                         </tr>
                         <tr>
-                            <th>{{ __('Media Link') }}</th>
+                            <th>{{ __('Media Link (Proof)') }}</th>
                             <td><a href="{{ $report->media_link }}" target="_blank">{{ __('View Proof') }}</a></td>
                         </tr>
                         <tr>

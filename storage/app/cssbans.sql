@@ -104,7 +104,9 @@ INSERT INTO `permissions` (`id`, `permission`, `description`, `created_at`, `upd
 (13, '@css/password', 'Set a password on the server.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
 (14, '@css/rcon', 'Use RCON commands.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
 (15, '@css/cheats', 'Change sv_cheats or use cheating commands.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
-(16, '@css/root', 'Magically enables all flags and ignores immunity values.', '2024-04-14 15:27:44', '2024-04-14 15:27:44');
+(16, '@css/root', 'Magically enables all flags and ignores immunity values.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
+(NULL, '@css/permban', 'Ban other players for permanently.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
+(NULL, '@css/showip', 'Show players IP in css_who and css_players commands.', '2024-04-14 15:27:44', '2024-04-14 15:27:44');
 
 INSERT INTO `permissions` (`id`, `permission`, `description`, `created_at`, `updated_at`) VALUES
 (NULL, '@web/admin.create', 'Web-only: Permission to create an admin.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),

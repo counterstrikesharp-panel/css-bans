@@ -1,9 +1,9 @@
 $(document).ready(function() {
     $('#server_id').select2({
-        placeholder: 'Select Servers',
+        placeholder: window.translations.selectServers,
     });
     $('#group_id').select2({
-        placeholder: 'Select Groups',
+        placeholder: window.translations.selectGroups,
     });
     document.addEventListener('change', function(event) {
         if (event.target.matches('#permanent')) {

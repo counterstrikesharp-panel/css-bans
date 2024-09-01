@@ -7,6 +7,7 @@ use App\Http\Controllers\Rcon\RconController;
 use App\Http\Controllers\Report\ReportController;
 use App\Http\Controllers\ServerController;
 use App\Http\Controllers\VIP\VIPController;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BansController;
@@ -173,4 +174,9 @@ Route::post('/modules', [ModuleServerSettingsController::class, 'store'])->name(
 Route::get('/modules/{id}/edit', [ModuleServerSettingsController::class, 'edit'])->name('module-server-settings.edit')->middleware('superadmin');
 Route::put('/modules/{id}', [ModuleServerSettingsController::class, 'update'])->name('module-server-settings.update')->middleware('superadmin');
 Route::delete('/modules/{id}', [ModuleServerSettingsController::class, 'destroy'])->name('module-server-settings.destroy')->middleware('superadmin');
+
+Route::get('/clear-cache', function () {
+    Cache::flush();
+    return response()->json(['message' => 'Cache cleared successfully.']);
+})->name('cache.clear')->middleware('superadmin');
 

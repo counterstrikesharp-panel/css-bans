@@ -62,7 +62,7 @@
 
                         <div data-mdb-input-init class="form-outline mb-3">
                             <select multiple="multiple" class="form-select" id="server_ids" name="server_ids[]" required>
-                                <option value="">Select Servers</option>
+                                <option value="">{{ __('admins.selectServers') }}</option>
                                 <option value="all">{{__('admins.allServers')}}</option>
                                 @foreach($servers as $server)
                                     @if(\App\Helpers\PermissionsHelper::hasBanPermission($server->id))
@@ -81,6 +81,11 @@
     </div>
     <x-slot:footerFiles>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script>
+            window.translations = {
+                selectServers: "{{ __('admins.selectServers') }}",
+            };
+        </script>
         @vite(['resources/js/bans/add.ts'])
     </x-slot>
 </x-base-layout>
