@@ -75,11 +75,6 @@
                 @vite(['resources/js/ranks/ranks.ts'])
                 <script>
                     const ranksListUrl = '{!! env('VITE_SITE_DIR') !!}/list/ranks';
-                    window.translations = {
-                        lastSeen: "{{ __('dashboard.lastSeen') }}"
-                    };
-                </script>
-                <script>
                     $(document).ready(function () {
                         $('#serverSelect').change(function () {
                             const serverId = $(this).val();
@@ -87,7 +82,8 @@
                         });
                     });
                     window.translations = {
-                        searchByPlayernameAndSteamid: "{{ __('admins.searchByPlayernameAndSteamid') }}"
+                        searchByPlayernameAndSteamid: "{{ __('admins.searchByPlayernameAndSteamid') }}",
+                        lastSeen: "{{ __('dashboard.lastSeen') }}"
                     };
                 </script>
                 </x-slot>
