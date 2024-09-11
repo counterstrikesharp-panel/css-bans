@@ -1,0 +1,54 @@
+@import '../../../base/base';
+  /*
+      =======================
+          Sold By cateory
+      =======================
+  */
+  body.layout-dark {
+    .widget-chart-two {
+      padding: 0;
+    }
+    
+    .widget.widget-chart-two .widget-heading {
+      padding: 20px 20px 0 20px;
+    }
+    
+    .widget-chart-two .widget-heading .w-icon {
+      position: absolute;
+      right: 20px;
+      top: 15px;
+    
+      a {
+        padding: 6px;
+        border-radius: 10px;
+        padding: 6px;
+        background: #3b3f5c !important;
+        border: none;
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+    
+        svg {
+          color: #fff;
+        }
+      }
+    }
+    
+    .widget.widget-chart-two .widget-content {
+      padding: 0 0 20px 0;
+    }
+    
+    .widget-chart-two {
+      .apexcharts-canvas {
+        margin: 0 auto;
+      }
+    
+      .apexcharts-legend-marker {
+        left: -5px !important;
+      }
+    }
+    
+    [id*="apexcharts-donut-slice-"] {
+      filter: none;
+    }
+  }

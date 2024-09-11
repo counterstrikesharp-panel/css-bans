@@ -1,0 +1,70 @@
+@import '../../../base/base';
+  /*
+      ==================
+          Widget
+      ==================
+  */
+  body.layout-dark {
+    .widget-one {
+      position: relative;
+      padding: 0;
+      border-radius: 6px;
+      border: none;
+      background-color: #0e1726;
+    
+      .widget-content {
+        font-size: 17px;
+      }
+    
+      .w-numeric-value {
+        position: absolute;
+        display: flex;
+        color: #fff;
+        font-weight: 500;
+        padding: 20px;
+        width: 100%;
+        justify-content: space-between;
+    
+        .w-icon {
+          display: inline-block;
+          background: #00ab55;
+          padding: 13px 12px;
+          border-radius: 12px;
+          display: inline-flex;
+          align-self: center;
+          height: 45px;
+          width: 45px;
+          margin-right: 14px;
+        }
+    
+        svg {
+          display: block;
+          color: #fff;
+          width: 20px;
+          height: 20px;
+          fill: rgba(26, 188, 156, 0.49);
+        }
+    
+        .w-value {
+          font-size: 26px;
+          display: block;
+          color: #e0e6ed;
+          font-weight: 600;
+          margin-bottom: -9px;
+          text-align: right;
+        }
+    
+        .w-numeric-title {
+          font-size: 13px;
+          color: #bfc9d4;
+          letter-spacing: 1px;
+          font-weight: 600;
+        }
+      }
+    
+      .apexcharts-canvas svg {
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
+    }
+  }

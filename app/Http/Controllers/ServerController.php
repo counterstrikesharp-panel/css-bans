@@ -240,19 +240,19 @@ class ServerController extends Controller
         $requestType = $request->input('action');
         $playerName = $request->input('name');
         $serverId = $request->input('serverId');
-        $duration = '1440'; // 1 day
+        $reason = $request->input('reason');
         switch ($requestType){
             case "ban":
                 if(PermissionsHelper::hasUnBanPermission())
-                    return $this->executeCommand('css_ban "' . $playerName . '" 1440', $serverId);
+                    return $this->executeCommand('css_ban "' . $playerName . '" 1440 "' . $reason . '"', $serverId);
                 break;
             case "kick":
                 if(PermissionsHelper::hasKickPermission())
-                    return $this->executeCommand('css_kick "' . $playerName . '"', $serverId);
+                    return $this->executeCommand('css_kick "' . $playerName . '" "' . $reason . '"', $serverId);
                 break;
             case "mute":
                 if(PermissionsHelper::hasMutePermission())
-                    return $this->executeCommand('css_mute "' . $playerName . '" 1440', $serverId);
+                    return $this->executeCommand('css_mute "' . $playerName . '" 1440 "' . $reason . '"', $serverId);
                 break;
             default: abort(403);
         }

@@ -14,7 +14,9 @@ use App\Models\SaServer;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
 {
@@ -126,6 +128,7 @@ class DashboardController extends Controller
                 $player->deaths = $player->k4stats->deaths;
                 $player->game_win = $player->k4stats->game_win;
                 $player->game_lose = $player->k4stats->game_lose;
+                $player->profile = '';
             }
 
             $totalPlayers = Ranks::count();
@@ -134,7 +137,7 @@ class DashboardController extends Controller
             $topPlayers = ZenithPlayerStorage::orderByRaw('JSON_EXTRACT(`K4-Zenith-Ranks.storage`, "$.Points") DESC')
                 ->take(5)
                 ->get();
-
+            $serverId = Crypt::encrypt(Session::get('Ranks_server'));
             foreach ($topPlayers as $player) {
                 $playerRank = $player['K4-Zenith-Ranks.storage'];
                 $playerStats = $player['K4-Zenith-Stats.storage'];
@@ -144,7 +147,7 @@ class DashboardController extends Controller
                 $player->avatar = !empty($response['response']['players'][0]['avatar']) ? $response['response']['players'][0]['avatar'] : 'https://mdbootstrap.com/img/Photos/Avatars/img(32).jpg';
                 $player->ratingImage = CommonHelper::getCSRatingImage($playerRank['Points']);
                 $player->rank = CommonHelper::getCSRankImage($playerRank['Rank'] ?? 'N/A');
-
+                $player->profile = env('VITE_SITE_DIR')."/ranks/profile/$player->player_steamid/$serverId";
                 // Assigning additional stats
                 $player->kills = $playerStats['Kills'] ?? 0;
                 $player->deaths = $playerStats['Deaths'] ?? 0;

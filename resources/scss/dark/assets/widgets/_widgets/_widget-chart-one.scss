@@ -1,0 +1,47 @@
+@import '../../../base/base';
+  /*
+      ==================
+          Revenue
+      ==================
+  */
+  body.layout-dark {
+    .widget-chart-one {
+      .widget-heading {
+        display: flex;
+        justify-content: space-between;
+      }
+    
+      #revenueMonthly {
+        overflow: hidden;
+      }
+    
+      .widget-content .apexcharts-canvas {
+        transition: .5s;
+    
+        svg {
+          transition: .5s;
+        }
+      }
+    
+      .apexcharts-legend-marker {
+        left: -5px !important;
+      }
+    
+      .apexcharts-yaxis-title, .apexcharts-xaxis-title {
+        font-weight: 600;
+        fill: #bfc9d4;
+      }
+    
+      .widget-heading .task-action {
+        svg {
+          color: #888ea8;
+          width: 19px;
+          height: 19px;
+        }
+    
+        .dropdown-menu {
+          transform: translate3d(-141px, 0, 0px);
+        }
+      }
+    }
+  }

@@ -63,7 +63,13 @@ document.addEventListener('click', function(event) {
         const playerName = event.target.parentNode.dataset.playerName;
         const action = event.target.parentNode.dataset.action;
         const server = event.target.parentNode.dataset.serverId;
-        playerAction(playerName, action, server);
+        const reason = prompt("Please provide reason for this action:");
+        if (reason !== null && reason.trim() !== "") {
+            playerAction(playerName, action, server, reason);
+        } else {
+            return;
+        }
+
     }
     if (event.target.classList.contains('fa-copy')) {
         event.preventDefault();
@@ -88,7 +94,7 @@ function fetchPlayers(serverId: string) {
         });
 }
 
-function playerAction(playerName: string, action: string, serverId: string) {
+function playerAction(playerName: string, action: string, serverId: string, reason: string) {
     showLoader();
     $.ajax({
         url: playerActionUrl,
@@ -97,7 +103,8 @@ function playerAction(playerName: string, action: string, serverId: string) {
         data: {
             name: playerName,
             action: action,
-            serverId: serverId
+            serverId: serverId,
+            reason: reason
         },
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -4999,3 +4999,16 @@ body.layout-dark #sidebar ul.menu-categories li.menu ul.submenu>li a:before {
     position: absolute;
     margin-left: 6px;
 }
+
+.rank-profile {
+    position: absolute;
+    margin-left: -43px;
+    marign-top: 9px;
+    margin-top: 19px;
+    font-size: 21px;
+    color: aqua;
+}
+
+.dashboard-rank .rank-profile {
+    margin-top: -14px;
+}

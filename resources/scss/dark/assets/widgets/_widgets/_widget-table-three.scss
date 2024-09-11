@@ -1,0 +1,213 @@
+@import '../../../base/base';
+  /*
+      ===========================
+          Top Selling Product
+      ===========================
+  */
+  body.layout-dark {
+    .widget-table-three {
+      position: relative;
+    
+      h5 {
+        margin-bottom: 20px;
+      }
+    
+      .widget-content {
+        background: transparent;
+      }
+    
+      .table {
+        border-collapse: separate;
+        border-spacing: 0 5px;
+        margin-bottom: 0;
+        background-color: transparent;
+    
+        > {
+          thead > tr > th {
+            &:first-child .th-content {
+              margin-left: 10px;
+            }
+    
+            &:last-child .th-content {
+              padding: 0 15px 0 0;
+              width: 84%;
+              margin: 0 auto;
+            }
+    
+            text-transform: initial;
+            font-weight: 600;
+            border-top: none;
+            background: #191e3a;
+            border-right: none;
+            border-left: none;
+            padding-top: 0;
+            padding-bottom: 0;
+            padding-right: 0;
+            padding-left: 0;
+            -webkit-transition: all 0.1s ease;
+            transition: all 0.1s ease;
+            padding: 10px 0 10px 15px;
+    
+            &:first-child {
+              border-bottom-left-radius: 6px;
+              border-top-left-radius: 6px;
+            }
+    
+            &:last-child {
+              border-bottom-right-radius: 6px;
+              padding-left: 0;
+              border-top-right-radius: 6px;
+            }
+    
+            .th-content {
+              color: #bfc9d4;
+              font-weight: 500;
+              font-size: 14px;
+              letter-spacing: 1px;
+            }
+    
+            &:nth-last-child(2) .th-content {}
+          }
+    
+          tbody > tr {
+            > td {
+              border-top: none;
+              padding-top: 0;
+              padding-bottom: 0;
+              padding-right: 0;
+              padding-left: 0;
+              -webkit-transition: all 0.1s ease;
+              transition: all 0.1s ease;
+    
+              .td-content {
+                cursor: pointer;
+                font-weight: 500;
+                letter-spacing: 1px;
+                color: #888ea8;
+              }
+            }
+    
+            background: transparent;
+    
+            &:hover > td .td-content {
+              color: #bfc9d4;
+            }
+    
+            > td {
+              &:first-child {
+                border-top-left-radius: 6px;
+                padding: 12px 0px 12px 15px;
+                border-bottom-left-radius: 6px;
+              }
+    
+              &:last-child {
+                border-top-right-radius: 6px;
+                border-bottom-right-radius: 6px;
+    
+                .td-content {
+                  padding: 0 15px 0 0;
+                  width: 50%;
+                  margin: 0 auto;
+                }
+              }
+            }
+          }
+        }
+    
+        tr > td:nth-last-child(2) .td-content {
+          padding: 0 0 0 0;
+          width: 50%;
+          margin: 0 auto;
+        }
+    
+        .td-content {
+          .discount-pricing {
+            padding: 10px 0 10px 15px;
+          }
+    
+          &.product-name {
+            color: #515365;
+            letter-spacing: 1px;
+            display: flex;
+    
+            .prd-name {
+              font-weight: 600;
+              margin-bottom: 0;
+              font-size: 13px;
+            }
+          }
+        }
+    
+        tr:hover .td-content.product-name .prd-name {
+          color: #888ea8;
+        }
+    
+        .td-content {
+          &.product-name .prd-category {
+            margin-bottom: 0;
+            font-size: 12px;
+            font-weight: 600;
+            text-shadow: 1px 1px 7px rgb(0, 0, 0, 0.26);
+          }
+    
+          img {
+            width: 42px;
+            height: 42px;
+            border-radius: 6px;
+            margin-right: 10px;
+            padding: 2px;
+            box-shadow: 1px 1px 16px 0px rgb(0, 0, 0, 0.18);
+            align-self: center;
+          }
+    
+          .pricing {
+            padding: 10px 0 10px 15px;
+          }
+    
+          .tag {
+            background: transparent;
+            transform: none;
+            font-weight: 600;
+            letter-spacing: 2px;
+            padding: 2px 5px;
+            border-radius: 6px;
+          }
+    
+          .tag-primary {
+            color: $primary;
+            border: 1px dashed $primary;
+            background: $l-primary;
+          }
+    
+          .tag-success {
+            color: #009688;
+            border: 1px dashed #009688;
+            background: $l-success;
+          }
+    
+          .tag-danger {
+            color: $danger;
+            border: 1px dashed $danger;
+            background: $l-danger;
+          }
+    
+          a {
+            position: relative;
+            padding: 0;
+            font-size: 13px;
+            background: transparent;
+            transform: none;
+            letter-spacing: 1px;
+    
+            svg.feather-chevrons-right {
+              width: 15px;
+              height: 15px;
+              position: absolute;
+              left: -20px;
+              top: 1px;
+            }
+          }
+        }
+      }
+    }
+  }

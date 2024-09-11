@@ -1,0 +1,48 @@
+@import '../../../base/base';
+body.layout-dark {
+    .layout-spacing {
+      padding-bottom: 25px;
+    }
+    
+    .widget {
+      position: relative;
+      padding: 20px;
+      border-radius: 6px;
+      border: none;
+      background: #0e1726;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+      border: none;
+      box-shadow: 0 0.1px 0px rgba(0, 0, 0, 0.002), 0 0.2px 0px rgba(0, 0, 0, 0.003), 0 0.4px 0px rgba(0, 0, 0, 0.004), 0 0.6px 0px rgba(0, 0, 0, 0.004), 0 0.9px 0px rgba(0, 0, 0, 0.005), 0 1.2px 0px rgba(0, 0, 0, 0.006), 0 1.8px 0px rgba(0, 0, 0, 0.006), 0 2.6px 0px rgba(0, 0, 0, 0.007), 0 3.9px 0px rgba(0, 0, 0, 0.008), 0 7px 0px rgba(0, 0, 0, 0.01);
+    
+      .widget-heading {
+        margin-bottom: 15px;
+      }
+    
+      h5 {
+        letter-spacing: 0px;
+        font-size: 19px;
+        display: block;
+        color: #e0e6ed;
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+    
+      .widget-content {}
+    }
+    
+    .apexcharts-legend-text {
+      color: #bfc9d4 !important;
+    }
+    
+    .apexcharts-tooltip.apexcharts-theme-dark {
+      background: #191e3a !important;
+      box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+    
+      .apexcharts-tooltip-title {
+        background: #191e3a !important;
+        border-bottom: 1px solid #191e3a;
+      }
+    }
+  }

@@ -1,0 +1,85 @@
+@import '../../../base/base';
+  /*
+      =====================
+          Account Info
+      =====================
+  */
+  body.layout-dark {
+    .widget-account-invoice-one .invoice-box {
+      .acc-total-info {
+        padding: 0 0;
+        margin-bottom: 60px;
+        padding-bottom: 18px;
+        border-bottom: 1px dashed #bfc9d4;
+      }
+    
+      h5 {
+        text-align: center;
+        font-size: 20px;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+        color: $primary;
+      }
+    
+      .acc-amount {
+        text-align: center;
+        font-size: 23px;
+        font-weight: 700;
+        margin-bottom: 0;
+        color: #009688;
+      }
+    
+      .inv-detail {
+        margin-bottom: 55px;
+        padding-bottom: 18px;
+        border-bottom: 1px dashed #bfc9d4;
+      }
+    
+      [class*="info-detail-"] {
+        &:not(.info-sub) {
+          display: flex;
+          justify-content: space-between;
+    
+          p {
+            margin-bottom: 13px;
+            font-weight: 700;
+            font-size: 14px;
+          }
+        }
+    
+        &.info-sub {
+          .info-detail {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0;
+            font-weight: 700;
+            font-size: 14px;
+    
+            p {
+              margin-bottom: 0;
+            }
+          }
+    
+          .info-detail-sub {
+            margin-left: 9px;
+    
+            p {
+              color: #888ea8;
+              margin-bottom: 2px;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    
+      .inv-action {
+        text-align: center;
+        display: flex;
+        justify-content: space-around;
+    
+        a {
+          transform: none;
+        }
+      }
+    }
+  }

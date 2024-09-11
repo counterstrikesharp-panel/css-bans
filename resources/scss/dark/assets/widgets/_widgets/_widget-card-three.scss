@@ -1,0 +1,95 @@
+@import '../../../base/base';
+body.layout-dark {
+    .widget.widget-card-three {
+      padding: 22px 19px;
+      border: none;
+      box-shadow: 0 0.1px 0px rgba(0, 0, 0, 0.002), 0 0.2px 0px rgba(0, 0, 0, 0.003), 0 0.4px 0px rgba(0, 0, 0, 0.004), 0 0.6px 0px rgba(0, 0, 0, 0.004), 0 0.9px 0px rgba(0, 0, 0, 0.005), 0 1.2px 0px rgba(0, 0, 0, 0.006), 0 1.8px 0px rgba(0, 0, 0, 0.006), 0 2.6px 0px rgba(0, 0, 0, 0.007), 0 3.9px 0px rgba(0, 0, 0, 0.008), 0 7px 0px rgba(0, 0, 0, 0.01);
+      z-index: 0;
+      overflow: hidden;
+      position: relative;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='464' height='218' preserveAspectRatio='none' viewBox='0 0 464 218'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1102%26quot%3b)' fill='none'%3e%3crect width='464' height='218' x='0' y='0' fill='rgba(14%2c 23%2c 38%2c 1)'%3e%3c/rect%3e%3cpath d='M315.269%2c118.015C335.972%2c119.311%2c357.763%2c112.344%2c368.365%2c94.514C379.158%2c76.363%2c376.181%2c53.01%2c364.307%2c35.547C353.734%2c19.997%2c334.038%2c15.277%2c315.269%2c16.426C298.644%2c17.444%2c284.124%2c26.646%2c275.634%2c40.976C266.959%2c55.619%2c264.774%2c73.383%2c272.56%2c88.517C281.044%2c105.007%2c296.761%2c116.857%2c315.269%2c118.015' fill='rgba(80%2c 102%2c 144%2c 0.53)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M313.807%2c180.831C323.417%2c181.186%2c331.775%2c174.909%2c336.678%2c166.636C341.689%2c158.179%2c343.422%2c147.684%2c338.49%2c139.181C333.572%2c130.702%2c323.58%2c126.451%2c313.807%2c127.202C305.144%2c127.868%2c299.005%2c134.858%2c294.926%2c142.53C291.145%2c149.643%2c290.127%2c157.821%2c293.689%2c165.047C297.729%2c173.241%2c304.677%2c180.494%2c313.807%2c180.831' fill='rgba(80%2c 102%2c 144%2c 0.53)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M29.508%2c67.271C41.3%2c68.065%2c52.409%2c60.55%2c57.716%2c49.989C62.582%2c40.306%2c59.18%2c29.067%2c53.271%2c19.983C47.96%2c11.819%2c39.245%2c6.829%2c29.508%2c6.628C19.382%2c6.419%2c8.925%2c10.127%2c3.987%2c18.969C-0.857%2c27.642%2c2.549%2c37.805%2c7.19%2c46.588C12.268%2c56.2%2c18.662%2c66.541%2c29.508%2c67.271' fill='rgba(80%2c 102%2c 144%2c 0.53)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M470.15%2c217.294C490.123%2c217.789%2c511.184%2c213.455%2c522.167%2c196.766C534.155%2c178.551%2c534.875%2c154.543%2c523.814%2c135.751C512.898%2c117.205%2c491.598%2c106.637%2c470.15%2c108.394C451.123%2c109.952%2c439.094%2c126.763%2c429.82%2c143.45C420.903%2c159.496%2c413.613%2c178.185%2c422.412%2c194.296C431.486%2c210.911%2c451.225%2c216.825%2c470.15%2c217.294' fill='rgba(80%2c 102%2c 144%2c 0.53)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M121.66%2c140.39C138.039%2c140.104%2c156.537%2c138.871%2c164.741%2c124.692C172.953%2c110.499%2c164.958%2c93.755%2c156.911%2c79.467C148.65%2c64.799%2c138.446%2c49.471%2c121.66%2c48.199C103.02%2c46.787%2c85.218%2c57.195%2c75.762%2c73.32C66.197%2c89.63%2c65.213%2c110.64%2c75.891%2c126.244C85.557%2c140.368%2c104.548%2c140.689%2c121.66%2c140.39' fill='rgba(80%2c 102%2c 144%2c 0.53)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M41.677%2c283.615C62.466%2c283.423%2c84.472%2c279.516%2c95.718%2c262.03C107.773%2c243.287%2c106.806%2c218.961%2c95.678%2c199.653C84.535%2c180.32%2c63.974%2c167.401%2c41.677%2c168.27C20.638%2c169.09%2c5.188%2c185.452%2c-5.494%2c203.596C-16.382%2c222.09%2c-25.016%2c244.555%2c-14.117%2c263.043C-3.328%2c281.345%2c20.433%2c283.811%2c41.677%2c283.615' fill='rgba(80%2c 102%2c 144%2c 0.53)' class='triangle-float1'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1102'%3e%3crect width='464' height='218' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        background-image: linear-gradient(to right, rgba(159, 7, 104, 65%) 0%, rgba(103, 19, 210, 0.8196078431) 100%);
+        background-image: linear-gradient(to right, rgba(139, 2, 87, 69%) 0%, rgba(103, 19, 210, 0.8196078431) 100%);
+        
+      }
+    }
+    
+    .widget-card-three .account-box {
+      position: relative;
+      z-index: 1;
+    
+      .info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 83px;
+      }
+    
+      h5 {
+        color: #e0e6ed;
+        font-size: 17px;
+        display: block;
+        font-weight: 600;
+      }
+    
+      .inv-balance-info {
+        text-align: right;
+      }
+    
+      p {
+        color: #e0e6ed;
+        font-weight: 400;
+        margin-bottom: 4px;
+        align-self: center;
+        font-size: 20px;
+      }
+    
+      .inv-stats {
+        display: inline-block;
+        padding: 3px 5px;
+        background: #000;
+        color: #d3d3d3;
+        font-size: 12px;
+        font-weight: 600;
+        border-radius: 4px;
+        visibility: hidden;
+      }
+    
+      .acc-action {
+        margin-top: 23px;
+        display: flex;
+        justify-content: space-between;
+    
+        a {
+          display: inline-block;
+          padding: 6px;
+          border-radius: 6px;
+          color: #d3d3d3;
+          box-shadow: 0px 0px 2px 0px #ffff;
+    
+          &:hover {
+            box-shadow: none;
+            background-image: linear-gradient(to right, #7028e4 50%, #e5b2ca 151%);
+            color: #fff;
+          }
+    
+          &.btn-wallet {
+            margin-right: 4px;
+          }
+    
+          svg {
+            width: 17px;
+            height: 17px;
+            stroke-width: 1.7;
+          }
+        }
+      }
+    }
+}

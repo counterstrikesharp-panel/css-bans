@@ -1,0 +1,52 @@
+@import '../../../base/base';
+body.layout-dark {
+
+    .widget {
+
+        &.widget-chart-three {
+            background: #0e1726;
+            padding: 0;
+
+            .widget-heading {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 20px;
+            margin-bottom: 0;
+            padding-bottom: 20px;
+
+            h5 {
+                font-size: 17px;
+                display: block;
+                color: #e0e6ed;
+                font-weight: 600;
+                margin-bottom: 0;
+            }
+
+            .dropdown {
+                align-self: center;
+
+                a svg {
+                color: #888ea8;
+                width: 19px;
+                height: 19px;
+                }
+
+                .dropdown-menu {
+                min-width: 10rem;
+                border-radius: 6px;
+                transform: translate3d(-142px, 0, 0px);
+                }
+            }
+            }
+
+            .apexcharts-legend-marker {
+            left: -5px !important;
+            }
+
+            #uniqueVisits {
+            overflow: hidden;
+            }
+        }
+
+    }
+}

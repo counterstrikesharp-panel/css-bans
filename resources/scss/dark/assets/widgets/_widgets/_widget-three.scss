@@ -1,0 +1,131 @@
+@import '../../../base/base';
+  /*
+      ====================
+          Order Summary
+      ====================
+  */
+  body.layout-dark {
+    .widget-three {
+      position: relative;
+      background: #0e1726;
+      padding: 20px;
+      border-radius: 8px;
+      height: 100%;
+      -webkit-box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+    
+      .widget-heading {
+        margin-bottom: 54px;
+        display: flex;
+        justify-content: space-between;
+    
+        h5 {
+          font-size: 19px;
+          display: block;
+          color: #e0e6ed;
+          font-weight: 600;
+          margin-bottom: 0;
+        }
+    
+        .task-action {
+          .dropdown-toggle svg {
+            color: #888ea8;
+            width: 19px;
+            height: 19px;
+          }
+    
+          .dropdown-menu {
+            transform: translate3d(-141px, 0, 0px);
+          }
+        }
+      }
+    
+      .widget-content {
+        font-size: 17px;
+    
+        .summary-list {
+          display: flex;
+    
+          &:not(:last-child) {
+            margin-bottom: 30px;
+          }
+        }
+    
+        .w-icon {
+          display: inline-block;
+          padding: 8px 8px;
+          border-radius: 50%;
+          display: inline-flex;
+          align-self: center;
+          height: 34px;
+          width: 34px;
+          margin-right: 12px;
+    
+          svg {
+            display: block;
+            width: 17px;
+            height: 17px;
+          }
+        }
+    
+        .summary-list {
+          &:nth-child(1) .w-icon {
+            background: $secondary;
+          }
+    
+          &:nth-child(2) .w-icon {
+            background: #009688;
+          }
+    
+          &:nth-child(3) .w-icon {
+            background: $warning;
+          }
+    
+          &:nth-child(1) .w-icon svg {
+            color: #dccff7;
+          }
+    
+          &:nth-child(2) .w-icon svg {
+            color: #e6ffbf;
+          }
+    
+          &:nth-child(3) .w-icon svg {
+            color: #ffeccb;
+          }
+        }
+    
+        .w-summary-details {
+          width: 100%;
+          align-self: center;
+        }
+    
+        .w-summary-info {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 1px;
+    
+          h6 {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 0;
+            color: #888ea8;
+          }
+    
+          p {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 0;
+            color: #888ea8;
+          }
+        }
+    
+        .w-summary-stats .progress {
+          margin-bottom: 0;
+          height: 6px;
+          border-radius: 20px;
+          box-shadow: none;
+        }
+      }
+    }
+  }

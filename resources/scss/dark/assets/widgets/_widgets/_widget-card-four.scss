@@ -1,0 +1,117 @@
+@import '../../../base/base';
+body.layout-dark {
+
+    .widget.widget-card-four {
+        padding: 25px 23px;
+        background: #0e1726;
+      }
+      
+      .widget-card-four {
+        .w-header {
+          display: flex;
+          justify-content: space-between;
+      
+          .w-info {
+            align-self: center;
+      
+            h6 {
+              font-weight: 600;
+              margin-bottom: 0;
+              color: #e0e6ed;
+              font-size: 23px;
+              letter-spacing: 0;
+            }
+          }
+      
+          .task-action {
+            svg {
+              color: #888ea8;
+              width: 19px;
+              height: 19px;
+            }
+      
+            .dropdown-menu {
+              transform: translate3d(-141px, 0, 0px);
+            }
+          }
+        }
+      
+        .w-content {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 36px;
+      
+          .w-info p.value {
+            font-weight: 500;
+            margin-bottom: 0;
+            color: #e95f2b;
+            font-size: 30px;
+      
+            span {
+              font-size: 15px;
+              color: #e0e6ed;
+              font-weight: 500;
+              letter-spacing: 0;
+            }
+      
+            svg {
+              width: 16px;
+              height: 16px;
+              color: #009688;
+              margin-top: 7px;
+            }
+          }
+        }
+      
+        .w-progress-stats {
+          display: flex;
+          margin-top: 36px;
+        }
+      
+        .w-icon {
+          color: #5f0a87;
+          align-self: center;
+          justify-content: center;
+          border-radius: 50%;
+        }
+      
+        .progress {
+          height: 8px;
+          margin-bottom: 0;
+          height: 20px;
+          padding: 4px;
+          border-radius: 20px;
+          width: 100%;
+          align-self: flex-end;
+          margin-right: 22px;
+          background-color: rgb(246 112 98 / 14%);
+        }
+      
+        .progress-bar {
+          &.bg-gradient-secondary {
+            position: relative;
+            background-color: #fc5296;
+            background-image: linear-gradient(315deg, #fc5296 0%, #f67062 74%);
+          }
+      
+          &:before {
+            content: '';
+            height: 6px;
+            width: 6px;
+            background: #fff;
+            position: absolute;
+            right: 3px;
+            border-radius: 50%;
+            top: 3px;
+          }
+        }
+      
+        .w-icon p {
+          margin-bottom: 0;
+          color: #e95f2b;
+          font-size: 15px;
+          font-weight: 700;
+        }
+      }
+      
+}

@@ -1,0 +1,157 @@
+@import '../../../base/base';
+  /*
+      ==================
+          Transaction
+      ==================
+  */
+  body.layout-dark {
+    .widget-table-one {
+      .widget-heading {
+        display: flex;
+        margin-bottom: 31px;
+        justify-content: space-between;
+    
+        .task-action {
+          .dropdown-toggle svg {
+            color: #888ea8;
+            width: 19px;
+            height: 19px;
+          }
+    
+          .dropdown-menu {
+            transform: translate3d(-141px, 0, 0px);
+          }
+        }
+      }
+    
+      .transactions-list {
+        border-radius: 6px;
+    
+        &:not(:last-child) {
+          margin-bottom: 22.2px;
+        }
+    
+        .t-item {
+          display: flex;
+          justify-content: space-between;
+    
+          .t-company-name {
+            display: flex;
+          }
+    
+          .t-icon {
+            margin-right: 12px;
+    
+            .avatar {
+              position: relative;
+              display: inline-block;
+              font-size: 14px;
+              font-weight: 600;
+              letter-spacing: 1px;
+              width: auto;
+              height: auto;
+    
+              .avatar-title {
+                background-color: rgb(231 81 90 / 0.388);
+                color: #bfc9d4;
+                border-radius: 12px;
+                position: relative;
+                border-radius: 12px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                height: 42px;
+                width: 42px;
+              }
+            }
+          }
+        }
+    
+        &.t-info .t-item .t-icon .avatar .avatar-title {
+          background-color: rgb(33 150 243 / 0.388);
+          color: #bfc9d4;
+        }
+    
+        &.t-secondary .t-item .t-icon .icon {
+          background-color: rgb(128 93 202 / 0.388);
+    
+          svg {
+            color: #bfc9d4;
+          }
+        }
+    
+        .t-item {
+          .t-icon .icon {
+            position: relative;
+            background-color: rgb(226 160 63 / 0.388);
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 42px;
+            width: 42px;
+    
+            svg {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 19px;
+              height: 19px;
+              color: #bfc9d4;
+              stroke-width: 2;
+            }
+          }
+    
+          .t-name {
+            align-self: center;
+    
+            h4 {
+              font-size: 14px;
+              font-weight: 600;
+              margin-bottom: 0;
+              transition: all 0.5s ease;
+              color: #bfc9d4;
+            }
+          }
+        }
+    
+        &:hover .t-item .t-name h4 {
+          color: $info;
+        }
+    
+        .t-item {
+          .t-name .meta-date {
+            font-size: 12px;
+            margin-bottom: 0;
+            font-weight: 500;
+            color: #888ea8;
+          }
+    
+          .t-rate {
+            align-self: center;
+    
+            p {
+              margin-bottom: 0;
+              font-size: 14px;
+              letter-spacing: 1px;
+              font-weight: 500;
+            }
+    
+            svg {
+              width: 14px;
+              height: 14px;
+              vertical-align: baseline;
+            }
+    
+            &.rate-inc p {
+              color: #009688;
+            }
+    
+            &.rate-dec p {
+              color: $danger;
+            }
+          }
+        }
+      }
+    }
+  }

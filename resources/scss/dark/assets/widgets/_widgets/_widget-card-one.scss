@@ -1,0 +1,112 @@
+@import '../../../base/base';
+/*
+      ==================
+          Statistics
+      ==================
+  */
+
+
+body.layout-dark {
+    .widget-card-one {
+      background: #0e1726;
+      padding: 20px 0 !important;
+    
+      .widget-content {
+        .media {
+          padding-left: 15px;
+          padding-right: 15px;
+          margin-bottom: 19px;
+          padding-bottom: 21px;
+          border-bottom: 1px dashed $dark;
+    
+          .w-img {
+            margin-right: 10px;
+            align-self: center;
+          }
+    
+          img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 3px solid $dark;
+          }
+        }
+    
+        .media-body {
+          align-self: center;
+    
+          h6 {
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 0;
+            margin-bottom: 0;
+          }
+    
+          p {
+            font-size: 13px;
+            letter-spacing: 0px;
+            margin-bottom: 0;
+            font-weight: 600;
+            color: #888ea8;
+            padding: 0;
+          }
+        }
+    
+        p {
+          font-weight: 600;
+          font-size: 14px;
+          margin-bottom: 61px;
+          padding: 0 20px;
+          display: inline-block;
+          width: 100%;
+        }
+    
+        .w-action {
+          padding: 0 20px;
+          display: flex;
+          justify-content: space-between;
+    
+          svg {
+            color: #22c7d5;
+            margin-right: 8px;
+            stroke-width: 1.5;
+          }
+    
+          span {
+            vertical-align: sub;
+            font-weight: 700;
+            color: #22c7d5;
+            letter-spacing: 1px;
+          }
+    
+          .read-more {
+            align-self: center;
+    
+            a {
+              display: inline-block;
+              padding: 3px 5px;
+              background: rgb(0 150 136 / 26%);
+              color: #009688;
+              font-size: 12px;
+              font-weight: 600;
+              border-radius: 4px;
+    
+              svg {
+                margin-right: 0;
+                color: #009688;
+                width: 16px;
+                height: 16px;
+                fill: transparent;
+                stroke-width: 1.8;
+                transition: .5s;
+              }
+    
+              &:hover {
+                box-shadow: none;
+              }
+            }
+          }
+        }
+      }
+    }
+}

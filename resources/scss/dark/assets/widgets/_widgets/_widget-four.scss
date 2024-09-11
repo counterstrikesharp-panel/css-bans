@@ -1,0 +1,145 @@
+@import '../../../base/base';
+/*
+      ====================
+          Visitors by Browser
+      ====================
+  */
+
+
+body.layout-dark {
+    .widget-four {
+      position: relative;
+      background: #0e1726;
+      padding: 20px;
+      border-radius: 6px;
+      height: 100%;
+      box-shadow: none;
+      box-shadow: 0 0.1px 0px rgba(0, 0, 0, 0.002), 0 0.2px 0px rgba(0, 0, 0, 0.003), 0 0.4px 0px rgba(0, 0, 0, 0.004), 0 0.6px 0px rgba(0, 0, 0, 0.004), 0 0.9px 0px rgba(0, 0, 0, 0.005), 0 1.2px 0px rgba(0, 0, 0, 0.006), 0 1.8px 0px rgba(0, 0, 0, 0.006), 0 2.6px 0px rgba(0, 0, 0, 0.007), 0 3.9px 0px rgba(0, 0, 0, 0.008), 0 7px 0px rgba(0, 0, 0, 0.01);
+      border: none;
+
+      .widget-heading {
+        margin-bottom: 25px;
+
+        h5 {
+          font-size: 17px;
+          display: block;
+          color: #e0e6ed;
+          font-weight: 600;
+          margin-bottom: 0;
+        }
+      }
+
+      .widget-content {
+        font-size: 17px;
+
+        .weapon-list {
+          display: flex;
+
+          &:not(:last-child) {
+            margin-bottom: 30px;
+          }
+        }
+
+        .w-icon {
+          display: inline-block;
+          padding: 10px 9px;
+          border-radius: 50%;
+          display: inline-flex;
+          align-self: center;
+          height: 34px;
+          width: 34px;
+          margin-right: 12px;
+
+          svg {
+            display: block;
+            width: 15px;
+            height: 15px;
+          }
+        }
+
+        .weapon-list {
+          &:nth-child(1) .w-icon {
+            background: $primary;
+          }
+
+          &:nth-child(2) .w-icon {
+            background: $danger;
+          }
+
+          &:nth-child(3) .w-icon {
+            background: $warning;
+          }
+
+          &:nth-child(1) .w-icon svg {
+            color: #ebedf2;
+          }
+
+          &:nth-child(2) .w-icon svg {
+            color: #ebedf2;
+          }
+
+          &:nth-child(3) .w-icon svg {
+            color: #ebedf2;
+          }
+        }
+
+        .weapon-list-details {
+          width: 100%;
+          align-self: center;
+        }
+
+        .w-weapon-info {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 1px;
+
+          h6 {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 0;
+            color: #888ea8;
+          }
+
+          p {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 0;
+            color: #888ea8;
+          }
+        }
+
+        .w-weapon-stats .progress {
+          margin-bottom: 0;
+          height: 22px;
+          padding: 4px;
+          border-radius: 20px;
+          box-shadow: none;
+
+          .progress-bar {
+            position: relative;
+
+            &.bg-gradient-primary {
+              background-image: linear-gradient(to right, #0081ff 0%, #0045ff 100%);
+            }
+            &.bg-gradient-danger {
+              background-image: linear-gradient(to right, #d09693 0%, #c71d6f 100%);
+            }
+            &.bg-gradient-warning {
+              background-image: linear-gradient(to right, #f09819 0%, #ff5858 100%);
+            }
+
+            &:before {
+              content: '';
+              height: 7px;
+              width: 7px;
+              background: #0e1726;
+              position: absolute;
+              right: 3px;
+              border-radius: 50%;
+              top: 3.49px;
+            }
+          }
+        }
+      }
+    }
+  }

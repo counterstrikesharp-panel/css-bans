@@ -1,0 +1,59 @@
+@import '../../../base/base';
+body.layout-dark {
+  .widget {
+    &.widget-six {
+        padding: 22px 18px;
+        background: #0e1726;
+    
+        .widget-heading {
+          h6 {
+            color: #e0e6ed;
+            margin-bottom: 74px;
+            font-size: 17px;
+            display: block;
+            font-weight: 600;
+          }
+    
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 0;
+    
+          .task-action svg {
+            color: #888ea8;
+            width: 19px;
+            height: 19px;
+          }
+        }
+    
+        .w-chart {
+          display: flex;
+    
+          .w-chart-section {
+            width: 50%;
+            padding: 0 12px;
+    
+            .w-detail {
+              position: absolute;
+              color: #fff;
+            }
+    
+            .w-title {
+              font-size: 13px;
+              font-weight: 600;
+              margin-bottom: 0;
+              color: #d3d3d3;
+            }
+    
+            .w-stats {
+              color: #f8538d;
+              font-size: 20px;
+              letter-spacing: 1px;
+              margin-bottom: 0;
+              font-weight: 500;
+            }
+          }
+        }
+    }
+  }
+
+}

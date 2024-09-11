@@ -1,0 +1,92 @@
+@import '../../../base/base';
+  /*
+      ==================
+          Dev Summit
+      ==================
+  */
+  body.layout-dark {
+    .widget-card-two {
+      padding: 20px 0px !important;
+      background: #0e1726;
+    
+      .media {
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-bottom: 19px;
+        padding-bottom: 21px;
+        border-bottom: 1px dashed $dark;
+    
+        .w-img {
+          margin-right: 10px;
+    
+          img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 3px solid $dark;
+          }
+        }
+    
+        .media-body {
+          align-self: center;
+    
+          h6 {
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: 0;
+            margin-bottom: 0;
+          }
+    
+          p {
+            margin-bottom: 0;
+            font-weight: 600;
+            color: #888ea8;
+          }
+        }
+      }
+    
+      .card-bottom-section {
+        text-align: center;
+    
+        h5 {
+          font-size: 14px;
+          color: #009688;
+          font-weight: 700;
+          margin-bottom: 20px;
+        }
+    
+        .img-group img {
+          width: 46px;
+          height: 46px;
+          border-radius: 12px;
+          border: 2px solid $dark;
+    
+          &:not(:last-child) {
+            margin-right: 5px;
+          }
+        }
+    
+        a {
+          display: block;
+          margin-top: 18px;
+          background: $primary;
+          color: #fff;
+          padding: 10px 10px;
+          transform: none;
+          margin-right: 15px;
+          margin-left: 15px;
+          font-size: 15px;
+          font-weight: 500;
+          letter-spacing: 1px;
+          border: none;
+          background: linear-gradient(229deg, #517281 0%, #3b5d70 27%, #4d5c82 72%, #5d647f 100%);
+    
+          &.btn {
+            &:hover, &:focus {
+              background: linear-gradient(44deg, #517281 0%, #3b5d70 27%, #4d5c82 72%, #5d647f 100%);
+            }
+          }
+        }
+      }
+    }
+  }

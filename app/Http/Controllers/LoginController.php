@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\CommonHelper;
+use App\Helpers\ModuleHelper;
 use App\Helpers\PermissionsHelper;
+use App\Models\K4Ranks\ZenithPlayerStorage;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,6 +46,30 @@ class LoginController extends Controller
                     $user->save();
                 }
                 Auth::login($user);
+                try {
+                    if(env('RANKS') == 'Enabled') {
+                        ModuleHelper::useConnection('Ranks');
+                        $player = ZenithPlayerStorage::where('steam_id', $steamUser->getId())->first();
+                        if ($player) {
+                            $playerRank = $player['K4-Zenith-Ranks.storage'];
+                            $points = $playerRank['Points'] ?? 0;
+                            $rank = $playerRank['Rank'] ?? 'N/A';
+
+                            // Fetch rank and rating images using the same logic
+                            $rankImage = CommonHelper::getCSRankImage($rank);
+                            $ratingImage = CommonHelper::getCSRatingImage($points);
+
+                            // Store the rank and rank image in the session
+                            session([
+                                'rank' => $rank,
+                                'rank_image' => $rankImage,
+                                'rating_image' => $ratingImage,
+                            ]);
+                        }
+                    }
+                } catch(\Exception $e) {
+                    Log::error('auth.rank.cache'. $e->getMessage());
+                }
                 return redirect()->route('home')->with('success', __('admins.steamAuthSuccess'));;
             } else {
                 return redirect()->route('home')->with('error', __('admins.steamAuthError'));

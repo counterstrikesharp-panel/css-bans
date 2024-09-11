@@ -57,6 +57,8 @@
                                 {{ __('admins.panelOwner') }}
                             @endif
                         </p>
+                        {!! session('rank_image') !!}
+                        {!! session('rating_image') !!}
                     </div>
                 </div>
             </div>

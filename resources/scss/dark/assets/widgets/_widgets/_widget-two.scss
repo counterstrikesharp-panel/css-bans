@@ -1,0 +1,86 @@
+@import '../../../base/base';
+  /*
+      ==================
+          Total Sales
+      ==================
+  */
+  body.layout-dark {
+    .widget-two {
+      position: relative;
+      background: #0e1726;
+      padding: 0;
+      border-radius: 6px;
+      height: 100%;
+      box-shadow: none;
+      border: none;
+      box-shadow: 0 0.1px 0px rgba(0, 0, 0, 0.002), 0 0.2px 0px rgba(0, 0, 0, 0.003), 0 0.4px 0px rgba(0, 0, 0, 0.004), 0 0.6px 0px rgba(0, 0, 0, 0.004), 0 0.9px 0px rgba(0, 0, 0, 0.005), 0 1.2px 0px rgba(0, 0, 0, 0.006), 0 1.8px 0px rgba(0, 0, 0, 0.006), 0 2.6px 0px rgba(0, 0, 0, 0.007), 0 3.9px 0px rgba(0, 0, 0, 0.008), 0 7px 0px rgba(0, 0, 0, 0.01);
+    
+      .widget-content {
+        font-size: 17px;
+      }
+    
+      .w-chart {
+        position: absolute;
+        bottom: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+      }
+    
+      .w-numeric-value {
+        display: flex;
+        color: #fff;
+        font-weight: 500;
+        padding: 20px;
+        justify-content: space-between;
+    
+        .w-icon {
+          display: inline-block;
+          background: $warning;
+          padding: 13px 12px;
+          border-radius: 50%;
+          display: inline-flex;
+          align-self: center;
+          height: 45px;
+          width: 45px;
+        }
+    
+        svg {
+          display: block;
+          color: #0e1726;
+          width: 20px;
+          height: 20px;
+        }
+    
+        .w-value {
+          margin-bottom: -9px;
+          letter-spacing: 0px;
+          font-size: 19px;
+          display: block;
+          color: #e0e6ed;
+          font-weight: 600;
+        }
+    
+        .w-numeric-title {
+          font-size: 13px;
+          color: #888ea8;
+          font-weight: 600;
+        }
+      }
+    }
+}
+
+
+@media (max-width: 575px) {
+    /*
+        ==================
+            Total Sales
+        ==================
+    */
+    body.layout-dark {
+        .widget-two .w-chart {
+        position: inherit;
+        }
+    }
+    
+  }

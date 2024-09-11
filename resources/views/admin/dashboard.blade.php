@@ -150,7 +150,8 @@
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>
-                                    <div class="d-flex align-items-center">
+                                    <div class="d-flex align-items-center dashboard-rank">
+                                        <a target="_blank" href="{{$player->profile}}"><i class="fas fa-external-link-alt rank-profile"></i></a>
                                         <img src="{{$player->avatar}}" alt="" style="width: 45px; height: 45px" class="rounded-circle"/>
                                         <div class="ms-3">
                                             <p class="fw-bold mb-1"><a href="https://steamcommunity.com/profiles/{{$player->player_steamid}}/">{{ $player->name }}</p>

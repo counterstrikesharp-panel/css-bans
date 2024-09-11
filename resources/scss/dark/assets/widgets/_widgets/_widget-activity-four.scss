@@ -1,0 +1,288 @@
+@import '../../../base/base';
+  /*
+      ========================
+          Recent Activities
+      ========================
+  */
+  body.layout-dark {
+    .widget-activity-four {
+      padding-right: 0;
+      padding-left: 0;
+    
+      .widget-heading {
+        margin-bottom: 28px;
+        padding: 0 20px;
+    
+        .w-icon {
+          position: absolute;
+          right: 20px;
+          top: 15px;
+    
+          a {
+            padding: 6px;
+            border-radius: 10px;
+            padding: 6px;
+            background: #3b3f5c !important;
+            border: none;
+            -webkit-transform: translateY(0);
+            transform: translateY(0);
+            box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+    
+            svg {
+              color: #fff;
+            }
+          }
+        }
+      }
+    
+      .mt-container-ra {
+        position: relative;
+        height: 325px;
+        overflow: auto;
+        padding-right: 12px;
+      }
+    
+      .widget-content {
+        padding: 0 8px 0 20px;
+      }
+    
+      .timeline-line .item-timeline {
+        display: flex;
+        width: 100%;
+        padding: 8px 0;
+        transition: .5s;
+        position: relative;
+        border-radius: 6px;
+        cursor: pointer;
+    
+        .t-dot {
+          position: relative;
+    
+          &:before {
+            content: '';
+            position: absolute;
+            border-color: inherit;
+            border-radius: 50%;
+            width: 6px;
+            height: 6px;
+            top: 5px;
+            left: 5px;
+            transform: translateX(-50%);
+            border-color: #e0e6ed;
+            background: #bfc9d4;
+            z-index: 1;
+          }
+    
+          &:after {
+            position: absolute;
+            border-color: inherit;
+            border-width: 1px;
+            border-style: solid;
+            border-radius: 50%;
+            width: 10px;
+            height: 10px;
+            left: 5px;
+            transform: translateX(-50%);
+            border-color: #e0e6ed;
+            width: 0;
+            height: auto;
+            top: 12px;
+            bottom: -19px;
+            border-right-width: 0;
+            border-top-width: 0;
+            border-bottom-width: 0;
+            border-radius: 0;
+          }
+        }
+    
+        &.timeline-primary .t-dot:before {
+          background: $primary;
+        }
+    
+        &.timeline-success .t-dot:before {
+          background-color: #009688;
+        }
+    
+        &.timeline-danger .t-dot:before {
+          background-color: $danger;
+        }
+    
+        &.timeline-dark .t-dot:before {
+          background-color: #607d8b;
+        }
+    
+        &.timeline-secondary .t-dot:before {
+          background: $secondary;
+        }
+    
+        &.timeline-warning .t-dot:before {
+          background-color: $warning;
+        }
+    
+        &:last-child .t-dot:after {
+          display: none;
+        }
+    
+        .t-meta-time {
+          margin: 0;
+          min-width: 100px;
+          max-width: 100px;
+          font-size: 12px;
+          font-weight: 700;
+          color: #888ea8;
+          align-self: center;
+        }
+    
+        .t-text {
+          align-self: center;
+          margin-left: 14px;
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+          transition: .5s;
+    
+          p {
+            margin: 0;
+            font-size: 13px;
+            letter-spacing: 0;
+            font-weight: 500;
+            margin-bottom: 0;
+            color: #bfc9d4;
+    
+            a {
+              margin-bottom: 0;
+              font-size: 13px;
+              font-weight: 600;
+              color: #009688;
+            }
+          }
+    
+          span.badge {
+            position: absolute;
+            right: -1px;
+            padding: 2px 4px;
+            font-size: 10px;
+            letter-spacing: 1px;
+            opacity: 0;
+            font-weight: 600;
+            transform: none;
+            top: 6px;
+          }
+        }
+    
+        &.timeline-primary .t-text span.badge {
+          color: #fff;
+          border: 1px solid $primary;
+          background-color: $primary;
+        }
+    
+        &.timeline-secondary .t-text span.badge {
+          color: #fff;
+          border: 1px solid $secondary;
+          background-color: $secondary;
+        }
+    
+        &.timeline-danger .t-text span.badge {
+          color: #fff;
+          border: 1px solid $danger;
+          background-color: $danger;
+        }
+    
+        &.timeline-warning .t-text span.badge {
+          color: #fff;
+          border: 1px solid $warning;
+          background-color: $warning;
+        }
+    
+        &.timeline-success .t-text span.badge {
+          color: #fff;
+          border: 1px solid #009688;
+          background-color: #009688;
+        }
+    
+        &.timeline-dark .t-text span.badge {
+          color: #fff;
+          border: 1px solid $dark;
+          background-color: $dark;
+        }
+    
+        &:hover .t-text span.badge {
+          opacity: 1;
+        }
+    
+        .t-text p.t-time {
+          text-align: right;
+          color: #888ea8;
+          font-size: 10px;
+        }
+    
+        .t-time {
+          margin: 0;
+          min-width: 80px;
+          max-width: 80px;
+          font-size: 13px;
+          font-weight: 600;
+          color: $l-dark;
+          letter-spacing: 1px;
+        }
+      }
+    
+      .tm-action-btn {
+        text-align: center;
+        padding-top: 19px;
+    
+        button {
+          background: transparent;
+          box-shadow: none;
+          padding: 0;
+          color: #888ea8;
+          font-weight: 800;
+          letter-spacing: 0;
+          border: none;
+          font-size: 14px;
+    
+          &:hover {
+            transform: translateY(0);
+          }
+    
+          span {
+            margin-right: 6px;
+            display: inline-block;
+            transition: .5s;
+          }
+    
+          &:hover span {
+            transform: translateX(-6px);
+          }
+        }
+    
+        svg {
+          width: 17px;
+          height: 17px;
+          vertical-align: sub;
+          color: $l-dark;
+          stroke-width: 2.5px;
+          transition: .5s;
+        }
+    
+        button:hover svg {
+          transform: translateX(6px);
+        }
+      }
+    }
+  }
+
+
+  body.layout-dark {
+    @media (max-width: 1199px) {
+      .widget-activity-four .mt-container-ra {
+        height: 184px;
+      }
+    }
+    
+    @media (max-width: 767px) {
+      .widget-activity-four .mt-container-ra {
+        height: 325px;
+      }
+    }
+  }

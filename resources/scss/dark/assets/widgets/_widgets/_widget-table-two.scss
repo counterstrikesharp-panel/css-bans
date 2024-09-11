@@ -1,0 +1,159 @@
+@import '../../../base/base';
+  /*
+      =====================
+          Recent Orders
+      =====================
+  */
+  body.layout-dark {
+    .widget-table-two {
+      position: relative;
+    
+      h5 {
+        margin-bottom: 20px;
+      }
+    
+      .widget-content {
+        background: transparent;
+      }
+    
+      .table {
+        border-collapse: separate;
+        border-spacing: 0 5px;
+        margin-bottom: 0;
+        background: transparent;
+    
+        > {
+          thead > tr > th {
+            text-transform: initial;
+            font-weight: 600;
+            border-top: none;
+            background: #191e3a;
+            padding-top: 0;
+            padding-bottom: 0;
+            padding-right: 0;
+            padding-left: 0;
+            -webkit-transition: all 0.1s ease;
+            transition: all 0.1s ease;
+            padding: 10px 0 10px 15px;
+    
+            &:first-child {
+              border-bottom-left-radius: 6px;
+              border-top-left-radius: 6px;
+            }
+    
+            &:last-child {
+              border-bottom-right-radius: 6px;
+              border-top-right-radius: 6px;
+            }
+    
+            .th-content {
+              color: #bfc9d4;
+              font-weight: 600;
+              font-size: 14px;
+              letter-spacing: 1px;
+            }
+    
+            &:first-child .th-content {
+              margin-left: 10px;
+            }
+    
+            &:last-child .th-content {
+              margin-right: 10px;
+            }
+    
+            &:nth-last-child(2) .th-content {
+              text-align: center;
+              padding: 0 15px 0 0;
+            }
+          }
+    
+          tbody > tr {
+            > td {
+              border-top: none;
+              background: transparent;
+              padding-top: 0;
+              padding-bottom: 0;
+              padding-right: 0;
+              padding-left: 0;
+              -webkit-transition: all 0.1s ease;
+              transition: all 0.1s ease;
+    
+              .td-content {
+                cursor: pointer;
+                font-weight: 600;
+                letter-spacing: 1px;
+                color: #888ea8;
+              }
+            }
+    
+            &:hover > td .td-content {
+              color: #bfc9d4;
+            }
+    
+            > td {
+              &:first-child {
+                border-top-left-radius: 6px;
+                padding: 10px 0 10px 15px;
+                border-bottom-left-radius: 6px;
+              }
+    
+              &:last-child {
+                border-top-right-radius: 6px;
+                padding: 15.5px 0 15.5px 15px;
+                border-bottom-right-radius: 6px;
+              }
+            }
+          }
+        }
+    
+        .td-content {
+          &.customer-name {
+            color: #888ea8;
+            font-weight: 600;
+            margin-bottom: 0;
+            font-size: 13px;
+            display: flex;
+          }
+    
+          &.product-brand {
+            margin-bottom: 0;
+            font-size: 12px;
+            font-weight: 600;
+            text-shadow: 1px 1px 7px rgb(0, 0, 0, 0.26);
+            padding: 10px 0 10px 15px;
+          }
+    
+          &.product-invoice {
+            padding: 10px 0 10px 15px;
+          }
+    
+          &.pricing {
+            width: 50%;
+            margin: 0 auto;
+          }
+    
+          img {
+            width: 35px;
+            height: 34px;
+            border-radius: 6px;
+            margin-right: 10px;
+            padding: 2px;
+            align-self: center;
+          }
+    
+          &.customer-name span {
+            align-self: center;
+          }
+        }
+    
+        tr > td:nth-last-child(2) .td-content {
+          text-align: center;
+        }
+    
+        .td-content .badge {
+          border: none;
+          font-weight: 500;
+        }
+      }
+    }
+  }
