@@ -12,12 +12,13 @@
         "vite": "^3.0.0"
     },
     "dependencies": {
-        "bootstrap": "^5.2.1",
-        "sass": "^1.55.0",
         "@types/datatables.net": "^1.10.28",
         "@types/jquery": "^3.5.29",
-        "datatables.net-responsive": "^3.0.2",
+        "bootstrap": "^5.2.1",
         "datatables.net-dt": "^2.0.2",
-        "datatables.net-fixedcolumns": "^5.0.0"
+        "datatables.net-fixedcolumns": "^5.0.0",
+        "datatables.net-responsive": "^3.0.2",
+        "dayjs": "^1.11.13",
+        "sass": "^1.55.0"
     }
 }

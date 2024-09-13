@@ -1,3 +1,15 @@
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+import duration from 'dayjs/plugin/duration';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.extend(duration);
+dayjs.extend(relativeTime);
+
+
 export function appendTableData(data: string, elemtId: string) {
     const tableBody = document.getElementById(elemtId);
     if (tableBody) {
@@ -6,60 +18,50 @@ export function appendTableData(data: string, elemtId: string) {
 }
 
 export function formatDuration(created: string): string {
-    const createdUTCDate = new Date(created + 'Z');
-    const currentUTCDate = new Date();
 
-    const timeDifference = currentUTCDate.getTime() - createdUTCDate.getTime();
-    const secondsDifference = Math.floor(timeDifference / 1000);
+    const createdDate = dayjs.tz(created, timeZone);
 
-    // Define time intervals in seconds
-    const intervals = {
-        year: 31536000,
-        month: 2592000,
-        week: 604800,
-        day: 86400,
-        hour: 3600,
-        minute: 60,
-    };
+    const currentDate = dayjs().tz(timeZone);
+    // Calculate the difference between currentDate and createdDate in human-readable form
+    const timeDifference = currentDate.diff(createdDate);
 
-    // Iterate through intervals to find the appropriate time format
-    for (const [interval, seconds] of Object.entries(intervals)) {
-        const intervalCount = Math.floor(secondsDifference / seconds);
-        if (intervalCount >= 1) {
-            return `${intervalCount} ${interval}${intervalCount > 1 ? 's' : ''} ago`;
-        }
-    }
-
-    return 'Just now';
+    return createdDate.from(currentDate);
 }
 
 export function calculateProgress(created: string, ends: string): number {
-    const createdDate = new Date(created);
-    const endsDate = new Date(ends);
-    const currentDate = new Date();
+    try {
 
-    // Convert current date time to UTC
-    const currentUTCDate = new Date(
-        Date.UTC(
-            currentDate.getUTCFullYear(),
-            currentDate.getUTCMonth(),
-            currentDate.getUTCDate(),
-            currentDate.getUTCHours(),
-            currentDate.getUTCMinutes(),
-            currentDate.getUTCSeconds(),
-            currentDate.getUTCMilliseconds()
-        )
-    );
+        const format = 'YYYY-MM-DD HH:mm:ss';
 
-    const totalTime = endsDate.getTime() - createdDate.getTime();
-    const elapsedTime = currentUTCDate.getTime() - createdDate.getTime();
+        const createdDate = dayjs.tz(created, format, timeZone);
+        const endsDate = dayjs.tz(ends, format, timeZone);
+        const currentDate = dayjs().tz(timeZone);
 
-    let progress = (elapsedTime / totalTime) * 100;
+        // Validate the date strings to make sure they are valid
+        if (!createdDate.isValid() || !endsDate.isValid()) {
+            return "NA";
+        }
 
-    // Ensure progress doesn't exceed 100% or go below 0%
-    progress = Math.min(100, Math.max(0, progress));
+        // Calculate total time between creation and end
+        const totalTime = endsDate.diff(createdDate); // Difference in milliseconds
 
-    return progress;
+        // Prevent division by zero or invalid total time
+        if (totalTime <= 0) {
+            return "NA";
+        }
+
+        // Calculate elapsed time from creation to current date
+        const elapsedTime = currentDate.diff(createdDate);
+
+        // Calculate progress as a percentage
+        let progress = (elapsedTime / totalTime) * 100;
+
+        // Ensure progress is a valid number and doesn't exceed 100% or go below 0%
+        progress = Math.min(100, Math.max(0, isNaN(progress) ? "NA" : progress));
+        return Number(progress.toFixed(2));
+    } catch (e) {
+        return "NA";
+    }
 }
 
 export function showLoader(loaderId = 'loader') {

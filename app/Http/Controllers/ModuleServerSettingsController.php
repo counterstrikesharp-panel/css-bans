@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ModuleServerSetting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ModuleServerSettingsController extends Controller
 {
@@ -67,8 +68,8 @@ class ModuleServerSettingsController extends Controller
     public function destroy($id)
     {
         $setting = ModuleServerSetting::findOrFail($id);
+        Session::forget('Ranks_server');
         $setting->delete();
-
         return redirect()->route('module-server-settings.index')->with('success', 'Server settings deleted successfully.');
     }
 }

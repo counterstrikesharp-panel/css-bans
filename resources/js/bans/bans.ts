@@ -49,6 +49,7 @@ function loadBans() {
                 } else if (progress === 100) {
                     progressBarClass = 'bg-success';
                 }
+                progress = isNaN(progress) ? 100 : progress;
                 return `
                 <div class="progress">
                     <div class="progress-bar progress-bar-striped progress-bar-animated custom-progress ${progressBarClass}"
