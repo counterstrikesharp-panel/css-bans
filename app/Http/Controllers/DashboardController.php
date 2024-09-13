@@ -7,6 +7,7 @@ use App\Helpers\ModuleHelper;
 use App\Helpers\PermissionsHelper;
 use App\Models\K4Ranks\Ranks;
 use App\Models\K4Ranks\ZenithPlayerStorage;
+use App\Models\ModuleServerSetting;
 use App\Models\SaAdmin;
 use App\Models\SaBan;
 use App\Models\SaMute;
@@ -24,7 +25,7 @@ class DashboardController extends Controller
         return view('requirement');
     }
 
-    public function home()
+    public function home(Request $request)
     {
         $updates = [];
         $activeBans = null;
@@ -43,9 +44,14 @@ class DashboardController extends Controller
             $updates = $this->checkUpdates();
         }
         $topPlayersData = [];
+        $servers = [];
         if(env('RANKS') == 'Enabled') {
+            $serverId = $request->query('server_id');
+            ModuleHelper::useConnection('Ranks', $serverId);
+            $servers = ModuleServerSetting::all();
             $topPlayersData = $this->getTop5Players();
         }
+
         return view('admin.dashboard',
             compact(
                 'totalBans',
@@ -57,7 +63,8 @@ class DashboardController extends Controller
                 'activeBans',
                 'activeMutes',
                 'totalActiveBans',
-                'totalActiveMutes'
+                'totalActiveMutes',
+                'servers'
             )
         );
     }
@@ -105,8 +112,6 @@ class DashboardController extends Controller
 
     public function getTop5Players()
     {
-        ModuleHelper::useConnection('Ranks');
-
         // Get the flag to determine whether to use old or new logic
         $useOldLogic = env('K4LegacySupport', 'no') == 'yes' ? true : false;
 

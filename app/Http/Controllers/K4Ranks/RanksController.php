@@ -188,7 +188,9 @@ class RanksController extends Controller
                 // Check if the image exists, if not, use a default image
                 $weapon->image_url = File::exists(public_path($imagePath))
                     ? asset($imagePath)
-                    : asset('images/weapons/weapon_elite.png');
+                    : (stripos($weapon->weapon, 'knife') !== false
+                        ? asset('images/weapons/weapon_knife_css.png')
+                        : asset('images/weapons/weapon_elite.png'));
 
                 return $weapon;
             });

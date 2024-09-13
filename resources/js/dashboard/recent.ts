@@ -40,7 +40,6 @@ function constructTableRows(data: any[]): string {
         else if (item.duration === 0) {
             progressBarClass = 'bg-danger';
         }
-
         progress = isNaN(progress) ? 100 : progress;
         html += `
       <tr>

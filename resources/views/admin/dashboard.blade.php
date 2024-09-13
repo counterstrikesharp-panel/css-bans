@@ -132,6 +132,18 @@
                             <strong>{{ __('dashboard.topPlayers') }} <span class="badge badge-info">5 {{ __('dashboard.of') }} {{$topPlayersData['totalPlayers']}} {{ __('dashboard.players') }}</span></strong>
                         </h5>
                     </div>
+                    <div class="rank-servers dashboard">
+                        <select class="form-select" id="serverSelect">
+                            @foreach ($servers as $server)
+                                <option
+                                    {{$server->id == Session::get('Ranks_server') ? 'selected': ''}} value="{{ Crypt::encrypt($server->id) }}">
+                                    {{ $server->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <label for="serverSelect"
+                               class="serverSelectLabel form-label">{{ __('admins.selectServers') }}</label>
+                    </div>
                     <table class="table-responsive table align-middle mb-0 table-borderless">
                         <thead class="bg-light">
                         <tr>
@@ -281,6 +293,13 @@
             const recentMutesUrl = '{!! env('VITE_SITE_DIR') !!}/mutes';
             const playerActionUrl = '{!! env('VITE_SITE_DIR') !!}/players/action';
             const ranksListUrl = '{!! env('VITE_SITE_DIR') !!}/list/ranks';
+
+            window.addEventListener("load", (event) => {
+                $('#serverSelect').change(function () {
+                    const serverId = $(this).val();
+                    window.location.href = '{{ url()->current() }}' + '?server_id=' + serverId;
+                });
+            });
         </script>
     <!--  END CUSTOM SCRIPTS FILE  -->
 </x-base-layout>

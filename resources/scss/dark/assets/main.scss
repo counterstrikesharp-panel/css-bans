@@ -5012,3 +5012,18 @@ body.layout-dark #sidebar ul.menu-categories li.menu ul.submenu>li a:before {
 .dashboard-rank .rank-profile {
     margin-top: -14px;
 }
+
+.rank-servers.dashboard #serverSelect {
+    width: 315px;
+    margin: 6px;
+    height: 48px;
+    margin-top: 4px;
+}
+
+.rank-servers.dashboard label {
+    font-size: 15px;
+    line-height: 35px;
+    color: #888ea8;
+    letter-spacing: 0px;
+    display: inline-block;
+}
