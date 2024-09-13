@@ -113,7 +113,9 @@ class BansController extends Controller
                 $ban->status = 'UNBANNED';
                 $ban->ends = now();
                 $ban->save();
-                CommonHelper::sendActionLog('unban', $ban->id);
+                $adminName = auth()->user()->name;
+                $adminSteamID = auth()->user()->steam_id;
+                CommonHelper::sendActionLog('unban', $ban->id, $adminName, $adminSteamID);
             }
 
             // If all unbans are successful, commit the transaction
@@ -201,7 +203,9 @@ class BansController extends Controller
                 $saban->ends = !empty($minutesDifference) ? CommonHelper::formatDate($validatedData['duration']): Carbon::now();
                 $saban->save();
                 $bansAdded = true;
-                CommonHelper::sendActionLog('ban', $saban->id);
+                $adminName = auth()->user()->name;
+                $adminSteamID = auth()->user()->steam_id;
+                CommonHelper::sendActionLog('ban', $saban->id, $adminName, $adminSteamID);
             }
             DB::commit();
         } catch(\Exception $e) {
@@ -249,7 +253,9 @@ class BansController extends Controller
             }
             $ban->status = 'ACTIVE';
             $ban->save();
-            CommonHelper::sendActionLog('ban', $ban->id);
+            $adminName = auth()->user()->name;
+            $adminSteamID = auth()->user()->steam_id;
+            CommonHelper::sendActionLog('ban', $ban->id, $adminName, $adminSteamID);
             return redirect()->route('list.bans')->with('success', __('admins.banUpdateSuccess'));
         } catch(\Exception $e) {
             Log::error('ban.update.error: ' . $e->getMessage());

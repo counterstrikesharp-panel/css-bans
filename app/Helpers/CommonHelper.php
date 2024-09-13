@@ -182,7 +182,7 @@ class CommonHelper
         }
     }
 
-    public static function sendActionLog($action, $actionId)
+    public static function sendActionLog($action, $actionId, $adminName, $adminSteamID)
     {
         if(!empty(env('DISCORD_WEBHOOK'))) {
             switch ($action) {
@@ -190,27 +190,27 @@ class CommonHelper
                     $actionDetails = SaBan::where('id', $actionId)->first();
                     $username = $actionDetails->player_name;
                     $steamId = $actionDetails->player_steamid;
-                    $admin = "[$actionDetails->admin_name](https://steamcommunity.com/profiles/{$actionDetails->admin_steamid})";
+                    $admin = "[$adminName](https://steamcommunity.com/profiles/{$adminSteamID})";
                     $reason = $actionDetails->reason;
                     break;
                 case "unban":
                     $actionDetails = SaBan::where('id', $actionId)->first();
                     $username = $actionDetails->player_name;
                     $steamId = $actionDetails->player_steamid;
-                    $admin = "[$actionDetails->admin_name](https://steamcommunity.com/profiles/{$actionDetails->admin_steamid})";
+                    $admin = "[$adminName](https://steamcommunity.com/profiles/{$adminSteamID})";
                     break;
                 case "mute":
                     $actionDetails = SaMute::where('id', $actionId)->first();
                     $username = $actionDetails->player_name;
                     $steamId = $actionDetails->player_steamid;
-                    $admin = "[$actionDetails->admin_name](https://steamcommunity.com/profiles/{$actionDetails->admin_steamid})";
+                    $admin = "[$adminName](https://steamcommunity.com/profiles/{$adminSteamID})";
                     $reason = $actionDetails->reason;
                     break;
                 case "unmute":
                     $actionDetails = SaMute::where('id', $actionId)->first();
                     $username = $actionDetails->player_name;
                     $steamId = $actionDetails->player_steamid;
-                    $admin = "[$actionDetails->admin_name](https://steamcommunity.com/profiles/{$actionDetails->admin_steamid})";
+                    $admin = "[$adminName](https://steamcommunity.com/profiles/{$adminSteamID})";
                     break;
                 case "appeal":
                     $actionDetails = Appeal::where('id', $actionId)->first();

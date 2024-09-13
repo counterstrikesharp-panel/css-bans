@@ -39,7 +39,7 @@ class AppealController extends Controller
             $data['status'] = 'PENDING';
             // Save the appeal
             $appeal = Appeal::create($data);
-            CommonHelper::sendActionLog('appeal', $appeal->id);
+            CommonHelper::sendActionLog('appeal', $appeal->id, '', '');
             return redirect()->route('appeals.create')->with('success', 'Appeal submitted successfully.');
         }
         else {

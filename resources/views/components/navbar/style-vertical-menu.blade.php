@@ -69,7 +69,6 @@
                                 <div class="media-body">
                                     <h5>{{Auth::user()?->name ? : __('admins.guest') }}</h5>
                                     <p>{{Auth::user()?->steam_id ? :  __('admins.user') }}</p>
-                                    {{session('rank_image')}}
                                 </div>
                             </div>
                         </div>
