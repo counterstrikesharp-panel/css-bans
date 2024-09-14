@@ -57,8 +57,10 @@
                                 {{ __('admins.panelOwner') }}
                             @endif
                         </p>
-                        {!! session('rank_image') !!}
-                        {!! session('rating_image') !!}
+                        @if(!empty(Auth::user()))
+                            {!! session('rank_image') !!}
+                            {!! session('rating_image') !!}
+                        @endif
                     </div>
                 </div>
             </div>
