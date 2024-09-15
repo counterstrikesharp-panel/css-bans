@@ -184,9 +184,7 @@ class MutesController extends Controller
                 $samute->ends = !empty($minutesDifference) ? CommonHelper::formatDate($validatedData['duration']): Carbon::now();
                 $samute->save();
                 $mutesAdded = true;
-                $adminName = auth()->user()->name;
-                $adminSteamID = auth()->user()->steam_id;
-                CommonHelper::sendActionLog('mute', $samute->id, $adminName, $adminSteamID);
+                CommonHelper::sendActionLog('mute', $samute->id);
             }
             DB::commit();
         } catch(\Exception $e) {
@@ -232,9 +230,7 @@ class MutesController extends Controller
             $mute->status = 'ACTIVE';
             $mute->type = $validatedData['type'];
             $mute->save();
-            $adminName = auth()->user()->name;
-            $adminSteamID = auth()->user()->steam_id;
-            CommonHelper::sendActionLog('unmute', $mute->id, $adminName, $adminSteamID);
+            CommonHelper::sendActionLog('unmute', $mute->id);
             return redirect()->route('list.mutes')->with('success', __('admins.muteUpdate'));
         } catch(\Exception $e) {
             Log::error('mute.update.error: ' . $e->getMessage());

@@ -32,7 +32,7 @@ class ReportController extends Controller
 
         $data = $request->only(['ban_type', 'steamid', 'ip', 'nickname', 'comments', 'name', 'email', 'server_id', 'media_link']);
         $report = Report::create($data);
-        CommonHelper::sendActionLog('report', $report->id, '', '');
+        CommonHelper::sendActionLog('report', $report->id);
 
         return redirect()->route('reports.create')->with('success', 'Report submitted successfully.');
     }
