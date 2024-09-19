@@ -181,3 +181,7 @@ Route::get('/clear-cache', function () {
     return response()->json(['message' => 'Cache cleared successfully.']);
 })->name('cache.clear')->middleware('superadmin');
 
+
+Route::prefix('stats')->group(function () {
+    Route::get('/player_count', [ServerController::class, 'trackServerPlayerCounts']);
+});

@@ -7,6 +7,7 @@ use App\Models\SaAdmin;
 use App\Models\SaAdminsFlags;
 use App\Models\SaBan;
 use App\Models\SaServer;
+use App\Models\ServerStats;
 use App\Models\ServerVisibilitySetting;
 use App\Services\RconService;
 use Carbon\Carbon;
@@ -300,5 +301,40 @@ class ServerController extends Controller
             Log::error('steam.api.server.listing '. $response->body());
             return null;
         }
+    }
+
+
+    public function trackServerPlayerCounts(Request $request)
+    {
+        $token = $request->query('token');
+
+        // Validate the token
+        if ($token !== env('_token')) {
+            Log::warning('Unauthorized access attempt with token: ' . $token);
+            return response()->json(['status' => 'error', 'message' => 'Invalid API token'], 403);
+        }
+        $servers = SaServer::has('visible')->get();
+        foreach ($servers as $server) {
+            list($serverIp, $serverPort) = explode(":", $server->address);
+
+            try {
+                $serverDetails = $this->getServerDetails($serverIp, $serverPort);
+                if ($serverDetails) {
+                    // Save the player count using the ServerStats model
+                    if($serverDetails['players'] > 0 ) {
+                        ServerStats::create([
+                            'server_id' => $server->id,
+                            'player_count' => $serverDetails['players'],
+                            'map' => $serverDetails['map'],
+                            'recorded_at' => now(),
+                        ]);
+                    }
+                }
+            } catch (\Exception $e) {
+                Log::error('Steam Web API Error: ' . $e->getMessage());
+            }
+        }
+
+        return response()->json(['status' => 'success', 'message' => 'Player counts recorded']);
     }
 }

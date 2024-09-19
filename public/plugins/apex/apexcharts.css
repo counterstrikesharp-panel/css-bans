@@ -112,13 +112,13 @@
   font-weight: 600;
 }
 
-.apexcharts-tooltip-text-goals-label, 
+.apexcharts-tooltip-text-goals-label,
 .apexcharts-tooltip-text-goals-value {
   padding: 6px 0 5px;
 }
 
-.apexcharts-tooltip-goals-group, 
-.apexcharts-tooltip-text-goals-label, 
+.apexcharts-tooltip-goals-group,
+.apexcharts-tooltip-text-goals-label,
 .apexcharts-tooltip-text-goals-value {
   display: flex;
 }

@@ -7,8 +7,24 @@
 
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <x-slot:headerFiles>
+        <link rel="stylesheet" href="{{asset('plugins/apex/apexcharts.css')}}">
         @vite(['resources/scss/light/assets/components/modal.scss'])
         @vite(['resources/scss/dark/assets/components/modal.scss'])
+        @vite(['resources/scss/dark/plugins/apex/custom-apexcharts.scss'])
+        <style>
+            .apexcharts-gridline {
+                stroke: transparent !important;
+            }
+            .apexcharts-legend-text {
+                display: none;
+            }
+            .interval-container {
+                padding: 19px;
+            }
+            .chart-section {
+                background: #191e3a;
+            }
+        </style>
     </x-slot>
     <!-- END GLOBAL MANDATORY STYLES -->
         <section>
@@ -214,6 +230,43 @@
                 <x-loader id="server_list_loader" />
             </div>
         </section>
+    <section class="mb-4 chart-section">
+        <div class="interval-container">
+        <label for="intervalSelect"><strong>{{ __('Select Time Range') }}</strong></label>
+            <select class="form-select col-md-4" id="intervalSelect" name="interval">
+                <option value="5min">{{ __('Last 1 Hour') }}</option>
+                <option value="1hour">{{ __('Last 12 Hours') }}</option>
+                <option value="1day">{{ __('Last 1 Week') }}</option>
+                <option value="1month">{{ __('Last 12 months') }}</option>
+            </select>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header text-center py-3">
+                        <h5 class="mb-0 text-center">
+                            <strong>{{ __('Server Player Stats') }}</strong>
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="s-line-area" class=""></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header text-center py-3">
+                        <h5 class="mb-0 text-center">
+                            <strong>{{ __('Server Map Stats') }}</strong>
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="s-line-area-average" class=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
         <section class="recent-stats">
             <div class="row">
                 <div class="col-md-6">
@@ -279,9 +332,9 @@
         <x-modal :title="''" :body="''"/>
         @vite(['resources/js/dashboard/recent.ts'])
         @vite(['resources/js/dashboard/servers.ts'])
-
     </x-slot>
-        <script>
+    <script src="{{asset('plugins/apex/apexcharts.min.js')}}"></script>
+    <script>
             function getPlayerInfoUrl(serverId) {
                 return "{!! env('VITE_SITE_DIR') !!}/servers/"+serverId+"/players";
             }
@@ -295,11 +348,168 @@
             const ranksListUrl = '{!! env('VITE_SITE_DIR') !!}/list/ranks';
 
             window.addEventListener("load", (event) => {
+
                 $('#serverSelect').change(function () {
                     const serverId = $(this).val();
                     window.location.href = '{{ url()->current() }}' + '?server_id=' + serverId;
                 });
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.has('interval')) {
+                    const selectedInterval = urlParams.get('interval');
+
+                    // Set the selected option in the dropdown
+                    if (selectedInterval) {
+                        document.getElementById('intervalSelect').value = selectedInterval;
+                    }
+
+                    // Scroll to the specific element by ID
+                    document.getElementById('s-line-area').scrollIntoView({ behavior: 'smooth' });
+                }
             });
+            var sLineArea = {
+                chart: {
+                    fontFamily: 'Nunito, Arial, sans-serif',
+                    height: 350,
+                    type: 'area',
+                    toolbar: {
+                        show: false,
+                    }
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                stroke: {
+                    curve: 'smooth'
+                },
+                series: {!! $playerChart['seriesData'] !!},
+                legend: {
+                    show: true,
+                    markers: {
+                        width: 10,
+                        height: 10,
+                        offsetX: -5,
+                        offsetY: 0
+                    },
+                    itemMargin: {
+                        horizontal: 10,
+                        vertical: 0
+                    }
+                },
+                xaxis: {
+                    type: 'text',
+                    categories: {!! $playerChart['intervals'] !!},
+                },
+                noData: {
+                    text: 'No Data check back later',
+                    align: 'center',
+                    verticalAlign: 'middle',
+                    offsetX: 0,
+                    offsetY: 0,
+                    style: {
+                        color: '#fff',
+                        fontSize: '14px',
+                        fontFamily: undefined
+                    }
+                },
+                tooltip: {
+                    style: {
+                        fontSize: '12px',
+                        maxWidth: '150px', // Set maximum width for tooltip content
+                        wordBreak: 'break-word', // Enable word wrapping
+                        backgroundColor: 'rgba(0, 0, 0, 0.96)', // Dark background for better contrast
+                        border: '1px solid #e3e3e3'
+                    },
+                    theme: 'dark',
+                    x: {
+                        format: 'dd/MM/yy HH:mm'
+                    },
+                }
+            }
+            var simpleLineArea = new ApexCharts(
+                document.querySelector("#s-line-area"),
+                sLineArea
+            );
+            simpleLineArea.render();
+
+
+            var sLineAreaAvg = {
+                chart: {
+                    fontFamily: 'Nunito, Arial, sans-serif',
+                    height: 350,
+                    type: 'area',
+                    toolbar: {
+                        show: false,
+                    }
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                stroke: {
+                    curve: 'smooth'
+                },
+                series: {!! $playerMapChart['seriesData'] !!},
+                legend: {
+                    show: false,
+                    markers: {
+                        width: 10,
+                        height: 10,
+                        offsetX: -5,
+                        offsetY: 0
+                    },
+                    itemMargin: {
+                        horizontal: 10,
+                        vertical: 0
+                    }
+                },
+                xaxis: {
+                    type: 'text',
+                    categories: {!! $playerMapChart['intervals'] !!},
+                },
+                noData: {
+                    text: 'No Data check back later',
+                    align: 'center',
+                    verticalAlign: 'middle',
+                    offsetX: 0,
+                    offsetY: 0,
+                    style: {
+                        color: '#fff',
+                        fontSize: '14px',
+                        fontFamily: undefined
+                    }
+                },
+                tooltip: {
+                    style: {
+                        fontSize: '12px',
+                        maxWidth: '150px', // Set maximum width for tooltip content
+                        wordBreak: 'break-word', // Enable word wrapping
+                        backgroundColor: 'rgba(0, 0, 0, 0.96)', // Dark background for better contrast
+                        border: '1px solid #e3e3e3'
+                    },
+                    theme: 'dark',
+                    x: {
+                        format: 'dd/MM/yy HH:mm'
+                    },
+                }
+            }
+            var simpleLineAreaAvg = new ApexCharts(
+                document.querySelector("#s-line-area-average"),
+                sLineAreaAvg
+            );
+            simpleLineAreaAvg.render();
         </script>
+    <script>
+        document.getElementById('intervalSelect').addEventListener('change', function() {
+            let selectedInterval = this.value;
+
+            // Get the current URL without query parameters
+
+
+            let currentUrl = window.location.origin + window.location.pathname;
+
+            // Reload the page and pass the selected interval as a query parameter
+            window.location.href = currentUrl + '?interval=' + selectedInterval;
+        });
+    </script>
+
     <!--  END CUSTOM SCRIPTS FILE  -->
 </x-base-layout>
