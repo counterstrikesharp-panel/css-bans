@@ -215,7 +215,8 @@ export default defineConfig({
                 'resources/js/skins/knives.ts',
                 'resources/js/vip/create.ts',
                 'resources/scss/dark/assets/users/user-profile.scss',
-                'resources/scss/dark/assets/widgets/modules-widgets.scss'
+                'resources/scss/dark/assets/widgets/modules-widgets.scss',
+                'resources/scss/dark/plugins/apex/custom-apexcharts.scss'
             ],
             refresh: true,
         }),

@@ -217,6 +217,16 @@ CREATE TABLE `reports` (
 PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+DROP TABLE IF EXISTS server_player_stats;
+CREATE TABLE `server_player_stats` (
+`id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+`server_id` bigint(20) unsigned NOT NULL,
+`player_count` int(11) NOT NULL,
+`map` varchar(50) NOT NULL,
+`recorded_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8mb4;
+
 DROP TABLE IF EXISTS module_server_settings;
 CREATE TABLE `module_server_settings` (
 `id` bigint unsigned NOT NULL AUTO_INCREMENT,
