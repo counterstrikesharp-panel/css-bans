@@ -56,7 +56,7 @@ For detailed installation instructions, please visit our [Documentation](https:/
 - Skins (Weapon Paints)
 
 ## Requirements
-- PHP >= 8.1 (Recommended PHP 8.3)
+- PHP >= 8.3 (Recommended PHP 8.3)
 - CounterStrikeSharp ([GitHub Repository](https://github.com/roflmuffin/CounterStrikeSharp))
 - MySQL >= 5.7
 - ServerPlayerListFix ([GitHub Repository](https://github.com/Source2ZE/ServerListPlayersFix))
