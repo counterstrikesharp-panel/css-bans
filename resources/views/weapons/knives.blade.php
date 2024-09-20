@@ -96,11 +96,11 @@
                                             </div>
                                         </div>
                                         <div class="form-group mt-3">
-                                            <label for="wear">Wear</label>
+                                            <label for="wear">{{ __('gloves.wear') }}</label>
                                             <input type="text" class="form-control" id="wear" name="wear" value="0">
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-primary mt-3" id="saveSkinButton">{{ __('Apply') }}</button>
+                                    <button type="button" class="btn btn-primary mt-3" id="saveSkinButton">{{ __('skins.apply') }}</button>
                                 </form>
                             </div>
                         </div>

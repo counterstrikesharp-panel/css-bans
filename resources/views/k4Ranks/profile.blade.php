@@ -1,7 +1,7 @@
 <x-base-layout :scrollspy="false">
 
     <x-slot:pageTitle>
-
+        {{ __('dashboard.stats') }} - CSS-BANS
     </x-slot>
 
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
@@ -72,7 +72,7 @@
                 <div class="widget" style="height: 150px; background: linear-gradient(135deg, #1a2a6c, #b21f1f, #353026, #4b1248, #332e3c); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: white;">
                     <i class="fas fa-star" style="font-size: 40px; margin-bottom: 10px;"></i>
                     <h2 style="font-size: 40px; margin: 0;">{{ $mvp }}</h2>
-                    <p style="margin-top: 5px; font-size: 16px;">MVP</p>
+                    <p style="margin-top: 5px; font-size: 16px;">{{ __('MVP') }}</p>
                 </div>
             </div>
 
@@ -81,7 +81,7 @@
                 <div class="widget" style="height: 150px; background: linear-gradient(135deg, #232526, #414345, #6b0f1a, #1f4037, #16222a); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: white;">
                     <i class="fas fa-crosshairs" style="font-size: 40px; margin-bottom: 10px;"></i>
                     <h2 style="font-size: 40px; margin: 0;">{{ $headshots }}</h2>
-                    <p style="margin-top: 5px; font-size: 16px;">Headshots</p>
+                    <p style="margin-top: 5px; font-size: 16px;">{{ __('admins.headhost') }}</p>
                 </div>
             </div>
 
@@ -90,7 +90,7 @@
                 <div class="widget" style="height: 150px; background: linear-gradient(135deg, #2e003e, #3a1c71, #e94057, #a7333f, #302b63); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: white;">
                     <i class="fas fa-skull" style="font-size: 40px; margin-bottom: 10px;"></i>
                     <h2 style="font-size: 40px; margin: 0;">{{ $totalKills }}</h2>
-                    <p style="margin-top: 5px; font-size: 16px;">Total Kills</p>
+                    <p style="margin-top: 5px; font-size: 16px;">{{ __('Total Kills') }}</p>
                 </div>
             </div>
 
@@ -99,7 +99,7 @@
                 <div class="widget" style="height: 150px; background: linear-gradient(135deg, #2e003e, #3a1c71, #e94057, #a7333f, #302b63); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: white;">
                     <i class="fas fa-trophy" style="font-size: 40px; margin-bottom: 10px;"></i>
                     <h2 style="font-size: 40px; margin: 0;">{{ $gamesWon }}</h2>
-                    <p style="margin-top: 5px; font-size: 16px;">Games Won</p>
+                    <p style="margin-top: 5px; font-size: 16px;">{{ __('admins.gameswon') }}</p>
                 </div>
             </div>
         <!-- Content -->
@@ -126,17 +126,17 @@
                                     {!! $rankImage !!}
                                 </li>
                                 <li class="contacts-block__item">
-                                    <p class="text-muted mb-0">Last Online: <span class="badge badge-light-info rounded-pill d-inline">{{$seen}}</span></p>
+                                    <p class="text-muted mb-0">{{ __('dashboard.lastSeen') }} <span class="badge badge-light-info rounded-pill d-inline">{{$seen}}</span></p>
                                 </li>
                                 <table class="table">
                                     <tbody>
                                     <tr>
-                                        <td><i class="fas fa-bolt me-2"></i> First Bloods</td>
+                                        <td><i class="fas fa-bolt me-2"></i> {{ __('First Bloods') }}</td>
                                         <td>{{ $firstBlood }}</td>
                                     </tr>
 
                                     <tr>
-                                        <td><i class="fas fa-bomb me-2"></i> Bombs Planted</td>
+                                        <td><i class="fas fa-bomb me-2"></i> {{ __('Bombs Planted') }}</td>
                                         <td>{{ $bombPlanted }}</td>
                                     </tr>
 
@@ -161,7 +161,7 @@
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                         <div class="widget widget-chart-two">
                             <div class="widget-heading">
-                                <h5 class="">Play Time</h5>
+                                <h5 class="">{{ __('Play Time') }}</h5>
                             </div>
                             <div class="widget-content">
                                 <div id="chart-1" class=""></div>
@@ -172,7 +172,7 @@
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                         <div class="widget widget-chart-two">
                             <div class="widget-heading">
-                                <h5 class="">Rounds</h5>
+                                <h5 class="">{{ __('Rounds') }}</h5>
                             </div>
                             <div class="widget-content">
                                 <div id="chart-2" class=""></div>
@@ -193,7 +193,7 @@
             <div class="summary layout-spacing ">
                 <div class="widget-four" style="min-height: 561px;">
                     <div class="widget-heading">
-                        <h5 class="">Top Maps</h5>
+                        <h5 class="">{{ __('Top Maps') }}</h5>
                     </div>
                     <div class="widget-content">
                         <div class="wepaonContent">
@@ -204,7 +204,6 @@
                                         <div class="image-container">
                                             <!-- Dynamically replace the map image -->
                                             <img src="{{ asset('images/maps/'.$map->map_name.'.jpg')}}" alt="{{ $map->map_name }} Image"  onerror="this.onerror=null;this.src='{{ asset('images/maps/default.jpg') }}';">
-                                            <div class="centered-text">{{ $map->map_name }}</div> <!-- Show the map name in the image if required -->
                                         </div>
                                     </div>
 
@@ -213,7 +212,7 @@
                                             <!-- Display the map name -->
                                             <h6>{{ $map->map_name }}</h6>
                                             <!-- Display the win rate -->
-                                            <p class="weapon-count">{{ number_format($map->win_rate, 2) }}% Win</p>
+                                            <p class="weapon-count">{{ number_format($map->win_rate, 2) }}% {{ __('Win') }}</p>
                                         </div>
 
                                         <div class="w-weapon-stats">
@@ -244,7 +243,7 @@
             <div class="widget widget-table-three" style="min-height: 561px;">
 
                 <div class="widget-heading">
-                    <h5 class="">Top Weapons</h5>
+                    <h5 class="">{{ __('Top Weapons') }}</h5>
                 </div>
 
                 <div class="widget-content">
@@ -253,11 +252,11 @@
                             <thead>
                             <tr>
                                 <th><div class="th-content"></div></th>
-                                <th><div class="th-content th-heading">Weapon</div></th>
-                                <th><div class="th-content th-heading">Kills</div></th>
-                                <th><div class="th-content th-heading">Headshots</div></th>
-                                <th><div class="th-content th-heading">Chest</div></th>
-                                <th><div class="th-content th-heading">Stomach</div></th>
+                                <th><div class="th-content th-heading">{{ __('Weapon') }}</div></th>
+                                <th><div class="th-content th-heading">{{ __('dashboard.kills') }}</div></th>
+                                <th><div class="th-content th-heading">{{ __('admins.headhost') }}</div></th>
+                                <th><div class="th-content th-heading">{{ __('Chest') }}</div></th>
+                                <th><div class="th-content th-heading">{{ __('Stomach') }}</div></th>
                             </tr>
                             </thead>
                             <tbody style="text-align: center">
@@ -349,7 +348,7 @@
                                 total: {
                                     show: true,
                                     showAlways: true,
-                                    label: 'Total Play Time (Hours)',
+                                    label: '{{ __('Total Play Time (Hours)') }}',
                                     color: '#888ea8',
                                     formatter: function (w) {
                                         return {{ $formattedPlaytime }}
@@ -443,7 +442,7 @@
                                 total: {
                                     show: true,
                                     showAlways: true,
-                                    label: 'Rounds',
+                                    label: '{{ __('Rounds') }}',
                                     color: '#888ea8',
                                     formatter: function (w) {
                                         return {{ $roundsOverall }}
@@ -459,7 +458,7 @@
                     colors: '#fff'
                 },
                 series: [{{$roundWin}}, {{$roundLose}}],
-                labels: ['WIN', 'LOSE'],
+                labels: ['{{ __('Win') }}', '{{ __('Lose') }}'],
 
                 responsive: [
                     {

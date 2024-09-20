@@ -98,7 +98,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group mt-3">
-                                            <label for="wear">Wear</label>
+                                            <label for="wear">{{ __('gloves.wear') }}</label>
                                             <input type="text" class="form-control" id="wear" name="wear" value="0">
                                         </div>
                                     </div>
