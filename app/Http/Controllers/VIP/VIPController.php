@@ -63,12 +63,12 @@ class VIPController extends Controller
                     }
                 }
                 // Create edit action link
-                if (PermissionsHelper::isSuperAdmin()) {
+                if (PermissionsHelper::hasVipEditPermission()) {
                     $editAction = '<a href="' . $siteDir . '/vip/' . $vip->account_id . '/edit" class="btn btn-warning">' . __('Edit') . '</a>';
                 }
 
                 // Create delete action link
-                if (PermissionsHelper::isSuperAdmin()) {
+                if (PermissionsHelper::hasVipDeletePermission()) {
                     $deleteAction = '<form action="' . $siteDir . '/vip/' . $vip->account_id . '" method="POST" style="display:inline;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="' . csrf_token() . '">

@@ -65,6 +65,48 @@ class PermissionsHelper
         return false;
     }
 
+    public static function hasVipCreatePermission()
+    {
+        // Get the authenticated user
+        $user = Auth::user();
+
+        if ($user && (
+                $user->permissions()->where('flag', '@web/vip.create')->exists() ||
+                $user->groupPermissions()->where('flag', '@web/vip.create')->exists()
+            ) && self::validateExpiryOnAllServers($user)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static function hasVipEditPermission()
+    {
+        // Get the authenticated user
+        $user = Auth::user();
+
+        if ($user && (
+                $user->permissions()->where('flag', '@web/vip.edit')->exists() ||
+                $user->groupPermissions()->where('flag', '@web/vip.edit')->exists()
+            ) && self::validateExpiryOnAllServers($user)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static function hasVipDeletePermission()
+    {
+        // Get the authenticated user
+        $user = Auth::user();
+
+        if ($user && (
+                $user->permissions()->where('flag', '@web/vip.delete')->exists() ||
+                $user->groupPermissions()->where('flag', '@web/vip.delete')->exists()
+            ) && self::validateExpiryOnAllServers($user)) {
+            return true;
+        }
+        return false;
+    }
+
     public static function hasGroupCreatePermission()
     {
         // Get the authenticated user
