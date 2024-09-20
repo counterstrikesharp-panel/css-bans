@@ -48,9 +48,10 @@ For detailed installation instructions, please visit our [Documentation](https:/
 - Report Player System
 - Ranks (Multi Server Support)
 - Discord Webhook
+- Server Player Stats Chart
 
 ## Modules Support
-- Ranks (K4system) (Multi Server Support) - View/listing [K4-System](https://github.com/K4ryuu/K4-System)
+- Ranks (K4system) (Multi Server Support) - View/listing [K4-System](https://github.com/KitsuneLab-Development/K4-Zenith)
 - VIP Core - Download from the release tab (Follow the documentation guide)
 - Skins (Weapon Paints)
 
