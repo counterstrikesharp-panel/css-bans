@@ -36,7 +36,7 @@
                                 <td>{{ $appeal->ban_type }}</td>
                                 <td>{{ $appeal->ban_type == 'Steam ID' ? $appeal->steamid : $appeal->ip }}</td>
                                 <td>{{ $appeal->name }}</td>
-                                <td>{{ $appeal->reason }}</td>
+                                <td>{{ Str::length($appeal->reason) > 35 ? substr($appeal->reason, 0, 35) . '...' : $appeal->reason }}</td>
                                 <td>{{ $appeal->email }}</td>
                                 <td>
                                     <span class="badge {{ $appeal->status == 'PENDING' ? 'badge-warning' : ($appeal->status == 'APPROVED' ? 'badge-success' : 'badge-danger') }}">
