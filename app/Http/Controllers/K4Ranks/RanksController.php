@@ -58,7 +58,8 @@ class RanksController extends Controller
             $query = ZenithPlayerStorage::selectRaw('*, (SELECT COUNT(*) + 1 FROM zenith_player_storage AS zps WHERE CAST(JSON_EXTRACT(zps.`K4-Zenith-Ranks.storage`, "$.Points") AS UNSIGNED) > CAST(JSON_EXTRACT(zenith_player_storage.`K4-Zenith-Ranks.storage`, "$.Points") AS UNSIGNED)) AS `position`');
             if (!empty($searchValue)) {
                 $query->where('steam_id', 'like', '%' . $searchValue . '%')
-                    ->orWhereRaw('JSON_UNQUOTE(JSON_EXTRACT(`K4-Zenith-Ranks.storage`, "$.Rank")) like ?', ['%' . $searchValue . '%']);
+                    ->orWhereRaw('JSON_UNQUOTE(JSON_EXTRACT(`K4-Zenith-Ranks.storage`, "$.Rank")) like ?', ['%' . $searchValue . '%'])
+                    ->orWhere('name', 'like', '%' . $searchValue . '%');
             }
             if ($orderColumn !== null) {
                 $columnName = $request->input('columns.' . $orderColumn . '.data');

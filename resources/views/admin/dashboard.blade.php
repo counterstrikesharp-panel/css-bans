@@ -145,7 +145,7 @@
                 <div class="card top-players ">
                     <div class="card-header text-center py-3">
                         <h5 class="mb-0 text-center">
-                            <strong>{{ __('dashboard.topPlayers') }} <span class="badge badge-info">5 {{ __('dashboard.of') }} {{$topPlayersData['totalPlayers']}} {{ __('dashboard.players') }}</span></strong>
+                            <strong>{{ __('dashboard.topPlayers') }} <span class="badge badge-info">5 {{ __('dashboard.of') }} {{$topPlayersData['totalPlayers']}} {{ __('dashboard.playersTOP') }}</span></strong>
                         </h5>
                     </div>
                     <div class="rank-servers dashboard">
@@ -237,7 +237,7 @@
                 <option value="5min">{{ __('Last 1 Hour') }}</option>
                 <option value="1hour">{{ __('Last 12 Hours') }}</option>
                 <option value="1day">{{ __('Last 1 Week') }}</option>
-                <option value="1month">{{ __('Last 12 months') }}</option>
+                <option value="1month">{{ __('Last 12 Months') }}</option>
             </select>
         </div>
         <div class="row">
