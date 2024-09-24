@@ -123,7 +123,10 @@ INSERT INTO `permissions` (`id`, `permission`, `description`, `created_at`, `upd
 (NULL, '@web/mute.unmute', 'Web-only: Permission to unmute a user.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
 (NULL, '@web/group.create', 'Web-only: Permission to create group.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
 (NULL, '@web/group.edit', 'Web-only: Permission to edit group.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
-(NULL, '@web/group.delete', 'Web-only: Permission to delete group.', '2024-04-14 15:27:44', '2024-04-14 15:27:44');
+(NULL, '@web/group.delete', 'Web-only: Permission to delete group.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
+(NULL, '@web/vip.create', 'Web-only: Permission to create vip.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
+(NULL, '@web/vip.edit', 'Web-only: Permission to edit vip.', '2024-04-14 15:27:44', '2024-04-14 15:27:44'),
+(NULL, '@web/vip.delete', 'Web-only: Permission to delete vip.', '2024-04-14 15:27:44', '2024-04-14 15:27:44');
 
 -- --------------------------------------------------------
 

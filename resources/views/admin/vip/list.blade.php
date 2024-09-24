@@ -30,7 +30,7 @@
         @auth
             <section class="mb-12">
                 <div class="card">
-                    @if(PermissionsHelper::isSuperAdmin())
+                    @if(PermissionsHelper::hasVipCreatePermission())
                         <div class="mt-3 d-flex justify-content-end p-1">
                             <a href="{{ route('vip.create') }}" class="col-md- btn btn-success">{{ __('Add VIP') }}</a>
                         </div>
