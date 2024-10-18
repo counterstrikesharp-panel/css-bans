@@ -27,6 +27,8 @@ class SettingsController extends Controller
                 'RANKS' => env('RANKS'),
                 'VIP' => env('VIP'),
                 'SKINS' => env('SKINS'),
+                'REPORTS' => env('REPORTS'),
+                'APPEALS' => env('APPEALS'),
                 'K4LegacySupport' => env('K4LegacySupport')
             ],
             'VIP Module' => [
@@ -57,12 +59,15 @@ class SettingsController extends Controller
 
     public function updateSettings(Request $request)
     {
-        $data = $request->all();
+        $data = $request->except(['_token']);
 
         // Update the .env file or settings storage
         foreach ($data as $key => $value) {
             $this->setEnvironmentValue($key, $value);
         }
+
+        \Artisan::call('config:clear');
+        \Artisan::call('cache:clear');
 
         return redirect()->back()->with('success', 'Settings updated successfully.');
     }

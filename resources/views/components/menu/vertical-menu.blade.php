@@ -119,6 +119,7 @@
                             </div>
                         </a>
                     </li>
+                    @if(env('APPEALS') == 'Enabled')
                     <li class="{{ Request::is('*appeals/create*') ? 'active' : '' }}">
                         <a href="{{ getAppSubDirectoryPath() }}/appeals/create" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
@@ -126,6 +127,8 @@
                             </div>
                         </a>
                     </li>
+                    @endif
+                    @if(env('REPORTS') == 'Enabled')
                     <li class="{{ Request::is('*reports/create*') ? 'active' : '' }}">
                         <a href="{{ getAppSubDirectoryPath() }}/reports/create" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
@@ -133,7 +136,9 @@
                             </div>
                         </a>
                     </li>
+                    @endif
                     @if(in_array(true, $onlyManageAdminPerms))
+                        @if(env('APPEALS') == 'Enabled')
                         <li class="{{ Request::is('*appeals') ? 'active' : '' }}">
                             <a href="{{ getAppSubDirectoryPath() }}/appeals" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
@@ -152,6 +157,8 @@
                                 </div>
                             </a>
                         </li>
+                        @endif
+                        @if(env('REPORTS') == 'Enabled')
                         <li class="{{ Request::is('*reports*') ? 'active' : '' }}">
                             <a href="{{ getAppSubDirectoryPath() }}/reports/list" aria-expanded="false" class="dropdown-toggle">
                                 <div class="">
@@ -170,6 +177,7 @@
                                 </div>
                             </a>
                         </li>
+                        @endif
                     @endif
                 </ul>
             </li>

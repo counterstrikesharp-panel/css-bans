@@ -150,21 +150,23 @@ Route::middleware(['superadmin'])->group(function () {
     Route::post('/settings/test-email', [SettingsController::class, 'sendTestEmail'])->name('settings.test-email');
 });
 
-Route::get('/appeals', [AppealController::class, 'list'])->name('appeals.list');
-Route::get('/appeals/create', [AppealController::class, 'create'])->name('appeals.create');
-Route::post('appeals', [AppealController::class, 'store'])->name('appeals.store');
-Route::get('/appeals/{id}', [AppealController::class, 'view'])->name('appeals.show');
-Route::put('/appeals/{id}/status', [AppealController::class, 'updateStatus'])->name('appeals.updateStatus');
+if(env('APPEALS') == 'Enabled') {
+    Route::get('/appeals', [AppealController::class, 'list'])->name('appeals.list');
+    Route::get('/appeals/create', [AppealController::class, 'create'])->name('appeals.create');
+    Route::post('appeals', [AppealController::class, 'store'])->name('appeals.store');
+    Route::get('/appeals/{id}', [AppealController::class, 'view'])->name('appeals.show');
+    Route::put('/appeals/{id}/status', [AppealController::class, 'updateStatus'])->name('appeals.updateStatus');
+}
 
-
-
-Route::prefix('reports')->group(function () {
-    Route::get('create', [ReportController::class, 'create'])->name('reports.create');
-    Route::post('store', [ReportController::class, 'store'])->name('reports.store');
-    Route::get('list', [ReportController::class, 'list'])->name('reports.list');
-    Route::get('show/{id}', [ReportController::class, 'show'])->name('reports.show');
-    Route::delete('destroy/{id}', [ReportController::class, 'destroy'])->name('reports.destroy');
-});
+if(env('REPORTS') == 'Enabled') {
+    Route::prefix('reports')->group(function () {
+        Route::get('create', [ReportController::class, 'create'])->name('reports.create');
+        Route::post('store', [ReportController::class, 'store'])->name('reports.store');
+        Route::get('list', [ReportController::class, 'list'])->name('reports.list');
+        Route::get('show/{id}', [ReportController::class, 'show'])->name('reports.show');
+        Route::delete('destroy/{id}', [ReportController::class, 'destroy'])->name('reports.destroy');
+    });
+}
 
 
 use App\Http\Controllers\ModuleServerSettingsController;
