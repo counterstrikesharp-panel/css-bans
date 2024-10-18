@@ -117,8 +117,11 @@ Route::get('/logs', [LogViewerController::class, 'show'])->middleware('superadmi
 Route::get('/rcon/{server_id?}', [RconController::class, 'index'])->middleware('superadmin')->name('rcon');
 Route::post('/rcon/{server_id}', [RconController::class, 'execute'])->middleware('superadmin')->name('rcon.execute');
 
-Route::resource('vip', VIPController::class);
-Route::post('vip/list', 'VIPController@getVIPsList')->name('vip.list');
+if(env('VIP') == 'Enabled') {
+    Route::resource('vip', VIPController::class);
+    Route::post('vip/list', 'VIPController@getVIPsList')->name('vip.list');
+}
+
 use App\Http\Controllers\WeaponSkinController;
 
 Route::get('/weapons/skins', [WeaponSkinController::class, 'index'])->name('weapons.skins.index');
