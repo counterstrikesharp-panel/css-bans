@@ -130,6 +130,16 @@ class WeaponSkinController extends Controller
             'wearSelect' => 'required_without:wear|numeric',
             'wear' => 'nullable|numeric',
             'seed' => 'nullable|integer',
+            'weapon_team' => 'required|integer',
+            'weapon_nametag' => 'nullable|string',
+            'weapon_stattrak' => 'nullable|integer',
+            'weapon_stattrak_count' => 'nullable|integer',
+            'weapon_sticker_0' => 'nullable|string',
+            'weapon_sticker_1' => 'nullable|string',
+            'weapon_sticker_2' => 'nullable|string',
+            'weapon_sticker_3' => 'nullable|string',
+            'weapon_sticker_4' => 'nullable|string',
+            'weapon_keychain' => 'nullable|string'
         ]);
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
@@ -160,6 +170,7 @@ class WeaponSkinController extends Controller
              DB::connection('mysqlskins')->table('wp_player_knife')->updateOrInsert(
                 [
                     'steamid' => $validated['steamid'],
+                    'weapon_team' => $validated['weapon_team'],
                 ],
                 [
                     'knife' => $request->input('weapon_name'),
@@ -174,11 +185,21 @@ class WeaponSkinController extends Controller
             [
                 'steamid' => $validated['steamid'],
                 'weapon_defindex' => $validated['weapon_defindex'],
+                'weapon_team' => $validated['weapon_team'],
             ],
             [
                 'weapon_paint_id' => $validated['weapon_paint_id'],
                 'weapon_wear' => $wear,
                 'weapon_seed' => $validated['seed'] ?? 0,
+                'weapon_nametag' => $validated['weapon_nametag'] ?? '',
+                'weapon_stattrak' => $validated['weapon_stattrak'] ?? 0,
+                'weapon_stattrak_count' => $validated['weapon_stattrak_count'] ?? 0,
+                'weapon_sticker_0' => $validated['weapon_sticker_0'] ?? '',
+                'weapon_sticker_1' => $validated['weapon_sticker_1'] ?? '',
+                'weapon_sticker_2' => $validated['weapon_sticker_2'] ?? '',
+                'weapon_sticker_3' => $validated['weapon_sticker_3'] ?? '',
+                'weapon_sticker_4' => $validated['weapon_sticker_4'] ?? '',
+                'weapon_keychain' => $validated['weapon_keychain'] ?? '',
             ]
         );
 
@@ -276,22 +297,52 @@ class WeaponSkinController extends Controller
         $music = json_decode(File::get(resource_path('json/music.json')), true);
 
         // Fetch applied music from the database
-        $appliedMusic =  DB::connection('mysqlskins')->table('wp_player_music')->where('steamid', Auth::user()?->steam_id)->get();
+        $appliedMusic = DB::connection('mysqlskins')->table('wp_player_music')->where('steamid', Auth::user()?->steam_id)->get();
 
         foreach ($music as &$track) {
-            $track['is_applied'] = $appliedMusic->contains(function ($value) use ($track) {
-                return $value->music_id == $track['id'];
+            // Check for team-specific applications using numeric values
+            $track['is_applied_t'] = $appliedMusic->contains(function ($value) use ($track) {
+                return $value->music_id == $track['id'] && $value->weapon_team == 2;  // T team
+            });
+            
+            $track['is_applied_ct'] = $appliedMusic->contains(function ($value) use ($track) {
+                return $value->music_id == $track['id'] && $value->weapon_team == 3;  // CT team
             });
         }
 
-        // Sort applied music to be first
+        // Sort applied music to be first (based on either team application)
         usort($music, function($a, $b) {
-            return $b['is_applied'] - $a['is_applied'];
+            return ($b['is_applied_t'] || $b['is_applied_ct']) - ($a['is_applied_t'] || $a['is_applied_ct']);
         });
 
         return view('weapons.music', ['music' => $music]);
     }
 
+    public function pin()
+    {
+        $pins = json_decode(File::get(resource_path('json/pins.json')), true);
+
+        // Fetch applied pins from the database
+        $appliedPin = DB::connection('mysqlskins')->table('wp_player_pins')->where('steamid', Auth::user()?->steam_id)->get();
+
+        foreach ($pins as &$pin) {
+            // Check for team-specific applications using numeric values
+            $pin['is_applied_t'] = $appliedPin->contains(function ($value) use ($pin) {
+                return $value->id == $pin['id'] && $value->weapon_team == 2;  // T team
+            });
+            
+            $pin['is_applied_ct'] = $appliedPin->contains(function ($value) use ($pin) {
+                return $value->id == $pin['id'] && $value->weapon_team == 3;  // CT team
+            });
+        }
+
+        // Sort applied pins to be first (based on either team application)
+        usort($pins, function($a, $b) {
+            return ($b['is_applied_t'] || $b['is_applied_ct']) - ($a['is_applied_t'] || $a['is_applied_ct']);
+        });
+
+        return view('weapons.pins', ['pins' => $pins]);
+    }
 
     public function applyAgent(Request $request)
     {
@@ -332,6 +383,7 @@ class WeaponSkinController extends Controller
             'wearSelect' => 'required|numeric',
             'wear' => 'nullable|numeric',
             'seed' => 'nullable|integer',
+            'weapon_team' => 'required|integer',
         ]);
 
         if ($validator->fails()) {
@@ -345,6 +397,7 @@ class WeaponSkinController extends Controller
              DB::connection('mysqlskins')->table('wp_player_gloves')->updateOrInsert(
                 [
                     'steamid' => $validated['steamid'],
+                    'weapon_team' => $validated['weapon_team'],
                 ],
                 [
                     'weapon_defindex' => $validated['weapon_defindex'],
@@ -356,11 +409,21 @@ class WeaponSkinController extends Controller
                 [
                     'steamid' => $validated['steamid'],
                     'weapon_defindex' => $validated['weapon_defindex'],
+                    'weapon_team' => $validated['weapon_team'],
                 ],
                 [
                     'weapon_paint_id' => $validated['weapon_paint_id'],
                     'weapon_wear' => $validated['wearSelect'],
                     'weapon_seed' => $validated['seed'] ?? 0,
+                    'weapon_nametag' => '',
+                    'weapon_stattrak' => 0,
+                    'weapon_stattrak_count' => 0,
+                    'weapon_sticker_0' => '',
+                    'weapon_sticker_1' => '',
+                    'weapon_sticker_2' => '',
+                    'weapon_sticker_3' => '',
+                    'weapon_sticker_4' => '',
+                    'weapon_keychain' => ''
                 ]
             );
 
@@ -375,11 +438,13 @@ class WeaponSkinController extends Controller
         $validated = $request->validate([
             'steamid' => 'required|string',
             'music_id' => 'required|integer',
+            'weapon_team' => 'required|integer',
         ]);
 
          DB::connection('mysqlskins')->table('wp_player_music')->updateOrInsert(
             [
                 'steamid' => $validated['steamid'],
+                'weapon_team' => $validated['weapon_team'],
             ],
             [
                 'music_id' => $validated['music_id'],
@@ -388,6 +453,28 @@ class WeaponSkinController extends Controller
 
         return response()->json(['success' => 'Music applied successfully!']);
     }
+
+    public function applyPin(Request $request)
+    {
+        $validated = $request->validate([
+            'steamid' => 'required|string',
+            'id' => 'required|integer',
+            'weapon_team' => 'required|integer',
+        ]);
+
+         DB::connection('mysqlskins')->table('wp_player_pins')->updateOrInsert(
+            [
+                'steamid' => $validated['steamid'],
+                'weapon_team' => $validated['weapon_team'],
+            ],
+            [
+                'id' => $validated['id'],
+            ]
+        );
+
+        return response()->json(['success' => 'Pin applied successfully!']);
+    }
+
     public function knives()
     {
         $skins = json_decode(File::get(resource_path('json/skins.json')), true);
@@ -460,6 +547,10 @@ class WeaponSkinController extends Controller
             'wearSelect' => 'required|numeric',
             'wear' => 'nullable|numeric',
             'seed' => 'nullable|integer',
+            'weapon_team' => 'required|integer',
+            'weapon_nametag' => 'nullable|string',
+            'weapon_stattrak' => 'nullable|integer',
+            'weapon_stattrak_count' => 'nullable|integer',
         ]);
 
         if ($validator->fails()) {
@@ -472,6 +563,7 @@ class WeaponSkinController extends Controller
             DB::connection('mysqlskins')->table('wp_player_knife')->updateOrInsert(
                 [
                     'steamid' => $validated['steamid'],
+                    'weapon_team' => $validated['weapon_team'],
                 ],
                 [
                     'knife' => $request->input('weapon_name'),
@@ -482,11 +574,21 @@ class WeaponSkinController extends Controller
                 [
                     'steamid' => $validated['steamid'],
                     'weapon_defindex' => $validated['weapon_defindex'],
+                    'weapon_team' => $validated['weapon_team'],
                 ],
                 [
                     'weapon_paint_id' => $validated['weapon_paint_id'],
                     'weapon_wear' => $validated['wearSelect'],
                     'weapon_seed' => $validated['seed'] ?? 0,
+                    'weapon_nametag' => $validated['weapon_nametag'] ?? '',
+                    'weapon_stattrak' => $validated['weapon_stattrak'] ?? 0,
+                    'weapon_stattrak_count' => $validated['weapon_stattrak_count'] ?? 0,
+                    'weapon_sticker_0' => '',
+                    'weapon_sticker_1' => '',
+                    'weapon_sticker_2' => '',
+                    'weapon_sticker_3' => '',
+                    'weapon_sticker_4' => '',
+                    'weapon_keychain' => ''
                 ]
             );
 

@@ -76,6 +76,13 @@
 
                                     <div id="non-knife-options">
                                         <!-- Only show these options if the weapon category is not "knife" -->
+                                        <div class="form-group">
+                                            <label for="weapon_team">{{ __('Select Team') }}</label>
+                                            <select class="form-select" id="weapon_team" name="weapon_team">
+                                                <option value="2">{{ __('Terrorist') }}</option>
+                                                <option value="3">{{ __('Counter-Terrorist') }}</option>
+                                            </select>
+                                        </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">

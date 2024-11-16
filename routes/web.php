@@ -132,6 +132,7 @@ Route::get('/weapons/loadGloves/{type}', [WeaponSkinController::class, 'loadGlov
 Route::post('/weapons/agents/apply', [WeaponSkinController::class, 'applyAgent'])->name('weapons.agents.apply')->middleware('auth');
 Route::post('/weapons/gloves/apply', [WeaponSkinController::class, 'applyGlove'])->name('weapons.gloves.apply')->middleware('auth');
 Route::post('/weapons/music/apply', [WeaponSkinController::class, 'applyMusic'])->name('weapons.music.apply')->middleware('auth');
+Route::post('/weapons/pins/apply', [WeaponSkinController::class, 'applyPin'])->name('weapons.pin.apply')->middleware('auth');
 
 Route::get('/weapons/knives', [WeaponSkinController::class, 'knives'])->name('weapons.knives');
 Route::post('/weapons/knives/apply', [WeaponSkinController::class, 'applyKnife'])->name('weapons.knives.apply');
@@ -140,7 +141,7 @@ Route::get('/weapons/loadKnives/{type}', [WeaponSkinController::class, 'loadKniv
 Route::get('/agents/skins', [WeaponSkinController::class, 'agents'])->name('agents')->middleware('auth');
 Route::get('/gloves/skins', [WeaponSkinController::class, 'gloves'])->name('gloves')->middleware('auth');
 Route::get('/music/kits', [WeaponSkinController::class, 'music'])->name('music')->middleware('auth');
-
+Route::get('/pins/pin', [WeaponSkinController::class, 'pin'])->name('pin')->middleware('auth');
 
 use App\Http\Controllers\SettingsController;
 

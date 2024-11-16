@@ -75,6 +75,13 @@
                                     <input type="hidden" id="weapon_name" name="weapon_name">
                                     <div id="knife-options">
                                         <div class="row">
+                                            <div class="form-group">
+                                                <label for="weapon_team">{{ __('Select Team') }}</label>
+                                                <select class="form-select" id="weapon_team" name="weapon_team">
+                                                    <option value="2">{{ __('Terrorist') }}</option>
+                                                    <option value="3">{{ __('Counter-Terrorist') }}</option>
+                                                </select>
+                                            </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="wearSelect">{{ __('skins.selectWear') }}</label>
