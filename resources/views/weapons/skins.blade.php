@@ -103,6 +103,21 @@
                                                     <input type="text" class="form-control" id="seed" name="seed" oninput="validateSeed(this)">
                                                 </div>
                                             </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="nametag">{{ __('Nametag') }}</label>
+                                                    <input type="text" class="form-control" id="nametag" name="nametag">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="stattrak">{{ __('StatTrak™') }}</label>
+                                                    <select class="form-select" id="stattrak" name="stattrak">
+                                                        <option value="0">{{ __('Disabled') }}</option>
+                                                        <option value="1">{{ __('Enabled') }}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="form-group mt-3">
                                             <label for="wear">{{ __('gloves.wear') }}</label>
