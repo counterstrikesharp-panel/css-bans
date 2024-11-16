@@ -194,12 +194,12 @@ class WeaponSkinController extends Controller
                 'weapon_nametag' => $validated['weapon_nametag'] ?? '',
                 'weapon_stattrak' => $validated['weapon_stattrak'] ?? 0,
                 'weapon_stattrak_count' => $validated['weapon_stattrak_count'] ?? 0,
-                'weapon_sticker_0' => $validated['weapon_sticker_0'] ?? '',
-                'weapon_sticker_1' => $validated['weapon_sticker_1'] ?? '',
-                'weapon_sticker_2' => $validated['weapon_sticker_2'] ?? '',
-                'weapon_sticker_3' => $validated['weapon_sticker_3'] ?? '',
-                'weapon_sticker_4' => $validated['weapon_sticker_4'] ?? '',
-                'weapon_keychain' => $validated['weapon_keychain'] ?? '',
+                'weapon_sticker_0' => $validated['weapon_sticker_0'] ?? '0;0;0;0;0;0;0',
+                'weapon_sticker_1' => $validated['weapon_sticker_1'] ?? '0;0;0;0;0;0;0',
+                'weapon_sticker_2' => $validated['weapon_sticker_2'] ?? '0;0;0;0;0;0;0',
+                'weapon_sticker_3' => $validated['weapon_sticker_3'] ?? '0;0;0;0;0;0;0',
+                'weapon_sticker_4' => $validated['weapon_sticker_4'] ?? '0;0;0;0;0;0;0',
+                'weapon_keychain' => $validated['weapon_keychain'] ?? '0;0;0;0;0',
             ]
         );
 
@@ -418,12 +418,12 @@ class WeaponSkinController extends Controller
                     'weapon_nametag' => '',
                     'weapon_stattrak' => 0,
                     'weapon_stattrak_count' => 0,
-                    'weapon_sticker_0' => '',
-                    'weapon_sticker_1' => '',
-                    'weapon_sticker_2' => '',
-                    'weapon_sticker_3' => '',
-                    'weapon_sticker_4' => '',
-                    'weapon_keychain' => ''
+                    'weapon_sticker_0' => '0;0;0;0;0;0;0',
+                    'weapon_sticker_1' =>'0;0;0;0;0;0;0',
+                    'weapon_sticker_2' => '0;0;0;0;0;0;0',
+                    'weapon_sticker_3' => '0;0;0;0;0;0;0',
+                    'weapon_sticker_4' => '0;0;0;0;0;0;0',
+                    'weapon_keychain' => '0;0;0;0;0',
                 ]
             );
 
@@ -583,12 +583,12 @@ class WeaponSkinController extends Controller
                     'weapon_nametag' => $validated['weapon_nametag'] ?? '',
                     'weapon_stattrak' => $validated['weapon_stattrak'] ?? 0,
                     'weapon_stattrak_count' => $validated['weapon_stattrak_count'] ?? 0,
-                    'weapon_sticker_0' => '',
-                    'weapon_sticker_1' => '',
-                    'weapon_sticker_2' => '',
-                    'weapon_sticker_3' => '',
-                    'weapon_sticker_4' => '',
-                    'weapon_keychain' => ''
+                    'weapon_sticker_0' => $validated['weapon_sticker_0'] ?? '0;0;0;0;0;0;0',
+                    'weapon_sticker_1' => $validated['weapon_sticker_1'] ?? '0;0;0;0;0;0;0',
+                    'weapon_sticker_2' => $validated['weapon_sticker_2'] ?? '0;0;0;0;0;0;0',
+                    'weapon_sticker_3' => $validated['weapon_sticker_3'] ?? '0;0;0;0;0;0;0',
+                    'weapon_sticker_4' => $validated['weapon_sticker_4'] ?? '0;0;0;0;0;0;0',
+                    'weapon_keychain' => $validated['weapon_keychain'] ?? '0;0;0;0;0',
                 ]
             );
 
