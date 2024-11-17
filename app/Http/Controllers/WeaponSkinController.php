@@ -212,19 +212,21 @@ class WeaponSkinController extends Controller
         $agents = json_decode(File::get(resource_path('json/agents.json')), true);
 
         // Fetch applied agents from the database
-        $appliedAgents =  DB::connection('mysqlskins')->table('wp_player_agents')->where('steamid', Auth::user()?->steam_id)->first();
+        $appliedAgents = DB::connection('mysqlskins')->table('wp_player_agents')->where('steamid', Auth::user()?->steam_id)->first();
 
         foreach ($agents as &$agent) {
             if ($appliedAgents) {
-                $agent['is_applied'] = ($agent['team'] == 2 && $agent['model'] == $appliedAgents->agent_t) || ($agent['team'] == 3 && $agent['model'] == $appliedAgents->agent_ct);
+                $agent['is_applied_t'] = $agent['team'] == 2 && $agent['model'] == $appliedAgents->agent_t;
+                $agent['is_applied_ct'] = $agent['team'] == 3 && $agent['model'] == $appliedAgents->agent_ct;
             } else {
-                $agent['is_applied'] = false;
+                $agent['is_applied_t'] = false;
+                $agent['is_applied_ct'] = false;
             }
         }
 
-        // Sort applied agents to be first
-        usort($agents, function($a, $b) {
-            return $b['is_applied'] - $a['is_applied'];
+        // Sort applied agents to be first (T or CT applied)
+        usort($agents, function ($a, $b) {
+            return ($b['is_applied_t'] || $b['is_applied_ct']) - ($a['is_applied_t'] || $a['is_applied_ct']);
         });
 
         return view('weapons.agents', ['agents' => $agents]);
