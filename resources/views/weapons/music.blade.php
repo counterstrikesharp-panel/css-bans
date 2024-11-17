@@ -17,7 +17,7 @@
                             @foreach($music as $track)
                                 <div class="col-md-3 mb-4">
                                     <a class="card style-6" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#skinPreviewModal" data-skin-image="{{ $track['image'] }}" data-skin-name="{{ $track['name'] }}">
-                                    <span id="music_{{$track['id']}}" class="music_active badge badge-danger">{{ (isset($track['is_applied_t']) && isset($track['is_applied_ct']) && $track['is_applied_t'] && $track['is_applied_ct']) 
+                                    <span id="music_{{$track['id']}}" class="music_active badge {{ ($track['is_applied_t'] && $track['is_applied_ct']) ? 'badge-success' : ($track['is_applied_t'] ? 'badge-danger' : ($track['is_applied_ct'] ? 'badge-primary' : '')) }}">{{ (isset($track['is_applied_t']) && isset($track['is_applied_ct']) && $track['is_applied_t'] && $track['is_applied_ct']) 
                                                 ? __('skins.active_both') 
                                                 : (isset($track['is_applied_t']) && $track['is_applied_t'] 
                                                     ? __('skins.active_t') 

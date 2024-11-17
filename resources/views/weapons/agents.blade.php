@@ -24,7 +24,7 @@
                                                 <span class="badge badge-warning">T</span>
                                             @endif
 
-                                            <span id="agent_{{$agent['model']}}" class="badge badge-{{ $agent['team'] == 3 ? 'primary' : 'warning' }}">{{ (isset($agent['is_applied_t']) && isset($agent['is_applied_ct']) && $agent['is_applied_t'] && $agent['is_applied_ct']) 
+                                            <span id="agent_{{$agent['model']}}" class="badge badge-{{ $agent['team'] == 3 ? 'primary' : 'danger' }}">{{ (isset($agent['is_applied_t']) && isset($agent['is_applied_ct']) && $agent['is_applied_t'] && $agent['is_applied_ct']) 
                                                 ? __('skins.active_both') 
                                                 : (isset($agent['is_applied_t']) && $agent['is_applied_t'] 
                                                     ? __('skins.active_t') 

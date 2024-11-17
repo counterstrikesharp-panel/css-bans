@@ -143,6 +143,26 @@
                         const weaponDefIndex = $(this).data('weapon-defindex');
                         const weaponPaintId = $(this).data('paint-id');
                         const weaponName = $(this).data('weapon-name');
+                        const weaponTeam = $(this).data('weapon-team');
+                        const weaponWear = $(this).data('wear');
+                        const weaponSeed = $(this).data('seed');
+    
+                        if (weaponTeam) {
+                            $('#weapon_team').val(weaponTeam);
+                        } else {
+                            $('#weapon_team').val(2);
+                        }
+                        if (weaponWear) {
+                            $('#wear').val(weaponWear);
+                        } else {
+                            $('#wear').val(0.01);
+                        }
+                        if (weaponSeed) {
+                            $('#seed').val(weaponSeed);
+                        } else {
+                            $('#seed').val('');
+                        }
+
                         // Set the image source and name
                         $('#selectedGloveImage').attr('src', gloveImage);
                         $('#selectedGloveName').text(gloveName);

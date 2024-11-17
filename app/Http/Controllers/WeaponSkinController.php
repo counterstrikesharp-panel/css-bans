@@ -73,54 +73,79 @@ class WeaponSkinController extends Controller
     public function load($type)
     {
         $skins = json_decode(File::get(resource_path('json/skins.json')), true);
-        $appliedSkins =  DB::connection('mysqlskins')->table('wp_player_skins')->where('steamid', Auth::user()?->steam_id)->get();
-        $appliedKnife =  DB::connection('mysqlskins')->table('wp_player_knife')->where('steamid', Auth::user()?->steam_id)->first()?->knife;
+        // Modified query to include weapon_nametag
+        $appliedSkins = DB::connection('mysqlskins')
+            ->table('wp_player_skins')
+            ->select('weapon_defindex', 'weapon_paint_id', 'weapon_wear', 'weapon_seed', 'weapon_nametag', 'weapon_stattrak', 'weapon_team')
+            ->where('steamid', Auth::user()?->steam_id)
+            ->get();
+        $appliedKnife = DB::connection('mysqlskins')
+            ->table('wp_player_knife')
+            ->where('steamid', Auth::user()?->steam_id)
+            ->first()?->knife;
 
         $filteredSkins = array_filter($skins, function($skin) use ($type) {
             if($type == 'knife' && in_array($skin['weapon_defindex'], [
-                    500,
-                    503,
-                    505,
-                    506,
-                    507,
-                    508,
-                    509,
-                    512,
-                    514,
-                    515,
-                    516,
-                    517,
-                    518,
-                    519,
-                    520,
-                    521,
-                    522,
-                    523,
-                    525,
-                    526
-                ])){
-                 return true;
+                500, 503, 505, 506, 507, 508, 509, 512, 514, 515,
+                516, 517, 518, 519, 520, 521, 522, 523, 525, 526
+            ])) {
+                return true;
             }
             return str_contains(strtolower($skin['weapon_name']), strtolower($type));
         });
 
-        // Mark skin as applied if it exists in appliedSkins
         foreach ($filteredSkins as &$skin) {
-            $skin['is_applied'] = $appliedSkins->contains(function ($value) use ($skin, $type, $appliedKnife){
-                if($type == 'knife'){
-                    return $value->weapon_defindex == $skin['weapon_defindex'] && $value->weapon_paint_id == $skin['paint'] && $appliedKnife == $skin['weapon_name']  ;
+            // Check for team-specific applications
+            $skin['is_applied_t'] = $appliedSkins->contains(function ($value) use ($skin, $type, $appliedKnife) {
+                if ($type == 'knife') {
+                    return $value->weapon_defindex == $skin['weapon_defindex']
+                        && $value->weapon_paint_id == $skin['paint']
+                        && $appliedKnife == $skin['weapon_name']
+                        && $value->weapon_team == 2; // T team
                 }
-                return $value->weapon_defindex == $skin['weapon_defindex'] && $value->weapon_paint_id == $skin['paint']  ;
+                return $value->weapon_defindex == $skin['weapon_defindex']
+                    && $value->weapon_paint_id == $skin['paint']
+                    && $value->weapon_team == 2; // T team
             });
+        
+            $skin['is_applied_ct'] = $appliedSkins->contains(function ($value) use ($skin, $type, $appliedKnife) {
+                if ($type == 'knife') {
+                    return $value->weapon_defindex == $skin['weapon_defindex']
+                        && $value->weapon_paint_id == $skin['paint']
+                        && $appliedKnife == $skin['weapon_name']
+                        && $value->weapon_team == 3; // CT team
+                }
+                return $value->weapon_defindex == $skin['weapon_defindex']
+                    && $value->weapon_paint_id == $skin['paint']
+                    && $value->weapon_team == 3; // CT team
+            });
+        
+            // Retain weapon nametag logic for applied skins
+            $appliedSkin = $appliedSkins->first(function ($value) use ($skin, $type, $appliedKnife) {
+                if ($type == 'knife') {
+                    return $value->weapon_defindex == $skin['weapon_defindex']
+                        && $value->weapon_paint_id == $skin['paint']
+                        && $appliedKnife == $skin['weapon_name'];
+                }
+                return $value->weapon_defindex == $skin['weapon_defindex']
+                    && $value->weapon_paint_id == $skin['paint'];
+            });
+        
+            $skin['wear'] = $appliedSkin ? $appliedSkin->weapon_wear : '';
+            $skin['seed'] = $appliedSkin ? $appliedSkin->weapon_seed : '';
+            $skin['weapon_nametag'] = $appliedSkin ? $appliedSkin->weapon_nametag : '';
+            $skin['weapon_stattrak'] = $appliedSkin ? $appliedSkin->weapon_stattrak : '';
+            $skin['weapon_team'] = $appliedSkin ? $appliedSkin->weapon_team : '';
         }
-
-        // Sort applied skins to be first
+        
+        // Sort applied skins to be first (based on either team application)
         usort($filteredSkins, function($a, $b) {
-            return $b['is_applied'] - $a['is_applied'];
-        });
+            return ($b['is_applied_t'] || $b['is_applied_ct']) - ($a['is_applied_t'] || $a['is_applied_ct']);
+        });        
 
         return view('weapons.partials.weapon-types', ['skins' => $filteredSkins]);
     }
+
     public function applySkin(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -270,24 +295,57 @@ class WeaponSkinController extends Controller
     public function loadGloves($type)
     {
         $gloves = json_decode(File::get(resource_path('json/gloves.json')), true);
-        $appliedGloves =  DB::connection('mysqlskins')->table('wp_player_skins')
-            ->where('steamid', Auth::user()?->steam_id)
-            ->pluck('weapon_paint_id')
-            ->toArray();
-        $appliedGloveIndex =  DB::connection('mysqlskins')->table('wp_player_gloves')->where('steamid', Auth::user()?->steam_id)->first()?->weapon_defindex;
+        $user = Auth::user();
+
+        if (!$user) {
+            return view('weapons.partials.gloves-types', ['gloves' => []]);
+        }
+
+        // Get applied skins for gloves
+        $appliedSkins = DB::connection('mysqlskins')->table('wp_player_skins')->where('steamid', $user->steam_id)->get();
+        $appliedGloveIndex = DB::connection('mysqlskins')->table('wp_player_gloves')->where('steamid', $user->steam_id)->first()?->weapon_defindex;
 
         $filteredGloves = array_filter($gloves, function($glove) use ($type) {
             return str_contains(strtolower($glove['paint_name']), strtolower($type));
         });
 
-        // Mark glove as applied if it exists in appliedGloves
+        // Mark glove as applied for T and CT teams and add additional properties
         foreach ($filteredGloves as &$glove) {
-            $glove['is_applied'] = in_array($glove['paint'], $appliedGloves) && $glove['weapon_defindex'] == $appliedGloveIndex;;
+            // Check for T team
+            $glove['is_applied_t'] = $appliedSkins->contains(function ($value) use ($glove) {
+                return $value->weapon_defindex == $glove['weapon_defindex']
+                    && $value->weapon_paint_id == $glove['paint']
+                    && $value->weapon_team == 2; // T team
+            });
+
+            // Check for CT team
+            $glove['is_applied_ct'] = $appliedSkins->contains(function ($value) use ($glove) {
+                return $value->weapon_defindex == $glove['weapon_defindex']
+                    && $value->weapon_paint_id == $glove['paint']
+                    && $value->weapon_team == 3; // CT team
+            });
+
+            // Find the applied skin for additional properties (wear, seed, team)
+            $appliedSkin = $appliedSkins->first(function ($value) use ($glove) {
+                return $value->weapon_defindex == $glove['weapon_defindex']
+                    && $value->weapon_paint_id == $glove['paint'];
+            });
+
+            // Set additional properties for wear, seed, and team
+            if ($appliedSkin) {
+                $glove['wear'] = $appliedSkin->weapon_wear ?? ''; // Wear
+                $glove['seed'] = $appliedSkin->weapon_seed ?? ''; // Seed
+                $glove['weapon_team'] = $appliedSkin->weapon_team ?? ''; // Team
+            } else {
+                $glove['wear'] = '';
+                $glove['seed'] = '';
+                $glove['weapon_team'] = '';
+            }
         }
 
-        // Sort applied gloves to be first
+        // Sort applied gloves to be first for T and CT teams
         usort($filteredGloves, function($a, $b) {
-            return $b['is_applied'] - $a['is_applied'];
+            return ($b['is_applied_t'] || $b['is_applied_ct']) <=> ($a['is_applied_t'] || $a['is_applied_ct']);
         });
 
         return view('weapons.partials.gloves-types', ['gloves' => $filteredGloves]);
@@ -395,8 +453,22 @@ class WeaponSkinController extends Controller
         $validated = $validator->validated();
 
         try {
+            // Delete any existing glove data for the same weapon_team and weapon_defindex
+            DB::connection('mysqlskins')->table('wp_player_gloves')
+                ->where('steamid', $validated['steamid'])
+                ->where('weapon_team', $validated['weapon_team'])
+                ->whereBetween('weapon_defindex', [4725, 5035])
+                ->delete();
+
+            // Delete any existing skin data for the same weapon_team and weapon_defindex
+            DB::connection('mysqlskins')->table('wp_player_skins')
+                ->where('steamid', $validated['steamid'])
+                ->where('weapon_team', $validated['weapon_team'])
+                ->whereBetween('weapon_defindex', [4725, 5035])
+                ->delete();
+
             // Update or insert in wp_player_gloves table
-             DB::connection('mysqlskins')->table('wp_player_gloves')->updateOrInsert(
+            DB::connection('mysqlskins')->table('wp_player_gloves')->updateOrInsert(
                 [
                     'steamid' => $validated['steamid'],
                     'weapon_team' => $validated['weapon_team'],
@@ -407,7 +479,7 @@ class WeaponSkinController extends Controller
             );
 
             // Update or insert in wp_player_skins table
-             DB::connection('mysqlskins')->table('wp_player_skins')->updateOrInsert(
+            DB::connection('mysqlskins')->table('wp_player_skins')->updateOrInsert(
                 [
                     'steamid' => $validated['steamid'],
                     'weapon_defindex' => $validated['weapon_defindex'],
@@ -421,7 +493,7 @@ class WeaponSkinController extends Controller
                     'weapon_stattrak' => 0,
                     'weapon_stattrak_count' => 0,
                     'weapon_sticker_0' => '0;0;0;0;0;0;0',
-                    'weapon_sticker_1' =>'0;0;0;0;0;0;0',
+                    'weapon_sticker_1' => '0;0;0;0;0;0;0',
                     'weapon_sticker_2' => '0;0;0;0;0;0;0',
                     'weapon_sticker_3' => '0;0;0;0;0;0;0',
                     'weapon_sticker_4' => '0;0;0;0;0;0;0',
@@ -516,30 +588,88 @@ class WeaponSkinController extends Controller
     public function loadKnives($category)
     {
         $skins = json_decode(File::get(resource_path('json/skins.json')), true);
-        $appliedSkins =  DB::connection('mysqlskins')->table('wp_player_skins')->where('steamid', Auth::user()?->steam_id)->get();
-        $appliedKnife = DB::connection('mysqlskins')->table('wp_player_knife')->where('steamid', Auth::user()?->steam_id)->first()?->knife;
+        $user = Auth::user();
+        
+        if (!$user) {
+            return view('weapons.partials.knife-types', ['skins' => []]);
+        }
+        
+        $appliedSkins = DB::connection('mysqlskins')->table('wp_player_skins')->where('steamid', $user->steam_id)->get();
+            
+        $appliedKnife = DB::connection('mysqlskins')->table('wp_player_knife')->where('steamid', $user->steam_id)->first();
 
-        $filteredKnives = array_filter($skins, function ($skin) use ($category) {
-            return in_array($skin['weapon_defindex'], [
-                500, 503, 505, 506, 507, 508, 509, 512, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 525, 526
-            ]) && $skin['weapon_defindex'] == $category;
+        $kniveDefindexes = [
+            500, 503, 505, 506, 507, 508, 509, 512, 514, 
+            515, 516, 517, 518, 519, 520, 521, 522, 523, 
+            525, 526
+        ];
+
+        $filteredKnives = array_filter($skins, function ($skin) use ($category, $kniveDefindexes) {
+            return in_array($skin['weapon_defindex'], $kniveDefindexes) && 
+                $skin['weapon_defindex'] == $category;
         });
 
-        // Mark skin as applied if it exists in appliedKnives
+        $type = 'knife'; // Since this is loadKnives function, we set type to knife
+
+        // Mark skin as applied for T and CT teams
         foreach ($filteredKnives as &$skin) {
-            $skin['is_applied'] = $appliedSkins->contains(function ($value) use ($skin, $appliedKnife) {
-                return $value->weapon_defindex == $skin['weapon_defindex'] && $value->weapon_paint_id == $skin['paint'] && $skin['weapon_name'] == $appliedKnife;  ;
+            // Check for T team
+            $skin['is_applied_t'] = $appliedSkins->contains(function ($value) use ($skin, $type, $appliedKnife) {
+                if ($type == 'knife') {
+                    return $value->weapon_defindex == $skin['weapon_defindex']
+                        && $value->weapon_paint_id == $skin['paint']
+                        && optional($appliedKnife)->knife == $skin['weapon_name']
+                        && $value->weapon_team == 2; // T team
+                }
+                return $value->weapon_defindex == $skin['weapon_defindex']
+                    && $value->weapon_paint_id == $skin['paint']
+                    && $value->weapon_team == 2; // T team
             });
+
+            // Check for CT team
+            $skin['is_applied_ct'] = $appliedSkins->contains(function ($value) use ($skin, $type, $appliedKnife) {
+                if ($type == 'knife') {
+                    return $value->weapon_defindex == $skin['weapon_defindex']
+                        && $value->weapon_paint_id == $skin['paint']
+                        && optional($appliedKnife)->knife == $skin['weapon_name']
+                        && $value->weapon_team == 3; // CT team
+                }
+                return $value->weapon_defindex == $skin['weapon_defindex']
+                    && $value->weapon_paint_id == $skin['paint']
+                    && $value->weapon_team == 3; // CT team
+            });
+
+            // Find the applied skin for additional properties
+            $appliedSkin = $appliedSkins->first(function ($value) use ($skin, $appliedKnife) {
+                return $value->weapon_defindex == $skin['weapon_defindex'] && 
+                    $value->weapon_paint_id == $skin['paint'] && 
+                    $skin['weapon_name'] == optional($appliedKnife)->knife;
+            });
+            
+            // Set additional properties
+            if ($appliedSkin) {
+                $skin['wear'] = $appliedSkin->weapon_wear ?? '';
+                $skin['seed'] = $appliedSkin->weapon_seed ?? '';
+                $skin['weapon_nametag'] = $appliedSkin->weapon_nametag ?? '';
+                $skin['weapon_stattrak'] = $appliedSkin->weapon_stattrak ?? '';
+                $skin['weapon_team'] = $appliedSkin->weapon_team ?? '';
+            } else {
+                $skin['wear'] = '';
+                $skin['seed'] = '';
+                $skin['weapon_nametag'] = '';
+                $skin['weapon_stattrak'] = '';
+                $skin['weapon_team'] = '';
+            }
         }
 
-        // Sort applied knives to be first
+        // Sort applied knives to be first for T and CT teams
         usort($filteredKnives, function ($a, $b) {
-            return $b['is_applied'] - $a['is_applied'];
+            return ($b['is_applied_t'] || $b['is_applied_ct']) <=> ($a['is_applied_t'] || $a['is_applied_ct']);
         });
 
         return view('weapons.partials.knife-types', ['skins' => $filteredKnives]);
     }
-
+    
     public function applyKnife(Request $request)
     {
         $validator = Validator::make($request->all(), [

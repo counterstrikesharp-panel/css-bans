@@ -166,6 +166,37 @@
                             const weaponDefIndex = $(this).data('weapon-defindex');
                             const weaponPaintId = $(this).data('weapon-paint-id');
                             const weaponName = $(this).data('weapon-name');
+                            const weaponTeam = $(this).data('weapon-team');
+                            const weaponWear = $(this).data('wear');
+                            const weaponSeed = $(this).data('seed');
+                            const weaponNametag = $(this).data('weapon-nametag');
+                            const weaponStattrak = $(this).data('weapon-stattrak');
+        
+                            if (weaponTeam) {
+                                $('#weapon_team').val(weaponTeam);
+                            } else {
+                                $('#weapon_team').val(2);
+                            }
+                            if (weaponWear) {
+                                $('#wear').val(weaponWear);
+                            } else {
+                                $('#wear').val(0.01);
+                            }
+                            if (weaponSeed) {
+                                $('#seed').val(weaponSeed);
+                            } else {
+                                $('#seed').val('');
+                            }
+                            if (weaponNametag) {
+                                $('#weapon_nametag').val(weaponNametag);
+                            } else {
+                                $('#weapon_nametag').val('');
+                            }
+                            if (weaponStattrak) {
+                                $('#weapon_stattrak').val(weaponStattrak);
+                            } else {
+                                $('#weapon_stattrak').val(0);
+                            }
 
                             // Set the image source and name
                             $('#selectedSkinImage').attr('src', skinImage);

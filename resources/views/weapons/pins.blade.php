@@ -17,7 +17,8 @@
                             @foreach($pins as $pin)
                                 <div class="col-md-3 mb-4">
                                     <a class="card style-6" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#skinPreviewModal" data-skin-image="{{ $pin['image'] }}" data-skin-name="{{ $pin['name'] }}">
-                                    <span  id="pin_{{$pin['id']}}" class="pin_active badge badge-danger">{{ ($pin['is_applied_t'] && $pin['is_applied_ct']) ? __('skins.active_both') : 
+                                    <span  id="pin_{{$pin['id']}}" class="pin_active badge {{ ($pin['is_applied_t'] && $pin['is_applied_ct']) ? 'badge-success' : ($pin['is_applied_t'] ? 'badge-danger' : ($pin['is_applied_ct'] ? 'badge-primary' : '')) }}">
+                                            {{ ($pin['is_applied_t'] && $pin['is_applied_ct']) ? __('skins.active_both') : 
                                                 ($pin['is_applied_t'] ? __('skins.active_t') : 
                                                 ($pin['is_applied_ct'] ? __('skins.active_ct') : '')) }}</span>
                                         <div class="loader-skins"></div> <!-- Add loader -->
