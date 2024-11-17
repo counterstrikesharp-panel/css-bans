@@ -105,14 +105,14 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="nametag">{{ __('Nametag') }}</label>
-                                                    <input type="text" class="form-control" id="nametag" name="nametag">
+                                                    <label for="weapon_nametag">{{ __('Nametag') }}</label>
+                                                    <input type="text" class="form-control" id="weapon_nametag" name="weapon_nametag">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="stattrak">{{ __('StatTrak™') }}</label>
-                                                    <select class="form-select" id="stattrak" name="stattrak">
+                                                    <label for="weapon_stattrak">{{ __('StatTrak™') }}</label>
+                                                    <select class="form-select" id="weapon_stattrak" name="weapon_stattrak">
                                                         <option value="0">{{ __('Disabled') }}</option>
                                                         <option value="1">{{ __('Enabled') }}</option>
                                                     </select>
