@@ -614,27 +614,15 @@ class WeaponSkinController extends Controller
         // Mark skin as applied for T and CT teams
         foreach ($filteredKnives as &$skin) {
             // Check for T team
-            $skin['is_applied_t'] = $appliedSkins->contains(function ($value) use ($skin, $type, $appliedKnife) {
-                if ($type == 'knife') {
-                    return $value->weapon_defindex == $skin['weapon_defindex']
-                        && $value->weapon_paint_id == $skin['paint']
-                        && optional($appliedKnife)->knife == $skin['weapon_name']
-                        && $value->weapon_team == 2; // T team
-                }
-                return $value->weapon_defindex == $skin['weapon_defindex']
+            $skin['is_applied_t'] = $appliedSkins->contains(function ($value) use ($skin) {
+                return $value->weapon_defindex == $skin['weapon_defindex'] 
                     && $value->weapon_paint_id == $skin['paint']
                     && $value->weapon_team == 2; // T team
             });
-
+        
             // Check for CT team
-            $skin['is_applied_ct'] = $appliedSkins->contains(function ($value) use ($skin, $type, $appliedKnife) {
-                if ($type == 'knife') {
-                    return $value->weapon_defindex == $skin['weapon_defindex']
-                        && $value->weapon_paint_id == $skin['paint']
-                        && optional($appliedKnife)->knife == $skin['weapon_name']
-                        && $value->weapon_team == 3; // CT team
-                }
-                return $value->weapon_defindex == $skin['weapon_defindex']
+            $skin['is_applied_ct'] = $appliedSkins->contains(function ($value) use ($skin) {
+                return $value->weapon_defindex == $skin['weapon_defindex'] 
                     && $value->weapon_paint_id == $skin['paint']
                     && $value->weapon_team == 3; // CT team
             });
@@ -691,6 +679,13 @@ class WeaponSkinController extends Controller
 
         $validated = $validator->validated();
 
+        // Delete any existing skin data for the same weapon_team and weapon_defindex
+        DB::connection('mysqlskins')->table('wp_player_skins')
+        ->where('steamid', $validated['steamid'])
+        ->where('weapon_team', $validated['weapon_team'])
+        ->whereBetween('weapon_defindex', [500, 526])
+        ->delete();
+
         try {
             DB::connection('mysqlskins')->table('wp_player_knife')->updateOrInsert(
                 [
@@ -730,5 +725,3 @@ class WeaponSkinController extends Controller
         }
     }
 }
-
-
