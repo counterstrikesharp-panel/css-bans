@@ -32,6 +32,23 @@ class AppealController extends Controller
             'reason' => 'required|string',
             'email' => 'required|email',
         ]);
+
+        $existingAppeal = Appeal::where(function ($query) use ($validated) {
+            if (isset($validated['steamid'])) {
+                $query->where('steamid', $validated['steamid']);
+            }
+    
+            if (isset($validated['ip'])) {
+                $query->orWhere('ip', $validated['ip']);
+            }
+        })
+        ->where('status', 'PENDING')
+        ->first();
+
+        if ($existingAppeal) {
+            return redirect()->route('appeals.create')->with('error', __('You have a pending Appeal request.'));
+        }
+
         if(SaBan::where('player_steamid', $validated['steamid'])
             ->where('status', 'ACTIVE')
             ->exists()) {
@@ -40,10 +57,10 @@ class AppealController extends Controller
             // Save the appeal
             $appeal = Appeal::create($data);
             CommonHelper::sendActionLog('appeal', $appeal->id);
-            return redirect()->route('appeals.create')->with('success', 'Appeal submitted successfully.');
+            return redirect()->route('appeals.create')->with('success', __('Appeal submitted successfully.'));
         }
         else {
-            return redirect()->route('appeals.create')->with('error', 'No active bans exists for this Steam ID or IP');
+            return redirect()->route('appeals.create')->with('error', __('No active bans exists for this Steam ID or IP'));
         }
     }
 
@@ -70,6 +87,6 @@ class AppealController extends Controller
         $appeal->save();
         Mail::to($appeal->email)->send(new AppealApproved($appeal));
 
-        return redirect()->route('appeals.list', $appeal->id)->with('success', 'Appeal status updated successfully.');
+        return redirect()->route('appeals.list', $appeal->id)->with('success',  __('Appeal status updated successfully.'));
     }
 }
