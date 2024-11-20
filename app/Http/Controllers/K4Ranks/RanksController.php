@@ -56,17 +56,54 @@ class RanksController extends Controller
         } else {
             // New Logic
             $query = ZenithPlayerStorage::selectRaw('*, (SELECT COUNT(*) + 1 FROM zenith_player_storage AS zps WHERE CAST(JSON_EXTRACT(zps.`K4-Zenith-Ranks.storage`, "$.Points") AS UNSIGNED) > CAST(JSON_EXTRACT(zenith_player_storage.`K4-Zenith-Ranks.storage`, "$.Points") AS UNSIGNED)) AS `position`');
+            
             if (!empty($searchValue)) {
                 $query->where('steam_id', 'like', '%' . $searchValue . '%')
                     ->orWhereRaw('JSON_UNQUOTE(JSON_EXTRACT(`K4-Zenith-Ranks.storage`, "$.Rank")) like ?', ['%' . $searchValue . '%'])
                     ->orWhere('name', 'like', '%' . $searchValue . '%');
             }
+
             if ($orderColumn !== null) {
                 $columnName = $request->input('columns.' . $orderColumn . '.data');
-                if ($columnName == 'points') {
-                    $query->orderByRaw('CAST(JSON_UNQUOTE(JSON_EXTRACT(`K4-Zenith-Ranks.storage`, "$.Points")) AS UNSIGNED) ' . $orderDirection);
-                } else {
-                    $query->orderBy($columnName, $orderDirection);
+
+                // Handle different column sorting cases
+                switch ($columnName) {
+                    case 'points':
+                        $query->orderByRaw('CAST(JSON_UNQUOTE(JSON_EXTRACT(`K4-Zenith-Ranks.storage`, "$.Points")) AS UNSIGNED) ' . $orderDirection);
+                        break;
+                    case 'kills':
+                        $query->orderByRaw('CAST(JSON_UNQUOTE(JSON_EXTRACT(`K4-Zenith-Stats.storage`, "$.Kills")) AS UNSIGNED) ' . $orderDirection);
+                        break;
+                    case 'deaths':
+                        $query->orderByRaw('CAST(JSON_UNQUOTE(JSON_EXTRACT(`K4-Zenith-Stats.storage`, "$.Deaths")) AS UNSIGNED) ' . $orderDirection);
+                        break;
+                    case 'assists':
+                        $query->orderByRaw('CAST(JSON_UNQUOTE(JSON_EXTRACT(`K4-Zenith-Stats.storage`, "$.Assists")) AS UNSIGNED) ' . $orderDirection);
+                        break;
+                    case 'headshots':
+                        $query->orderByRaw('CAST(JSON_UNQUOTE(JSON_EXTRACT(`K4-Zenith-Stats.storage`, "$.Headshots")) AS UNSIGNED) ' . $orderDirection);
+                        break;
+                    case 'rounds_ct':
+                        $query->orderByRaw('CAST(JSON_UNQUOTE(JSON_EXTRACT(`K4-Zenith-Stats.storage`, "$.RoundsCT")) AS UNSIGNED) ' . $orderDirection);
+                        break;
+                    case 'rounds_t':
+                        $query->orderByRaw('CAST(JSON_UNQUOTE(JSON_EXTRACT(`K4-Zenith-Stats.storage`, "$.RoundsT")) AS UNSIGNED) ' . $orderDirection);
+                        break;
+                    case 'rounds_overall':
+                        $query->orderByRaw('(CAST(JSON_UNQUOTE(JSON_EXTRACT(`K4-Zenith-Stats.storage`, "$.RoundsCT")) AS UNSIGNED) + CAST(JSON_UNQUOTE(JSON_EXTRACT(`K4-Zenith-Stats.storage`, "$.RoundsT")) AS UNSIGNED)) ' . $orderDirection);
+                        break;
+                    case 'games_won':
+                        $query->orderByRaw('CAST(JSON_UNQUOTE(JSON_EXTRACT(`K4-Zenith-Stats.storage`, "$.GameWin")) AS UNSIGNED) ' . $orderDirection);
+                        break;
+                    case 'games_lost':
+                        $query->orderByRaw('CAST(JSON_UNQUOTE(JSON_EXTRACT(`K4-Zenith-Stats.storage`, "$.GameLose")) AS UNSIGNED) ' . $orderDirection);
+                        break;
+                    case 'position':
+                        $query->orderBy('position', $orderDirection);
+                        break;
+                    default:
+                        $query->orderBy($columnName, $orderDirection);
+                        break;
                 }
             }
         }
@@ -132,7 +169,6 @@ class RanksController extends Controller
             "recordsFiltered" => !empty($searchValue) ? count($formattedData) : ($useOldLogic ? Ranks::count() : ZenithPlayerStorage::count()),
             "data" => $formattedData
         ]);
-
     }
 
     public function viewProfile(Request $request, $steam_id, $server_id) {
