@@ -76,7 +76,7 @@ class WeaponSkinController extends Controller
         // Modified query to include weapon_nametag
         $appliedSkins = DB::connection('mysqlskins')
             ->table('wp_player_skins')
-            ->select('weapon_defindex', 'weapon_paint_id', 'weapon_wear', 'weapon_seed', 'weapon_nametag', 'weapon_stattrak', 'weapon_team')
+            ->select('weapon_defindex', 'weapon_paint_id', 'weapon_wear', 'weapon_seed', 'weapon_nametag', 'weapon_stattrak', 'weapon_keychain', 'weapon_sticker_0', 'weapon_sticker_1', 'weapon_sticker_2', 'weapon_sticker_3', 'weapon_sticker_4', 'weapon_team')
             ->where('steamid', Auth::user()?->steam_id)
             ->get();
         $appliedKnife = DB::connection('mysqlskins')
@@ -136,6 +136,12 @@ class WeaponSkinController extends Controller
             $skin['weapon_nametag'] = $appliedSkin ? $appliedSkin->weapon_nametag : '';
             $skin['weapon_stattrak'] = $appliedSkin ? $appliedSkin->weapon_stattrak : '';
             $skin['weapon_team'] = $appliedSkin ? $appliedSkin->weapon_team : '';
+            $skin['weapon_keychain'] = $appliedSkin ? $appliedSkin->weapon_keychain : '';
+            $skin['weapon_sticker_0'] = $appliedSkin ? $appliedSkin->weapon_sticker_0 : '';
+            $skin['weapon_sticker_1'] = $appliedSkin ? $appliedSkin->weapon_sticker_1 : '';
+            $skin['weapon_sticker_2'] = $appliedSkin ? $appliedSkin->weapon_sticker_2 : '';
+            $skin['weapon_sticker_3'] = $appliedSkin ? $appliedSkin->weapon_sticker_3 : '';
+            $skin['weapon_sticker_4'] = $appliedSkin ? $appliedSkin->weapon_sticker_4 : '';
         }
         
         // Sort applied skins to be first (based on either team application)
@@ -145,7 +151,7 @@ class WeaponSkinController extends Controller
 
         return view('weapons.partials.weapon-types', ['skins' => $filteredSkins]);
     }
-
+    
     public function applySkin(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -164,7 +170,10 @@ class WeaponSkinController extends Controller
             'weapon_sticker_2' => 'nullable|string',
             'weapon_sticker_3' => 'nullable|string',
             'weapon_sticker_4' => 'nullable|string',
-            'weapon_keychain' => 'nullable|string'
+            'weapon_keychain' => 'nullable|string',
+            'weapon_keychainX' => 'nullable|string',
+            'weapon_keychainY' => 'nullable|string',
+            'weapon_keychainZ' => 'nullable|string'
         ]);
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
@@ -204,7 +213,21 @@ class WeaponSkinController extends Controller
         }
 
         $wear = $validated['wear'] ?? $validated['wearSelect'];
+
+        $id = $validated['weapon_keychain'] ?? '0';
+        $idX = $validated['weapon_keychainX'] ?? '0';
+        $idY = $validated['weapon_keychainY'] ?? '0';
+        $idZ = $validated['weapon_keychainZ'] ?? '0';
+        $weaponKeychain = implode(';', [$id, $idX, $idY, $idZ, '0']);
+        $data['weapon_keychain'] = $weaponKeychain;
+        
+        for ($i = 0; $i < 5; $i++) {
+            $stickerKey = "weapon_sticker_{$i}";
+            $stickerid = $validated[$stickerKey] ?? '0';
     
+            // Append ;0;0;0;0;0;0 to each sticker ID
+            $data[$stickerKey] = "{$stickerid};0;0;0;0;0;0";
+        }
         
          DB::connection('mysqlskins')->table('wp_player_skins')->updateOrInsert(
             [
@@ -219,18 +242,17 @@ class WeaponSkinController extends Controller
                 'weapon_nametag' => $validated['weapon_nametag'] ?? '',
                 'weapon_stattrak' => $validated['weapon_stattrak'] ?? 0,
                 'weapon_stattrak_count' => $validated['weapon_stattrak_count'] ?? 0,
-                'weapon_sticker_0' => $validated['weapon_sticker_0'] ?? '0;0;0;0;0;0;0',
-                'weapon_sticker_1' => $validated['weapon_sticker_1'] ?? '0;0;0;0;0;0;0',
-                'weapon_sticker_2' => $validated['weapon_sticker_2'] ?? '0;0;0;0;0;0;0',
-                'weapon_sticker_3' => $validated['weapon_sticker_3'] ?? '0;0;0;0;0;0;0',
-                'weapon_sticker_4' => $validated['weapon_sticker_4'] ?? '0;0;0;0;0;0;0',
-                'weapon_keychain' => $validated['weapon_keychain'] ?? '0;0;0;0;0',
+                'weapon_sticker_0' => $data['weapon_sticker_0'],
+                'weapon_sticker_1' => $data['weapon_sticker_1'],
+                'weapon_sticker_2' => $data['weapon_sticker_2'],
+                'weapon_sticker_3' => $data['weapon_sticker_3'],
+                'weapon_sticker_4' => $data['weapon_sticker_4'],
+                'weapon_keychain' => $data['weapon_keychain'],
             ]
         );
 
         return response()->json(['success' => 'Skin applied successfully!']);
     }
-
 
     public function agents()
     {

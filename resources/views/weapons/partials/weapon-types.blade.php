@@ -29,7 +29,13 @@
                                 data-weapon-team="{{ $skin['weapon_team'] }}"
                                 data-weapon-name="{{ $skin['weapon_name'] }}"
                                 data-weapon-nametag="{{ $skin['weapon_nametag'] }}"
-                                data-weapon-stattrak="{{ $skin['weapon_stattrak'] }}">
+                                data-weapon-stattrak="{{ $skin['weapon_stattrak'] }}"
+                                data-weapon-keychain="{{ $skin['weapon_keychain'] }}"
+                                data-weapon-sticker-0="{{ $skin['weapon_sticker_0'] }}"
+                                data-weapon-sticker-1="{{ $skin['weapon_sticker_1'] }}"
+                                data-weapon-sticker-2="{{ $skin['weapon_sticker_2'] }}"
+                                data-weapon-sticker-3="{{ $skin['weapon_sticker_3'] }}"
+                                data-weapon-sticker-4="{{ $skin['weapon_sticker_4'] }}">
                             <i class="fas fa-cog"></i> {{ __('skins.applySkin') }}
                         </button>
                     </div>

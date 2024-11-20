@@ -76,14 +76,15 @@
 
                                     <div id="non-knife-options">
                                         <!-- Only show these options if the weapon category is not "knife" -->
-                                        <div class="form-group">
-                                            <label for="weapon_team">{{ __('Select Team') }}</label>
-                                            <select class="form-select" id="weapon_team" name="weapon_team">
-                                                <option value="2">{{ __('Terrorist') }}</option>
-                                                <option value="3">{{ __('Counter-Terrorist') }}</option>
-                                            </select>
-                                        </div>
                                         <div class="row">
+                                            <div class="form-group">
+                                                <label for="weapon_team">{{ __('Select Team') }}</label>
+                                                <select class="form-select" id="weapon_team" name="weapon_team">
+                                                    <option value="2">{{ __('Terrorist') }}</option>
+                                                    <option value="3">{{ __('Counter-Terrorist') }}</option>
+                                                </select>
+                                            </div>
+                                        
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="wearSelect">{{ __('skins.selectWear') }}</label>
@@ -118,10 +119,66 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group mt-3">
-                                            <label for="wear">{{ __('gloves.wear') }}</label>
-                                            <input type="text" class="form-control" id="wear" name="wear" value="0">
+                                            <div class="col-md-6">
+                                                <div class="form-group mt-3">
+                                                    <label for="wear">{{ __('gloves.wear') }}</label>
+                                                    <input type="text" class="form-control" id="wear" name="wear">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div id="sticker-options">
+                                                    <h6 class="mt-3">{{ __('Stickers') }}</h6>
+
+                                                    <!-- Search Input -->
+                                                    <div class="form-group">
+                                                        <label for="stickerSearch">{{ __('Search Stickers') }}</label>
+                                                        <input type="text" id="stickerSearch" class="form-control" placeholder="{{ __('Type to search...') }}">
+                                                    </div>
+
+                                                    @for ($i = 0; $i < 5; $i++)
+                                                        <div class="form-group">
+                                                            <label for="weapon_sticker_{{ $i }}">{{ __('Slot') }} {{ $i + 1 }}</label>
+                                                            <select class="form-select sticker-select" id="weapon_sticker_{{ $i }}" name="weapon_sticker_{{ $i }}">
+                                                                <option value="0">{{ __('No sticker selected') }}</option>
+                                                                <!-- Options will be populated dynamically -->
+                                                            </select>
+                                                        </div>
+                                                    @endfor
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div id="keychain-options">
+                                                    <h6 class="mt-3">{{ __('Keychains') }}</h6>
+                                                    <div class="form-group">
+                                                        <!-- Keychain dropdown -->
+                                                        <select class="form-select keychain-select" id="weapon_keychain" name="weapon_keychain">
+                                                            <option value="0">{{ __('No keychain selected') }}</option>
+                                                            <!-- Options will be populated dynamically -->
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="row mt-3">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="weapon_keychainX">{{ __('X') }}</label>
+                                                                <input type="text" class="form-control" id="weapon_keychainX" name="weapon_keychainX">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="weapon_keychainY">{{ __('Y') }}</label>
+                                                                <input type="text" class="form-control" id="weapon_keychainY" name="weapon_keychainY">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="weapon_keychainZ">{{ __('Z') }}</label>
+                                                                <input type="text" class="form-control" id="weapon_keychainZ" name="weapon_keychainZ">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-primary mt-3" id="saveSkinButton">{{ __('skins.apply') }}</button>
@@ -155,6 +212,83 @@
                     const weaponsLoadUrl = '{!! env('VITE_SITE_DIR') !!}/weapons/load/';
                 </script>
                 <script>
+                    fetchStickers();
+                    fetchKeychains();
+
+                    function fetchStickers() {
+                        fetch('{!! env('VITE_SITE_DIR') !!}/weapons/stickers')
+                            .then(response => response.json())
+                            .then(data => {
+                                populateStickerDropdowns(data);
+                            })
+                            .catch(error => console.error('Error fetching stickers:', error));
+                    }
+
+                    function fetchKeychains() {
+                        fetch('{!! env('VITE_SITE_DIR') !!}/weapons/keychains')
+                            .then(response => response.json())
+                            .then(data => {
+                                populateKeychainsDropdowns(data);
+                            })
+                            .catch(error => console.error('Error fetching keychains:', error));
+                    }
+
+                    function populateStickerDropdowns(stickers) {
+                        const stickerSelects = document.querySelectorAll('.sticker-select');
+
+                        stickerSelects.forEach(select => {
+                            // Clear existing options except the first one
+                            select.innerHTML = '<option value="">{{ __('No sticker selected') }}</option>';
+
+                            stickers.forEach(sticker => {
+                                const option = document.createElement('option');
+                                option.value = sticker.id; // Use sticker ID as the value
+                                option.textContent = sticker.name; // Use sticker name as the text
+                                select.appendChild(option);
+                            });
+                        });
+                    }
+
+                    function populateKeychainsDropdowns(keychains) {
+                        const keychainSelects = document.querySelectorAll('.keychain-select');
+
+                        keychainSelects.forEach(select => {
+                            // Clear existing options except the first one
+                            select.innerHTML = '<option value="">{{ __('No keychain selected') }}</option>';
+
+                            keychains.forEach(keychain => {
+                                const option = document.createElement('option');
+                                option.value = keychain.id; // Use keychain ID as the value
+                                option.textContent = keychain.name; // keychain sticker name as the text
+                                select.appendChild(option);
+                            });
+                        });
+                    }
+
+                    // Search functionality for stickers
+                    const searchInput = document.getElementById('stickerSearch');
+                    searchInput.addEventListener('input', function () {
+                        const searchValue = this.value.toLowerCase();
+                        const stickerSelects = document.querySelectorAll('.sticker-select');
+
+                        stickerSelects.forEach(select => {
+                            const options = select.querySelectorAll('option');
+                            let hasVisibleOptions = false;
+
+                            options.forEach(option => {
+                                if (option.textContent.toLowerCase().includes(searchValue) || option.value === '') {
+                                    option.style.display = ''; // Show option
+                                    hasVisibleOptions = true;
+                                } else {
+                                    option.style.display = 'none'; // Hide option
+                                }
+                            });
+
+                            // Disable the select if no options are visible
+                            select.disabled = !hasVisibleOptions;
+                        });
+                    });
+
                     $(document).ready(function() {
                         // Prevent the parent anchor click event for apply-skin button
                         $(document).on('click', '.apply-skin', function(event) {
@@ -173,6 +307,12 @@
                             const weaponSeed = $(this).data('seed');
                             const weaponNametag = $(this).data('weapon-nametag');
                             const weaponStattrak = $(this).data('weapon-stattrak');
+                            const weaponKeychain = $(this).data('weapon-keychain');
+                            const weaponSticker0 = $(this).data('weapon-sticker-0');
+                            const weaponSticker1 = $(this).data('weapon-sticker-1');
+                            const weaponSticker2 = $(this).data('weapon-sticker-2');
+                            const weaponSticker3 = $(this).data('weapon-sticker-3');
+                            const weaponSticker4 = $(this).data('weapon-sticker-4');
         
                             if (weaponTeam) {
                                 $('#weapon_team').val(weaponTeam);
@@ -182,7 +322,7 @@
                             if (weaponWear) {
                                 $('#wear').val(weaponWear);
                             } else {
-                                $('#wear').val(0);
+                                $('#wear').val(0.01);
                             }
                             if (weaponSeed) {
                                 $('#seed').val(weaponSeed);
@@ -198,6 +338,70 @@
                                 $('#weapon_stattrak').val(weaponStattrak);
                             } else {
                                 $('#weapon_stattrak').val(0);
+                            }
+                            if (weaponKeychain) {
+                                const keychainID = weaponKeychain.split(';')[0];
+                                const keychainX = weaponKeychain.split(';')[1];
+                                const keychainY = weaponKeychain.split(';')[2];
+                                const keychainZ = weaponKeychain.split(';')[3];
+                                const $keychainSelect = $('#weapon_keychain');
+
+                                if ($keychainSelect.find(`option[value="${keychainID}"]`).length) {
+                                    $keychainSelect.val(keychainID);
+
+                                    if (keychainX) {
+                                        $('#weapon_keychainX').val(keychainX);
+                                    } else {
+                                        $('#weapon_keychainX').val(0);
+                                    }
+                                    if (keychainY) {
+                                        $('#weapon_keychainY').val(keychainY);
+                                    } else {
+                                        $('#weapon_keychainY').val(0);
+                                    }
+                                    if (keychainZ) {
+                                        $('#weapon_keychainZ').val(keychainZ);
+                                    } else {
+                                        $('#weapon_keychainZ').val(0);
+                                    }
+                                } else {
+                                    $keychainSelect.val('');
+                                }
+                            } else {
+                                $('#weapon_keychain').val('');
+                                $('#weapon_keychainX').val(0);
+                                $('#weapon_keychainY').val(0);
+                                $('#weapon_keychainZ').val(0);
+                            }
+                            if (weaponSticker0) {
+                                const stickerID = weaponSticker0.split(';')[0];
+                                $('#weapon_sticker_0').val(stickerID);
+                            } else {
+                                $('#weapon_sticker_0').val(0);
+                            }
+                            if (weaponSticker1) {
+                                const stickerID = weaponSticker1.split(';')[0];
+                                $('#weapon_sticker_1').val(stickerID);
+                            } else {
+                                $('#weapon_sticker_1').val(0);
+                            }
+                            if (weaponSticker2) {
+                                const stickerID = weaponSticker2.split(';')[0];
+                                $('#weapon_sticker_2').val(stickerID);
+                            } else {
+                                $('#weapon_sticker_2').val(0);
+                            }
+                            if (weaponSticker3) {
+                                const stickerID = weaponSticker3.split(';')[0];
+                                $('#weapon_sticker_3').val(stickerID);
+                            } else {
+                                $('#weapon_sticker_3').val(0);
+                            }
+                            if (weaponSticker4) {
+                                const stickerID = weaponSticker4.split(';')[0];
+                                $('#weapon_sticker_4').val(stickerID);
+                            } else {
+                                $('#weapon_sticker_4').val(0);
                             }
 
                             // Set the image source and name

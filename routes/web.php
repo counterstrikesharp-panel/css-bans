@@ -143,6 +143,16 @@ Route::get('/gloves/skins', [WeaponSkinController::class, 'gloves'])->name('glov
 Route::get('/music/kits', [WeaponSkinController::class, 'music'])->name('music')->middleware('auth');
 Route::get('/pins/pin', [WeaponSkinController::class, 'pin'])->name('pin')->middleware('auth');
 
+Route::get('/weapons/stickers', function() {
+    $stickers = json_decode(File::get(resource_path('json/stickers.json')), true);
+    return response()->json($stickers);
+});
+
+Route::get('/weapons/keychains', function() {
+    $keychains = json_decode(File::get(resource_path('json/keychains.json')), true);
+    return response()->json($keychains);
+});
+
 use App\Http\Controllers\SettingsController;
 
 Route::middleware(['superadmin'])->group(function () {
