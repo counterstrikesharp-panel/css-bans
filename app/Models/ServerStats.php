@@ -19,4 +19,10 @@ class ServerStats extends Model
     {
         return $this->belongsTo(SaServer::class, 'server_id');
     }
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->setConnection('mysql');
+    }
 }
