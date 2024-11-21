@@ -402,7 +402,7 @@ class WeaponSkinController extends Controller
 
     public function pin()
     {
-        $pins = json_decode(File::get(resource_path('json/pins.json')), true);
+        $pins = json_decode(File::get(resource_path('json/collectibles.json')), true);
 
         // Fetch applied pins from the database
         $appliedPin = DB::connection('mysqlskins')->table('wp_player_pins')->where('steamid', Auth::user()?->steam_id)->get();

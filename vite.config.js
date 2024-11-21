@@ -213,6 +213,7 @@ export default defineConfig({
                 'resources/js/skins/agents.ts',
                 'resources/js/skins/music.ts',
                 'resources/js/skins/knives.ts',
+                'resources/js/skins/pin.ts',
                 'resources/js/vip/create.ts',
                 'resources/scss/dark/assets/users/user-profile.scss',
                 'resources/scss/dark/assets/widgets/modules-widgets.scss',
