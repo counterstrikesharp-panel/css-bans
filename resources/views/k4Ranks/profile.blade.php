@@ -266,7 +266,7 @@
                                     <td><img src="{{ $weapon->image_url }}" alt="{{ $weapon->weapon }}" style="    width: 75px; border-radius: 10px;height: auto;background: antiquewhite;"></td>
 
                                     <!-- Weapon name -->
-                                    <td><div class="td-content">{{ $weapon->weapon }}</div></td>
+                                    <td><div class="td-content">{{ $weapon->weaponname }}</div></td>
 
                                     <!-- Kills -->
                                     <td><div class="td-content">{{ $weapon->kills }}</div></td>
