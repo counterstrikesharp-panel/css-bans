@@ -4,7 +4,7 @@
             <a class="card style-6" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#skinPreviewModal" data-skin-image="{{ $skin['image'] }}" data-skin-name="{{ $skin['paint_name'] }}">
                 <span id="skin_{{$skin['paint']}}_{{$skin['weapon_defindex']}}" class="skin_active badge 
                     {{ $skin['is_applied_t'] && $skin['is_applied_ct'] ? 'badge-success' : ($skin['is_applied_t'] ? 'badge-danger' : ($skin['is_applied_ct'] ? 'badge-primary' : '')) }}">
-                    {{ $skin['is_applied_t'] && $skin['is_applied_ct'] ? __('is_applied_both') : ($skin['is_applied_t'] ? __('skins.active_t') : ($skin['is_applied_ct'] ? __('skins.active_ct') : '')) }}
+                    {{ $skin['is_applied_t'] && $skin['is_applied_ct'] ? __('skins.active_both') : ($skin['is_applied_t'] ? __('skins.active_t') : ($skin['is_applied_ct'] ? __('skins.active_ct') : '')) }}
                 </span>
                 <div class="loader-skins"></div> <!-- Add loader -->
                 <img src="{{ $skin['image'] }}" class="card-img-top lazy" alt="{{ $skin['paint_name'] }}" crossorigin="anonymous">
@@ -29,7 +29,8 @@
                                 data-weapon-team="{{ $skin['weapon_team'] }}"
                                 data-weapon-name="{{ $skin['weapon_name'] }}"
                                 data-weapon-nametag="{{ $skin['weapon_nametag'] }}"
-                                data-weapon-stattrak="{{ $skin['weapon_stattrak'] }}">
+                                data-weapon-stattrak="{{ $skin['weapon_stattrak'] }}"
+                                data-weapon-stattrak-count="{{ $skin['weapon_stattrak_count'] }}">
                             <i class="fas fa-cog"></i> {{ __('skins.applySkin') }}
                         </button>
                     </div>

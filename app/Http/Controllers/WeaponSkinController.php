@@ -76,7 +76,7 @@ class WeaponSkinController extends Controller
         // Modified query to include weapon_nametag
         $appliedSkins = DB::connection('mysqlskins')
             ->table('wp_player_skins')
-            ->select('weapon_defindex', 'weapon_paint_id', 'weapon_wear', 'weapon_seed', 'weapon_nametag', 'weapon_stattrak', 'weapon_keychain', 'weapon_sticker_0', 'weapon_sticker_1', 'weapon_sticker_2', 'weapon_sticker_3', 'weapon_sticker_4', 'weapon_team')
+            ->select('weapon_defindex', 'weapon_paint_id', 'weapon_wear', 'weapon_seed', 'weapon_nametag', 'weapon_stattrak', 'weapon_stattrak_count', 'weapon_keychain', 'weapon_sticker_0', 'weapon_sticker_1', 'weapon_sticker_2', 'weapon_sticker_3', 'weapon_sticker_4', 'weapon_team')
             ->where('steamid', Auth::user()?->steam_id)
             ->get();
         $appliedKnife = DB::connection('mysqlskins')
@@ -135,6 +135,7 @@ class WeaponSkinController extends Controller
             $skin['seed'] = $appliedSkin ? $appliedSkin->weapon_seed : '';
             $skin['weapon_nametag'] = $appliedSkin ? $appliedSkin->weapon_nametag : '';
             $skin['weapon_stattrak'] = $appliedSkin ? $appliedSkin->weapon_stattrak : '';
+            $skin['weapon_stattrak_count'] = $appliedSkin ? $appliedSkin->weapon_stattrak_count : '';
             $skin['weapon_team'] = $appliedSkin ? $appliedSkin->weapon_team : '';
             $skin['weapon_keychain'] = $appliedSkin ? $appliedSkin->weapon_keychain : '';
             $skin['weapon_sticker_0'] = $appliedSkin ? $appliedSkin->weapon_sticker_0 : '';
@@ -662,12 +663,14 @@ class WeaponSkinController extends Controller
                 $skin['seed'] = $appliedSkin->weapon_seed ?? '';
                 $skin['weapon_nametag'] = $appliedSkin->weapon_nametag ?? '';
                 $skin['weapon_stattrak'] = $appliedSkin->weapon_stattrak ?? '';
+                $skin['weapon_stattrak_count'] = $appliedSkin->weapon_stattrak_count ?? '';
                 $skin['weapon_team'] = $appliedSkin->weapon_team ?? '';
             } else {
                 $skin['wear'] = '';
                 $skin['seed'] = '';
                 $skin['weapon_nametag'] = '';
                 $skin['weapon_stattrak'] = '';
+                $skin['weapon_stattrak_count'] = '';
                 $skin['weapon_team'] = '';
             }
         }
