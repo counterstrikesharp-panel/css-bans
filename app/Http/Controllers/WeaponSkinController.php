@@ -264,17 +264,15 @@ class WeaponSkinController extends Controller
 
         foreach ($agents as &$agent) {
             if ($appliedAgents) {
-                $agent['is_applied_t'] = $agent['team'] == 2 && $agent['model'] == $appliedAgents->agent_t;
-                $agent['is_applied_ct'] = $agent['team'] == 3 && $agent['model'] == $appliedAgents->agent_ct;
+                $agent['is_applied'] = ($agent['team'] == 2 && $agent['model'] == $appliedAgents->agent_t) || ($agent['team'] == 3 && $agent['model'] == $appliedAgents->agent_ct);
             } else {
-                $agent['is_applied_t'] = false;
-                $agent['is_applied_ct'] = false;
+                $agent['is_applied'] = false;
             }
         }
 
-        // Sort applied agents to be first (T or CT applied)
-        usort($agents, function ($a, $b) {
-            return ($b['is_applied_t'] || $b['is_applied_ct']) - ($a['is_applied_t'] || $a['is_applied_ct']);
+        // Sort applied agents to be first
+        usort($agents, function($a, $b) {
+            return $b['is_applied'] - $a['is_applied'];
         });
 
         return view('weapons.agents', ['agents' => $agents]);
