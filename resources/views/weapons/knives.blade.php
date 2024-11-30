@@ -75,6 +75,13 @@
                                     <input type="hidden" id="weapon_name" name="weapon_name">
                                     <div id="knife-options">
                                         <div class="row">
+                                            <div class="form-group">
+                                                <label for="weapon_team">{{ __('Select Team') }}</label>
+                                                <select class="form-select" id="weapon_team" name="weapon_team">
+                                                    <option value="2">{{ __('Terrorist') }}</option>
+                                                    <option value="3">{{ __('Counter-Terrorist') }}</option>
+                                                </select>
+                                            </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="wearSelect">{{ __('skins.selectWear') }}</label>
@@ -92,6 +99,21 @@
                                                 <div class="form-group">
                                                     <label for="seed">{{ __('skins.seed') }}</label>
                                                     <input type="text" class="form-control" id="seed" name="seed" oninput="validateSeed(this)">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="weapon_nametag">{{ __('Nametag') }}</label>
+                                                    <input type="text" class="form-control" id="weapon_nametag" name="weapon_nametag">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="weapon_stattrak">{{ __('StatTrak™') }}</label>
+                                                    <select class="form-select" id="weapon_stattrak" name="weapon_stattrak">
+                                                        <option value="0">{{ __('Disabled') }}</option>
+                                                        <option value="1">{{ __('Enabled') }}</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -144,6 +166,37 @@
                             const weaponDefIndex = $(this).data('weapon-defindex');
                             const weaponPaintId = $(this).data('weapon-paint-id');
                             const weaponName = $(this).data('weapon-name');
+                            const weaponTeam = $(this).data('weapon-team');
+                            const weaponWear = $(this).data('wear');
+                            const weaponSeed = $(this).data('seed');
+                            const weaponNametag = $(this).data('weapon-nametag');
+                            const weaponStattrak = $(this).data('weapon-stattrak');
+        
+                            if (weaponTeam) {
+                                $('#weapon_team').val(weaponTeam);
+                            } else {
+                                $('#weapon_team').val(2);
+                            }
+                            if (weaponWear) {
+                                $('#wear').val(weaponWear);
+                            } else {
+                                $('#wear').val(0.01);
+                            }
+                            if (weaponSeed) {
+                                $('#seed').val(weaponSeed);
+                            } else {
+                                $('#seed').val('');
+                            }
+                            if (weaponNametag) {
+                                $('#weapon_nametag').val(weaponNametag);
+                            } else {
+                                $('#weapon_nametag').val('');
+                            }
+                            if (weaponStattrak) {
+                                $('#weapon_stattrak').val(weaponStattrak);
+                            } else {
+                                $('#weapon_stattrak').val(0);
+                            }
 
                             // Set the image source and name
                             $('#selectedSkinImage').attr('src', skinImage);

@@ -1,7 +1,7 @@
-<!-- resources/views/weapons/music.blade.php -->
+<!-- resources/views/weapons/pins.blade.php -->
 <x-base-layout :scrollspy="false">
     <x-slot:pageTitle>
-        {{ __('Music') }}
+        {{ __('Pins') }}
         </x-slot>
         <x-slot:headerFiles>
             @vite(['resources/scss/light/assets/components/tabs.scss'])
@@ -12,29 +12,25 @@
             <div class="container mt-5">
                 <div class="simple-tab">
                     <x-weapons-tab/>
-                    <div class="tab-content" id="musicTabContent">
+                    <div class="tab-content" id="pinTabContent">
                         <div class="row mt-4">
-                            @foreach($music as $track)
+                            @foreach($pins as $pin)
                                 <div class="col-md-3 mb-4">
-                                    <a class="card style-6" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#skinPreviewModal" data-skin-image="{{ $track['image'] }}" data-skin-name="{{ $track['name'] }}">
-                                    <span id="music_{{$track['id']}}" class="music_active badge {{ ($track['is_applied_t'] && $track['is_applied_ct']) ? 'badge-success' : ($track['is_applied_t'] ? 'badge-danger' : ($track['is_applied_ct'] ? 'badge-primary' : '')) }}">{{ (isset($track['is_applied_t']) && isset($track['is_applied_ct']) && $track['is_applied_t'] && $track['is_applied_ct']) 
-                                                ? __('skins.active_both') 
-                                                : (isset($track['is_applied_t']) && $track['is_applied_t'] 
-                                                    ? __('skins.active_t') 
-                                                    : (isset($track['is_applied_ct']) && $track['is_applied_ct'] 
-                                                        ? __('skins.active_ct') 
-                                                        : '')) 
-                                            }}</span>
+                                    <a class="card style-6" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#skinPreviewModal" data-skin-image="{{ $pin['image'] }}" data-skin-name="{{ $pin['name'] }}">
+                                    <span  id="pin_{{$pin['id']}}" class="pin_active badge {{ ($pin['is_applied_t'] && $pin['is_applied_ct']) ? 'badge-success' : ($pin['is_applied_t'] ? 'badge-danger' : ($pin['is_applied_ct'] ? 'badge-primary' : '')) }}">
+                                            {{ ($pin['is_applied_t'] && $pin['is_applied_ct']) ? __('skins.active_both') : 
+                                                ($pin['is_applied_t'] ? __('skins.active_t') : 
+                                                ($pin['is_applied_ct'] ? __('skins.active_ct') : '')) }}</span>
                                         <div class="loader-skins"></div> <!-- Add loader -->
-                                        <img src="{{ $track['image'] }}" class="card-img-top" alt="{{ $track['name'] }}" crossorigin="anonymous">
+                                        <img src="{{ $pin['image'] }}" class="card-img-top" alt="{{ $pin['name'] }}" crossorigin="anonymous">
                                         <div class="card-footer">
                                             <div class="row">
                                                 <div class="col-12 mb-4">
-                                                    <b>{{ $track['name'] }}</b>
+                                                    <b>{{ $pin['name'] }}</b>
                                                 </div>
                                                 <div class="col-12 text-center">
-                                                    <button class="btn btn-primary apply-music" data-music-id="{{ $track['id'] }}" data-bs-toggle="modal" data-bs-target="#applyMusicModal">
-                                                        <i class="fas fa-cog"></i> {{ __('music.applyMusic') }}
+                                                    <button class="btn btn-primary apply-pin" data-id="{{ $pin['id'] }}" data-bs-toggle="modal" data-bs-target="#applyPinModal">
+                                                        <i class="fas fa-cog"></i> {{ __('Apply Pin') }}
                                                     </button>
                                                 </div>
                                             </div>
@@ -46,20 +42,20 @@
                     </div>
                 </div>
             </div>
-            <!-- Modal for Applying Music Skin -->
-            <div class="modal fade" id="applyMusicModal" tabindex="-1" aria-labelledby="applyMusicModalLabel" aria-hidden="true">
+            <!-- Modal for Applying Pin -->
+            <div class="modal fade" id="applyPinModal" tabindex="-1" aria-labelledby="applyPinModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="applyMusicModalLabel">{{ __('music.applyMusicSkin') }}</h5>
+                            <h5 class="modal-title" id="applyPinModalLabel">{{ __('Apply Pin') }}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body text-center">
-                            <img id="selectedMusicImage" src="" alt="Music Preview" class="img-fluid" style="max-width: 100px;"> <!-- Set max-width to control the size -->
-                            <h5 id="selectedMusicName" class="mt-3"></h5>
-                            <form id="applyMusicForm">
+                            <img id="selectedPinImage" src="" alt="Pin Preview" class="img-fluid" style="max-width: 100px;"> <!-- Set max-width to control the size -->
+                            <h5 id="selectedPinName" class="mt-3"></h5>
+                            <form id="applyPinForm">
                                 <input type="hidden" id="steamid" name="steamid" value="{{Auth::user()->steam_id}}">
-                                <input type="hidden" id="music_id" name="music_id">
+                                <input type="hidden" id="id" name="id">
                                 <div class="form-group">
                                     <label for="weapon_team">{{ __('Select Team') }}</label>
                                     <select class="form-select" id="weapon_team" name="weapon_team">
@@ -67,7 +63,7 @@
                                         <option value="3">{{ __('Counter-Terrorist') }}</option>
                                     </select>
                                 </div>
-                                <button type="button" class="btn btn-primary mt-3" id="saveMusicButton">{{ __('skins.apply') }}</button>
+                                <button type="button" class="btn btn-primary mt-3" id="savePinButton">{{ __('Apply Pin') }}</button>
                             </form>
                         </div>
                     </div>
@@ -92,33 +88,33 @@
         </div>
         <x-slot:footerFiles>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.2/color-thief.umd.js"></script>
-            @vite(['resources/js/skins/music.ts'])
+            @vite(['resources/js/skins/pin.ts'])
             <script>
                 $(document).ready(function() {
-                    // Prevent the parent anchor click event for apply-music button
-                    $(document).on('click', '.apply-music', function(event) {
+                    // Prevent the parent anchor click event for apply-pin button
+                    $(document).on('click', '.apply-pin', function(event) {
                         event.preventDefault();
                         event.stopPropagation();
 
                         const card = $(this).closest('.card');
-                        const musicImage = card.find('img').attr('src');
-                        const musicName = card.find('b').text();
-                        const musicId = $(this).data('music-id');
+                        const pinImage = card.find('img').attr('src');
+                        const pinName = card.find('b').text();
+                        const pinId = $(this).data('id');
 
                         // Set the image source and name
-                        $('#selectedMusicImage').attr('src', musicImage);
-                        $('#selectedMusicName').text(musicName);
-                        $('#music_id').val(musicId);
+                        $('#selectedPinImage').attr('src', pinImage);
+                        $('#selectedPinName').text(pinName);
+                        $('#id').val(pinId);
 
-                        // Show the apply music modal
-                        $('#applyMusicModal').modal('show');
+                        // Show the apply pin modal
+                        $('#applyPinModal').modal('show');
                     });
 
-                    // Function to save music
-                    $('#saveMusicButton').on('click', function() {
-                        const formData = new FormData(document.getElementById('applyMusicForm'));
+                    // Function to save pin
+                    $('#savePinButton').on('click', function() {
+                        const formData = new FormData(document.getElementById('applyPinForm'));
                         let route;
-                        route = '{!! env('VITE_SITE_DIR') !!}/weapons/music/apply';
+                        route = '{!! env('VITE_SITE_DIR') !!}/weapons/pins/apply';
                         fetch(route, {
                             method: 'POST',
                             headers: {
@@ -133,10 +129,10 @@
                                     backgroundColor: '#00ab55',
                                     pos: 'top-center'
                                 });
-                                $('.music_active').html('');
-                                $("#music_"+$('#music_id').val()).html('Active');
+                                $('.pin_active').html('');
+                                $("#pin_"+$('#id').val()).html('Active');
                                 // Close the modal
-                                $('#applyMusicModal').modal('hide');
+                                $('#applyPinModal').modal('hide');
                             } else if (data.errors) {
                                 // Handle validation errors
                                 let errorMessages = '';
@@ -145,20 +141,20 @@
                                 }
                                 alert('Validation failed:\n' + errorMessages);
                             } else {
-                                alert('{{ __("music.error") }}');
+                                alert('{{ __("pin.error") }}');
                             }
                         }).catch(error => {
-                            alert('{{ __("music.error") }}');
+                            alert('{{ __("pin.error") }}');
                         });
                     });
 
-                    // Prevent default action for music-card links to stop preview modal from opening
-                    $(document).on('click', '.music-card', function(event) {
+                    // Prevent default action for pin-card links to stop preview modal from opening
+                    $(document).on('click', '.pin-card', function(event) {
                         event.preventDefault();
                     });
 
-                    // Handle preview modal for music-card links
-                    $(document).on('click', '.music-card', function(event) {
+                    // Handle preview modal for pin-card links
+                    $(document).on('click', '.pin-card', function(event) {
                         const skinImage = $(this).data('skin-image');
                         const skinName = $(this).data('skin-name');
 

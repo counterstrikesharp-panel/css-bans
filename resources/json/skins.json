@@ -4,7 +4,7 @@
         "weapon_name": "weapon_deagle",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_deagle.png",
-        "paint_name": "Desert Eagle  | Default"
+        "paint_name": "Desert Eagle| Default"
     },
     {
         "weapon_defindex": 1,
@@ -40,6 +40,20 @@
         "paint": "90",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_deagle-90.png",
         "paint_name": "Desert Eagle | Mudder"
+    },
+    {
+        "weapon_defindex": 1,
+        "weapon_name": "weapon_deagle",
+        "paint": "114",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_deagle-114.png",
+        "paint_name": "Desert Eagle | Calligraffiti"
+    },
+    {
+        "weapon_defindex": 1,
+        "weapon_name": "weapon_deagle",
+        "paint": "138",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_deagle-138.png",
+        "paint_name": "Desert Eagle | Tilted"
     },
     {
         "weapon_defindex": 1,
@@ -205,6 +219,13 @@
     {
         "weapon_defindex": 1,
         "weapon_name": "weapon_deagle",
+        "paint": "938",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_deagle-938.png",
+        "paint_name": "Desert Eagle | Starcade"
+    },
+    {
+        "weapon_defindex": 1,
+        "weapon_name": "weapon_deagle",
         "paint": "945",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_deagle-945.png",
         "paint_name": "Desert Eagle | Blue Ply"
@@ -240,6 +261,13 @@
     {
         "weapon_defindex": 1,
         "weapon_name": "weapon_deagle",
+        "paint": "1054",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_deagle-1054.png",
+        "paint_name": "Desert Eagle | Heat Treated"
+    },
+    {
+        "weapon_defindex": 1,
+        "weapon_name": "weapon_deagle",
         "paint": "1056",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_deagle-1056.png",
         "paint_name": "Desert Eagle | Sputnik"
@@ -256,7 +284,7 @@
         "weapon_name": "weapon_elite",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_elite.png",
-        "paint_name": "Dual Berettas  | Default"
+        "paint_name": "Dual Berettas| Default"
     },
     {
         "weapon_defindex": 2,
@@ -285,6 +313,20 @@
         "paint": "47",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_elite-47.png",
         "paint_name": "Dual Berettas | Colony"
+    },
+    {
+        "weapon_defindex": 2,
+        "weapon_name": "weapon_elite",
+        "paint": "112",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_elite-112.png",
+        "paint_name": "Dual Berettas | Hydro Strike"
+    },
+    {
+        "weapon_defindex": 2,
+        "weapon_name": "weapon_elite",
+        "paint": "139",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_elite-139.png",
+        "paint_name": "Dual Berettas | Sweet Little Angels"
     },
     {
         "weapon_defindex": 2,
@@ -508,7 +550,7 @@
         "weapon_name": "weapon_fiveseven",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_fiveseven.png",
-        "paint_name": "Five-SeveN  | Default"
+        "paint_name": "Five-SeveN| Default"
     },
     {
         "weapon_defindex": 3,
@@ -695,6 +737,13 @@
     {
         "weapon_defindex": 3,
         "weapon_name": "weapon_fiveseven",
+        "paint": "831",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_fiveseven-831.png",
+        "paint_name": "Five-SeveN | Heat Treated"
+    },
+    {
+        "weapon_defindex": 3,
+        "weapon_name": "weapon_fiveseven",
         "paint": "837",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_fiveseven-837.png",
         "paint_name": "Five-SeveN | Angry Mob"
@@ -730,6 +779,13 @@
     {
         "weapon_defindex": 3,
         "weapon_name": "weapon_fiveseven",
+        "paint": "1062",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_fiveseven-1062.png",
+        "paint_name": "Five-SeveN | Midnight Paintover"
+    },
+    {
+        "weapon_defindex": 3,
+        "weapon_name": "weapon_fiveseven",
         "paint": "1082",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_fiveseven-1082.png",
         "paint_name": "Five-SeveN | Fall Hazard"
@@ -760,7 +816,7 @@
         "weapon_name": "weapon_glock",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_glock.png",
-        "paint_name": "Glock-18  | Default"
+        "paint_name": "Glock-18| Default"
     },
     {
         "weapon_defindex": 4,
@@ -803,6 +859,20 @@
         "paint": "84",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_glock-84.png",
         "paint_name": "Glock-18 | Pink DDPAT"
+    },
+    {
+        "weapon_defindex": 4,
+        "weapon_name": "weapon_glock",
+        "paint": "129",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_glock-129.png",
+        "paint_name": "Glock-18 | Gold Toof"
+    },
+    {
+        "weapon_defindex": 4,
+        "weapon_name": "weapon_glock",
+        "paint": "152",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_glock-152.png",
+        "paint_name": "Glock-18 | Teal Graf"
     },
     {
         "weapon_defindex": 4,
@@ -968,6 +1038,13 @@
     {
         "weapon_defindex": 4,
         "weapon_name": "weapon_glock",
+        "paint": "832",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_glock-832.png",
+        "paint_name": "Glock-18 | AXIA"
+    },
+    {
+        "weapon_defindex": 4,
+        "weapon_name": "weapon_glock",
         "paint": "918",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_glock-918.png",
         "paint_name": "Glock-18 | Sacrifice"
@@ -1089,7 +1166,7 @@
         "weapon_name": "weapon_ak47",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_ak47.png",
-        "paint_name": "AK-47  | Default"
+        "paint_name": "AK-47| Default"
     },
     {
         "weapon_defindex": 7,
@@ -1115,9 +1192,23 @@
     {
         "weapon_defindex": 7,
         "weapon_name": "weapon_ak47",
+        "paint": "113",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_ak47-113.png",
+        "paint_name": "AK-47 | The Outsiders"
+    },
+    {
+        "weapon_defindex": 7,
+        "weapon_name": "weapon_ak47",
         "paint": "122",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_ak47-122.png",
         "paint_name": "AK-47 | Jungle Spray"
+    },
+    {
+        "weapon_defindex": 7,
+        "weapon_name": "weapon_ak47",
+        "paint": "142",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_ak47-142.png",
+        "paint_name": "AK-47 | B the Monster"
     },
     {
         "weapon_defindex": 7,
@@ -1325,6 +1416,13 @@
     {
         "weapon_defindex": 7,
         "weapon_name": "weapon_ak47",
+        "paint": "912",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_ak47-912.png",
+        "paint_name": "AK-47 | Crossfade"
+    },
+    {
+        "weapon_defindex": 7,
+        "weapon_name": "weapon_ak47",
         "paint": "921",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_ak47-921.png",
         "paint_name": "AK-47 | Gold Arabesque"
@@ -1402,6 +1500,13 @@
     {
         "weapon_defindex": 7,
         "weapon_name": "weapon_ak47",
+        "paint": "1179",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_ak47-1179.png",
+        "paint_name": "AK-47 | Olive Polycam"
+    },
+    {
+        "weapon_defindex": 7,
+        "weapon_name": "weapon_ak47",
         "paint": "1221",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_ak47-1221.png",
         "paint_name": "AK-47 | Head Shot"
@@ -1418,7 +1523,7 @@
         "weapon_name": "weapon_aug",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_aug.png",
-        "paint_name": "AUG  | Default"
+        "paint_name": "AUG| Default"
     },
     {
         "weapon_defindex": 8,
@@ -1475,6 +1580,27 @@
         "paint": "110",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_aug-110.png",
         "paint_name": "AUG | Condemned"
+    },
+    {
+        "weapon_defindex": 8,
+        "weapon_name": "weapon_aug",
+        "paint": "121",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_aug-121.png",
+        "paint_name": "AUG | Luxe Trim"
+    },
+    {
+        "weapon_defindex": 8,
+        "weapon_name": "weapon_aug",
+        "paint": "134",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_aug-134.png",
+        "paint_name": "AUG | Eye of Zapems"
+    },
+    {
+        "weapon_defindex": 8,
+        "weapon_name": "weapon_aug",
+        "paint": "173",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_aug-173.png",
+        "paint_name": "AUG | Lil' Pig"
     },
     {
         "weapon_defindex": 8,
@@ -1684,7 +1810,7 @@
         "weapon_name": "weapon_awp",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_awp.png",
-        "paint_name": "AWP  | Default"
+        "paint_name": "AWP| Default"
     },
     {
         "weapon_defindex": 9,
@@ -1713,6 +1839,20 @@
         "paint": "84",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_awp-84.png",
         "paint_name": "AWP | Pink DDPAT"
+    },
+    {
+        "weapon_defindex": 9,
+        "weapon_name": "weapon_awp",
+        "paint": "137",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_awp-137.png",
+        "paint_name": "AWP | Crakow!"
+    },
+    {
+        "weapon_defindex": 9,
+        "weapon_name": "weapon_awp",
+        "paint": "163",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_awp-163.png",
+        "paint_name": "AWP | CMYK"
     },
     {
         "weapon_defindex": 9,
@@ -1971,7 +2111,7 @@
         "weapon_name": "weapon_famas",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_famas.png",
-        "paint_name": "FAMAS  | Default"
+        "paint_name": "FAMAS| Default"
     },
     {
         "weapon_defindex": 10,
@@ -2074,6 +2214,13 @@
     {
         "weapon_defindex": 10,
         "weapon_name": "weapon_famas",
+        "paint": "461",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_famas-461.png",
+        "paint_name": "FAMAS | Half Sleeve"
+    },
+    {
+        "weapon_defindex": 10,
+        "weapon_name": "weapon_famas",
         "paint": "477",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_famas-477.png",
         "paint_name": "FAMAS | Neural Net"
@@ -2144,6 +2291,13 @@
     {
         "weapon_defindex": 10,
         "weapon_name": "weapon_famas",
+        "paint": "882",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_famas-882.png",
+        "paint_name": "FAMAS | Halftone Wash"
+    },
+    {
+        "weapon_defindex": 10,
+        "weapon_name": "weapon_famas",
         "paint": "904",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_famas-904.png",
         "paint_name": "FAMAS | Decommissioned"
@@ -2209,7 +2363,7 @@
         "weapon_name": "weapon_g3sg1",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_g3sg1.png",
-        "paint_name": "G3SG1  | Default"
+        "paint_name": "G3SG1| Default"
     },
     {
         "weapon_defindex": 11,
@@ -2412,7 +2566,7 @@
         "weapon_name": "weapon_galilar",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_galilar.png",
-        "paint_name": "Galil AR  | Default"
+        "paint_name": "Galil AR| Default"
     },
     {
         "weapon_defindex": 13,
@@ -2469,6 +2623,13 @@
         "paint": "237",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_galilar-237.png",
         "paint_name": "Galil AR | Urban Rubble"
+    },
+    {
+        "weapon_defindex": 13,
+        "weapon_name": "weapon_galilar",
+        "paint": "239",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_galilar-239.png",
+        "paint_name": "Galil AR | Metallic Squeezer"
     },
     {
         "weapon_defindex": 13,
@@ -2599,6 +2760,13 @@
     {
         "weapon_defindex": 13,
         "weapon_name": "weapon_galilar",
+        "paint": "939",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_galilar-939.png",
+        "paint_name": "Galil AR | NV"
+    },
+    {
+        "weapon_defindex": 13,
+        "weapon_name": "weapon_galilar",
         "paint": "972",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_galilar-972.png",
         "paint_name": "Galil AR | Connexion"
@@ -2646,11 +2814,18 @@
         "paint_name": "Galil AR | Destroyer"
     },
     {
+        "weapon_defindex": 13,
+        "weapon_name": "weapon_galilar",
+        "paint": "1178",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_galilar-1178.png",
+        "paint_name": "Galil AR | Rainbow Spoon"
+    },
+    {
         "weapon_defindex": 14,
         "weapon_name": "weapon_m249",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_m249.png",
-        "paint_name": "M249  | Default"
+        "paint_name": "M249| Default"
     },
     {
         "weapon_defindex": 14,
@@ -2665,6 +2840,13 @@
         "paint": "75",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_m249-75.png",
         "paint_name": "M249 | Blizzard Marbleized"
+    },
+    {
+        "weapon_defindex": 14,
+        "weapon_name": "weapon_m249",
+        "paint": "120",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_m249-120.png",
+        "paint_name": "M249 | Hypnosis"
     },
     {
         "weapon_defindex": 14,
@@ -2753,6 +2935,13 @@
     {
         "weapon_defindex": 14,
         "weapon_name": "weapon_m249",
+        "paint": "875",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_m249-875.png",
+        "paint_name": "M249 | Spectrogram"
+    },
+    {
+        "weapon_defindex": 14,
+        "weapon_name": "weapon_m249",
         "paint": "900",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_m249-900.png",
         "paint_name": "M249 | Warbird"
@@ -2804,7 +2993,7 @@
         "weapon_name": "weapon_m4a1",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_m4a1.png",
-        "paint_name": "M4A4  | Default"
+        "paint_name": "M4A4| Default"
     },
     {
         "weapon_defindex": 16,
@@ -2833,6 +3022,13 @@
         "paint": "101",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_m4a1-101.png",
         "paint_name": "M4A4 | Tornado"
+    },
+    {
+        "weapon_defindex": 16,
+        "weapon_name": "weapon_m4a1",
+        "paint": "118",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_m4a1-118.png",
+        "paint_name": "M4A4 | Turbine"
     },
     {
         "weapon_defindex": 16,
@@ -3012,6 +3208,13 @@
     {
         "weapon_defindex": 16,
         "weapon_name": "weapon_m4a1",
+        "paint": "874",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_m4a1-874.png",
+        "paint_name": "M4A4 | Polysoup"
+    },
+    {
+        "weapon_defindex": 16,
+        "weapon_name": "weapon_m4a1",
         "paint": "926",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_m4a1-926.png",
         "paint_name": "M4A4 | Red DDPAT"
@@ -3091,7 +3294,7 @@
         "weapon_name": "weapon_mac10",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_mac10.png",
-        "paint_name": "MAC-10  | Default"
+        "paint_name": "MAC-10| Default"
     },
     {
         "weapon_defindex": 17,
@@ -3141,6 +3344,20 @@
         "paint": "101",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_mac10-101.png",
         "paint_name": "MAC-10 | Tornado"
+    },
+    {
+        "weapon_defindex": 17,
+        "weapon_name": "weapon_mac10",
+        "paint": "126",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_mac10-126.png",
+        "paint_name": "MAC-10 | Saibā Oni"
+    },
+    {
+        "weapon_defindex": 17,
+        "weapon_name": "weapon_mac10",
+        "paint": "140",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_mac10-140.png",
+        "paint_name": "MAC-10 | Pipsqueak"
     },
     {
         "weapon_defindex": 17,
@@ -3420,7 +3637,7 @@
         "weapon_name": "weapon_p90",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_p90.png",
-        "paint_name": "P90  | Default"
+        "paint_name": "P90| Default"
     },
     {
         "weapon_defindex": 19,
@@ -3456,6 +3673,20 @@
         "paint": "124",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_p90-124.png",
         "paint_name": "P90 | Sand Spray"
+    },
+    {
+        "weapon_defindex": 19,
+        "weapon_name": "weapon_p90",
+        "paint": "127",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_p90-127.png",
+        "paint_name": "P90 | Randy Rush"
+    },
+    {
+        "weapon_defindex": 19,
+        "weapon_name": "weapon_p90",
+        "paint": "133",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_p90-133.png",
+        "paint_name": "P90 | Wash me"
     },
     {
         "weapon_defindex": 19,
@@ -3649,6 +3880,13 @@
     {
         "weapon_defindex": 19,
         "weapon_name": "weapon_p90",
+        "paint": "936",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_p90-936.png",
+        "paint_name": "P90 | Attack Vector"
+    },
+    {
+        "weapon_defindex": 19,
+        "weapon_name": "weapon_p90",
         "paint": "969",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_p90-969.png",
         "paint_name": "P90 | Freight"
@@ -3714,7 +3952,14 @@
         "weapon_name": "weapon_mp5sd",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_mp5sd.png",
-        "paint_name": "MP5-SD  | Default"
+        "paint_name": "MP5-SD| Default"
+    },
+    {
+        "weapon_defindex": 23,
+        "weapon_name": "weapon_mp5sd",
+        "paint": "161",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_mp5sd-161.png",
+        "paint_name": "MP5-SD | Neon Squeezer"
     },
     {
         "weapon_defindex": 23,
@@ -3722,6 +3967,13 @@
         "paint": "753",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_mp5sd-753.png",
         "paint_name": "MP5-SD | Dirt Drop"
+    },
+    {
+        "weapon_defindex": 23,
+        "weapon_name": "weapon_mp5sd",
+        "paint": "768",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_mp5sd-768.png",
+        "paint_name": "MP5-SD | Savannah Halftone"
     },
     {
         "weapon_defindex": 23,
@@ -3824,6 +4076,13 @@
     {
         "weapon_defindex": 23,
         "weapon_name": "weapon_mp5sd",
+        "paint": "1180",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_mp5sd-1180.png",
+        "paint_name": "MP5-SD | Statics"
+    },
+    {
+        "weapon_defindex": 23,
+        "weapon_name": "weapon_mp5sd",
         "paint": "1231",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_mp5sd-1231.png",
         "paint_name": "MP5-SD | Liquidation"
@@ -3833,7 +4092,7 @@
         "weapon_name": "weapon_ump45",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_ump45.png",
-        "paint_name": "UMP-45  | Default"
+        "paint_name": "UMP-45| Default"
     },
     {
         "weapon_defindex": 24,
@@ -3876,6 +4135,13 @@
         "paint": "93",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_ump45-93.png",
         "paint_name": "UMP-45 | Caramel"
+    },
+    {
+        "weapon_defindex": 24,
+        "weapon_name": "weapon_ump45",
+        "paint": "131",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_ump45-131.png",
+        "paint_name": "UMP-45 | Neo-Noir"
     },
     {
         "weapon_defindex": 24,
@@ -3932,6 +4198,13 @@
         "paint": "392",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_ump45-392.png",
         "paint_name": "UMP-45 | Delusion"
+    },
+    {
+        "weapon_defindex": 24,
+        "weapon_name": "weapon_ump45",
+        "paint": "412",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_ump45-412.png",
+        "paint_name": "UMP-45 | Crimson Foil"
     },
     {
         "weapon_defindex": 24,
@@ -4099,7 +4372,7 @@
         "weapon_name": "weapon_xm1014",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_xm1014.png",
-        "paint_name": "XM1014  | Default"
+        "paint_name": "XM1014| Default"
     },
     {
         "weapon_defindex": 25,
@@ -4128,6 +4401,13 @@
         "paint": "135",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_xm1014-135.png",
         "paint_name": "XM1014 | Urban Perforated"
+    },
+    {
+        "weapon_defindex": 25,
+        "weapon_name": "weapon_xm1014",
+        "paint": "146",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_xm1014-146.png",
+        "paint_name": "XM1014 | Monster Melt"
     },
     {
         "weapon_defindex": 25,
@@ -4279,6 +4559,13 @@
     {
         "weapon_defindex": 25,
         "weapon_name": "weapon_xm1014",
+        "paint": "834",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_xm1014-834.png",
+        "paint_name": "XM1014 | Halftone Shift"
+    },
+    {
+        "weapon_defindex": 25,
+        "weapon_name": "weapon_xm1014",
         "paint": "850",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_xm1014-850.png",
         "paint_name": "XM1014 | Incinegator"
@@ -4351,7 +4638,7 @@
         "weapon_name": "weapon_bizon",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_bizon.png",
-        "paint_name": "PP-Bizon  | Default"
+        "paint_name": "PP-Bizon| Default"
     },
     {
         "weapon_defindex": 26,
@@ -4531,6 +4818,13 @@
     {
         "weapon_defindex": 26,
         "weapon_name": "weapon_bizon",
+        "paint": "770",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_bizon-770.png",
+        "paint_name": "PP-Bizon | Cold Cell"
+    },
+    {
+        "weapon_defindex": 26,
+        "weapon_name": "weapon_bizon",
         "paint": "775",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_bizon-775.png",
         "paint_name": "PP-Bizon | Facility Sketch"
@@ -4589,7 +4883,7 @@
         "weapon_name": "weapon_mag7",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_mag7.png",
-        "paint_name": "MAG-7  | Default"
+        "paint_name": "MAG-7| Default"
     },
     {
         "weapon_defindex": 27,
@@ -4755,6 +5049,13 @@
     {
         "weapon_defindex": 27,
         "weapon_name": "weapon_mag7",
+        "paint": "773",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_mag7-773.png",
+        "paint_name": "MAG-7 | Wildwood"
+    },
+    {
+        "weapon_defindex": 27,
+        "weapon_name": "weapon_mag7",
         "paint": "787",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_mag7-787.png",
         "paint_name": "MAG-7 | Core Breach"
@@ -4827,7 +5128,7 @@
         "weapon_name": "weapon_negev",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_negev.png",
-        "paint_name": "Negev  | Default"
+        "paint_name": "Negev| Default"
     },
     {
         "weapon_defindex": 28,
@@ -4835,6 +5136,13 @@
         "paint": "28",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_negev-28.png",
         "paint_name": "Negev | Anodized Navy"
+    },
+    {
+        "weapon_defindex": 28,
+        "weapon_name": "weapon_negev",
+        "paint": "144",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_negev-144.png",
+        "paint_name": "Negev | Wall Bang"
     },
     {
         "weapon_defindex": 28,
@@ -4988,7 +5296,7 @@
         "weapon_name": "weapon_sawedoff",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_sawedoff.png",
-        "paint_name": "Sawed-Off  | Default"
+        "paint_name": "Sawed-Off| Default"
     },
     {
         "weapon_defindex": 29,
@@ -5219,7 +5527,7 @@
         "weapon_name": "weapon_tec9",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_tec9.png",
-        "paint_name": "Tec-9  | Default"
+        "paint_name": "Tec-9| Default"
     },
     {
         "weapon_defindex": 30,
@@ -5413,6 +5721,13 @@
     {
         "weapon_defindex": 30,
         "weapon_name": "weapon_tec9",
+        "paint": "766",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_tec9-766.png",
+        "paint_name": "Tec-9 | Tiger Stencil"
+    },
+    {
+        "weapon_defindex": 30,
+        "weapon_name": "weapon_tec9",
         "paint": "791",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_tec9-791.png",
         "paint_name": "Tec-9 | Remote Control"
@@ -5499,7 +5814,14 @@
         "weapon_name": "weapon_taser",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_taser.png",
-        "paint_name": "Zeus x27  | Default"
+        "paint_name": "Zeus x27| Default"
+    },
+    {
+        "weapon_defindex": 31,
+        "weapon_name": "weapon_taser",
+        "paint": "292",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_taser-292.png",
+        "paint_name": "Zeus x27 | Dragon Snore"
     },
     {
         "weapon_defindex": 31,
@@ -5513,7 +5835,7 @@
         "weapon_name": "weapon_hkp2000",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_hkp2000.png",
-        "paint_name": "P2000  | Default"
+        "paint_name": "P2000| Default"
     },
     {
         "weapon_defindex": 32,
@@ -5672,6 +5994,13 @@
     {
         "weapon_defindex": 32,
         "weapon_name": "weapon_hkp2000",
+        "paint": "878",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_hkp2000-878.png",
+        "paint_name": "P2000 | Coral Halftone"
+    },
+    {
+        "weapon_defindex": 32,
+        "weapon_name": "weapon_hkp2000",
         "paint": "894",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_hkp2000-894.png",
         "paint_name": "P2000 | Obsidian"
@@ -5730,7 +6059,7 @@
         "weapon_name": "weapon_mp7",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_mp7.png",
-        "paint_name": "MP7  | Default"
+        "paint_name": "MP7| Default"
     },
     {
         "weapon_defindex": 33,
@@ -5931,6 +6260,13 @@
     {
         "weapon_defindex": 33,
         "weapon_name": "weapon_mp7",
+        "paint": "940",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_mp7-940.png",
+        "paint_name": "MP7 | Astrolabe"
+    },
+    {
+        "weapon_defindex": 33,
+        "weapon_name": "weapon_mp7",
         "paint": "1007",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_mp7-1007.png",
         "paint_name": "MP7 | Vault Heist"
@@ -5975,7 +6311,7 @@
         "weapon_name": "weapon_mp9",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_mp9.png",
-        "paint_name": "MP9  | Default"
+        "paint_name": "MP9| Default"
     },
     {
         "weapon_defindex": 34,
@@ -6046,6 +6382,13 @@
         "paint": "329",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_mp9-329.png",
         "paint_name": "MP9 | Dark Age"
+    },
+    {
+        "weapon_defindex": 34,
+        "weapon_name": "weapon_mp9",
+        "paint": "331",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_mp9-331.png",
+        "paint_name": "MP9 | Arctic Tri-Tone"
     },
     {
         "weapon_defindex": 34,
@@ -6213,7 +6556,7 @@
         "weapon_name": "weapon_nova",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_nova.png",
-        "paint_name": "Nova  | Default"
+        "paint_name": "Nova| Default"
     },
     {
         "weapon_defindex": 35,
@@ -6249,6 +6592,13 @@
         "paint": "107",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_nova-107.png",
         "paint_name": "Nova | Polar Mesh"
+    },
+    {
+        "weapon_defindex": 35,
+        "weapon_name": "weapon_nova",
+        "paint": "145",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_nova-145.png",
+        "paint_name": "Nova | Wurst Hölle"
     },
     {
         "weapon_defindex": 35,
@@ -6347,6 +6697,13 @@
         "paint": "323",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_nova-323.png",
         "paint_name": "Nova | Rust Coat"
+    },
+    {
+        "weapon_defindex": 35,
+        "weapon_name": "weapon_nova",
+        "paint": "324",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_nova-324.png",
+        "paint_name": "Nova | Yorkshire"
     },
     {
         "weapon_defindex": 35,
@@ -6479,7 +6836,7 @@
         "weapon_name": "weapon_p250",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_p250.png",
-        "paint_name": "P250  | Default"
+        "paint_name": "P250| Default"
     },
     {
         "weapon_defindex": 36,
@@ -6536,6 +6893,13 @@
         "paint": "125",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_p250-125.png",
         "paint_name": "P250 | X-Ray"
+    },
+    {
+        "weapon_defindex": 36,
+        "weapon_name": "weapon_p250",
+        "paint": "130",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_p250-130.png",
+        "paint_name": "P250 | Epicenter"
     },
     {
         "weapon_defindex": 36,
@@ -6708,6 +7072,13 @@
     {
         "weapon_defindex": 36,
         "weapon_name": "weapon_p250",
+        "paint": "774",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_p250-774.png",
+        "paint_name": "P250 | Small Game"
+    },
+    {
+        "weapon_defindex": 36,
+        "weapon_name": "weapon_p250",
         "paint": "777",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_p250-777.png",
         "paint_name": "P250 | Facility Draft"
@@ -6815,7 +7186,7 @@
         "weapon_name": "weapon_scar20",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_scar20.png",
-        "paint_name": "SCAR-20  | Default"
+        "paint_name": "SCAR-20| Default"
     },
     {
         "weapon_defindex": 38,
@@ -6844,6 +7215,13 @@
         "paint": "116",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_scar20-116.png",
         "paint_name": "SCAR-20 | Sand Mesh"
+    },
+    {
+        "weapon_defindex": 38,
+        "weapon_name": "weapon_scar20",
+        "paint": "117",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_scar20-117.png",
+        "paint_name": "SCAR-20 | Trail Blazer"
     },
     {
         "weapon_defindex": 38,
@@ -6960,6 +7338,13 @@
     {
         "weapon_defindex": 38,
         "weapon_name": "weapon_scar20",
+        "paint": "883",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_scar20-883.png",
+        "paint_name": "SCAR-20 | Wild Berry"
+    },
+    {
+        "weapon_defindex": 38,
+        "weapon_name": "weapon_scar20",
         "paint": "896",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_scar20-896.png",
         "paint_name": "SCAR-20 | Torn"
@@ -7004,7 +7389,7 @@
         "weapon_name": "weapon_sg556",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_sg556.png",
-        "paint_name": "SG 553  | Default"
+        "paint_name": "SG 553| Default"
     },
     {
         "weapon_defindex": 39,
@@ -7191,6 +7576,13 @@
     {
         "weapon_defindex": 39,
         "weapon_name": "weapon_sg556",
+        "paint": "901",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_sg556-901.png",
+        "paint_name": "SG 553 | Berry Gel Coat"
+    },
+    {
+        "weapon_defindex": 39,
+        "weapon_name": "weapon_sg556",
         "paint": "934",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_sg556-934.png",
         "paint_name": "SG 553 | Bleached"
@@ -7249,7 +7641,7 @@
         "weapon_name": "weapon_ssg08",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_ssg08.png",
-        "paint_name": "SSG 08  | Default"
+        "paint_name": "SSG 08| Default"
     },
     {
         "weapon_defindex": 40,
@@ -7285,6 +7677,13 @@
         "paint": "99",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_ssg08-99.png",
         "paint_name": "SSG 08 | Sand Dune"
+    },
+    {
+        "weapon_defindex": 40,
+        "weapon_name": "weapon_ssg08",
+        "paint": "128",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_ssg08-128.png",
+        "paint_name": "SSG 08 | Rapid Transit"
     },
     {
         "weapon_defindex": 40,
@@ -7352,6 +7751,13 @@
     {
         "weapon_defindex": 40,
         "weapon_name": "weapon_ssg08",
+        "paint": "513",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_ssg08-513.png",
+        "paint_name": "SSG 08 | Zeno"
+    },
+    {
+        "weapon_defindex": 40,
+        "weapon_name": "weapon_ssg08",
         "paint": "538",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_ssg08-538.png",
         "paint_name": "SSG 08 | Necropos"
@@ -7404,6 +7810,13 @@
         "paint": "868",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_ssg08-868.png",
         "paint_name": "SSG 08 | Sea Calico"
+    },
+    {
+        "weapon_defindex": 40,
+        "weapon_name": "weapon_ssg08",
+        "paint": "877",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_ssg08-877.png",
+        "paint_name": "SSG 08 | Halftone Whorl"
     },
     {
         "weapon_defindex": 40,
@@ -7487,7 +7900,7 @@
         "weapon_name": "weapon_m4a1_silencer",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_m4a1_silencer.png",
-        "paint_name": "M4A1-S  | Default"
+        "paint_name": "M4A1-S| Default"
     },
     {
         "weapon_defindex": 60,
@@ -7502,6 +7915,20 @@
         "paint": "77",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_m4a1_silencer-77.png",
         "paint_name": "M4A1-S | Boreal Forest"
+    },
+    {
+        "weapon_defindex": 60,
+        "weapon_name": "weapon_m4a1_silencer",
+        "paint": "106",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_m4a1_silencer-106.png",
+        "paint_name": "M4A1-S | Vaporwave"
+    },
+    {
+        "weapon_defindex": 60,
+        "weapon_name": "weapon_m4a1_silencer",
+        "paint": "160",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_m4a1_silencer-160.png",
+        "paint_name": "M4A1-S | Wash me plz"
     },
     {
         "weapon_defindex": 60,
@@ -7723,6 +8150,13 @@
     {
         "weapon_defindex": 60,
         "weapon_name": "weapon_m4a1_silencer",
+        "paint": "1177",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_m4a1_silencer-1177.png",
+        "paint_name": "M4A1-S | Fade"
+    },
+    {
+        "weapon_defindex": 60,
+        "weapon_name": "weapon_m4a1_silencer",
         "paint": "1223",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_m4a1_silencer-1223.png",
         "paint_name": "M4A1-S | Emphorosaur-S"
@@ -7739,7 +8173,7 @@
         "weapon_name": "weapon_usp_silencer",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_usp_silencer.png",
-        "paint_name": "USP-S  | Default"
+        "paint_name": "USP-S| Default"
     },
     {
         "weapon_defindex": 61,
@@ -7754,6 +8188,13 @@
         "paint": "60",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_usp_silencer-60.png",
         "paint_name": "USP-S | Dark Water"
+    },
+    {
+        "weapon_defindex": 61,
+        "weapon_name": "weapon_usp_silencer",
+        "paint": "115",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_usp_silencer-115.png",
+        "paint_name": "USP-S | 27"
     },
     {
         "weapon_defindex": 61,
@@ -7919,6 +8360,13 @@
     {
         "weapon_defindex": 61,
         "weapon_name": "weapon_usp_silencer",
+        "paint": "830",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_usp_silencer-830.png",
+        "paint_name": "USP-S | Alpine Camo"
+    },
+    {
+        "weapon_defindex": 61,
+        "weapon_name": "weapon_usp_silencer",
         "paint": "922",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_usp_silencer-922.png",
         "paint_name": "USP-S | Orange Anolis"
@@ -7998,7 +8446,7 @@
         "weapon_name": "weapon_cz75a",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_cz75a.png",
-        "paint_name": "CZ75-Auto  | Default"
+        "paint_name": "CZ75-Auto| Default"
     },
     {
         "weapon_defindex": 63,
@@ -8192,6 +8640,13 @@
     {
         "weapon_defindex": 63,
         "weapon_name": "weapon_cz75a",
+        "paint": "937",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_cz75a-937.png",
+        "paint_name": "CZ75-Auto | Slalom"
+    },
+    {
+        "weapon_defindex": 63,
+        "weapon_name": "weapon_cz75a",
         "paint": "944",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_cz75a-944.png",
         "paint_name": "CZ75-Auto | Distressed"
@@ -8229,7 +8684,7 @@
         "weapon_name": "weapon_revolver",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_revolver.png",
-        "paint_name": "R8 Revolver  | Default"
+        "paint_name": "R8 Revolver| Default"
     },
     {
         "weapon_defindex": 64,
@@ -8258,6 +8713,13 @@
         "paint": "40",
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_revolver-40.png",
         "paint_name": "R8 Revolver | Night"
+    },
+    {
+        "weapon_defindex": 64,
+        "weapon_name": "weapon_revolver",
+        "paint": "123",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_revolver-123.png",
+        "paint_name": "R8 Revolver | Tango"
     },
     {
         "weapon_defindex": 64,
@@ -8383,7 +8845,7 @@
         "weapon_name": "weapon_bayonet",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_bayonet.png",
-        "paint_name": "★ Bayonet  | Default"
+        "paint_name": "★ Bayonet| Default"
     },
     {
         "weapon_defindex": 500,
@@ -8628,7 +9090,7 @@
         "weapon_name": "weapon_knife_css",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_knife_css.png",
-        "paint_name": "★ Classic Knife  | Default"
+        "paint_name": "★ Classic Knife| Default"
     },
     {
         "weapon_defindex": 503,
@@ -8719,7 +9181,7 @@
         "weapon_name": "weapon_knife_flip",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_knife_flip.png",
-        "paint_name": "★ Flip Knife  | Default"
+        "paint_name": "★ Flip Knife| Default"
     },
     {
         "weapon_defindex": 505,
@@ -8964,7 +9426,7 @@
         "weapon_name": "weapon_knife_gut",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_knife_gut.png",
-        "paint_name": "★ Gut Knife  | Default"
+        "paint_name": "★ Gut Knife| Default"
     },
     {
         "weapon_defindex": 506,
@@ -9209,7 +9671,7 @@
         "weapon_name": "weapon_knife_karambit",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_knife_karambit.png",
-        "paint_name": "★ Karambit  | Default"
+        "paint_name": "★ Karambit| Default"
     },
     {
         "weapon_defindex": 507,
@@ -9454,7 +9916,7 @@
         "weapon_name": "weapon_knife_m9_bayonet",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_knife_m9_bayonet.png",
-        "paint_name": "★ M9 Bayonet  | Default"
+        "paint_name": "★ M9 Bayonet| Default"
     },
     {
         "weapon_defindex": 508,
@@ -9699,7 +10161,7 @@
         "weapon_name": "weapon_knife_tactical",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_knife_tactical.png",
-        "paint_name": "★ Huntsman Knife  | Default"
+        "paint_name": "★ Huntsman Knife| Default"
     },
     {
         "weapon_defindex": 509,
@@ -9944,7 +10406,7 @@
         "weapon_name": "weapon_knife_falchion",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_knife_falchion.png",
-        "paint_name": "★ Falchion Knife  | Default"
+        "paint_name": "★ Falchion Knife| Default"
     },
     {
         "weapon_defindex": 512,
@@ -10189,7 +10651,7 @@
         "weapon_name": "weapon_knife_survival_bowie",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_knife_survival_bowie.png",
-        "paint_name": "★ Bowie Knife  | Default"
+        "paint_name": "★ Bowie Knife| Default"
     },
     {
         "weapon_defindex": 514,
@@ -10434,7 +10896,7 @@
         "weapon_name": "weapon_knife_butterfly",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_knife_butterfly.png",
-        "paint_name": "★ Butterfly Knife  | Default"
+        "paint_name": "★ Butterfly Knife| Default"
     },
     {
         "weapon_defindex": 515,
@@ -10679,7 +11141,7 @@
         "weapon_name": "weapon_knife_push",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_knife_push.png",
-        "paint_name": "★ Shadow Daggers  | Default"
+        "paint_name": "★ Shadow Daggers| Default"
     },
     {
         "weapon_defindex": 516,
@@ -10924,7 +11386,7 @@
         "weapon_name": "weapon_knife_cord",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_knife_cord.png",
-        "paint_name": "★ Paracord Knife  | Default"
+        "paint_name": "★ Paracord Knife| Default"
     },
     {
         "weapon_defindex": 517,
@@ -11015,7 +11477,7 @@
         "weapon_name": "weapon_knife_canis",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_knife_canis.png",
-        "paint_name": "★ Survival Knife  | Default"
+        "paint_name": "★ Survival Knife| Default"
     },
     {
         "weapon_defindex": 518,
@@ -11106,7 +11568,7 @@
         "weapon_name": "weapon_knife_ursus",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_knife_ursus.png",
-        "paint_name": "★ Ursus Knife  | Default"
+        "paint_name": "★ Ursus Knife| Default"
     },
     {
         "weapon_defindex": 519,
@@ -11281,7 +11743,7 @@
         "weapon_name": "weapon_knife_gypsy_jackknife",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_knife_gypsy_jackknife.png",
-        "paint_name": "★ Navaja Knife  | Default"
+        "paint_name": "★ Navaja Knife| Default"
     },
     {
         "weapon_defindex": 520,
@@ -11456,7 +11918,7 @@
         "weapon_name": "weapon_knife_outdoor",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_knife_outdoor.png",
-        "paint_name": "★ Nomad Knife  | Default"
+        "paint_name": "★ Nomad Knife| Default"
     },
     {
         "weapon_defindex": 521,
@@ -11547,7 +12009,7 @@
         "weapon_name": "weapon_knife_stiletto",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_knife_stiletto.png",
-        "paint_name": "★ Stiletto Knife  | Default"
+        "paint_name": "★ Stiletto Knife| Default"
     },
     {
         "weapon_defindex": 522,
@@ -11722,7 +12184,7 @@
         "weapon_name": "weapon_knife_widowmaker",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_knife_widowmaker.png",
-        "paint_name": "★ Talon Knife  | Default"
+        "paint_name": "★ Talon Knife| Default"
     },
     {
         "weapon_defindex": 523,
@@ -11897,7 +12359,7 @@
         "weapon_name": "weapon_knife_skeleton",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_knife_skeleton.png",
-        "paint_name": "★ Skeleton Knife  | Default"
+        "paint_name": "★ Skeleton Knife| Default"
     },
     {
         "weapon_defindex": 525,
@@ -11988,7 +12450,7 @@
         "weapon_name": "weapon_knife_kukri",
         "paint": 0,
         "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/weapon_knife_kukri.png",
-        "paint_name": "★ Kukri Knife  | Default"
+        "paint_name": "★ Kukri Knife| Default"
     },
     {
         "weapon_defindex": 526,

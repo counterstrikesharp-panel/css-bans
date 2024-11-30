@@ -13,16 +13,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function applyGlow(img) {
-        try {
-            const color = colorThief.getColor(img);
-            const rgbColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
-            img.closest('.card').style.setProperty('--glow-color', rgbColor);
-            img.closest('.card').classList.add('glow');
-            img.previousElementSibling.classList.add('d-none');
-        }
-        catch (e) {
-            img.previousElementSibling.classList.add('d-none');
-        }
+        const color = colorThief.getColor(img);
+        const rgbColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+        img.closest('.card').style.setProperty('--glow-color', rgbColor);
+        img.closest('.card').classList.add('glow');
+        img.previousElementSibling.classList.add('d-none');
     }
 
     const skinPreviewModal = document.getElementById('skinPreviewModal');
@@ -37,4 +32,5 @@ document.addEventListener('DOMContentLoaded', function () {
         modalImage.src = skinImage;
         modalName.textContent = skinName;
     });
+
 });

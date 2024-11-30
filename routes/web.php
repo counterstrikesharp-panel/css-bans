@@ -117,8 +117,11 @@ Route::get('/logs', [LogViewerController::class, 'show'])->middleware('superadmi
 Route::get('/rcon/{server_id?}', [RconController::class, 'index'])->middleware('superadmin')->name('rcon');
 Route::post('/rcon/{server_id}', [RconController::class, 'execute'])->middleware('superadmin')->name('rcon.execute');
 
-Route::resource('vip', VIPController::class);
-Route::post('vip/list', 'VIPController@getVIPsList')->name('vip.list');
+if(env('VIP') == 'Enabled') {
+    Route::resource('vip', VIPController::class);
+    Route::post('vip/list', 'VIPController@getVIPsList')->name('vip.list');
+}
+
 use App\Http\Controllers\WeaponSkinController;
 
 Route::get('/weapons/skins', [WeaponSkinController::class, 'index'])->name('weapons.skins.index');
@@ -129,6 +132,7 @@ Route::get('/weapons/loadGloves/{type}', [WeaponSkinController::class, 'loadGlov
 Route::post('/weapons/agents/apply', [WeaponSkinController::class, 'applyAgent'])->name('weapons.agents.apply')->middleware('auth');
 Route::post('/weapons/gloves/apply', [WeaponSkinController::class, 'applyGlove'])->name('weapons.gloves.apply')->middleware('auth');
 Route::post('/weapons/music/apply', [WeaponSkinController::class, 'applyMusic'])->name('weapons.music.apply')->middleware('auth');
+Route::post('/weapons/pins/apply', [WeaponSkinController::class, 'applyPin'])->name('weapons.pin.apply')->middleware('auth');
 
 Route::get('/weapons/knives', [WeaponSkinController::class, 'knives'])->name('weapons.knives');
 Route::post('/weapons/knives/apply', [WeaponSkinController::class, 'applyKnife'])->name('weapons.knives.apply');
@@ -137,7 +141,17 @@ Route::get('/weapons/loadKnives/{type}', [WeaponSkinController::class, 'loadKniv
 Route::get('/agents/skins', [WeaponSkinController::class, 'agents'])->name('agents')->middleware('auth');
 Route::get('/gloves/skins', [WeaponSkinController::class, 'gloves'])->name('gloves')->middleware('auth');
 Route::get('/music/kits', [WeaponSkinController::class, 'music'])->name('music')->middleware('auth');
+Route::get('/pins/pin', [WeaponSkinController::class, 'pin'])->name('pin')->middleware('auth');
 
+Route::get('/weapons/stickers', function() {
+    $stickers = json_decode(File::get(resource_path('json/stickers.json')), true);
+    return response()->json($stickers);
+});
+
+Route::get('/weapons/keychains', function() {
+    $keychains = json_decode(File::get(resource_path('json/keychains.json')), true);
+    return response()->json($keychains);
+});
 
 use App\Http\Controllers\SettingsController;
 
@@ -150,21 +164,23 @@ Route::middleware(['superadmin'])->group(function () {
     Route::post('/settings/test-email', [SettingsController::class, 'sendTestEmail'])->name('settings.test-email');
 });
 
-Route::get('/appeals', [AppealController::class, 'list'])->name('appeals.list');
-Route::get('/appeals/create', [AppealController::class, 'create'])->name('appeals.create');
-Route::post('appeals', [AppealController::class, 'store'])->name('appeals.store');
-Route::get('/appeals/{id}', [AppealController::class, 'view'])->name('appeals.show');
-Route::put('/appeals/{id}/status', [AppealController::class, 'updateStatus'])->name('appeals.updateStatus');
+if(env('APPEALS') == 'Enabled') {
+    Route::get('/appeals', [AppealController::class, 'list'])->name('appeals.list');
+    Route::get('/appeals/create', [AppealController::class, 'create'])->name('appeals.create');
+    Route::post('appeals', [AppealController::class, 'store'])->name('appeals.store');
+    Route::get('/appeals/{id}', [AppealController::class, 'view'])->name('appeals.show');
+    Route::put('/appeals/{id}/status', [AppealController::class, 'updateStatus'])->name('appeals.updateStatus');
+}
 
-
-
-Route::prefix('reports')->group(function () {
-    Route::get('create', [ReportController::class, 'create'])->name('reports.create');
-    Route::post('store', [ReportController::class, 'store'])->name('reports.store');
-    Route::get('list', [ReportController::class, 'list'])->name('reports.list');
-    Route::get('show/{id}', [ReportController::class, 'show'])->name('reports.show');
-    Route::delete('destroy/{id}', [ReportController::class, 'destroy'])->name('reports.destroy');
-});
+if(env('REPORTS') == 'Enabled') {
+    Route::prefix('reports')->group(function () {
+        Route::get('create', [ReportController::class, 'create'])->name('reports.create');
+        Route::post('store', [ReportController::class, 'store'])->name('reports.store');
+        Route::get('list', [ReportController::class, 'list'])->name('reports.list');
+        Route::get('show/{id}', [ReportController::class, 'show'])->name('reports.show');
+        Route::delete('destroy/{id}', [ReportController::class, 'destroy'])->name('reports.destroy');
+    });
+}
 
 
 use App\Http\Controllers\ModuleServerSettingsController;
