@@ -30,6 +30,7 @@
                                 data-weapon-name="{{ $skin['weapon_name'] }}"
                                 data-weapon-nametag="{{ $skin['weapon_nametag'] }}"
                                 data-weapon-stattrak="{{ $skin['weapon_stattrak'] }}"
+                                data-weapon-stattrak-count="{{ $skin['weapon_stattrak_count'] }}"
                                 data-weapon-keychain="{{ $skin['weapon_keychain'] }}"
                                 data-weapon-sticker-0="{{ $skin['weapon_sticker_0'] }}"
                                 data-weapon-sticker-1="{{ $skin['weapon_sticker_1'] }}"

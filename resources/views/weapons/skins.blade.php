@@ -119,6 +119,7 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                            <input type="hidden" class="form-control" id="weapon_stattrak_count" name="weapon_stattrak_count">
                                             <div class="col-md-6">
                                                 <div class="form-group mt-3">
                                                     <label for="wear">{{ __('gloves.wear') }}</label>
@@ -307,6 +308,7 @@
                             const weaponSeed = $(this).data('seed');
                             const weaponNametag = $(this).data('weapon-nametag');
                             const weaponStattrak = $(this).data('weapon-stattrak');
+                            const weaponStattrakCount = $(this).data('weapon-stattrak-count');
                             const weaponKeychain = $(this).data('weapon-keychain');
                             const weaponSticker0 = $(this).data('weapon-sticker-0');
                             const weaponSticker1 = $(this).data('weapon-sticker-1');
@@ -336,8 +338,10 @@
                             }
                             if (weaponStattrak) {
                                 $('#weapon_stattrak').val(weaponStattrak);
+                                $('#weapon_stattrak_count').val(weaponStattrakCount);
                             } else {
                                 $('#weapon_stattrak').val(0);
+                                $('#weapon_stattrak_count').val(0);
                             }
                             if (weaponKeychain) {
                                 const keychainID = weaponKeychain.split(';')[0];

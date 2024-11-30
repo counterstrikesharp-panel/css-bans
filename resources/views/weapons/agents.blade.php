@@ -24,14 +24,15 @@
                                                 <span class="badge badge-warning">T</span>
                                             @endif
 
-                                            <span id="agent_{{$agent['model']}}" class="badge badge-{{ $agent['team'] == 3 ? 'primary' : 'danger' }}">{{ (isset($agent['is_applied_t']) && isset($agent['is_applied_ct']) && $agent['is_applied_t'] && $agent['is_applied_ct']) 
-                                                ? __('skins.active_both') 
-                                                : (isset($agent['is_applied_t']) && $agent['is_applied_t'] 
-                                                    ? __('skins.active_t') 
-                                                    : (isset($agent['is_applied_ct']) && $agent['is_applied_ct'] 
-                                                        ? __('skins.active_ct') 
-                                                        : '')) 
-                                            }}</span>
+                                            @if($agent['is_applied'])
+                                            <span id="agent_{{$agent['model']}}" class="badge badge-{{ $agent['team'] == 3 ? 'primary' : 'danger' }}">
+                                                    @if($agent['team'] == 2)
+                                                        {{ __('skins.active_t') }}
+                                                    @elseif($agent['team'] == 3)
+                                                        {{ __('skins.active_ct') }}
+                                                    @endif
+                                            </span>
+                                            @endif
                                             <div class="loader-skins"></div> <!-- Add loader -->
                                             <img src="{{ $agent['image'] }}" class="card-img-top" alt="{{ $agent['agent_name'] }}" crossorigin="anonymous">
                                         </a>

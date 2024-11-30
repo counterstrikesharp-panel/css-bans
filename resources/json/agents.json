@@ -1,13 +1,13 @@
 [
     {
         "team": 2,
-        "image": "",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/agent-5205.png",
         "model": "null",
         "agent_name": "Agent | Default"
     },
     {
         "team": 3,
-        "image": "",
+        "image": "https://raw.githubusercontent.com/Nereziel/cs2-WeaponPaints/main/website/img/skins/agent-4619.png",
         "model": "null",
         "agent_name": "Agent | Default"
     },
