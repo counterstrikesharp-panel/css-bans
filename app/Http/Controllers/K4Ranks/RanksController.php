@@ -235,7 +235,7 @@ class RanksController extends Controller
                         'g3sg1' => 'G3SG1',
                         'galilar' => 'Galil AR',
                         'm249' => 'M249',
-                        'm4a1' => 'M4A1',
+                        'm4a1' => 'M4A4',
                         'mac10' => 'MAC-10',
                         'p90' => 'P90',
                         'mp5sd' => 'MP5-SD',

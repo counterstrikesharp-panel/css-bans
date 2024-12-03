@@ -76,7 +76,7 @@ class WeaponSkinController extends Controller
         // Modified query to include weapon_nametag
         $appliedSkins = DB::connection('mysqlskins')
             ->table('wp_player_skins')
-            ->select('weapon_defindex', 'weapon_paint_id', 'weapon_wear', 'weapon_seed', 'weapon_nametag', 'weapon_stattrak', 'weapon_keychain', 'weapon_sticker_0', 'weapon_sticker_1', 'weapon_sticker_2', 'weapon_sticker_3', 'weapon_sticker_4', 'weapon_team')
+            ->select('weapon_defindex', 'weapon_paint_id', 'weapon_wear', 'weapon_seed', 'weapon_nametag', 'weapon_stattrak', 'weapon_stattrak_count', 'weapon_keychain', 'weapon_sticker_0', 'weapon_sticker_1', 'weapon_sticker_2', 'weapon_sticker_3', 'weapon_sticker_4', 'weapon_team')
             ->where('steamid', Auth::user()?->steam_id)
             ->get();
         $appliedKnife = DB::connection('mysqlskins')
@@ -135,6 +135,7 @@ class WeaponSkinController extends Controller
             $skin['seed'] = $appliedSkin ? $appliedSkin->weapon_seed : '';
             $skin['weapon_nametag'] = $appliedSkin ? $appliedSkin->weapon_nametag : '';
             $skin['weapon_stattrak'] = $appliedSkin ? $appliedSkin->weapon_stattrak : '';
+            $skin['weapon_stattrak_count'] = $appliedSkin ? $appliedSkin->weapon_stattrak_count : '';
             $skin['weapon_team'] = $appliedSkin ? $appliedSkin->weapon_team : '';
             $skin['weapon_keychain'] = $appliedSkin ? $appliedSkin->weapon_keychain : '';
             $skin['weapon_sticker_0'] = $appliedSkin ? $appliedSkin->weapon_sticker_0 : '';
@@ -263,17 +264,15 @@ class WeaponSkinController extends Controller
 
         foreach ($agents as &$agent) {
             if ($appliedAgents) {
-                $agent['is_applied_t'] = $agent['team'] == 2 && $agent['model'] == $appliedAgents->agent_t;
-                $agent['is_applied_ct'] = $agent['team'] == 3 && $agent['model'] == $appliedAgents->agent_ct;
+                $agent['is_applied'] = ($agent['team'] == 2 && $agent['model'] == $appliedAgents->agent_t) || ($agent['team'] == 3 && $agent['model'] == $appliedAgents->agent_ct);
             } else {
-                $agent['is_applied_t'] = false;
-                $agent['is_applied_ct'] = false;
+                $agent['is_applied'] = false;
             }
         }
 
-        // Sort applied agents to be first (T or CT applied)
-        usort($agents, function ($a, $b) {
-            return ($b['is_applied_t'] || $b['is_applied_ct']) - ($a['is_applied_t'] || $a['is_applied_ct']);
+        // Sort applied agents to be first
+        usort($agents, function($a, $b) {
+            return $b['is_applied'] - $a['is_applied'];
         });
 
         return view('weapons.agents', ['agents' => $agents]);
@@ -662,12 +661,14 @@ class WeaponSkinController extends Controller
                 $skin['seed'] = $appliedSkin->weapon_seed ?? '';
                 $skin['weapon_nametag'] = $appliedSkin->weapon_nametag ?? '';
                 $skin['weapon_stattrak'] = $appliedSkin->weapon_stattrak ?? '';
+                $skin['weapon_stattrak_count'] = $appliedSkin->weapon_stattrak_count ?? '';
                 $skin['weapon_team'] = $appliedSkin->weapon_team ?? '';
             } else {
                 $skin['wear'] = '';
                 $skin['seed'] = '';
                 $skin['weapon_nametag'] = '';
                 $skin['weapon_stattrak'] = '';
+                $skin['weapon_stattrak_count'] = '';
                 $skin['weapon_team'] = '';
             }
         }
