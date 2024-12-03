@@ -116,6 +116,7 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                            <input type="hidden" class="form-control" id="weapon_stattrak_count" name="weapon_stattrak_count">
                                         </div>
                                         <div class="form-group mt-3">
                                             <label for="wear">{{ __('gloves.wear') }}</label>
