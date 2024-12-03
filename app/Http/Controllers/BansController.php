@@ -60,7 +60,7 @@ class BansController extends Controller
             $editAction = '';
             $unbanAction = '';
             if(!empty($ban->server)) {
-                if (PermissionsHelper::hasBanPermission($ban->server_id) || PermissionsHelper::hasWebBanEditPermissions($ban->server_id)) {
+                if (PermissionsHelper::hasUnBanPermission($ban->server_id) || PermissionsHelper::hasWebBanEditPermissions($ban->server_id)) {
                     $editAction = "<a href='$siteDir/ban/edit/{$ban->id}' class='btn btn-info btn-sm'><i class='fa fa-edit'></i></a>";
                 }
                 if (empty($ban->player_steamid))
