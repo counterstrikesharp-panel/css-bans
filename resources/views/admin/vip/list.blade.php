@@ -1,4 +1,3 @@
-
 @php use App\Helpers\PermissionsHelper; @endphp
 <x-base-layout :scrollspy="false">
     <x-slot:pageTitle>
@@ -83,5 +82,4 @@
                 @vite(['resources/js/vip/list.ts'])
                 <script src="{{asset('plugins/notification/snackbar/snackbar.min.js')}}"></script>
             </x-slot>
-
 </x-base-layout>
