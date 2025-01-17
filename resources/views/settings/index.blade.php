@@ -31,7 +31,7 @@
                             @foreach($group as $key => $value)
                                 <div class="col-md-6 mb-3">
                                     <label for="{{ $key }}" class="form-label">{{ $key }}</label>
-                                    @if(in_array($key, ['RANKS', 'VIP', 'SKINS', 'REPORTS', 'APPEALS']))
+                                    @if(in_array($key, ['RANKS', 'VIP', 'SKINS', 'DEMOS', 'REPORTS', 'APPEALS']))
                                         <select class="form-select" id="{{ $key }}" name="{{ $key }}">
                                             <option value="Enabled" {{ $value == 'Enabled' ? 'selected' : '' }}>Enabled</option>
                                             <option value="Disabled" {{ $value == 'Disabled' ? 'selected' : '' }}>Disabled</option>

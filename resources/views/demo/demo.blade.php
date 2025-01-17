@@ -42,8 +42,6 @@
                             <div class="col-md-3">
                                 <select name="server" class="form-select">
                                     <option value="">All Servers</option>
-                                    <option value="NOLAGCS.COM | CS2 Public #1" {{ request('server') === 'NOLAGCS.COM | CS2 Public #1' ? 'selected' : '' }}>#1</option>
-                                    <option value="NOLAGCS.COM | CS2 Public #2" {{ request('server') === 'NOLAGCS.COM | CS2 Public #2' ? 'selected' : '' }}>#2</option>
                                 </select>
                             </div>
                             <div class="col-md-3">
@@ -83,11 +81,6 @@
                                     <td>{{ \Carbon\Carbon::parse($demo->date)->format('d.m.Y H:i') }}</td>
                                     <td>
                                         <div class="btn-group" role="group">
-                                            @if (PermissionsHelper::hasVipCreatePermission())
-                                            <a href="{{ env('DEMO_BASE_URL') }}/delete/{{ $demo->file }}.zip" class="btn btn-danger btn-sm">
-                                                Delete
-                                            </a>
-                                            @endif
                                             <a href="{{ env('DEMO_BASE_URL') }}/download/{{ $demo->file }}.zip" 
                                             class="btn btn-success btn-sm">
                                                 Download
