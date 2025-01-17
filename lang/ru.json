@@ -219,6 +219,7 @@
   "admins.updateVIP": "Обновить VIP",
   "admins.user": "Пользователь",
   "admins.vipAddedSuccessfully": "VIP успешно добавлен",
+  "admins.demos": "Демки",
   "agent.applyAgent": "Применить агента",
   "agent.applyAgentSkin": "Применить скин на агента",
   "agent.error": "Произошла ошибка при применении агента.",

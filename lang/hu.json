@@ -219,6 +219,7 @@
   "admins.updateVIP": "VIP frissítése",
   "admins.user": "Felhasználó",
   "admins.vipAddedSuccessfully": "VIP sikeresen hozzáadva",
+  "admins.demos": "Bemutatók",
   "agent.applyAgent": "Ügynök felszerelése",
   "agent.applyAgentSkin": "Ügynök felszerelése",
   "agent.error": "Hiba történt az ügynök elmentése közben.",
