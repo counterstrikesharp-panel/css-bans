@@ -32,9 +32,6 @@
                 <!-- <h5>Demos List</h5> -->
             </div>
             <div class="card-body">
-                <div class="alert alert-warning" role="alert">
-                    Времето е в Българско време.
-                </div>
                 <div class="table-responsive">
                     <!-- Filter Section -->
                     <div class="mb-4">
