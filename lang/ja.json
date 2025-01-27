@@ -219,6 +219,7 @@
   "admins.updateVIP": "VIPを更新",
   "admins.user": "ユーザー",
   "admins.vipAddedSuccessfully": "VIPが正常に追加されました",
+  "admins.demos": "デモ",
   "agent.applyAgent": "エージェントを適用",
   "agent.applyAgentSkin": "エージェントスキンを適用",
   "agent.error": "エージェントを適用する際にエラーが発生しました。",

@@ -219,6 +219,7 @@
   "admins.updateVIP": "Актуализирай VIP",
   "admins.user": "Потребител",
   "admins.vipAddedSuccessfully": "VIP добавен успешно",
+  "admins.demos": "Демота",
   "agent.applyAgent": "Приложи агент",
   "agent.applyAgentSkin": "Приложи кожата на агент",
   "agent.error": "Възникна грешка при прилагането на агента.",

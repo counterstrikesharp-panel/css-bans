@@ -219,6 +219,7 @@
   "admins.updateVIP": "VIP güncelle",
   "admins.user": "Kullanıcı",
   "admins.vipAddedSuccessfully": "VIP başarıyla eklendi",
+  "admins.demos": "Demolar",
   "agent.applyAgent": "Ajan seç",
   "agent.applyAgentSkin": "Ajana kostüm/skin uygula",
   "agent.error": "Ajan seçerken bir hata oluştu.",

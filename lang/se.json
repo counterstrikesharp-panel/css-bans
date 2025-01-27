@@ -219,6 +219,7 @@
   "admins.updateVIP": "Uppdatera VIP",
   "admins.user": "Användare",
   "admins.vipAddedSuccessfully": "VIP uppdaterat",
+  "admins.demos": "Demor",
   "agent.applyAgent": "Tillämpa Agent",
   "agent.applyAgentSkin": "Tillämpa Agent Skin",
   "agent.error": "Ett fel uppstod när agent skulle tillämpas.",

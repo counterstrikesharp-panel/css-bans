@@ -219,6 +219,7 @@
   "admins.updateVIP": "Update VIP",
   "admins.user": "User",
   "admins.vipAddedSuccessfully": "VIP Added Successfully",
+  "admins.demos": "Demo",
   "agent.applyAgent": "Apply Agent",
   "agent.applyAgentSkin": "Apply Agent Skin",
   "agent.error": "An error occurred while applying the agent.",

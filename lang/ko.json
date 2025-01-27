@@ -219,6 +219,7 @@
     "admins.updateVIP": "VIP 업데이트",
     "admins.user": "사용자",
     "admins.vipAddedSuccessfully": "VIP가 성공적으로 추가되었습니다",
+    "admins.demos": "데모",
     "agent.applyAgent": "요원 적용",
     "agent.applyAgentSkin": "요원 스킨 적용",
     "agent.error": "요원을 적용하는 중에 오류가 발생했습니다.",

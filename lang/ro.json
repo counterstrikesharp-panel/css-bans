@@ -219,6 +219,7 @@
   "admins.updateVIP": "Actualizează VIP",
   "admins.user": "Utilizator",
   "admins.vipAddedSuccessfully": "VIP adăugat cu succes",
+  "admins.demos": "Demo",
   "agent.applyAgent": "Aplică Agent",
   "agent.applyAgentSkin": "Aplică Skin Agent",
   "agent.error": "A apărut o eroare în timpul aplicării agentului.",
