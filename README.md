@@ -56,7 +56,7 @@ For detailed installation instructions, please visit our [Documentation](https:/
 ## Modules Support
 - Ranks (K4system) (Multi Server Support) - View/listing [K4-System](https://github.com/KitsuneLab-Development/K4-Zenith)
 - VIP Core - Download from the release tab (Follow the documentation guide)
-- Skins (Weapon Paints) (Only version 297 for now https://github.com/Nereziel/cs2-WeaponPaints/releases/tag/build-297)
+- Skins (Weapon Paints) (Use Latest version - If you have previously installed older version esnure you drop all tables of weapon paints and re setup)
 
 ## Requirements
 - PHP >= 8.3 (Recommended PHP 8.3)
