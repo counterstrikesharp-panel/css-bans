@@ -108,28 +108,47 @@ class BansController extends Controller
             // Start a database transaction
             DB::beginTransaction();
 
+            $adminId = DB::table('sa_admins')
+                ->where('player_steamid', Auth::user()->steam_id)
+                ->value('id');
+
+            if (!$adminId) {
+                throw new \Exception('Admin not found in sa_admins table');
+            }
+
             foreach ($bans as $ban) {
                 // Update each ban record to mark it as unbanned
                 $ban->status = 'UNBANNED';
                 $ban->ends = now();
                 $ban->save();
+
+                DB::table('sa_unbans')->insert([
+                    'ban_id' => $ban->id,
+                    'admin_id' => $adminId,
+                    'reason' => 'Manual unban',
+                    'date' => now()
+                ]);
+
                 CommonHelper::sendActionLog('unban', $ban->id);
             }
 
             // If all unbans are successful, commit the transaction
             DB::commit();
             return response()->json(['success' => true, 'message' => __('admins.bansSuccess')]);
+
         } catch (\Exception $e) {
             // If any error occurs, rollback the transaction
             DB::rollBack();
             return response()->json(['success' => false, 'message' => $e->getMessage()]);
         }
     }
+
     public function create()
     {
         $servers = SaServer::all();
         return view('admin.bans.add', ['servers' => $servers]);
     }
+
     public function store(Request $request)
     {
         $validatedData = $request->validate([
