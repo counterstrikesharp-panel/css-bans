@@ -79,7 +79,7 @@ class ServerController extends Controller
                             ->where('server_id', $server->id)
                             ->where('status', 'ACTIVE')
                             ->exists()) {
-                            $banned = ' <span class="badge badge-light-danger mb-2 me-4">Banned</span>';
+                            $banned = ' <span class="badge badge-light-danger mb-2 me-4">' . __('admins.banned') . '</span>';
                         }
                     }
                     $formattedServer = [
