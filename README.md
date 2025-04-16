@@ -34,7 +34,7 @@ CSS-BANS is an admin web panel for Counter-Strike 2, powered by CounterStrikeSha
 # [Join Discord](https://discord.gg/fwg5DKZYqV)
 
 ## Installation Guide
-For detailed installation instructions, please visit our [Documentation](https://docs.cssbans.online).
+For detailed installation instructions, please visit our [Documentation](https://docs.cssbans.site).
 
 ## Features
 - Manage Bans
@@ -100,6 +100,6 @@ php artisan migrate
 npm run build
 ```
 
-For further information, please visit our [Documentation](https://docs.cssbans.online) or join our [Discord](https://discord.gg/fwg5DKZYqV) for support.
+For further information, please visit our [Documentation](https://docs.cssbans.site) or join our [Discord](https://discord.gg/fwg5DKZYqV) for support.
 
 ![Alt](https://repobeats.axiom.co/api/embed/25f27b45de54ec2177e206ee8dfbbde4bd01dccf.svg "Repobeats analytics image")
