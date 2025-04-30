@@ -15,6 +15,7 @@ use App\Http\Controllers\K4Ranks\RanksController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MutesController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\DemosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -87,6 +88,9 @@ Route::middleware(['checkSetup'])->group(function () {
     Route::group(['prefix' => 'servers'], function () {
         Route::get('/{server_id}/players', [ServerController::class, 'getPlayers']);
     });
+
+    Route::get('/demos', [DemosController::class, 'index'])->name('demo.index')->middleware('permission.ban');
+
     /**
      * Ranks Module
      */
