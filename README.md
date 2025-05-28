@@ -51,7 +51,8 @@ For detailed installation instructions, please visit our [Documentation](https:/
 - Ranks (Multi Server Support)
 - Discord Webhook
 - Server Player Stats Chart
-- Demos 
+- Demos
+- Admin Activity log
 
 ## Modules Support
 - Ranks (K4system) (Multi Server Support) - View/listing [K4-System](https://github.com/KitsuneLab-Development/K4-Zenith)
