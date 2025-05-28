@@ -254,25 +254,6 @@ INSERT INTO `users` (`id`, `name`, `avatar`, `steam_id`, `created_at`, `updated_
 (1, 'Piko', 'https://avatars.steamstatic.com/483938176623f9bcfc948180a980076667058e24_medium.jpg', 76561199028888055, '2024-04-14 15:25:18', '2024-04-14 15:25:18');
 COMMIT;
 
-CREATE TABLE `admin_logs` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `admin_id` bigint(20) unsigned DEFAULT NULL,
-  `admin_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `admin_steam_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `action` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `target_id` bigint(20) unsigned DEFAULT NULL,
-  `target_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `target_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `target_steam_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `details` text COLLATE utf8mb4_unicode_ci,
-  `ip_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `admin_logs_admin_id_foreign` (`admin_id`),
-  CONSTRAINT `admin_logs_admin_id_foreign` FOREIGN KEY (`admin_id`) REFERENCES `users` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
