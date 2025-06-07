@@ -29,7 +29,6 @@ function loadPlayTime() {
                 }
             },
             {"data": "playtime"},
-            {"data": "rank"},
             {"data": "kills"},
             {"data": "deaths"},
             {"data": "assists"},

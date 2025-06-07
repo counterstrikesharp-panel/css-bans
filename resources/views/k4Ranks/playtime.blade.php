@@ -51,7 +51,6 @@
                                     <th>{{ __('dashboard.position') }}</th>
                                     <th>{{ __('dashboard.player') }}</th>
                                     <th>{{ __('dashboard.playTime') }}</th>
-                                    <th>{{ __('dashboard.rank') }}</th>
                                     <th>{{ __('dashboard.kills') }} <i class="fas fa-skull-crossbones"></i></th>
                                     <th>{{ __('dashboard.deaths') }} <i class="fas fa-skull"></i></th>
                                     <th>{{ __('admins.assists') }} <i class="fas fa-hands-helping"></i></th>

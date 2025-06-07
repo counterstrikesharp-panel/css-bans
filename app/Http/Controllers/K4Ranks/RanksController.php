@@ -256,7 +256,6 @@ class RanksController extends Controller
                 "name" => !empty($response['response']['players'][0]['personaname']) ? $response['response']['players'][0]['personaname'] : 'Profile',
                 "player_steamid" => $player->steam_id,
                 "playtime" => number_format(CarbonInterval::minutes($playerTime['TotalPlaytime'] ?? 0)->totalHours, 2),
-                "rank" => CommonHelper::getCSRankImage($playerRank['Rank'] ?? 'N/A'),
                 "kills" => $playerData['Kills'] ?? 0,
                 "deaths" => $playerData['Deaths'] ?? 0,
                 "assists" => $playerData['Assists'] ?? 0,
