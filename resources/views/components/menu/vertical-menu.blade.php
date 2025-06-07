@@ -230,6 +230,13 @@
                                     </div>
                                 </a>
                             </li>
+                            <li class="{{ Request::is('*list/playtime*') ? 'active' : '' }}">
+                                <a href="{{getAppSubDirectoryPath()}}/list/playtime" class="dropdown-toggle">
+                                    <div class="">
+                                        <i class="fas fa-clock fa-fw me-3"></i><span>{{ __('dashboard.playTime') }}</span>
+                                    </div>
+                                </a>
+                            </li>
                         @endif
                         @if(env('VIP') == 'Enabled')
                             <li class="{{ Request::is('*vip*') ? 'active' : '' }}">

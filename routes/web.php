@@ -93,6 +93,8 @@ Route::middleware(['checkSetup'])->group(function () {
     Route::group(['prefix' => 'list'], function () {
         Route::get('/ranks', [RanksController::class, 'index']);
         Route::post('/ranks', [RanksController::class, 'getPlayersList']);
+        Route::get('/playtime', [RanksController::class, 'playtime']);
+        Route::post('/playtime', [RanksController::class, 'getPlaytimeList']);
     });
     Route::get('/ranks/profile/{steam_id}/{server_id}', [RanksController::class, 'viewProfile'])->name('ranks.profile');
 });

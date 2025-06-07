@@ -29,6 +29,14 @@ class RanksController extends Controller
         $servers = ModuleServerSetting::all();
         return view('k4Ranks.list', compact('servers'));
     }
+
+    public function playtime(Request $request)
+    {
+        $serverId = $request->query('server_id');
+        ModuleHelper::useConnection('Ranks', $serverId);
+        $servers = ModuleServerSetting::all();
+        return view('k4Ranks.playtime', compact('servers'));
+    }
     public function getPlayersList(Request $request)
     {
         ModuleHelper::useConnection('Ranks');
@@ -167,6 +175,106 @@ class RanksController extends Controller
             'draw' => $request->input('draw'),
             "recordsTotal" => $useOldLogic ? Ranks::count() : ZenithPlayerStorage::count(),
             "recordsFiltered" => !empty($searchValue) ? count($formattedData) : ($useOldLogic ? Ranks::count() : ZenithPlayerStorage::count()),
+            "data" => $formattedData
+        ]);
+    }
+
+    public function getPlaytimeList(Request $request)
+    {
+        ModuleHelper::useConnection('Ranks');
+
+        $start = $request->input('start');
+        $length = $request->input('length');
+        $searchValue = $request->input('search.value');
+        $orderColumn = $request->input('order.0.column');
+        $orderDirection = $request->input('order.0.dir');
+
+        $query = ZenithPlayerStorage::selectRaw('*, (SELECT COUNT(*) + 1 FROM zenith_player_storage AS zps WHERE CAST(JSON_EXTRACT(zps.`K4-Zenith-TimeStats.storage`, "$.TotalPlaytime") AS UNSIGNED) > CAST(JSON_EXTRACT(zenith_player_storage.`K4-Zenith-TimeStats.storage`, "$.TotalPlaytime") AS UNSIGNED)) AS `position`');
+
+        if (!empty($searchValue)) {
+            $query->where('steam_id', 'like', '%' . $searchValue . '%')
+                ->orWhere('name', 'like', '%' . $searchValue . '%');
+        }
+
+        if ($orderColumn !== null) {
+            $columnName = $request->input('columns.' . $orderColumn . '.data');
+            switch ($columnName) {
+                case 'playtime':
+                    $query->orderByRaw('CAST(JSON_UNQUOTE(JSON_EXTRACT(`K4-Zenith-TimeStats.storage`, "$.TotalPlaytime")) AS UNSIGNED) ' . $orderDirection);
+                    break;
+                case 'kills':
+                    $query->orderByRaw('CAST(JSON_UNQUOTE(JSON_EXTRACT(`K4-Zenith-Stats.storage`, "$.Kills")) AS UNSIGNED) ' . $orderDirection);
+                    break;
+                case 'deaths':
+                    $query->orderByRaw('CAST(JSON_UNQUOTE(JSON_EXTRACT(`K4-Zenith-Stats.storage`, "$.Deaths")) AS UNSIGNED) ' . $orderDirection);
+                    break;
+                case 'assists':
+                    $query->orderByRaw('CAST(JSON_UNQUOTE(JSON_EXTRACT(`K4-Zenith-Stats.storage`, "$.Assists")) AS UNSIGNED) ' . $orderDirection);
+                    break;
+                case 'headshots':
+                    $query->orderByRaw('CAST(JSON_UNQUOTE(JSON_EXTRACT(`K4-Zenith-Stats.storage`, "$.Headshots")) AS UNSIGNED) ' . $orderDirection);
+                    break;
+                case 'rounds_ct':
+                    $query->orderByRaw('CAST(JSON_UNQUOTE(JSON_EXTRACT(`K4-Zenith-Stats.storage`, "$.RoundsCT")) AS UNSIGNED) ' . $orderDirection);
+                    break;
+                case 'rounds_t':
+                    $query->orderByRaw('CAST(JSON_UNQUOTE(JSON_EXTRACT(`K4-Zenith-Stats.storage`, "$.RoundsT")) AS UNSIGNED) ' . $orderDirection);
+                    break;
+                case 'rounds_overall':
+                    $query->orderByRaw('(CAST(JSON_UNQUOTE(JSON_EXTRACT(`K4-Zenith-Stats.storage`, "$.RoundsCT")) AS UNSIGNED) + CAST(JSON_UNQUOTE(JSON_EXTRACT(`K4-Zenith-Stats.storage`, "$.RoundsT")) AS UNSIGNED)) ' . $orderDirection);
+                    break;
+                case 'games_won':
+                    $query->orderByRaw('CAST(JSON_UNQUOTE(JSON_EXTRACT(`K4-Zenith-Stats.storage`, "$.GameWin")) AS UNSIGNED) ' . $orderDirection);
+                    break;
+                case 'games_lost':
+                    $query->orderByRaw('CAST(JSON_UNQUOTE(JSON_EXTRACT(`K4-Zenith-Stats.storage`, "$.GameLose")) AS UNSIGNED) ' . $orderDirection);
+                    break;
+                case 'position':
+                    $query->orderBy('position', $orderDirection);
+                    break;
+                default:
+                    $query->orderBy($columnName, $orderDirection);
+                    break;
+            }
+        } else {
+            $query->orderByRaw('CAST(JSON_UNQUOTE(JSON_EXTRACT(`K4-Zenith-TimeStats.storage`, "$.TotalPlaytime")) AS UNSIGNED) DESC');
+        }
+
+        $players = $query->offset($start)->limit($length)->get();
+
+        $formattedData = [];
+        foreach ($players as $player) {
+            $playerData = $player['K4-Zenith-Stats.storage'];
+            $playerRank = $player['K4-Zenith-Ranks.storage'];
+            $playerTime = $player['K4-Zenith-TimeStats.storage'];
+            $player->player_steamid = $player->steam_id;
+            $response = CommonHelper::steamProfile($player);
+            $serverId = Crypt::encrypt(Session::get('Ranks_server'));
+            $formattedData[] = [
+                "profile" =>  env('VITE_SITE_DIR')."/ranks/profile/$player->player_steamid/$serverId",
+                "position" => $player->position,
+                "name" => !empty($response['response']['players'][0]['personaname']) ? $response['response']['players'][0]['personaname'] : 'Profile',
+                "player_steamid" => $player->steam_id,
+                "playtime" => number_format(CarbonInterval::minutes($playerTime['TotalPlaytime'] ?? 0)->totalHours, 2),
+                "rank" => CommonHelper::getCSRankImage($playerRank['Rank'] ?? 'N/A'),
+                "kills" => $playerData['Kills'] ?? 0,
+                "deaths" => $playerData['Deaths'] ?? 0,
+                "assists" => $playerData['Assists'] ?? 0,
+                "headshots" => $playerData['Headshots'] ?? 0,
+                "rounds_ct" => $playerData['RoundsCT'] ?? 0,
+                "rounds_t" => $playerData['RoundsT'] ?? 0,
+                "rounds_overall" => ($playerData['RoundsCT'] ?? 0) + ($playerData['RoundsT'] ?? 0),
+                "games_won" => $playerData['GameWin'] ?? 0,
+                "games_lost" => $playerData['GameLose'] ?? 0,
+                "avatar" => !empty($response['response']['players'][0]['avatar']) ? $response['response']['players'][0]['avatar'] : 'https://mdbootstrap.com/img/Photos/Avatars/img(32).jpg',
+                "last_seen" => Carbon::parse($player->last_online ?? now())->diffForHumans(),
+            ];
+        }
+
+        return response()->json([
+            'draw' => $request->input('draw'),
+            "recordsTotal" => ZenithPlayerStorage::count(),
+            "recordsFiltered" => !empty($searchValue) ? count($formattedData) : ZenithPlayerStorage::count(),
             "data" => $formattedData
         ]);
     }
