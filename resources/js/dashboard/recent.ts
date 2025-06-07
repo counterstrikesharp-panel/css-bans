@@ -1,12 +1,11 @@
 import axios from 'axios';
 import {appendTableData, formatDuration, calculateProgress} from '../utility/utility';
 import $ from "jquery";
-let tableRows = null;
 // Make a GET request to fetch mutes data
 axios.get(recentMutesUrl)
     .then(response => {
         // Handle successful response
-        appendTableData(constructTableRows(response.data), 'recentMutes');
+        appendTableData(constructListItems(response.data), 'recentMutes');
     })
     .catch(error => {
         // Handle error
@@ -16,7 +15,7 @@ axios.get(recentMutesUrl)
 axios.get(recentBansUrl)
     .then(response => {
         // Handle successful response
-        appendTableData(constructTableRows(response.data), 'recentBans');
+        appendTableData(constructListItems(response.data), 'recentBans');
     })
     .catch(error => {
         // Handle error
@@ -24,7 +23,7 @@ axios.get(recentBansUrl)
     });
 
 // Function to construct table rows dynamically
-function constructTableRows(data: any[]): string {
+function constructListItems(data: any[]): string {
     let html = '';
 
     data.forEach((item, index) => {
@@ -42,20 +41,23 @@ function constructTableRows(data: any[]): string {
         }
         progress = isNaN(progress) ? 100 : progress;
         html += `
-      <tr>
-        <td><a href="https://steamcommunity.com/profiles/${item.player_steamid}/">${truncatePlayerName(item.player_name)}</a></td>
-        <td><a href="https://steamcommunity.com/profiles/${item.admin_steamid}/">${truncatePlayerName(item.admin_name)}</a></td>
-        <td>${formatDuration(item.created)}</td>
-        <td>${item.ends}</td>
-        <td>
-            <div class="progress">
-                <div class="progress-bar progress-bar-striped progress-bar-animated custom-progress ${progressBarClass}"
-                role="progressbar" style="width:  ${progress}%" aria-valuenow="${progress}"
-                aria-valuemin="0" aria-valuemax="100">
-                </div>
+      <li class="list-group-item">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center">
+            <img src="${item.avatar}" class="rounded-circle me-3" style="width:40px;height:40px;" />
+            <div>
+              <a href="https://steamcommunity.com/profiles/${item.player_steamid}/">${truncatePlayerName(item.player_name)}</a>
+              <p class="mb-0 small">${formatDuration(item.created)} - ${item.ends}</p>
+              <p class="mb-0 small">Admin: <a href="https://steamcommunity.com/profiles/${item.admin_steamid}/">${truncatePlayerName(item.admin_name)}</a></p>
             </div>
-        </td>
-      </tr>
+          </div>
+        </div>
+        <div class="progress mt-2" style="height:6px;">
+          <div class="progress-bar progress-bar-striped progress-bar-animated custom-progress ${progressBarClass}"
+               role="progressbar" style="width:  ${progress}%" aria-valuenow="${progress}"
+               aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </li>
     `;
     });
 

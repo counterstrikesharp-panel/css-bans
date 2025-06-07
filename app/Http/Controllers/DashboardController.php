@@ -54,7 +54,6 @@ class DashboardController extends Controller
         }
         $playerChart = $this->getServerStatsWithSeriesFormat($request->input('interval'));
         $playerMapChart = $this->getMapStatsWithSeriesFormat($request->input('interval'));
-        $bansMutesChart = $this->getBansMutesStats();
         return view('admin.dashboard',
             compact(
                 'totalBans',
@@ -69,8 +68,7 @@ class DashboardController extends Controller
                 'totalActiveMutes',
                 'servers',
                 'playerChart',
-                'playerMapChart',
-                'bansMutesChart'
+                'playerMapChart'
             )
         );
     }
@@ -80,6 +78,8 @@ class DashboardController extends Controller
         $recentMutes = SaMute::orderBy('created', 'desc')->take(5)->get();
         foreach($recentMutes as $mute){
             $mute->ends = $mute->duration == 0 ? "<h6><span class='badge badge-danger'>" . __('dashboard.permanent') . "</span></h6>" : $mute->ends;
+            $response = CommonHelper::steamProfile($mute);
+            $mute->avatar = !empty($response['response']['players'][0]['avatar']) ? $response['response']['players'][0]['avatar'] : 'https://mdbootstrap.com/img/Photos/Avatars/img(32).jpg';
         }
         return response()->json($recentMutes);
     }
@@ -89,6 +89,8 @@ class DashboardController extends Controller
         $recentBans = SaBan::orderBy('created', 'desc')->take(5)->get();
         foreach($recentBans as $ban){
             $ban->ends = $ban->duration == 0 ? "<h6><span class='badge badge-danger'>" . __('dashboard.permanent') . "</span></h6>" : $ban->ends;
+            $response = CommonHelper::steamProfile($ban);
+            $ban->avatar = !empty($response['response']['players'][0]['avatar']) ? $response['response']['players'][0]['avatar'] : 'https://mdbootstrap.com/img/Photos/Avatars/img(32).jpg';
         }
         return response()->json($recentBans);
     }
@@ -419,31 +421,6 @@ class DashboardController extends Controller
         ];
     }
 
-    private function getBansMutesStats()
-    {
-        $months = [];
-        $bans = [];
-        $mutes = [];
-
-        for ($i = 5; $i >= 0; $i--) {
-            $date = Carbon::now()->subMonths($i);
-            $start = $date->copy()->startOfMonth();
-            $end = $date->copy()->endOfMonth();
-            $months[] = $date->format('M Y');
-            $bans[] = SaBan::whereBetween('created', [$start, $end])->count();
-            $mutes[] = SaMute::whereBetween('created', [$start, $end])->count();
-        }
-
-        $seriesData = [
-            ['name' => __('dashboard.bans'), 'data' => $bans],
-            ['name' => __('dashboard.mutes'), 'data' => $mutes]
-        ];
-
-        return [
-            'seriesData' => json_encode($seriesData),
-            'intervals' => json_encode($months)
-        ];
-    }
 
 
 }
