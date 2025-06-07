@@ -54,6 +54,7 @@ class DashboardController extends Controller
         }
         $playerChart = $this->getServerStatsWithSeriesFormat($request->input('interval'));
         $playerMapChart = $this->getMapStatsWithSeriesFormat($request->input('interval'));
+        $bansMutesChart = $this->getBansMutesStats();
         return view('admin.dashboard',
             compact(
                 'totalBans',
@@ -68,7 +69,8 @@ class DashboardController extends Controller
                 'totalActiveMutes',
                 'servers',
                 'playerChart',
-                'playerMapChart'
+                'playerMapChart',
+                'bansMutesChart'
             )
         );
     }
@@ -414,6 +416,32 @@ class DashboardController extends Controller
         return [
             'seriesData' => json_encode($seriesData),
             'intervals' => json_encode($formattedIntervals)
+        ];
+    }
+
+    private function getBansMutesStats()
+    {
+        $months = [];
+        $bans = [];
+        $mutes = [];
+
+        for ($i = 5; $i >= 0; $i--) {
+            $date = Carbon::now()->subMonths($i);
+            $start = $date->copy()->startOfMonth();
+            $end = $date->copy()->endOfMonth();
+            $months[] = $date->format('M Y');
+            $bans[] = SaBan::whereBetween('created', [$start, $end])->count();
+            $mutes[] = SaMute::whereBetween('created', [$start, $end])->count();
+        }
+
+        $seriesData = [
+            ['name' => __('dashboard.bans'), 'data' => $bans],
+            ['name' => __('dashboard.mutes'), 'data' => $mutes]
+        ];
+
+        return [
+            'seriesData' => json_encode($seriesData),
+            'intervals' => json_encode($months)
         ];
     }
 

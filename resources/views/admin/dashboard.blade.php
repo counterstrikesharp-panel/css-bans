@@ -266,6 +266,20 @@
                 </div>
             </div>
         </div>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header text-center py-3">
+                        <h5 class="mb-0 text-center">
+                            <strong>{{ __('dashboard.bansMutesChart') }}</strong>
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="bans-mutes-chart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
         <section class="recent-stats">
             <div class="row">
@@ -496,6 +510,33 @@
                 sLineAreaAvg
             );
             simpleLineAreaAvg.render();
+
+            var bansMutesOptions = {
+                chart: {
+                    fontFamily: 'Nunito, Arial, sans-serif',
+                    height: 350,
+                    type: 'bar',
+                    toolbar: {
+                        show: false,
+                    }
+                },
+                dataLabels: { enabled: false },
+                stroke: { curve: 'smooth' },
+                series: {!! $bansMutesChart['seriesData'] !!},
+                xaxis: {
+                    type: 'text',
+                    categories: {!! $bansMutesChart['intervals'] !!}
+                },
+                legend: { show: true },
+                tooltip: {
+                    theme: 'dark'
+                }
+            };
+            var bansMutesChart = new ApexCharts(
+                document.querySelector("#bans-mutes-chart"),
+                bansMutesOptions
+            );
+            bansMutesChart.render();
         </script>
     <script>
         document.getElementById('intervalSelect').addEventListener('change', function() {

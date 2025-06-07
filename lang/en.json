@@ -269,6 +269,7 @@
   "dashboard.versionVisible": "This is only visible to you.",
   "dashboard.weaponpaints": "Weapon Paints",
   "dashboard.won": "WON",
+  "dashboard.bansMutesChart": "Bans vs Mutes",
   "dashboard.youHaveActiveBans": "You have active Bans on <b>:activeBans</b> servers",
   "dashboard.youHaveActiveMutes": "You have active Mutes on <b>:activeMutes</b> servers",
   "emails.body.APPROVED": "Your ban appeal has been approved. You can now rejoin the server. If you have any questions, feel free to contact us.",
