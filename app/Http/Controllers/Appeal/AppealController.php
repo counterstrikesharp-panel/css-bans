@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Appeal;
 
 use App\Helpers\CommonHelper;
+use App\Helpers\AdminLogHelper;
 use App\Http\Controllers\Controller;
 use App\Mail\AppealApproved;
 use App\Models\Appeal\Appeal;
@@ -86,6 +87,14 @@ class AppealController extends Controller
         $appeal->status = $request->input('status');
         $appeal->save();
         Mail::to($appeal->email)->send(new AppealApproved($appeal));
+        
+        // Log the appeal status update
+        AdminLogHelper::log(
+            $request->input('status') === 'APPROVED' ? 'approve_appeal' : 'reject_appeal',
+            'appeal',
+            $appeal->id,
+            ['status' => $request->input('status')]
+        );
 
         return redirect()->route('appeals.list', $appeal->id)->with('success',  __('Appeal status updated successfully.'));
     }

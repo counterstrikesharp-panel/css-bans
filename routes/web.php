@@ -93,6 +93,8 @@ Route::middleware(['checkSetup'])->group(function () {
     Route::group(['prefix' => 'list'], function () {
         Route::get('/ranks', [RanksController::class, 'index']);
         Route::post('/ranks', [RanksController::class, 'getPlayersList']);
+        Route::get('/playtime', [RanksController::class, 'playtime']);
+        Route::post('/playtime', [RanksController::class, 'getPlaytimeList']);
     });
     Route::get('/ranks/profile/{steam_id}/{server_id}', [RanksController::class, 'viewProfile'])->name('ranks.profile');
 });
@@ -200,4 +202,12 @@ Route::get('/clear-cache', function () {
 
 Route::prefix('stats')->group(function () {
     Route::get('/player_count', [ServerController::class, 'trackServerPlayerCounts']);
+});
+
+// Admin logs routes
+Route::middleware('superadmin')->group(function () {
+    Route::get('/admin/logs', [App\Http\Controllers\AdminLogController::class, 'index'])->name('admin.logs');
+    Route::get('/admin/logs/data', [App\Http\Controllers\AdminLogController::class, 'getLogsList'])->name('admin.logs.data');
+    Route::get('/admin/logs/filters', [App\Http\Controllers\AdminLogController::class, 'getFilters'])->name('admin.logs.filters');
+    Route::get('/admin/logs/details/{id}', [App\Http\Controllers\AdminLogController::class, 'showDetails'])->name('admin.logs.details');
 });

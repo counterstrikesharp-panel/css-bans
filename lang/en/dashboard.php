@@ -16,6 +16,7 @@ return [
     'players' => 'Players',
     'player' => 'Player',
     'csRating' => 'CS Rating',
+    'playTime' => 'Play Time',
     'rank' => 'Rank',
     'kills' => 'Kills',
     'deaths' => 'Deaths',
