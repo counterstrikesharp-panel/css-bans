@@ -2,7 +2,7 @@
     {
         "weapon_defindex": 0,
         "paint": 0,
-        "image": "https://github.com/counterstrikesharp-panel/css-bans/tree/main/resources/images/default_gloves.png",
+        "image": "https://raw.githubusercontent.com/counterstrikesharp-panel/css-bans/refs/heads/main/resources/images/default-gloves.png",
         "paint_name": "Gloves | Default"
     },
     {

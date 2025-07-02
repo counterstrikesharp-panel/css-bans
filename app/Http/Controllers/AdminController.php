@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\CommonHelper;
 use App\Helpers\PermissionsHelper;
+use App\Helpers\AdminLogHelper;
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\StoreGroupRequest;
 use App\Models\Permission;
@@ -65,6 +66,14 @@ class AdminController extends Controller
                             $adminFlag->flag = $permission->permission;
                             $adminFlag->save();
                             $adminAddedToServerCount[$server_id] = $server_id;
+                            
+                            // Log the admin action
+                            AdminLogHelper::log('add_admin', 'admin', $admin->id, [
+                                'permission' => $permission->permission,
+                                'server_id' => $server_id,
+                                'immunity' => $validatedData['immunity'],
+                                'expiry' => isset($validatedData['ends']) ? $validatedData['ends'] : 'never'
+                            ]);
                         }
                     }
                 }
@@ -100,6 +109,15 @@ class AdminController extends Controller
                             }
 
                             $adminAddedToServerCount[$server_id] = $server_id;
+                            
+                            // Log the admin action
+                            AdminLogHelper::log('add_admin_to_group', 'admin', $saAdmin->id, [
+                                'group_id' => $groupId,
+                                'group_name' => SaGroups::where('id', $groupId)->value('name'),
+                                'server_id' => $server_id,
+                                'immunity' => $validatedData['immunity'],
+                                'expiry' => isset($validatedData['ends']) ? $validatedData['ends'] : 'never'
+                            ]);
                         }
                     }
                 }
@@ -242,6 +260,7 @@ class AdminController extends Controller
             'groups' => 'required_without:permissions|array',
             'player_name' => 'required',
         ]);
+        
         if(!empty($validated['groups'])){
             // migrate
             $servers = SaServer::all()->pluck('id')->toArray();
@@ -274,6 +293,15 @@ class AdminController extends Controller
                         $groupServer->server_id = $server;
                         $groupServer->save();
                     }
+                    
+                    // Log the admin action
+                    AdminLogHelper::log('migrate_admin_to_group', 'admin', $saAdmin->id, [
+                        'group_id' => $groupId, 
+                        'group_name' => SaGroups::where('id', $groupId)->value('name'),
+                        'server_id' => $server,
+                        'immunity' => $validated['immunity'],
+                        'expiry' => isset($validated['ends']) ? $validated['ends'] : 'never'
+                    ]);
                 }
             }
         } else {
@@ -305,6 +333,14 @@ class AdminController extends Controller
                 $adminFlag->admin_id = $saAdmin->id;
                 $adminFlag->flag = $permissionName;
                 $adminFlag->save();
+                
+                // Log the admin action
+                AdminLogHelper::log('add_permission_to_admin', 'admin', $saAdmin->id, [
+                    'permission' => $permissionName,
+                    'server_id' => $admin->first()->server_id,
+                    'immunity' => $validated['immunity'],
+                    'expiry' => isset($validated['ends']) ? $validated['ends'] : 'never'
+                ]);
             }
 
             // Handle permissions to delete
@@ -312,6 +348,14 @@ class AdminController extends Controller
                 ->where('server_id', $validated['server_id'])
                 ->get('id');
 
+            foreach($permissionsToDelete as $permissionName) {
+                // Log the admin action for each permission removal
+                AdminLogHelper::log('remove_permission_from_admin', 'admin', $admin->first()->id, [
+                    'permission' => $permissionName,
+                    'server_id' => $validated['server_id'],
+                ]);
+            }
+            
             SaAdminsFlags::whereIn('flag', $permissionsToDelete)
                 ->whereIn('admin_id', $adminData->pluck('id')->toArray())
                 ->delete();
@@ -322,6 +366,14 @@ class AdminController extends Controller
                 ->update([
                     'ends' => isset($validated['ends']) ? CommonHelper::formatDate($validated['ends']) : null
                 ]);
+                
+            // Log the admin action for update
+            AdminLogHelper::log('edit_admin', 'admin', $admin->first()->id, [
+                'permissions_added' => $permissionsToAdd,
+                'permissions_removed' => $permissionsToDelete,
+                'immunity' => $validated['immunity'],
+                'expiry' => isset($validated['ends']) ? $validated['ends'] : 'never'
+            ]);
         }
         return redirect()->route('admins.list')->with('success', __('admins.updateSuccessfully'));
     }
@@ -342,9 +394,23 @@ class AdminController extends Controller
         if(in_array('all', $validated['server_ids'])) {
             $serverIds = SaServer::all()->pluck('id')->toArray();
         }
+        
+        // Get admin details before deletion
+        $admin = SaAdmin::where('player_steamid', $player_steam)->first();
+        
         SaAdmin::where('player_steamid', $player_steam)
             ->whereIn('server_id', $serverIds)
             ->delete();
+            
+        // Log the admin action
+        if ($admin) {
+            AdminLogHelper::log('delete_admin', 'admin', 0, [
+                'player_steam_id' => $player_steam,
+                'player_name' => $admin->player_name,
+                'server_ids' => $serverIds,
+                'all_servers' => in_array('all', $validated['server_ids'])
+            ]);
+        }
 
         return redirect()->route('admins.list')->with('success', __('admins.deltedSuccesfully'));
     }
@@ -369,6 +435,12 @@ class AdminController extends Controller
                 $group->name = $validatedData['group_name'];
                 $group->immunity = $validatedData['immunity'];
                 $group->save();
+                
+                // Log group creation
+                AdminLogHelper::log('create_group', 'group', $group->id, [
+                    'group_name' => $validatedData['group_name'],
+                    'immunity' => $validatedData['immunity']
+                ]);
             }
             foreach ($validatedData['server_ids'] as $server_id) {
                 if (empty(SaGroupsServers::where('group_id', $group->id)->where('server_id', $server_id)->first()))
@@ -378,6 +450,12 @@ class AdminController extends Controller
                     $groupServer->server_id = $server_id;
                     $groupServer->save();
                     $groupAddedToServerCount[$server_id] = $server_id;
+                    
+                    // Log server association
+                    AdminLogHelper::log('add_group_to_server', 'group', $group->id, [
+                        'group_name' => $validatedData['group_name'],
+                        'server_id' => $server_id
+                    ]);
                 }
                 foreach ($validatedData['permissions'] as $permissionId) {
                     $permission = Permission::find($permissionId);
@@ -387,6 +465,12 @@ class AdminController extends Controller
                         $groupFlags->flag = $permission->permission;
                         $groupFlags->save();
                         $groupAddedToServerCount[$server_id] = $server_id;
+                        
+                        // Log permission assignment
+                        AdminLogHelper::log('add_permission_to_group', 'group', $group->id, [
+                            'group_name' => $validatedData['group_name'],
+                            'permission' => $permission->permission
+                        ]);
                     }
                 }
             }
@@ -457,6 +541,16 @@ class AdminController extends Controller
             ->update([
                 'ends' => isset($validated['ends']) ? CommonHelper::formatDate($validated['ends']) : null
             ]);
+            
+        // Log group update
+        AdminLogHelper::log('update_group', 'group', $groupId, [
+            'old_name' => $oldName,
+            'new_name' => $validated['name'],
+            'immunity' => $validated['immunity'],
+            'permissions_added' => $permissionsToAdd,
+            'permissions_removed' => $permissionsToDelete
+        ]);
+
         return redirect()->route('admins.list')->with('success', __('admins.groupupdateSuccess'));
     }
 
@@ -562,20 +656,47 @@ class AdminController extends Controller
         $permissionsToDelete = array_diff($currentPermissions, $submittedPermissions);
 
         $groupDetails = SaGroups::where('id', $groupId)->first();
+        $oldName = $groupDetails->name;
+        
         SaAdminsFlags::where('flag', $groupDetails->name)->update([
             'flag' => $validated['name']
         ]);
         $groupDetails->name = $validated['name'];
         $groupDetails->save();
+        
         foreach($permissionsToAdd as $permission){
             $groupFlags = new SaGroupsFlags();
             $groupFlags->group_id = $groupId;
             $groupFlags->flag = $permission;
             $groupFlags->save();
+            
+            // Log permission addition
+            AdminLogHelper::log('add_permission_to_group', 'group', $groupId, [
+                'group_name' => $validated['name'],
+                'permission' => $permission
+            ]);
         }
+        
+        foreach($permissionsToDelete as $permission) {
+            // Log permission removal
+            AdminLogHelper::log('remove_permission_from_group', 'group', $groupId, [
+                'group_name' => $validated['name'],
+                'permission' => $permission
+            ]);
+        }
+        
         SaGroupsFlags::whereIn('flag', $permissionsToDelete)
             ->where('group_id',$groupId)
             ->delete();
+            
+        // Log group update
+        AdminLogHelper::log('update_group', 'group', $groupId, [
+            'old_name' => $oldName,
+            'new_name' => $validated['name'],
+            'immunity' => $validated['immunity'],
+            'permissions_added' => $permissionsToAdd,
+            'permissions_removed' => $permissionsToDelete
+        ]);
 
         return redirect()->route('groups.list')->with('success', 'Group updated successfully.');
     }
@@ -598,20 +719,34 @@ class AdminController extends Controller
                 },
             ],
         ]);
+        
+        $group = SaGroups::find($groupId);
+        $groupName = $group ? $group->name : 'unknown';
 
         if(in_array('all', $validated['server_ids'])) {
+            // Log group complete deletion
+            AdminLogHelper::log('delete_group', 'group', $groupId, [
+                'group_name' => $groupName,
+                'all_servers' => true
+            ]);
+            
             SaGroups::where('id', $groupId)->delete();
-        }else {
+        } else {
             $validated['server_ids'] = SaServer::all()->pluck('id')->toArray();
+            
+            // Log group removal from servers
+            AdminLogHelper::log('delete_group_from_servers', 'group', $groupId, [
+                'group_name' => $groupName,
+                'server_ids' => $validated['server_ids']
+            ]);
+            
             SaGroupsServers::where('group_id', $groupId)
                 ->whereIn('server_id', $validated['server_ids'])->delete();
 
             SaAdmin::where('group_id', $groupId)
                 ->whereIn('server_id', $validated['server_ids'])->delete();
-
         }
 
         return redirect()->route('groups.list')->with('success', __('admins.groupDeletedSuccess'));
-
     }
 }

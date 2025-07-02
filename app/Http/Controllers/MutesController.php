@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\CommonHelper;
 use App\Helpers\PermissionsHelper;
+use App\Helpers\AdminLogHelper;
 use App\Models\SaMute;
 use App\Models\SaServer;
 use Carbon\Carbon;
@@ -110,6 +111,10 @@ class MutesController extends Controller
                 $mute->status = 'UNMUTED';
                 $mute->ends = now();
                 $mute->save();
+                
+                // Log the admin action
+                AdminLogHelper::log('unmute', 'mute', $mute->id, []);
+                CommonHelper::sendActionLog('unmute', $mute->id);
             }
 
             // If all unmutes are successful, commit the transaction
@@ -184,6 +189,14 @@ class MutesController extends Controller
                 $samute->ends = !empty($minutesDifference) ? CommonHelper::formatDate($validatedData['duration']): Carbon::now();
                 $samute->save();
                 $mutesAdded = true;
+                
+                // Log the admin action
+                AdminLogHelper::log('mute', 'mute', $samute->id, [
+                    'reason' => $validatedData['reason'],
+                    'duration' => !empty($minutesDifference) ? CommonHelper::minutesToTime($minutesDifference) : 'permanent',
+                    'server_id' => $serverId,
+                    'type' => $validatedData['type']
+                ]);
                 CommonHelper::sendActionLog('mute', $samute->id);
             }
             DB::commit();
@@ -230,6 +243,13 @@ class MutesController extends Controller
             $mute->status = 'ACTIVE';
             $mute->type = $validatedData['type'];
             $mute->save();
+            
+            // Log the admin action
+            AdminLogHelper::log('edit_mute', 'mute', $mute->id, [
+                'reason' => $validatedData['reason'],
+                'duration' => !empty($minutesDifference) ? CommonHelper::minutesToTime($minutesDifference) : 'permanent',
+                'type' => $validatedData['type']
+            ]);
             CommonHelper::sendActionLog('unmute', $mute->id);
             return redirect()->route('list.mutes')->with('success', __('admins.muteUpdate'));
         } catch(\Exception $e) {

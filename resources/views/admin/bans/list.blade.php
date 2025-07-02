@@ -86,4 +86,3 @@
         <script src="{{asset('plugins/notification/snackbar/snackbar.min.js')}}"></script>
     </x-slot>
 </x-base-layout>
-

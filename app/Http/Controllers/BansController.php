@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Helpers\CommonHelper;
 use App\Helpers\PermissionsHelper;
+use App\Helpers\AdminLogHelper;
 use App\Models\SaBan;
 use App\Models\SaServer;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
@@ -129,11 +131,15 @@ class BansController extends Controller
                     'date' => now()
                 ]);
 
+                
+                // Log the admin action
+                AdminLogHelper::log('unban', 'ban', $ban->id, []);
                 CommonHelper::sendActionLog('unban', $ban->id);
             }
 
             // If all unbans are successful, commit the transaction
             DB::commit();
+
             return response()->json(['success' => true, 'message' => __('admins.bansSuccess')]);
 
         } catch (\Exception $e) {
@@ -220,6 +226,13 @@ class BansController extends Controller
                 $saban->ends = !empty($minutesDifference) ? CommonHelper::formatDate($validatedData['duration']): Carbon::now();
                 $saban->save();
                 $bansAdded = true;
+                
+                // Log the admin action
+                AdminLogHelper::log('ban', 'ban', $saban->id, [
+                    'reason' => $validatedData['reason'],
+                    'duration' => !empty($minutesDifference) ? CommonHelper::minutesToTime($minutesDifference) : 'permanent',
+                    'server_id' => $serverId
+                ]);
                 CommonHelper::sendActionLog('ban', $saban->id);
             }
             DB::commit();
@@ -268,6 +281,13 @@ class BansController extends Controller
             }
             $ban->status = 'ACTIVE';
             $ban->save();
+            
+            // Log the admin action
+            AdminLogHelper::log('edit_ban', 'ban', $ban->id, [
+                'reason' => $validatedData['reason'],
+                'duration' => !empty($minutesDifference) ? CommonHelper::minutesToTime($minutesDifference) : 'permanent',
+                'player_ip' => $validatedData['player_ip']
+            ]);
             CommonHelper::sendActionLog('ban', $ban->id);
             return redirect()->route('list.bans')->with('success', __('admins.banUpdateSuccess'));
         } catch(\Exception $e) {

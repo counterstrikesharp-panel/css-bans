@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Report;
 
 use App\Helpers\CommonHelper;
+use App\Helpers\AdminLogHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Report\Report;
 use App\Models\SaServer;
@@ -52,6 +53,14 @@ class ReportController extends Controller
     public function destroy($id)
     {
         $report = Report::findOrFail($id);
+        
+        // Log the report deletion
+        AdminLogHelper::log('delete_report', 'report', $report->id, [
+            'reporter' => $report->name,
+            'reported_player' => $report->nickname,
+            'reported_steam_id' => $report->steamid
+        ]);
+        
         $report->delete();
 
         return redirect()->route('reports.list')->with('success', 'Report deleted successfully.');
