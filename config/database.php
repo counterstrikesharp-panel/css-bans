@@ -149,6 +149,21 @@ return [
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
 
+        'demos' => [
+            'driver' => 'mysql',
+            'url' => env('DEMOS_DATABASE_URL'),
+            'host' => env('DEMOS_DB_HOST', '127.0.0.1'),
+            'port' => env('DEMOS_DB_PORT', '3306'),
+            'database' => env('DEMOS_DB_DATABASE', 'demos'),
+            'username' => env('DEMOS_DB_USERNAME', 'root'),
+            'password' => env('DEMOS_DB_PASSWORD', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
+
     ],
 
     /*
