@@ -28,7 +28,7 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'steam_id' => 'int'
+        'steam_id' => 'string'
     ];
 
     public function __construct(array $attributes = [])
