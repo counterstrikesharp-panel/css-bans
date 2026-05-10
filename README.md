@@ -101,6 +101,6 @@ php artisan migrate
 npm run build
 ```
 
-For further information, please visit our [Documentation](https://docs.cssbans.site) or join our [Discord](https://discord.gg/fwg5DKZYqV) for support.
+For further information, please visit our [Documentation](https://css-bans.gitbook.io/css-bans-counterstirkesharp-admin-web-panel) or join our [Discord](https://discord.gg/fwg5DKZYqV) for support.
 
 ![Alt](https://repobeats.axiom.co/api/embed/25f27b45de54ec2177e206ee8dfbbde4bd01dccf.svg "Repobeats analytics image")
