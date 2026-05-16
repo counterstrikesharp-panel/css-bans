@@ -124,8 +124,10 @@ Route::get('/rcon/{server_id?}', [RconController::class, 'index'])->middleware('
 Route::post('/rcon/{server_id}', [RconController::class, 'execute'])->middleware('superadmin')->name('rcon.execute');
 
 if(env('VIP') == 'Enabled') {
-    Route::resource('vip', VIPController::class);
-    Route::post('vip/list', 'VIPController@getVIPsList')->name('vip.list');
+    Route::middleware(['admin'])->group(function () {
+        Route::resource('vip', VIPController::class);
+        Route::post('vip/list', 'VIPController@getVIPsList')->name('vip.list');
+    });
 }
 
 use App\Http\Controllers\WeaponSkinController;
@@ -171,20 +173,28 @@ Route::middleware(['superadmin'])->group(function () {
 });
 
 if(env('APPEALS') == 'Enabled') {
-    Route::get('/appeals', [AppealController::class, 'list'])->name('appeals.list');
+    // Public — banned players submit appeals
     Route::get('/appeals/create', [AppealController::class, 'create'])->name('appeals.create');
     Route::post('appeals', [AppealController::class, 'store'])->name('appeals.store');
-    Route::get('/appeals/{id}', [AppealController::class, 'view'])->name('appeals.show');
-    Route::put('/appeals/{id}/status', [AppealController::class, 'updateStatus'])->name('appeals.updateStatus');
+    // Admin-only — viewing all appeals and changing their status
+    Route::middleware(['admin'])->group(function () {
+        Route::get('/appeals', [AppealController::class, 'list'])->name('appeals.list');
+        Route::get('/appeals/{id}', [AppealController::class, 'view'])->name('appeals.show');
+        Route::put('/appeals/{id}/status', [AppealController::class, 'updateStatus'])->name('appeals.updateStatus');
+    });
 }
 
 if(env('REPORTS') == 'Enabled') {
     Route::prefix('reports')->group(function () {
+        // Public — any player can submit a report
         Route::get('create', [ReportController::class, 'create'])->name('reports.create');
         Route::post('store', [ReportController::class, 'store'])->name('reports.store');
-        Route::get('list', [ReportController::class, 'list'])->name('reports.list');
-        Route::get('show/{id}', [ReportController::class, 'show'])->name('reports.show');
-        Route::delete('destroy/{id}', [ReportController::class, 'destroy'])->name('reports.destroy');
+        // Admin-only — viewing/deleting reports
+        Route::middleware(['admin'])->group(function () {
+            Route::get('list', [ReportController::class, 'list'])->name('reports.list');
+            Route::get('show/{id}', [ReportController::class, 'show'])->name('reports.show');
+            Route::delete('destroy/{id}', [ReportController::class, 'destroy'])->name('reports.destroy');
+        });
     });
 }
 
