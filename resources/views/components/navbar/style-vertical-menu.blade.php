@@ -31,11 +31,11 @@
                         <option {{ app()->getLocale() == 'it' ? 'selected' : '' }} value="it" data-image="{{ Vite::asset('resources/images/1x1/it.svg') }}">Italiano</option>
                         <option {{ app()->getLocale() == 'ja' ? 'selected' : '' }} value="ja" data-image="{{ Vite::asset('resources/images/1x1/jp.svg') }}">日本語</option>
                         <option {{ app()->getLocale() == 'ko' ? 'selected' : '' }} value="ko" data-image="{{ Vite::asset('resources/images/1x1/kr.svg') }}">한국어</option>
-                        <option {{ app()->getLocale() == 'pt_BR' ? 'selected' : '' }} value="pt_BR" data-image="{{ Vite::asset('resources/images/1x1/br.svg') }}">Brasileira</option>
-                        <option {{ app()->getLocale() == 'pt_PT' ? 'selected' : '' }} value="pt_PT" data-image="{{ Vite::asset('resources/images/1x1/pt.svg') }}">Português</option>
+                        <option {{ app()->getLocale() == 'pt_BR' ? 'selected' : '' }} value="pt_BR" data-image="{{ Vite::asset('resources/images/1x1/br.svg') }}">Português</option>
+                        <option {{ app()->getLocale() == 'pt_PT' ? 'selected' : '' }} value="pt_PT" data-image="{{ Vite::asset('resources/images/1x1/pt.svg') }}">Português (Portugal)</option>
                         <option {{ app()->getLocale() == 'ru' ? 'selected' : '' }} value="ru" data-image="{{ Vite::asset('resources/images/1x1/ru.svg') }}">Русский</option>
                         <option {{ app()->getLocale() == 'zh_CN' ? 'selected' : '' }} value="zh_CN" data-image="{{ Vite::asset('resources/images/1x1/cn.svg') }}">中文</option>
-                        <option {{ app()->getLocale() == 'ro' ? 'selected' : '' }} value="ro" data-image="{{ Vite::asset('resources/images/1x1/ro.svg') }}">Românesc</option>
+                        <option {{ app()->getLocale() == 'ro' ? 'selected' : '' }} value="ro" data-image="{{ Vite::asset('resources/images/1x1/ro.svg') }}">Română</option>
                         <option {{ app()->getLocale() == 'cz' ? 'selected' : '' }} value="cs" data-image="{{ Vite::asset('resources/images/1x1/cz.svg') }}">Čeština</option>
                         <option {{ app()->getLocale() == 'sk' ? 'selected' : '' }} value="sk" data-image="{{ Vite::asset('resources/images/1x1/sk.svg') }}">Slovenčina</option>
                         <option {{ app()->getLocale() == 'tr' ? 'selected' : '' }} value="tr" data-image="{{ Vite::asset('resources/images/1x1/tr.svg') }}">Türkçe</option>
