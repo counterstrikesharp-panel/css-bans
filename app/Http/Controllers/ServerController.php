@@ -69,9 +69,9 @@ class ServerController extends Controller
             }
 
             list($serverIp, $serverPort) = explode(":", $server->address);
-            // Fetch server information using the SteamService
+            // Fetch server information: A2S first, Steam Web API as fallback.
             try {
-                $serverDetails = $this->getServerDetails($serverIp, $serverPort);
+                $serverDetails = $this->getServerDetails($serverIp, $serverPort, $rcon);
                 if ($serverDetails) {
                     $banned = '';
                     if($loggedInPlayerSteam){
@@ -291,12 +291,40 @@ class ServerController extends Controller
         }
     }
 
-    private function getServerDetails($ip, $port)
+    private function getServerDetails($ip, $port, RconService $rcon = null)
     {
+        // Prefer a direct A2S (UDP) query to the game server: it is real-time,
+        // needs no Steam Web API key, and works even when the server is not yet
+        // listed on the Steam master server. Fall back to the Steam Web API when
+        // the server blocks or rate-limits A2S (e.g. sv_a2s_ip_protection).
+        if ($rcon !== null) {
+            try {
+                $rcon->connect($ip, (int) $port, 1);
+                $info = $rcon->getInfo();
+                $rcon->disconnect();
+
+                if (is_array($info) && isset($info['MaxPlayers'])) {
+                    return [
+                        'players' => $info['Players'] ?? 0,
+                        'max_players' => $info['MaxPlayers'] ?? 0,
+                        'map' => $info['Map'] ?? '',
+                    ];
+                }
+            } catch (\Throwable $e) {
+                Log::info('a2s.query.fallback ' . $ip . ':' . $port . ' ' . $e->getMessage());
+                try {
+                    $rcon->disconnect();
+                } catch (\Throwable $ignored) {
+                    // socket may already be closed
+                }
+            }
+        }
+
+        // Fallback: Steam Web API.
         $apiKey = env('STEAM_CLIENT_SECRET');
         $response = Http::get("https://api.steampowered.com/IGameServersService/GetServerList/v1/?key=$apiKey&filter=addr\\$ip:$port");
         if ($response->successful()) {
-            return $response->json('response.servers')[0];
+            return $response->json('response.servers')[0] ?? null;
         } else {
             Log::error('steam.api.server.listing '. $response->body());
             return null;
