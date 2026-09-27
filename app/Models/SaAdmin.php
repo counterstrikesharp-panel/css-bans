@@ -11,6 +11,13 @@ class SaAdmin extends Model
 
     public $timestamps = false;
 
+    protected $casts = [
+        // SteamID64 is a 17-digit number that loses precision once serialized
+        // to JSON and parsed as a JS number. Keep it a string so /list/admins
+        // renders correct Steam profile links. See #164 (and #163 for users).
+        'player_steamid' => 'string',
+    ];
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
