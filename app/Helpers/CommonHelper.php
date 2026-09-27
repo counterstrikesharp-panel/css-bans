@@ -226,6 +226,10 @@ class CommonHelper
                     $admin = null;
                     $reason = $actionDetails->comments;
                     break;
+                default:
+                    // Actions logged for audit only (admin/group/permission changes,
+                    // edit_ban, edit_mute, delete_report, etc.) have no Discord embed.
+                    return;
             }
             $appUrl = env('APP_URL');
             $website = "[CSS-BANS]($appUrl)";
