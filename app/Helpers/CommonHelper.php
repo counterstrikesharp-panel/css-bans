@@ -226,6 +226,14 @@ class CommonHelper
                     $admin = null;
                     $reason = $actionDetails->comments;
                     break;
+                default:
+                    // Actions forwarded by AdminLogHelper::log() (add_admin,
+                    // delete_report, edit_ban, group/permission changes, ...) are
+                    // audit-log entries with no Discord embed. Return early instead
+                    // of falling through with $username/$steamId/$reason unset,
+                    // which raised "Undefined variable" 500s once DISCORD_WEBHOOK
+                    // was configured. See issue #169.
+                    return;
             }
             $appUrl = env('APP_URL');
             $website = "[CSS-BANS]($appUrl)";
